@@ -19,7 +19,7 @@ Forge's first tier. It answers to **Power** (B) and **Agility** (C), and it teac
 - **In the air, Falling Star:** turn the blade down and fall; the higher you fall from, the harder it lands.
 - **Dashing, Pass:** a slash drawn through the enemy, ending behind it.
 - **Ability, Zenith** (30 Resonance): a rising slash that throws lighter foes into the air and holds them there.
-  Keep **use** held to rise with them.
+  Keep **use** held to rise with them and hang in the air while they do; let go to drop.
 
 Launch, follow, plunge: that is Meridian's whole song in one breath. A foe held in the air by Zenith is a foe that
 cannot hit back.

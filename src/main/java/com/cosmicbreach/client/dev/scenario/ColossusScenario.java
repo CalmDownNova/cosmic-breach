@@ -30,7 +30,7 @@ import org.jetbrains.annotations.Nullable;
  * </ul>
  */
 public final class ColossusScenario implements Scenario {
-    public enum Part { LOOKS, MECHANICS, SHATTER, WORLD, FIGHT }
+    public enum Part { LOOKS, MECHANICS, SHATTER, WORLD, FIGHT, DEATH }
 
     private final Part part;
     private @Nullable DevCamera camera;
@@ -66,6 +66,7 @@ public final class ColossusScenario implements Scenario {
             case MECHANICS -> mechanics(steps, mc);
             case SHATTER -> shatter(steps, mc);
             case FIGHT -> new ColossusFightBot(this, summary).steps(steps, mc);
+            case DEATH -> death(steps, mc);
             case WORLD -> {
             }
         }
@@ -425,6 +426,137 @@ public final class ColossusScenario implements Scenario {
                     tp(mc, at.x, at.y, at.z, a.x(), a.floorY() + 3.5, a.z());
                 })
                 .waitTicks(3);
+    }
+
+    // ------------------------------------------------------------------ dying to it
+
+    private final java.util.UUID[] colossusIds = new java.util.UUID[2];
+
+    /**
+     * {@code colossus-death}: the player's respawn point at the spire's foot (below the crown, out of the bar's
+     * reach), a fight, a death to a Prism Slam, a respawn: no Colossus bar may stay on screen. Then the fight resets
+     * (nobody in the arena) and the ride back up wakes a new one: exactly one bar. Then the same again with a respawn
+     * in the Overworld, which leaves the lair's chunks to unload mid-fight.
+     */
+    private void death(Steps steps, Minecraft mc) {
+        steps.command("gamerule keepInventory true");
+        equip(steps, mc);
+        steps.run("the respawn point at the spire's foot", () -> ServerQuery.ask(p -> {
+            int[] d = layout().riseDoorOutside();
+            p.setRespawnPosition(p.level().dimension(), new net.minecraft.core.BlockPos(d[0], d[1], d[2]), 0f, true, false);
+            return true;
+        }));
+        dieInAFight(steps, mc, "spire foot", 0);
+        steps.log("after respawning", () -> ServerQuery.ask(p -> String.format(Locale.ROOT,
+                        "respawned at %s in %s; colossus %s; bars on screen: %d vanilla, %d gauges",
+                        p.blockPosition(), p.level().dimension().location(), describeColossus(p), vanillaBars(mc),
+                        com.cosmicbreach.client.guardian.GuardianBarHud.count())))
+                .check("respawned out of its reach: no Colossus bar on screen", () -> vanillaBars(mc) == 0
+                        && com.cosmicbreach.client.guardian.GuardianBarHud.count() == 0)
+                .check("and no boss music", () -> !com.cosmicbreach.client.guardian.GuardianMusic.active())
+                .waitUntil("the fight resets with nobody in the arena", 800, () -> ask(mc, c -> c.state() == PrismColossus.State.DORMANT))
+                .check("still no bar", () -> vanillaBars(mc) == 0 && com.cosmicbreach.client.guardian.GuardianBarHud.count() == 0);
+        rideTheLift(steps, mc);
+        steps.waitUntil("the ride back up wakes it again", 100, () -> ask(mc, c -> c.state() == PrismColossus.State.INTRO))
+                .waitTicks(20)
+                .log("the new fight", () -> String.format(Locale.ROOT, "bars on screen: %d vanilla, %d gauges", vanillaBars(mc),
+                        com.cosmicbreach.client.guardian.GuardianBarHud.count()))
+                .check("exactly one Colossus bar, the new fight's", () -> vanillaBars(mc) == 1
+                        && com.cosmicbreach.client.guardian.GuardianBarHud.count() == 1)
+                .screenshot("death_new_fight_bar")
+                .run("note it", () -> summary.add("death with the respawn at the spire's foot: bar gone, one bar in the new fight"));
+
+        // the far respawn: the Overworld, so the lair's chunks unload with the fight under way
+        steps.run("no respawn point (the Overworld's spawn)", () -> ServerQuery.ask(p -> {
+            p.setRespawnPosition(net.minecraft.world.level.Level.OVERWORLD, null, 0f, false, false);
+            return true;
+        }));
+        steps.waitUntil("the intro is over", 260, () -> ask(mc, c -> c.state() == PrismColossus.State.FIGHT));
+        dieInAFight(steps, mc, "overworld", 1);
+        steps.waitTicks(200)
+                .log("in the Overworld", () -> ServerQuery.ask(p -> String.format(Locale.ROOT,
+                        "respawned in %s; bars on screen: %d vanilla, %d gauges", p.level().dimension().location(), vanillaBars(mc),
+                        com.cosmicbreach.client.guardian.GuardianBarHud.count())))
+                .check("respawned in the Overworld: no Colossus bar on screen", () -> vanillaBars(mc) == 0
+                        && com.cosmicbreach.client.guardian.GuardianBarHud.count() == 0)
+                .check("and the server shows no guardian bar to anyone (the unloaded fight's bar is gone)",
+                        () -> ServerQuery.ask(p -> com.cosmicbreach.guardian.GuardianBossBar.liveCount() == 0))
+                .command("cosmicbreach debug goto reach")
+                .waitUntil("back in Aetheria", 600, () -> mc.level != null && AetheriaWorld.is(mc.level))
+                .waitTicks(40);
+        rideTheLift(steps, mc);
+        steps.waitUntil("a Colossus stands and wakes", 200, () -> ask(mc, c -> c.state() == PrismColossus.State.INTRO))
+                .waitTicks(20)
+                .log("the fight after the far respawn", () -> ServerQuery.ask(p -> String.format(Locale.ROOT,
+                        "colossus %s; bars on screen: %d vanilla, %d gauges", describeColossus(p), vanillaBars(mc),
+                        com.cosmicbreach.client.guardian.GuardianBarHud.count())))
+                .check("exactly one Colossus bar again", () -> vanillaBars(mc) == 1
+                        && com.cosmicbreach.client.guardian.GuardianBarHud.count() == 1)
+                .run("note it", () -> summary.add("death with the respawn in the Overworld: bar gone, one bar in the next fight"));
+    }
+
+    /** Wakes it (the lift), lets the intro pass, stands in front at 1 health, takes a slam, respawns. */
+    private void dieInAFight(Steps steps, Minecraft mc, String where, int k) {
+        if (k == 0) {
+            rideTheLift(steps, mc);
+            steps.waitUntil("the Colossus wakes as the player arrives", 80, () -> ask(mc, c -> c.state() == PrismColossus.State.INTRO))
+                    .waitUntil("the intro is over", 220, () -> ask(mc, c -> c.state() == PrismColossus.State.FIGHT));
+        }
+        steps.command("cosmicbreach debug colossus hold 1000000")
+                .waitTicks(10)
+                .check("one Colossus bar on screen in the fight (" + where + ")", () -> vanillaBars(mc) == 1
+                        && com.cosmicbreach.client.guardian.GuardianBarHud.count() == 1)
+                .run("note the Colossus", () -> colossusIds[k] = ServerQuery.ask(p -> colossusOf(p).getUUID()));
+        standInFront(steps, mc, 8.0);
+        steps.run("down to 1 health", () -> ServerQuery.ask(p -> {
+                    p.setHealth(1f);
+                    return true;
+                }))
+                .run("forget the damage so far", playerDamage::clear)
+                .command("cosmicbreach debug colossus attack slam")
+                .waitUntil("the slam landed", 80, () -> !playerDamage.isEmpty())
+                .waitUntil("the slam killed the player", 60, () -> mc.player.isDeadOrDying()
+                        || mc.screen instanceof net.minecraft.client.gui.screens.DeathScreen)
+                .waitTicks(20)
+                .log("dead", () -> String.format(Locale.ROOT, "dead (%s); bars on screen: %d vanilla, %d gauges", where, vanillaBars(mc),
+                        com.cosmicbreach.client.guardian.GuardianBarHud.count()))
+                .run("respawn", () -> mc.player.respawn())
+                .waitUntil("respawned", 200, () -> {
+                    if (mc.player != null && mc.player.isAlive() && mc.screen instanceof net.minecraft.client.gui.screens.DeathScreen) {
+                        mc.setScreen(null);
+                    }
+                    return mc.player != null && mc.player.isAlive() && mc.screen == null;
+                })
+                .waitTicks(60);
+    }
+
+    private static String describeColossus(ServerPlayer p) {
+        CrownSpireLayout l = layout();
+        if (l == null) {
+            return "no lair";
+        }
+        net.minecraft.server.level.ServerLevel level = p.server.getLevel(AetheriaWorld.LEVEL);
+        if (level == null) {
+            return "no Aetheria";
+        }
+        List<PrismColossus> all = level.getEntitiesOfClass(PrismColossus.class, l.arena().bounds());
+        return all.isEmpty() ? "not loaded" : all.size() + " loaded, " + all.get(0).getUUID() + " " + all.get(0).state();
+    }
+
+    /** Boss bars on the vanilla overlay of this client. */
+    static int vanillaBars(Minecraft mc) {
+        net.minecraft.client.gui.components.BossHealthOverlay overlay = mc.gui.getBossOverlay();
+        try {
+            for (java.lang.reflect.Field f : net.minecraft.client.gui.components.BossHealthOverlay.class.getDeclaredFields()) {
+                if (java.util.Map.class.isAssignableFrom(f.getType())) {
+                    f.setAccessible(true);
+                    return ((java.util.Map<?, ?>) f.get(overlay)).size();
+                }
+            }
+        } catch (IllegalAccessException e) {
+            throw new Steps.Failure("can't read the boss overlay: " + e);
+        }
+        throw new Steps.Failure("the boss overlay has no map of bars");
     }
 
     // ------------------------------------------------------------------ Shatter, rewards, the second kill, the reset

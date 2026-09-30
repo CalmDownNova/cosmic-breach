@@ -90,6 +90,7 @@ public final class Scenarios {
         register("colossus-shatter", () -> new ColossusScenario(ColossusScenario.Part.SHATTER));
         register("colossus-world", () -> new ColossusScenario(ColossusScenario.Part.WORLD));
         register("colossus-fight", () -> new ColossusScenario(ColossusScenario.Part.FIGHT));
+        register("colossus-death", () -> new ColossusScenario(ColossusScenario.Part.DEATH));
         register("voice", VoiceScenario::new);
         register("sets", com.cosmicbreach.client.dev.scenario.SetsScenario::new);
         register("sets-driftweave", () -> new com.cosmicbreach.client.dev.scenario.SetsScenario(

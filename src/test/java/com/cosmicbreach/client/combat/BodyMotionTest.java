@@ -181,6 +181,72 @@ class BodyMotionTest {
         assertEquals(0.0, motion.velocity(new Vec3(0, 0.3, 0), 0f, false).y - 0.3, 1e-12, "a rise is one kick");
     }
 
+    /** Heights over {@code ticks} ticks from standing, with the ability let go after {@code heldTicks}. */
+    private static double[] heldRise(BodyMotion motion, int ticks, int heldTicks) {
+        double[] ys = new double[ticks];
+        Vec3 v = Vec3.ZERO;
+        double y = 0;
+        for (int i = 0; i < ticks; i++) {
+            motion.ground(y <= 0);
+            if (i >= heldTicks) {
+                motion.releaseLift();
+            }
+            v = motion.velocity(v, 0f, false);
+            y = Math.max(0, y + v.y);
+            ys[i] = y;
+            v = new Vec3(0, y <= 0 ? 0 : (v.y - GRAVITY) * 0.98, 0);
+        }
+        return ys;
+    }
+
+    @Test
+    void aHeldRiseHangsAtItsApexForItsHoverTicksThenFalls() {
+        BodyMotion motion = new BodyMotion();
+        motion.rise(3.0, GRAVITY, 30);
+        double[] ys = heldRise(motion, 80, 80);
+        double peak = java.util.Arrays.stream(ys).max().orElseThrow();
+        assertTrue(peak > 2.9 && peak < 3.0, "peak " + peak);
+        long high = java.util.Arrays.stream(ys).filter(y -> y >= 2.0).count();
+        assertTrue(high >= 34,"hangs near the top for the hover's 30 ticks and the end of the rise: " + high);
+        assertEquals(0.0, ys[ys.length - 1], 1e-9, "then comes down");
+        assertFalse(motion.isLifting(), "and the hold is over");
+        for (int i = 1; i < ys.length; i++) {
+            assertTrue(ys[i - 1] - ys[i] < 1.0, "no sudden drop at tick " + i);
+        }
+    }
+
+    @Test
+    void lettingGoEndsTheHoldAndARiseWithoutHoverIsOneKick() {
+        BodyMotion held = new BodyMotion();
+        held.rise(3.0, GRAVITY, 30);
+        BodyMotion letGo = new BodyMotion();
+        letGo.rise(3.0, GRAVITY, 30);
+        BodyMotion kick = new BodyMotion();
+        kick.rise(3.0, GRAVITY);
+        double[] a = heldRise(held, 40, 40);
+        double[] b = heldRise(letGo, 40, 12);
+        double[] c = heldRise(kick, 40, 40);
+        assertTrue(a[25] > 2.0, "held: still up at tick 25");
+        assertEquals(0.0, b[30], 1e-9, "let go at tick 12: down by tick 30");
+        assertEquals(0.0, c[30], 1e-9, "no hover ticks: down by tick 30");
+    }
+
+    @Test
+    void aPlungeOrADashBreaksTheHold() {
+        BodyMotion motion = new BodyMotion();
+        motion.rise(3.0, GRAVITY, 30);
+        heldRise(motion, 15, 15);
+        assertTrue(motion.isHovering());
+        assertEquals(BodyMotion.PLUNGE_SPEED, motion.velocity(Vec3.ZERO, 0f, true).y, 1e-12);
+        assertFalse(motion.isLifting());
+
+        BodyMotion dashing = new BodyMotion();
+        dashing.rise(3.0, GRAVITY, 30);
+        heldRise(dashing, 15, 15);
+        dashing.startDash(new Vec3(0, 0, 1), false);
+        assertFalse(dashing.isLifting());
+    }
+
     @Test
     void aPlungeHoldsItsFallSpeed() {
         BodyMotion motion = new BodyMotion();

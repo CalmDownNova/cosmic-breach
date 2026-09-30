@@ -3,6 +3,7 @@ package com.cosmicbreach.client.combat;
 import com.cosmicbreach.combat.core.CombatRules;
 import com.cosmicbreach.combat.server.effect.TetherMath;
 import com.cosmicbreach.combat.server.LaunchMath;
+import com.cosmicbreach.combat.server.Suspension;
 import net.minecraft.world.phys.Vec3;
 
 /**
@@ -19,7 +20,10 @@ import net.minecraft.world.phys.Vec3;
  *   <li>Lunge: the move's {@code lunge} blocks along the facing, spread evenly over its startup and
  *       active ticks, starting on its first tick, so the step lands with the hit. Then a small residual.</li>
  *   <li>Rise: one upward velocity that peaks just under the rise height (a fall from exactly the
- *       safe fall distance would still hurt by a rounding error).</li>
+ *       safe fall distance would still hurt by a rounding error). A rise with hover ticks then hangs at its
+ *       apex the way a Suspended foe does ({@link Suspension}): sinking {@value Suspension#SINK_PER_TICK} blocks
+ *       a tick for up to its hover ticks, until {@link #releaseLift} (the ability let go, a landing, a dash or
+ *       a plunge).</li>
  *   <li>Plunge: vertical speed held at {@value #PLUNGE_SPEED} blocks per tick while plunging.</li>
  *   <li>Blink (the Binary Edges' Tether): straight to a point in the world over a few ticks, the same share of
  *       what is left every tick (from wherever the body is, so a bump on the way is made up), up and down
@@ -59,6 +63,9 @@ public final class BodyMotion {
 
     private enum Drive { NONE, DASH, LUNGE, BLINK }
 
+    /** A rise's hold: none, going up on the kick, or hanging at the apex. */
+    private enum Lift { NONE, RISING, HOVERING }
+
     private Drive drive = Drive.NONE;
     private double dirX;
     private double dirZ;
@@ -70,6 +77,9 @@ public final class BodyMotion {
     private double residualX;
     private double residualZ;
     private double riseVelocity = Double.NaN;
+    private Lift lift = Lift.NONE;
+    private int liftTicks;
+    private int hoverLeft;
     private boolean heldThisTick;
     private Vec3 blinkTo = Vec3.ZERO;
     /** The tick after a blink: no vertical speed left over either. */
@@ -99,6 +109,7 @@ public final class BodyMotion {
         holdsApplied = 0;
         residualNext = false;
         level = false;
+        releaseLift(); // dashing out of a Zenith hold drops it
     }
 
     /** The dash just started flies level for its ticks (the Twin Comet Band's chained air dashes). */
@@ -169,9 +180,43 @@ public final class BodyMotion {
 
     /** Lift the body so it peaks about {@code height} blocks up, under {@code gravity} per tick. */
     public void rise(double height, double gravity) {
+        rise(height, gravity, 0);
+    }
+
+    /**
+     * Lift the body so it peaks about {@code height} blocks up, under {@code gravity} per tick, then hang there
+     * for up to {@code hoverTicks} (Zenith with the ability held: the player rises and hangs with the launched foes).
+     */
+    public void rise(double height, double gravity, int hoverTicks) {
         if (height > RISE_MARGIN && gravity > 0) {
             riseVelocity = LaunchMath.velocityForHeight(height - RISE_MARGIN, gravity);
+            lift = hoverTicks > 0 ? Lift.RISING : Lift.NONE;
+            liftTicks = 0;
+            hoverLeft = Math.max(0, hoverTicks);
         }
+    }
+
+    /** The hold ends (the ability let go, a landing, a dash, a plunge): gravity takes over from here. */
+    public void releaseLift() {
+        lift = Lift.NONE;
+        hoverLeft = 0;
+    }
+
+    /** The body touched the ground: a hold that already left the ground is over. Before {@link #velocity}. */
+    public void ground(boolean onGround) {
+        if (onGround && lift != Lift.NONE && Double.isNaN(riseVelocity) && (lift == Lift.HOVERING || liftTicks > 0)) {
+            releaseLift();
+        }
+    }
+
+    /** True while a rise holds on: going up on its kick or hanging at its apex. */
+    public boolean isLifting() {
+        return lift != Lift.NONE;
+    }
+
+    /** True while the body hangs at a rise's apex. */
+    public boolean isHovering() {
+        return lift == Lift.HOVERING;
     }
 
     public void reset() {
@@ -179,6 +224,7 @@ public final class BodyMotion {
         level = false;
         residualNext = false;
         riseVelocity = Double.NaN;
+        releaseLift();
         heldThisTick = false;
         stopFallNext = false;
     }
@@ -243,10 +289,33 @@ public final class BodyMotion {
             riseVelocity = Double.NaN;
         } else if (plunging) {
             vy = PLUNGE_SPEED;
+            releaseLift();
         } else if (flat) {
             vy = 0.0;
+        } else if (lift != Lift.NONE) {
+            vy = liftVelocity(vy);
         }
         return new Vec3(vx, vy, vz);
+    }
+
+    /**
+     * A held rise's vertical speed this tick: free on the way up (the kick and gravity), then from the apex (or
+     * after {@link Suspension#MAX_RISE_TICKS}) a slow sink for its hover ticks, as a Suspended foe hangs.
+     */
+    private double liftVelocity(double vy) {
+        if (lift == Lift.RISING) {
+            liftTicks++;
+            if (vy > 0 && liftTicks < Suspension.MAX_RISE_TICKS) {
+                return vy;
+            }
+            lift = Lift.HOVERING;
+        }
+        if (hoverLeft <= 0) {
+            releaseLift();
+            return vy;
+        }
+        hoverLeft--;
+        return -Suspension.SINK_PER_TICK;
     }
 
     /** True in a tick whose velocity a dash or lunge held: the player's movement input is ignored. */

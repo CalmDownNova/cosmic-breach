@@ -685,7 +685,7 @@ public final class CombatStateMachine {
                 if (phaseTick == 0 && abilityHeld && current.def().kind() == MoveKind.ABILITY) {
                     current.def().launch().ifPresent(l -> {
                         if (l.rise() > 0) {
-                            events.add(new Rise(l.rise()));
+                            events.add(new Rise(l.rise(), l.suspendTicks()));
                         }
                     });
                 }

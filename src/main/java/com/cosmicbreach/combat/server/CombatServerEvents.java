@@ -152,6 +152,8 @@ public final class CombatServerEvents {
                     }
                 }
                 case CombatEvent.MoveEnded ended -> combat.hits().forget(ended.move().serial());
+                // the client lifts and holds the body; the server only makes sure coming down from it is safe
+                case CombatEvent.Rise rise -> server.lifted(player.getY(), player.fallDistance);
                 case CombatEvent.DashStarted dash -> {
                     ModNetworking.sendToTrackers(player, new CombatFxPayload(player.getId(), CombatFxPayload.Kind.DASH));
                     if (canHit) {
@@ -180,6 +182,7 @@ public final class CombatServerEvents {
             }
         }
         tickWaves(player, combat, now, canHit);
+        server.tickLift(player.onGround());
 
         if (server.sync().update(machine.resonance(), machine.dashCharges(), machine.abilityCooldown())) {
             PacketDistributor.sendToPlayer(player, new CombatSyncPayload((float) machine.resonance(),
@@ -358,6 +361,9 @@ public final class CombatServerEvents {
             PlayerCombat combat = PlayerCombat.existing(player);
             if (combat != null && combat.protectsFromFall(player.level().getGameTime())) {
                 event.setCanceled(true);
+            } else if (combat != null && combat.isServerSide() && combat.server().lifting()) {
+                // a Zenith lift: only a drop below where it started counts
+                event.setDistance((float) combat.server().liftedFall(event.getDistance(), player.getY()));
             }
         }
     }

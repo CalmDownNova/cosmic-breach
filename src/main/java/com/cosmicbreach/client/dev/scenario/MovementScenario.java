@@ -27,7 +27,8 @@ import net.minecraft.world.phys.Vec3;
  * of the charge ring) and releasing it into Meridian Line; a charge cancelled by switching to an empty
  * hotbar slot, on both machines; a jump, a look straight down and an attack
  * into Falling Star, which must land on both machines; then Resonance 100 by the debug command and a
- * held right click: Zenith, and the player rises about 3 blocks and lands without fall damage.
+ * held right click: Zenith, and the player rises about 3 blocks, hangs there while the button stays held (as long
+ * as the launched foes do) and lands without fall damage.
  */
 public final class MovementScenario implements Scenario {
     private static final ResourceLocation LINE = CosmicBreach.id("meridian/line");
@@ -46,6 +47,7 @@ public final class MovementScenario implements Scenario {
         double[] peak = {0.0};
         float[] health = {0f};
         int[] airborne = {0};
+        int[] high = {0};
 
         steps.command("gamemode survival")
                 .waitUntil("the player is in survival", 40, () -> !mc.player.isCreative())
@@ -157,13 +159,19 @@ public final class MovementScenario implements Scenario {
                     peak[0] = mc.player.getY();
                     health[0] = mc.player.getHealth();
                     airborne[0] = 0;
+                    high[0] = 0;
                     events.clear();
                 })
                 .hold(keys.keyUse)
-                .waitUntil("the ability button has been held 12 ticks", 13, () -> {
+                .waitUntil("the ability button has been held 45 ticks", 46, () -> {
                     peak[0] = Math.max(peak[0], mc.player.getY());
-                    return ++airborne[0] > 12;
+                    if (mc.player.getY() - start[0].y >= 2.0) {
+                        high[0]++;
+                    }
+                    return ++airborne[0] > 45;
                 })
+                .log("the hold", () -> String.format(Locale.ROOT, "held right click 45 ticks: %d of them 2 or more blocks up", high[0]))
+                .check("the player hung in the air with the launch (2+ blocks up for 30 ticks or more)", () -> high[0] >= 30)
                 .release(keys.keyUse)
                 .waitUntil("the player came back down", 60, () -> {
                     peak[0] = Math.max(peak[0], mc.player.getY());

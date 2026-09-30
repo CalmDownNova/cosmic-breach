@@ -34,6 +34,18 @@ public final class Guardians {
         CrystalHits.register(game);
         com.cosmicbreach.guardian.unsung.UnsungSetup.register(modBus, game);
         game.addListener(RegisterCommandsEvent.class, event -> GuardianCommands.register(event.getDispatcher()));
+        // boss bars never outlive a death, a trip to another dimension or a fight nobody is running any more
+        game.addListener(net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerRespawnEvent.class, event -> forgetBars(event.getEntity()));
+        game.addListener(net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerChangedDimensionEvent.class,
+                event -> forgetBars(event.getEntity()));
+        game.addListener(net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedOutEvent.class, event -> forgetBars(event.getEntity()));
+        game.addListener(net.neoforged.neoforge.event.tick.ServerTickEvent.Post.class, event -> GuardianBossBar.sweep());
+    }
+
+    private static void forgetBars(net.minecraft.world.entity.player.Player player) {
+        if (player instanceof net.minecraft.server.level.ServerPlayer server) {
+            GuardianBossBar.forget(server);
+        }
     }
 
     private static void registerPayloads(RegisterPayloadHandlersEvent event) {

@@ -34,5 +34,7 @@ public final class GuardianClient {
             GuardianBarHud.clear();
             RefractionView.clear();
         });
+        // a respawn or a dimension change: no guardian bar from before stays on screen
+        gameBus.addListener(ClientPlayerNetworkEvent.Clone.class, event -> GuardianBarHud.dropAll(net.minecraft.client.Minecraft.getInstance()));
     }
 }

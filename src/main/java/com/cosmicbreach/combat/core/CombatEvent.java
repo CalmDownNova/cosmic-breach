@@ -46,8 +46,11 @@ public sealed interface CombatEvent {
     record PlungeLanded(MoveInstance move, double fallBlocks) implements CombatEvent {
     }
 
-    /** The ability button was held at the first active tick: lift the user this many blocks. */
-    record Rise(double height) implements CombatEvent {
+    /**
+     * The ability button was held at the first active tick: lift the user this many blocks, then hold them up
+     * there for up to {@code hoverTicks} while the button stays held (they rise and hang with the launched foes).
+     */
+    record Rise(double height, int hoverTicks) implements CombatEvent {
     }
 
     record DashStarted() implements CombatEvent {

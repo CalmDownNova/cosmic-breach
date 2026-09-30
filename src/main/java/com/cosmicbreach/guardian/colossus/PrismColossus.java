@@ -1749,6 +1749,20 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         super.remove(reason);
     }
 
+    /**
+     * Also called when the lair's chunk unloads, which never calls {@link #remove}: the fight can't survive that (it
+     * loads back as a dormant statue), so its bar goes now rather than staying on the players' screens.
+     */
+    @Override
+    public void onRemovedFromLevel() {
+        super.onRemovedFromLevel();
+        if (!level().isClientSide() && bar != null) {
+            bar.remove();
+            bar = null;
+            GuardianFights.end(this);
+        }
+    }
+
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         return GuardianRegistry.COLOSSUS_HURT.get();

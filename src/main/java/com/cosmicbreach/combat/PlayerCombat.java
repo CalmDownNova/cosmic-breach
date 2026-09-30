@@ -158,6 +158,57 @@ public final class PlayerCombat {
         private int rewardedDashSerial = -1;
         private long plungeLandedAt = Long.MIN_VALUE / 2;
         private double lastPlungeFall;
+        /** Where a Zenith lift started (feet Y), NaN when no lift is in the air. */
+        private double liftFromY = Double.NaN;
+        /** How far the body had already fallen when the lift started. */
+        private double liftFallBefore;
+        private int liftTicks;
+        private boolean liftLeftGround;
+        /** A lift that never leaves the ground (blocked, or the client never rose) is forgotten after this long. */
+        private static final int LIFT_GIVE_UP_TICKS = 200;
+
+        /**
+         * Zenith lifted the player (the ability held): until it lands, a fall counts only from where the lift
+         * started, so rising and hanging with the foes never hurts on the way down, but dropping below that point
+         * (off a ledge) still does.
+         */
+        public void lifted(double fromY, double fallBefore) {
+            liftFromY = fromY;
+            liftFallBefore = Math.max(0.0, fallBefore);
+            liftTicks = 0;
+            liftLeftGround = false;
+        }
+
+        /**
+         * Once a server tick: a lift that left the ground and is back on it is over (its landing already counted),
+         * and one that never left it is dropped after a while. The client moves the body, so the server may see
+         * the rise a few ticks after its own machine lifted.
+         */
+        public void tickLift(boolean onGround) {
+            if (Double.isNaN(liftFromY)) {
+                return;
+            }
+            liftTicks++;
+            if (!onGround) {
+                liftLeftGround = true;
+            } else if (liftLeftGround || liftTicks > LIFT_GIVE_UP_TICKS) {
+                liftFromY = Double.NaN;
+            }
+        }
+
+        /** The fall distance a landing at {@code landingY} really counts, given the fall the body measured. */
+        public double liftedFall(double measured, double landingY) {
+            if (Double.isNaN(liftFromY)) {
+                return measured;
+            }
+            double counted = liftFallBefore + Math.max(0.0, liftFromY - landingY);
+            liftFromY = Double.NaN;
+            return Math.min(measured, counted);
+        }
+
+        public boolean lifting() {
+            return !Double.isNaN(liftFromY);
+        }
 
         public InputRateLimiter inputs() {
             return inputs;

@@ -60,6 +60,18 @@ public final class GuardianBarHud {
         BARS.clear();
     }
 
+    /**
+     * The local player was replaced (a respawn or a dimension change): every guardian bar goes, vanilla's bar with
+     * it. The server takes the player off its bars at the same moment and shows again the ones they should still
+     * see, so nothing from a fight left behind can stay on screen.
+     */
+    static void dropAll(Minecraft mc) {
+        for (UUID id : BARS.keySet()) {
+            mc.gui.getBossOverlay().update(net.minecraft.network.protocol.game.ClientboundBossEventPacket.createRemovePacket(id));
+        }
+        BARS.clear();
+    }
+
     /** Draws the gauge under one of our bars, before vanilla draws the bar. */
     static void onBossBar(CustomizeGuiOverlayEvent.BossEventProgress event) {
         GuardianBarPayload p = BARS.get(event.getBossEvent().getId());

@@ -143,6 +143,11 @@ public final class ClientCombat {
         WeaponGlow.tick(player, machine);
         SHAKE.tick();
 
+        // Zenith's hold lasts while the ability stays held and the body is off the ground
+        MOTION.ground(player.onGround());
+        if (!machine.isAbilityHeld() || player.isPassenger() || player.isFallFlying()) {
+            MOTION.releaseLift();
+        }
         Vec3 velocity = MOTION.velocity(player.getDeltaMovement(), player.getYRot(),
                 machine.phase() == CombatStateMachine.Phase.PLUNGING, player.position());
         if (!player.isPassenger()) {
@@ -203,7 +208,7 @@ public final class ClientCombat {
                     PlayerAnimations.play(player, EngineAnimations.forHeld(player, EngineAnimations.STAGGER), false);
                     stop = false;
                 }
-                case CombatEvent.Rise rise -> MOTION.rise(rise.height(), player.getGravity());
+                case CombatEvent.Rise rise -> MOTION.rise(rise.height(), player.getGravity(), rise.hoverTicks());
                 case CombatEvent.DashStarted dash -> {
                     float[] move = movementInput(player);
                     float forward = move[0];

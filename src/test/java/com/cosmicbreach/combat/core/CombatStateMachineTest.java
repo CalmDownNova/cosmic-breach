@@ -436,6 +436,7 @@ class CombatStateMachineTest {
         sm.pressAbility(G);
         List<List<CombatEvent>> t = run(7);
         assertEquals(3.0, first(t.get(6), Rise.class).orElseThrow().height(), 1e-9);
+        assertEquals(30, first(t.get(6), Rise.class).orElseThrow().hoverTicks(), "held up as long as the launched foes");
 
         setUp();
         sm.syncFromServer(50, 2, 0);
