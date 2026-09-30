@@ -14,7 +14,7 @@ and the source is spoiler territory: read the code after you've played, if you c
 
 ## Download
 
-Download: [GitHub release 1.0.2](https://github.com/CalmDownNova/cosmic-breach/releases/tag/v1.0.2) (Modrinth page coming soon). Requires [GeckoLib](https://modrinth.com/mod/geckolib),
+Download: [latest GitHub release](https://github.com/CalmDownNova/cosmic-breach/releases/latest) (Modrinth page coming soon). Requires [GeckoLib](https://modrinth.com/mod/geckolib),
 [playerAnimator](https://modrinth.com/mod/playeranimator), [Curios API](https://modrinth.com/mod/curios) and
 [GuideME](https://modrinth.com/mod/guideme), on NeoForge 21.1.252 or newer. Install it on the client and the server.
 
