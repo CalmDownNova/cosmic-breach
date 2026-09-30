@@ -1,0 +1,27 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 4,
+      "item": "cosmicbreach:nebulite_ingot"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:heartstone"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:starshard"
+    },
+    {
+      "count": 2,
+      "tag": "cosmicbreach:driftwood_logs"
+    }
+  ],
+  "order": 10,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:comet_maul"
+  },
+  "tier": 2
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "cosmicbreach:block/kinetic_thread"
+    },
+    "axis=z": {
+      "model": "cosmicbreach:block/kinetic_thread"
+    }
+  }
+}

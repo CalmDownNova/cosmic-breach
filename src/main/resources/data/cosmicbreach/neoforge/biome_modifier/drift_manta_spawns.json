@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "cosmicbreach:drift_belt",
+  "spawners": {
+    "type": "cosmicbreach:drift_manta",
+    "weight": 4,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

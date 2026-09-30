@@ -1,0 +1,33 @@
+{
+  "base_damage": 7.2,
+  "grades": {
+    "agility": "A",
+    "arcane": "C"
+  },
+  "reach": 48.0,
+  "tier": 4,
+  "combo": [
+    "cosmicbreach:umbra_cantor/l1",
+    "cosmicbreach:umbra_cantor/l2",
+    "cosmicbreach:umbra_cantor/l3"
+  ],
+  "charged": "cosmicbreach:umbra_cantor/fermata",
+  "aerial": "cosmicbreach:umbra_cantor/grace_note",
+  "dash_attack": "cosmicbreach:umbra_cantor/syncopation",
+  "ability": {
+    "move": "cosmicbreach:umbra_cantor/cadence",
+    "cost": 30,
+    "cooldown": 140
+  },
+  "blade": {
+    "guard": [
+      15.5,
+      15.5
+    ],
+    "tip": [
+      6.7,
+      6.7
+    ],
+    "half_width": 1.0
+  }
+}

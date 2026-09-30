@@ -1,0 +1,16 @@
+{
+  "values": [
+    "#minecraft:dirt",
+    "#minecraft:sand",
+    "#minecraft:base_stone_overworld",
+    "#minecraft:terracotta",
+    "#minecraft:snow",
+    "minecraft:gravel",
+    "minecraft:clay",
+    "minecraft:sandstone",
+    "minecraft:red_sandstone",
+    "minecraft:calcite",
+    "minecraft:dripstone_block",
+    "minecraft:smooth_basalt"
+  ]
+}

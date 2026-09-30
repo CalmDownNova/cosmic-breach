@@ -1,0 +1,139 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "cosmicbreach:block/lens_receptor_teal",
+    "crystal": "cosmicbreach:block/lens_receptor_teal",
+    "mount": "cosmicbreach:block/polished_starfall_stone",
+    "mount_top": "cosmicbreach:block/lens_socket_top"
+  },
+  "elements": [
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        3,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#mount"
+        },
+        "south": {
+          "texture": "#mount"
+        },
+        "east": {
+          "texture": "#mount"
+        },
+        "west": {
+          "texture": "#mount"
+        },
+        "up": {
+          "texture": "#mount_top"
+        },
+        "down": {
+          "texture": "#mount"
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        3,
+        6
+      ],
+      "to": [
+        10,
+        15,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#crystal"
+        },
+        "south": {
+          "texture": "#crystal"
+        },
+        "east": {
+          "texture": "#crystal"
+        },
+        "west": {
+          "texture": "#crystal"
+        },
+        "up": {
+          "texture": "#crystal"
+        },
+        "down": {
+          "texture": "#crystal"
+        }
+      }
+    },
+    {
+      "from": [
+        3.5,
+        3,
+        8.5
+      ],
+      "to": [
+        6.5,
+        10,
+        11.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#crystal"
+        },
+        "south": {
+          "texture": "#crystal"
+        },
+        "east": {
+          "texture": "#crystal"
+        },
+        "west": {
+          "texture": "#crystal"
+        },
+        "up": {
+          "texture": "#crystal"
+        },
+        "down": {
+          "texture": "#crystal"
+        }
+      }
+    },
+    {
+      "from": [
+        9.5,
+        3,
+        4.5
+      ],
+      "to": [
+        12.5,
+        9,
+        7.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#crystal"
+        },
+        "south": {
+          "texture": "#crystal"
+        },
+        "east": {
+          "texture": "#crystal"
+        },
+        "west": {
+          "texture": "#crystal"
+        },
+        "up": {
+          "texture": "#crystal"
+        },
+        "down": {
+          "texture": "#crystal"
+        }
+      }
+    }
+  ]
+}

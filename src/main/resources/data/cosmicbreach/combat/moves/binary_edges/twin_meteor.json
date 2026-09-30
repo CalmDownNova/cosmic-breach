@@ -1,0 +1,12 @@
+{
+  "kind": "plunge",
+  "timing": { "startup": 2, "active": 0, "recovery": 6 },
+  "hit": { "mv": 1.0, "mv_per_block": 0.08, "mv_max": 1.8, "impact": 12, "resonance": 2, "hitstop": 3 },
+  "hitbox": { "type": "sphere", "radius": 2.0 },
+  "animation": "cosmicbreach:edges_meteor",
+  "land_animation": "cosmicbreach:edges_meteor_land",
+  "effects": [
+    { "id": "cosmicbreach:twin_meteor", "params": { "ring": 2.2, "per_block": 0.05 } }
+  ],
+  "sound": { "hit": "cosmicbreach:edges/hit", "slam": "cosmicbreach:edges/meteor" }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cosmicbreach:block/teal_neon_lichen"
+  }
+}

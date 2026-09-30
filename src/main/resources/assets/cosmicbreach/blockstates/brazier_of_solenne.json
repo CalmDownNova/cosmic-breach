@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "cosmicbreach:block/brazier_of_solenne"
+    },
+    "lit=true": {
+      "model": "cosmicbreach:block/brazier_of_solenne_lit"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "cosmicbreach:block/breach_frame"
+    },
+    "active=true": {
+      "model": "cosmicbreach:block/breach_frame_active"
+    }
+  }
+}

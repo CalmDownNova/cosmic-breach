@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "open=false": {
+      "model": "cosmicbreach:block/sanctum_gate"
+    },
+    "open=true": {
+      "model": "cosmicbreach:block/sanctum_gate_open"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "cosmicbreach:aetheria",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "cosmicbreach:aetheria",
+    "biome_source": {
+      "type": "cosmicbreach:aetheria_layers",
+      "shattered_spires": "cosmicbreach:shattered_spires",
+      "sunfield_terraces": "cosmicbreach:sunfield_terraces",
+      "drift_belt": "cosmicbreach:drift_belt",
+      "rift_abyss": "cosmicbreach:rift_abyss"
+    }
+  }
+}

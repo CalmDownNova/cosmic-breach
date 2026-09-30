@@ -1,0 +1,19 @@
+{
+  "kind": "light",
+  "timing": { "startup": 7, "active": 2, "recovery": 10 },
+  "hit": { "mv": 1.0, "impact": 22, "resonance": 12, "hitstop": 3 },
+  "hitbox": { "type": "compound", "shapes": [
+    { "type": "arc", "radius": 3.0, "angle": 70, "height": 3.0 },
+    { "type": "sphere", "radius": 1.5, "offset": 1.5 }
+  ] },
+  "next": "cosmicbreach:comet_maul/l2",
+  "animation": "cosmicbreach:maul_l1",
+  "hyper_armor": 30,
+  "movement": 0.35,
+  "effects": [
+    { "id": "cosmicbreach:slam", "params": { "ahead": 1.25, "crack": 1.5, "ring": 2.6, "debris": 12, "embers": 10, "shake": 0.2, "kick": 2.2 } },
+    { "id": "cosmicbreach:embers", "params": { "per_tick": 3 } }
+  ],
+  "sound": { "swing": "cosmicbreach:maul/swing", "hit": "cosmicbreach:maul/hit", "slam": "cosmicbreach:maul/slam" },
+  "slash": { "roll": 90, "from": 90, "to": -40, "radius": 2.6, "width": 1.6, "color": "#FF9040" }
+}

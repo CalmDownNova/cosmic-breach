@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "cosmicbreach:block/umbral_basalt_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "cosmicbreach:block/umbral_basalt"
+    },
+    "axis=z": {
+      "model": "cosmicbreach:block/umbral_basalt_horizontal",
+      "x": 90
+    }
+  }
+}

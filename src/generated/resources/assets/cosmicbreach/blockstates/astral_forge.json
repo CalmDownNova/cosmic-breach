@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=east,tier=1": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 90
+    },
+    "facing=east,tier=2": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 90
+    },
+    "facing=east,tier=3": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 90
+    },
+    "facing=east,tier=4": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 90
+    },
+    "facing=north,tier=1": {
+      "model": "cosmicbreach:block/astral_forge"
+    },
+    "facing=north,tier=2": {
+      "model": "cosmicbreach:block/astral_forge"
+    },
+    "facing=north,tier=3": {
+      "model": "cosmicbreach:block/astral_forge"
+    },
+    "facing=north,tier=4": {
+      "model": "cosmicbreach:block/astral_forge"
+    },
+    "facing=south,tier=1": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 180
+    },
+    "facing=south,tier=2": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 180
+    },
+    "facing=south,tier=3": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 180
+    },
+    "facing=south,tier=4": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 180
+    },
+    "facing=west,tier=1": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 270
+    },
+    "facing=west,tier=2": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 270
+    },
+    "facing=west,tier=3": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 270
+    },
+    "facing=west,tier=4": {
+      "model": "cosmicbreach:block/astral_forge",
+      "y": 270
+    }
+  }
+}

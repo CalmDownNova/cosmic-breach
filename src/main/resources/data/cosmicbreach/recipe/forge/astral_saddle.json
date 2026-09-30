@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 4,
+      "item": "minecraft:leather"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:starsteel_ingot"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:starbloom"
+    }
+  ],
+  "order": 60,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:astral_saddle"
+  },
+  "tier": 1
+}

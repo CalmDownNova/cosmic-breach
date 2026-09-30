@@ -1,0 +1,10 @@
+{
+  "kind": "ability",
+  "timing": { "startup": 6, "active": 1, "recovery": 10 },
+  "hit": { "mv": 0.6, "impact": 4, "hitstop": 0 },
+  "hitbox": { "type": "sphere", "radius": 0.0 },
+  "animation": "cosmicbreach:astrolabe_pocket_star",
+  "effects": [ { "id": "cosmicbreach:pocket_star", "params": { "range": 16, "life": 80, "pulse_every": 10, "pulse_radius": 3,
+                                                           "pulse_mv": 0.6, "pulse_impact": 4, "swallow": 4, "light": 15 } } ],
+  "sound": { "swing": "cosmicbreach:astrolabe/flick", "hit": "cosmicbreach:astrolabe/bolt_hit" }
+}

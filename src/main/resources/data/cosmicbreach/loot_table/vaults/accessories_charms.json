@@ -1,0 +1,51 @@
+{
+  "type": "minecraft:vault",
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.4
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cosmicbreach:leechstar_signet"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.15
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cosmicbreach:sunshard_compass",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cosmicbreach:halo_of_nine",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cosmicbreach:event_horizon_lens",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cosmicbreach:hourglass_of_vesper",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cosmicbreach:starbloom"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "cosmicbreach:starbloom_seeds"
+  }
+}

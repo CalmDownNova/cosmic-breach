@@ -1,0 +1,7 @@
+{
+  "type": "cosmicbreach:fallen_rift",
+  "biomes": "#cosmicbreach:has_structure/fallen_rift",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

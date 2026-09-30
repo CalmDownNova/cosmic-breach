@@ -1,0 +1,9 @@
+{
+  "kind": "ability",
+  "timing": { "startup": 2, "active": 1, "recovery": 8 },
+  "hit": { "mv": 1.0, "impact": 40, "hitstop": 0 },
+  "hitbox": { "type": "sphere", "radius": 0.0 },
+  "animation": "cosmicbreach:astrolabe_supernova",
+  "effects": [ { "id": "cosmicbreach:supernova", "params": { "radius": 5, "base": 1.0, "bonus": 3.0 } } ],
+  "sound": { "swing": "cosmicbreach:astrolabe/flick", "hit": "cosmicbreach:astrolabe/bolt_hit" }
+}

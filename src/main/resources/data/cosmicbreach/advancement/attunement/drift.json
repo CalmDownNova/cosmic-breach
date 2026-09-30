@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "attuned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "attuned"
+    ]
+  ]
+}

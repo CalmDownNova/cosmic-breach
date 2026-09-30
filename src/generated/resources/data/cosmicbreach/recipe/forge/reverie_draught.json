@@ -1,0 +1,22 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 1,
+      "item": "cosmicbreach:starbloom"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:starsteel_ingot"
+    },
+    {
+      "count": 1,
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "order": 50,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:reverie_draught"
+  }
+}

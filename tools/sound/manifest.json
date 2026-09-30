@@ -1,0 +1,2230 @@
+{
+  "combat/swing_light": {
+    "files": [
+      "cosmicbreach:combat/swing_light_1",
+      "cosmicbreach:combat/swing_light_2",
+      "cosmicbreach:combat/swing_light_3"
+    ],
+    "subtitle": "Blade swings"
+  },
+  "combat/swing_heavy": {
+    "files": [
+      "cosmicbreach:combat/swing_heavy_1",
+      "cosmicbreach:combat/swing_heavy_2"
+    ],
+    "subtitle": "Blade swings heavily"
+  },
+  "combat/hit": {
+    "files": [
+      "cosmicbreach:combat/hit_1",
+      "cosmicbreach:combat/hit_2",
+      "cosmicbreach:combat/hit_3"
+    ],
+    "subtitle": "Blade strikes"
+  },
+  "combat/hit_crit": {
+    "files": [
+      "cosmicbreach:combat/hit_crit"
+    ],
+    "subtitle": "Critical strike"
+  },
+  "combat/charge_loop": {
+    "files": [
+      "cosmicbreach:combat/charge_loop"
+    ],
+    "subtitle": "Blade charges",
+    "loop": true
+  },
+  "combat/charge_ready": {
+    "files": [
+      "cosmicbreach:combat/charge_ready"
+    ],
+    "subtitle": "Charge ready"
+  },
+  "combat/charge_release": {
+    "files": [
+      "cosmicbreach:combat/charge_release"
+    ],
+    "subtitle": "Charged strike"
+  },
+  "combat/plunge_whistle": {
+    "files": [
+      "cosmicbreach:combat/plunge_whistle"
+    ],
+    "subtitle": "Air whistles"
+  },
+  "combat/plunge_impact": {
+    "files": [
+      "cosmicbreach:combat/plunge_impact"
+    ],
+    "subtitle": "Heavy impact"
+  },
+  "combat/zenith": {
+    "files": [
+      "cosmicbreach:combat/zenith"
+    ],
+    "subtitle": "Blade sweeps upward"
+  },
+  "combat/dash": {
+    "files": [
+      "cosmicbreach:combat/dash_1",
+      "cosmicbreach:combat/dash_2"
+    ],
+    "subtitle": "Air rushes"
+  },
+  "combat/parry": {
+    "files": [
+      "cosmicbreach:combat/parry"
+    ],
+    "subtitle": "Blade parries"
+  },
+  "combat/perfect_dodge": {
+    "files": [
+      "cosmicbreach:combat/perfect_dodge"
+    ],
+    "subtitle": "Perfect dodge"
+  },
+  "combat/resonance_full": {
+    "files": [
+      "cosmicbreach:combat/resonance_full"
+    ],
+    "subtitle": "Blade resonates"
+  },
+  "combat/whiff": {
+    "files": [
+      "cosmicbreach:combat/whiff"
+    ],
+    "subtitle": "Parry misses"
+  },
+  "shardling/step": {
+    "files": [
+      "cosmicbreach:shardling/step_1",
+      "cosmicbreach:shardling/step_2",
+      "cosmicbreach:shardling/step_3"
+    ],
+    "subtitle": "Shardling steps"
+  },
+  "shardling/tell": {
+    "files": [
+      "cosmicbreach:shardling/tell"
+    ],
+    "subtitle": "Shardling readies a lunge"
+  },
+  "shardling/lunge": {
+    "files": [
+      "cosmicbreach:shardling/lunge"
+    ],
+    "subtitle": "Shardling lunges"
+  },
+  "shardling/hurt": {
+    "files": [
+      "cosmicbreach:shardling/hurt_1",
+      "cosmicbreach:shardling/hurt_2"
+    ],
+    "subtitle": "Shardling hurts"
+  },
+  "shardling/death": {
+    "files": [
+      "cosmicbreach:shardling/death"
+    ],
+    "subtitle": "Shardling shatters"
+  },
+  "shardling/spit": {
+    "files": [
+      "cosmicbreach:shardling/spit"
+    ],
+    "subtitle": "Shardling spits"
+  },
+  "shardling/needle_hit": {
+    "files": [
+      "cosmicbreach:shardling/needle_hit"
+    ],
+    "subtitle": "Needle hits"
+  },
+  "shardling/shard_tick": {
+    "files": [
+      "cosmicbreach:shardling/shard_tick"
+    ],
+    "subtitle": "Shards tick"
+  },
+  "shardling/shard_burst": {
+    "files": [
+      "cosmicbreach:shardling/shard_burst"
+    ],
+    "subtitle": "Shards burst"
+  },
+  "progression/level_up": {
+    "files": [
+      "cosmicbreach:progression/level_up"
+    ],
+    "subtitle": "Attunement rises"
+  },
+  "maul/swing": {
+    "files": [
+      "cosmicbreach:maul/swing_1",
+      "cosmicbreach:maul/swing_2"
+    ],
+    "subtitle": "Maul whooshes"
+  },
+  "maul/slam": {
+    "files": [
+      "cosmicbreach:maul/slam_1",
+      "cosmicbreach:maul/slam_2"
+    ],
+    "subtitle": "Maul slams the ground"
+  },
+  "maul/hit": {
+    "files": [
+      "cosmicbreach:maul/hit_1",
+      "cosmicbreach:maul/hit_2"
+    ],
+    "subtitle": "Maul crushes"
+  },
+  "maul/charge": {
+    "files": [
+      "cosmicbreach:maul/charge"
+    ],
+    "subtitle": "Maul charges",
+    "loop": true
+  },
+  "maul/well": {
+    "files": [
+      "cosmicbreach:maul/well"
+    ],
+    "subtitle": "Gravity Well pulls"
+  },
+  "maul/collapse": {
+    "files": [
+      "cosmicbreach:maul/collapse"
+    ],
+    "subtitle": "Gravity Well collapses"
+  },
+  "ambient/reach": {
+    "files": [
+      "cosmicbreach:ambient/reach"
+    ],
+    "subtitle": "Wind sings through crystal",
+    "loop": true
+  },
+  "ambient/drift": {
+    "files": [
+      "cosmicbreach:ambient/drift"
+    ],
+    "subtitle": "A drone hums, something vast sings far off",
+    "loop": true
+  },
+  "ambient/deep": {
+    "files": [
+      "cosmicbreach:ambient/deep"
+    ],
+    "subtitle": "Whispers in the deep",
+    "loop": true
+  },
+  "music/reach": {
+    "files": [
+      "cosmicbreach:music/reach"
+    ],
+    "subtitle": "Music: the Upper Reach"
+  },
+  "music/drift": {
+    "files": [
+      "cosmicbreach:music/drift"
+    ],
+    "subtitle": "Music: the Drift"
+  },
+  "music/deep": {
+    "files": [
+      "cosmicbreach:music/deep"
+    ],
+    "subtitle": "Music: the Deep"
+  },
+  "music/arrival": {
+    "files": [
+      "cosmicbreach:music/arrival"
+    ],
+    "subtitle": "Music: Arrival"
+  },
+  "edges/swing": {
+    "files": [
+      "cosmicbreach:edges/swing_1",
+      "cosmicbreach:edges/swing_2",
+      "cosmicbreach:edges/swing_3"
+    ],
+    "subtitle": "Sickles ring"
+  },
+  "edges/cross": {
+    "files": [
+      "cosmicbreach:edges/cross_1",
+      "cosmicbreach:edges/cross_2"
+    ],
+    "subtitle": "Sickles cross"
+  },
+  "edges/gyre": {
+    "files": [
+      "cosmicbreach:edges/gyre"
+    ],
+    "subtitle": "Sickles whirl"
+  },
+  "edges/hit": {
+    "files": [
+      "cosmicbreach:edges/hit_1",
+      "cosmicbreach:edges/hit_2",
+      "cosmicbreach:edges/hit_3"
+    ],
+    "subtitle": "Sickle cuts"
+  },
+  "edges/throw": {
+    "files": [
+      "cosmicbreach:edges/throw"
+    ],
+    "subtitle": "Sickle whirs away"
+  },
+  "edges/stick": {
+    "files": [
+      "cosmicbreach:edges/stick_1",
+      "cosmicbreach:edges/stick_2"
+    ],
+    "subtitle": "Sickle bites"
+  },
+  "edges/return": {
+    "files": [
+      "cosmicbreach:edges/return"
+    ],
+    "subtitle": "Sickle returns"
+  },
+  "edges/blink": {
+    "files": [
+      "cosmicbreach:edges/blink"
+    ],
+    "subtitle": "Blink rushes"
+  },
+  "edges/chime": {
+    "files": [
+      "cosmicbreach:edges/chime"
+    ],
+    "subtitle": "Blink chimes"
+  },
+  "edges/blink_slash": {
+    "files": [
+      "cosmicbreach:edges/blink_slash"
+    ],
+    "subtitle": "Sickles flash"
+  },
+  "edges/orbit": {
+    "files": [
+      "cosmicbreach:edges/orbit"
+    ],
+    "subtitle": "Sickles orbit"
+  },
+  "edges/meteor": {
+    "files": [
+      "cosmicbreach:edges/meteor_1",
+      "cosmicbreach:edges/meteor_2"
+    ],
+    "subtitle": "Twin Meteor lands"
+  },
+  "weather/flare_hum": {
+    "files": [
+      "cosmicbreach:weather/flare_hum"
+    ],
+    "subtitle": "Solenne hums, rising"
+  },
+  "weather/meteor_whistle": {
+    "files": [
+      "cosmicbreach:weather/meteor_whistle"
+    ],
+    "subtitle": "Meteor whistles down"
+  },
+  "weather/meteor_impact": {
+    "files": [
+      "cosmicbreach:weather/meteor_impact_1",
+      "cosmicbreach:weather/meteor_impact_2"
+    ],
+    "subtitle": "Meteor strikes"
+  },
+  "weather/tide_drop": {
+    "files": [
+      "cosmicbreach:weather/tide_drop"
+    ],
+    "subtitle": "Gravity lets go"
+  },
+  "weather/surge_swell": {
+    "files": [
+      "cosmicbreach:weather/surge_swell"
+    ],
+    "subtitle": "The dark swells into silence"
+  },
+  "forge/craft": {
+    "files": [
+      "cosmicbreach:forge/craft_1",
+      "cosmicbreach:forge/craft_2"
+    ],
+    "subtitle": "Astral Forge rings"
+  },
+  "forge/tier_up": {
+    "files": [
+      "cosmicbreach:forge/tier_up"
+    ],
+    "subtitle": "Astral Forge grows"
+  },
+  "vanguard/shockwave": {
+    "files": [
+      "cosmicbreach:vanguard/shockwave_1",
+      "cosmicbreach:vanguard/shockwave_2"
+    ],
+    "subtitle": "Heavy landing"
+  },
+  "vanguard/meteor_incoming": {
+    "files": [
+      "cosmicbreach:vanguard/meteor_incoming"
+    ],
+    "subtitle": "Meteor falls"
+  },
+  "vanguard/meteor_impact": {
+    "files": [
+      "cosmicbreach:vanguard/meteor_impact"
+    ],
+    "subtitle": "Meteor strikes"
+  },
+  "onboarding/starfall_streak": {
+    "files": [
+      "cosmicbreach:onboarding/starfall_streak"
+    ],
+    "subtitle": "A star streaks across the sky"
+  },
+  "onboarding/starfall_boom": {
+    "files": [
+      "cosmicbreach:onboarding/starfall_boom"
+    ],
+    "subtitle": "A Starfall lands"
+  },
+  "onboarding/shard_hum": {
+    "files": [
+      "cosmicbreach:onboarding/shard_hum"
+    ],
+    "subtitle": "Starfall Shard hums"
+  },
+  "onboarding/ring_activate": {
+    "files": [
+      "cosmicbreach:onboarding/ring_activate"
+    ],
+    "subtitle": "Breach Ring opens"
+  },
+  "onboarding/breach_wind": {
+    "files": [
+      "cosmicbreach:onboarding/breach_wind"
+    ],
+    "subtitle": "Wind rises from the Breach",
+    "loop": true
+  },
+  "onboarding/fall_up": {
+    "files": [
+      "cosmicbreach:onboarding/fall_up"
+    ],
+    "subtitle": "Falling up"
+  },
+  "colossus/awaken": {
+    "files": [
+      "cosmicbreach:colossus/awaken"
+    ],
+    "subtitle": "Prism Colossus wakes"
+  },
+  "colossus/roar": {
+    "files": [
+      "cosmicbreach:colossus/roar"
+    ],
+    "subtitle": "Prism Colossus roars"
+  },
+  "colossus/grind": {
+    "files": [
+      "cosmicbreach:colossus/grind_1",
+      "cosmicbreach:colossus/grind_2"
+    ],
+    "subtitle": "Crystal grinds"
+  },
+  "colossus/crystal_turn": {
+    "files": [
+      "cosmicbreach:colossus/crystal_turn"
+    ],
+    "subtitle": "Crown crystal turns"
+  },
+  "colossus/glint": {
+    "files": [
+      "cosmicbreach:colossus/glint"
+    ],
+    "subtitle": "Gold glint"
+  },
+  "colossus/slam": {
+    "files": [
+      "cosmicbreach:colossus/slam_1",
+      "cosmicbreach:colossus/slam_2"
+    ],
+    "subtitle": "Prism Slam"
+  },
+  "colossus/sweep": {
+    "files": [
+      "cosmicbreach:colossus/sweep"
+    ],
+    "subtitle": "Facet Sweep"
+  },
+  "colossus/charge": {
+    "files": [
+      "cosmicbreach:colossus/charge"
+    ],
+    "subtitle": "Refraction charges"
+  },
+  "colossus/beam": {
+    "files": [
+      "cosmicbreach:colossus/beam"
+    ],
+    "subtitle": "Refraction beam hums"
+  },
+  "colossus/core_hit": {
+    "files": [
+      "cosmicbreach:colossus/core_hit"
+    ],
+    "subtitle": "Beam strikes the core"
+  },
+  "colossus/burst_tell": {
+    "files": [
+      "cosmicbreach:colossus/burst_tell"
+    ],
+    "subtitle": "Prism Colossus glows white"
+  },
+  "colossus/burst": {
+    "files": [
+      "cosmicbreach:colossus/burst"
+    ],
+    "subtitle": "Prism Burst"
+  },
+  "colossus/break": {
+    "files": [
+      "cosmicbreach:colossus/break"
+    ],
+    "subtitle": "Prism Colossus breaks"
+  },
+  "colossus/fracture": {
+    "files": [
+      "cosmicbreach:colossus/fracture"
+    ],
+    "subtitle": "Prism Colossus fractures"
+  },
+  "colossus/shatter": {
+    "files": [
+      "cosmicbreach:colossus/shatter"
+    ],
+    "subtitle": "Prism Colossus shatters"
+  },
+  "colossus/reform": {
+    "files": [
+      "cosmicbreach:colossus/reform"
+    ],
+    "subtitle": "Prism Shards re-merge"
+  },
+  "colossus/death": {
+    "files": [
+      "cosmicbreach:colossus/death"
+    ],
+    "subtitle": "Prism Colossus falls"
+  },
+  "colossus/hurt": {
+    "files": [
+      "cosmicbreach:colossus/hurt_1",
+      "cosmicbreach:colossus/hurt_2",
+      "cosmicbreach:colossus/hurt_3"
+    ],
+    "subtitle": "Prism Colossus hurts"
+  },
+  "colossus/shard_chitter": {
+    "files": [
+      "cosmicbreach:colossus/shard_chitter_1",
+      "cosmicbreach:colossus/shard_chitter_2",
+      "cosmicbreach:colossus/shard_chitter_3"
+    ],
+    "subtitle": "Prism Shard chitters"
+  },
+  "colossus/shard_tell": {
+    "files": [
+      "cosmicbreach:colossus/shard_tell"
+    ],
+    "subtitle": "Prism Shard readies a lunge"
+  },
+  "colossus/shard_lunge": {
+    "files": [
+      "cosmicbreach:colossus/shard_lunge"
+    ],
+    "subtitle": "Prism Shard lunges"
+  },
+  "colossus/shard_hurt": {
+    "files": [
+      "cosmicbreach:colossus/shard_hurt_1",
+      "cosmicbreach:colossus/shard_hurt_2"
+    ],
+    "subtitle": "Prism Shard hurts"
+  },
+  "colossus/shard_death": {
+    "files": [
+      "cosmicbreach:colossus/shard_death"
+    ],
+    "subtitle": "Prism Shard shatters"
+  },
+  "colossus/echo": {
+    "files": [
+      "cosmicbreach:colossus/echo"
+    ],
+    "subtitle": "Guardian Echo resounds"
+  },
+  "music/colossus": {
+    "files": [
+      "cosmicbreach:music/colossus"
+    ],
+    "subtitle": "Music: the Prism Colossus"
+  },
+  "structures/aperture_open": {
+    "files": [
+      "cosmicbreach:structures/aperture_open"
+    ],
+    "subtitle": "Sun Aperture opens"
+  },
+  "structures/mirror_turn": {
+    "files": [
+      "cosmicbreach:structures/mirror_turn_1",
+      "cosmicbreach:structures/mirror_turn_2"
+    ],
+    "subtitle": "Lens mirror turns"
+  },
+  "structures/receptor_hum": {
+    "files": [
+      "cosmicbreach:structures/receptor_hum"
+    ],
+    "subtitle": "Receptor crystal hums",
+    "loop": true
+  },
+  "structures/receptor_lit": {
+    "files": [
+      "cosmicbreach:structures/receptor_lit"
+    ],
+    "subtitle": "Receptor crystal sings"
+  },
+  "structures/warden_eye": {
+    "files": [
+      "cosmicbreach:structures/warden_eye"
+    ],
+    "subtitle": "Warden Eye wakes"
+  },
+  "structures/vault_open": {
+    "files": [
+      "cosmicbreach:structures/vault_open"
+    ],
+    "subtitle": "Vault opens"
+  },
+  "structures/umbral_push": {
+    "files": [
+      "cosmicbreach:structures/umbral_push"
+    ],
+    "subtitle": "Umbral block grinds"
+  },
+  "structures/thread": {
+    "files": [
+      "cosmicbreach:structures/thread"
+    ],
+    "subtitle": "Tripwire thread glints"
+  },
+  "structures/bolt": {
+    "files": [
+      "cosmicbreach:structures/bolt"
+    ],
+    "subtitle": "Kinetic bolt fires"
+  },
+  "structures/updraft": {
+    "files": [
+      "cosmicbreach:structures/updraft"
+    ],
+    "subtitle": "Updraft rushes"
+  },
+  "echo/first_shard": {
+    "files": [
+      "cosmicbreach:echo/first_shard"
+    ],
+    "subtitle": "\"You can hear it... can't you? Take me home.\""
+  },
+  "echo/ring_open": {
+    "files": [
+      "cosmicbreach:echo/ring_open"
+    ],
+    "subtitle": "\"The ground remembers the sky. Now... fall up.\""
+  },
+  "echo/arrival": {
+    "files": [
+      "cosmicbreach:echo/arrival"
+    ],
+    "subtitle": "\"Home. Oh... it's all still singing.\""
+  },
+  "echo/drift": {
+    "files": [
+      "cosmicbreach:echo/drift"
+    ],
+    "subtitle": "\"Do you hear that? One more voice. The Drift will carry you now.\""
+  },
+  "echo/deep": {
+    "files": [
+      "cosmicbreach:echo/deep"
+    ],
+    "subtitle": "\"Below us, the song goes silent. Bring your light.\""
+  },
+  "echo/sanctum": {
+    "files": [
+      "cosmicbreach:echo/sanctum"
+    ],
+    "subtitle": "\"They remember how to sing. He is waiting, at the bottom of the Breach.\""
+  },
+  "echo/sealed": {
+    "files": [
+      "cosmicbreach:echo/sealed"
+    ],
+    "subtitle": "\"The Breach is sealed. Sing with us.\""
+  },
+  "driftweave/afterimage": {
+    "files": [
+      "cosmicbreach:driftweave/afterimage"
+    ],
+    "subtitle": "Afterimage appears"
+  },
+  "driftweave/afterimage_strike": {
+    "files": [
+      "cosmicbreach:driftweave/afterimage_strike_1",
+      "cosmicbreach:driftweave/afterimage_strike_2"
+    ],
+    "subtitle": "Afterimage strikes"
+  },
+  "driftweave/drift_start": {
+    "files": [
+      "cosmicbreach:driftweave/drift_start"
+    ],
+    "subtitle": "Drift begins"
+  },
+  "driftweave/drift_end": {
+    "files": [
+      "cosmicbreach:driftweave/drift_end"
+    ],
+    "subtitle": "Drift ends"
+  },
+  "regalia/echo": {
+    "files": [
+      "cosmicbreach:regalia/echo"
+    ],
+    "subtitle": "Ability echoes"
+  },
+  "regalia/hymn": {
+    "files": [
+      "cosmicbreach:regalia/hymn"
+    ],
+    "subtitle": "Hymn rings out"
+  },
+  "choir/pad_1": {
+    "files": [
+      "cosmicbreach:choir/pad_1"
+    ],
+    "subtitle": "Chime, first pad"
+  },
+  "choir/pad_2": {
+    "files": [
+      "cosmicbreach:choir/pad_2"
+    ],
+    "subtitle": "Chime, second pad"
+  },
+  "choir/pad_3": {
+    "files": [
+      "cosmicbreach:choir/pad_3"
+    ],
+    "subtitle": "Chime, third pad"
+  },
+  "choir/pad_4": {
+    "files": [
+      "cosmicbreach:choir/pad_4"
+    ],
+    "subtitle": "Chime, fourth pad"
+  },
+  "choir/pad_5": {
+    "files": [
+      "cosmicbreach:choir/pad_5"
+    ],
+    "subtitle": "Chime, fifth pad"
+  },
+  "choir/pad_6": {
+    "files": [
+      "cosmicbreach:choir/pad_6"
+    ],
+    "subtitle": "Chime, sixth pad"
+  },
+  "choir/pad_7": {
+    "files": [
+      "cosmicbreach:choir/pad_7"
+    ],
+    "subtitle": "Chime, seventh pad"
+  },
+  "choir/pad_8": {
+    "files": [
+      "cosmicbreach:choir/pad_8"
+    ],
+    "subtitle": "Chime, eighth pad"
+  },
+  "choir/call": {
+    "files": [
+      "cosmicbreach:choir/call"
+    ],
+    "subtitle": "The Conductor sings"
+  },
+  "choir/tick": {
+    "files": [
+      "cosmicbreach:choir/tick"
+    ],
+    "subtitle": "Metronome ticks"
+  },
+  "choir/discord": {
+    "files": [
+      "cosmicbreach:choir/discord"
+    ],
+    "subtitle": "Discord"
+  },
+  "choir/round": {
+    "files": [
+      "cosmicbreach:choir/round"
+    ],
+    "subtitle": "The Choir answers"
+  },
+  "choir/solve": {
+    "files": [
+      "cosmicbreach:choir/solve"
+    ],
+    "subtitle": "The Choir Floor resolves"
+  },
+  "choir/rotate": {
+    "files": [
+      "cosmicbreach:choir/rotate"
+    ],
+    "subtitle": "The ring of pads turns"
+  },
+  "crypt/rift_crack": {
+    "files": [
+      "cosmicbreach:crypt/rift_crack"
+    ],
+    "subtitle": "Floor cracks"
+  },
+  "crypt/rift_fall": {
+    "files": [
+      "cosmicbreach:crypt/rift_fall"
+    ],
+    "subtitle": "The floor gives way"
+  },
+  "crypt/seal_open": {
+    "files": [
+      "cosmicbreach:crypt/seal_open"
+    ],
+    "subtitle": "Rift Seal opens"
+  },
+  "crypt/plate_hum": {
+    "files": [
+      "cosmicbreach:crypt/plate_hum"
+    ],
+    "subtitle": "The ceiling hums"
+  },
+  "crypt/piston": {
+    "files": [
+      "cosmicbreach:crypt/piston"
+    ],
+    "subtitle": "Gravity Piston slams"
+  },
+  "crypt/chute_glint": {
+    "files": [
+      "cosmicbreach:crypt/chute_glint"
+    ],
+    "subtitle": "Something glints above"
+  },
+  "crypt/chute_impact": {
+    "files": [
+      "cosmicbreach:crypt/chute_impact"
+    ],
+    "subtitle": "Star-rock lands"
+  },
+  "gyre/hum": {
+    "files": [
+      "cosmicbreach:gyre/hum"
+    ],
+    "subtitle": "Gyroscope hums",
+    "loop": true
+  },
+  "gyre/whine": {
+    "files": [
+      "cosmicbreach:gyre/whine"
+    ],
+    "subtitle": "Gyre Knight's rings whine"
+  },
+  "gyre/sweep": {
+    "files": [
+      "cosmicbreach:gyre/sweep"
+    ],
+    "subtitle": "Gyre blades sweep"
+  },
+  "gyre/lance_tell": {
+    "files": [
+      "cosmicbreach:gyre/lance_tell"
+    ],
+    "subtitle": "Gyre blade takes aim"
+  },
+  "gyre/lance_fire": {
+    "files": [
+      "cosmicbreach:gyre/lance_fire"
+    ],
+    "subtitle": "Gyre blade fires"
+  },
+  "gyre/lance_hit": {
+    "files": [
+      "cosmicbreach:gyre/lance_hit"
+    ],
+    "subtitle": "Gyre blade strikes"
+  },
+  "gyre/recall_tell": {
+    "files": [
+      "cosmicbreach:gyre/recall_tell"
+    ],
+    "subtitle": "Gyre blades take aim"
+  },
+  "gyre/recall": {
+    "files": [
+      "cosmicbreach:gyre/recall"
+    ],
+    "subtitle": "Recall Crash"
+  },
+  "gyre/blade_break": {
+    "files": [
+      "cosmicbreach:gyre/blade_break"
+    ],
+    "subtitle": "Gyre blade breaks"
+  },
+  "gyre/deflect": {
+    "files": [
+      "cosmicbreach:gyre/deflect_1",
+      "cosmicbreach:gyre/deflect_2"
+    ],
+    "subtitle": "Blade deflects"
+  },
+  "gyre/stun": {
+    "files": [
+      "cosmicbreach:gyre/stun"
+    ],
+    "subtitle": "Gyre Knight drops"
+  },
+  "gyre/hurt": {
+    "files": [
+      "cosmicbreach:gyre/hurt_1",
+      "cosmicbreach:gyre/hurt_2",
+      "cosmicbreach:gyre/hurt_3"
+    ],
+    "subtitle": "Gyre Knight hurts"
+  },
+  "gyre/death": {
+    "files": [
+      "cosmicbreach:gyre/death"
+    ],
+    "subtitle": "Gyre Knight falls apart"
+  },
+  "leviathan/song": {
+    "files": [
+      "cosmicbreach:leviathan/song_1",
+      "cosmicbreach:leviathan/song_2",
+      "cosmicbreach:leviathan/song_3"
+    ],
+    "subtitle": "Leviathan sings"
+  },
+  "leviathan/swell": {
+    "files": [
+      "cosmicbreach:leviathan/swell"
+    ],
+    "subtitle": "Leviathan's song swells"
+  },
+  "leviathan/awaken": {
+    "files": [
+      "cosmicbreach:leviathan/awaken"
+    ],
+    "subtitle": "Leviathan wakes"
+  },
+  "leviathan/dive": {
+    "files": [
+      "cosmicbreach:leviathan/dive"
+    ],
+    "subtitle": "Leviathan dives"
+  },
+  "leviathan/pull": {
+    "files": [
+      "cosmicbreach:leviathan/pull"
+    ],
+    "subtitle": "Song of Pulling"
+  },
+  "leviathan/bite": {
+    "files": [
+      "cosmicbreach:leviathan/bite"
+    ],
+    "subtitle": "Leviathan bites"
+  },
+  "leviathan/flick_tell": {
+    "files": [
+      "cosmicbreach:leviathan/flick_tell"
+    ],
+    "subtitle": "Leviathan's tail curls"
+  },
+  "leviathan/glint": {
+    "files": [
+      "cosmicbreach:leviathan/glint"
+    ],
+    "subtitle": "Gold glint"
+  },
+  "leviathan/flick": {
+    "files": [
+      "cosmicbreach:leviathan/flick"
+    ],
+    "subtitle": "Tail Flick"
+  },
+  "leviathan/droop": {
+    "files": [
+      "cosmicbreach:leviathan/droop"
+    ],
+    "subtitle": "Leviathan's tail droops"
+  },
+  "leviathan/shed": {
+    "files": [
+      "cosmicbreach:leviathan/shed"
+    ],
+    "subtitle": "Leviathan sheds scales"
+  },
+  "leviathan/scale_pop": {
+    "files": [
+      "cosmicbreach:leviathan/scale_pop_1",
+      "cosmicbreach:leviathan/scale_pop_2",
+      "cosmicbreach:leviathan/scale_pop_3"
+    ],
+    "subtitle": "Scale bursts"
+  },
+  "leviathan/coil": {
+    "files": [
+      "cosmicbreach:leviathan/coil"
+    ],
+    "subtitle": "Leviathan coils"
+  },
+  "leviathan/ripple": {
+    "files": [
+      "cosmicbreach:leviathan/ripple"
+    ],
+    "subtitle": "Leviathan ripples"
+  },
+  "leviathan/shudder": {
+    "files": [
+      "cosmicbreach:leviathan/shudder"
+    ],
+    "subtitle": "Leviathan shudders"
+  },
+  "leviathan/tear_free": {
+    "files": [
+      "cosmicbreach:leviathan/tear_free"
+    ],
+    "subtitle": "Leviathan tears free"
+  },
+  "leviathan/break": {
+    "files": [
+      "cosmicbreach:leviathan/break"
+    ],
+    "subtitle": "Leviathan breaks"
+  },
+  "leviathan/hurt": {
+    "files": [
+      "cosmicbreach:leviathan/hurt_1",
+      "cosmicbreach:leviathan/hurt_2",
+      "cosmicbreach:leviathan/hurt_3"
+    ],
+    "subtitle": "Leviathan hurts"
+  },
+  "leviathan/gland_hit": {
+    "files": [
+      "cosmicbreach:leviathan/gland_hit"
+    ],
+    "subtitle": "Song gland rings"
+  },
+  "leviathan/death": {
+    "files": [
+      "cosmicbreach:leviathan/death"
+    ],
+    "subtitle": "Leviathan falls silent"
+  },
+  "leviathan/pearl": {
+    "files": [
+      "cosmicbreach:leviathan/pearl"
+    ],
+    "subtitle": "A pearl of light rises"
+  },
+  "leviathan/bell": {
+    "files": [
+      "cosmicbreach:leviathan/bell"
+    ],
+    "subtitle": "Rimeglass bell rings"
+  },
+  "leviathan/grow": {
+    "files": [
+      "cosmicbreach:leviathan/grow"
+    ],
+    "subtitle": "Driftwood grows"
+  },
+  "music/leviathan": {
+    "files": [
+      "cosmicbreach:music/leviathan"
+    ],
+    "subtitle": "Music: the Thalassine Leviathan"
+  },
+  "unsung/awaken": {
+    "files": [
+      "cosmicbreach:unsung/awaken"
+    ],
+    "subtitle": "The Unsung wake"
+  },
+  "unsung/hymnal": {
+    "files": [
+      "cosmicbreach:unsung/hymnal"
+    ],
+    "subtitle": "Hymnal pages turn"
+  },
+  "unsung/dim": {
+    "files": [
+      "cosmicbreach:unsung/dim"
+    ],
+    "subtitle": "Lichen dims"
+  },
+  "unsung/first_alto": {
+    "files": [
+      "cosmicbreach:unsung/first_alto"
+    ],
+    "subtitle": "Alto sings"
+  },
+  "unsung/first_tenor": {
+    "files": [
+      "cosmicbreach:unsung/first_tenor"
+    ],
+    "subtitle": "Tenor sings"
+  },
+  "unsung/first_bass": {
+    "files": [
+      "cosmicbreach:unsung/first_bass"
+    ],
+    "subtitle": "Bass sings"
+  },
+  "unsung/note_form": {
+    "files": [
+      "cosmicbreach:unsung/note_form"
+    ],
+    "subtitle": "A note forms"
+  },
+  "unsung/note_burst": {
+    "files": [
+      "cosmicbreach:unsung/note_burst"
+    ],
+    "subtitle": "A note strikes"
+  },
+  "unsung/note_break": {
+    "files": [
+      "cosmicbreach:unsung/note_break"
+    ],
+    "subtitle": "A note shatters"
+  },
+  "unsung/inhale": {
+    "files": [
+      "cosmicbreach:unsung/inhale"
+    ],
+    "subtitle": "Tenor inhales"
+  },
+  "unsung/wave": {
+    "files": [
+      "cosmicbreach:unsung/wave"
+    ],
+    "subtitle": "A sound wave sweeps"
+  },
+  "unsung/ripple_tell": {
+    "files": [
+      "cosmicbreach:unsung/ripple_tell"
+    ],
+    "subtitle": "The floor darkens"
+  },
+  "unsung/ripple": {
+    "files": [
+      "cosmicbreach:unsung/ripple"
+    ],
+    "subtitle": "Ground ripples"
+  },
+  "unsung/drop_rise": {
+    "files": [
+      "cosmicbreach:unsung/drop_rise"
+    ],
+    "subtitle": "Bass rises"
+  },
+  "unsung/glint": {
+    "files": [
+      "cosmicbreach:unsung/glint"
+    ],
+    "subtitle": "Gold glint"
+  },
+  "unsung/drop": {
+    "files": [
+      "cosmicbreach:unsung/drop"
+    ],
+    "subtitle": "Bass Drop"
+  },
+  "unsung/tink": {
+    "files": [
+      "cosmicbreach:unsung/tink_1",
+      "cosmicbreach:unsung/tink_2",
+      "cosmicbreach:unsung/tink_3"
+    ],
+    "subtitle": "Porcelain tinks"
+  },
+  "unsung/hurt": {
+    "files": [
+      "cosmicbreach:unsung/hurt_1",
+      "cosmicbreach:unsung/hurt_2",
+      "cosmicbreach:unsung/hurt_3"
+    ],
+    "subtitle": "Porcelain cracks"
+  },
+  "unsung/break": {
+    "files": [
+      "cosmicbreach:unsung/break"
+    ],
+    "subtitle": "Masks fall"
+  },
+  "unsung/crack": {
+    "files": [
+      "cosmicbreach:unsung/crack"
+    ],
+    "subtitle": "A mask shatters with a cry"
+  },
+  "unsung/circles": {
+    "files": [
+      "cosmicbreach:unsung/circles"
+    ],
+    "subtitle": "Circles of silence light"
+  },
+  "unsung/harmonize": {
+    "files": [
+      "cosmicbreach:unsung/harmonize"
+    ],
+    "subtitle": "The choir harmonizes"
+  },
+  "unsung/last_chord": {
+    "files": [
+      "cosmicbreach:unsung/last_chord"
+    ],
+    "subtitle": "The last chord"
+  },
+  "music/unsung/alto_sung_0": {
+    "files": [
+      "cosmicbreach:music/unsung/alto_sung_0"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/tenor_sung_0": {
+    "files": [
+      "cosmicbreach:music/unsung/tenor_sung_0"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/bass_sung_0": {
+    "files": [
+      "cosmicbreach:music/unsung/bass_sung_0"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/alto_hum_0": {
+    "files": [
+      "cosmicbreach:music/unsung/alto_hum_0"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/tenor_hum_0": {
+    "files": [
+      "cosmicbreach:music/unsung/tenor_hum_0"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/bass_hum_0": {
+    "files": [
+      "cosmicbreach:music/unsung/bass_hum_0"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/alto_sung_1": {
+    "files": [
+      "cosmicbreach:music/unsung/alto_sung_1"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/tenor_sung_1": {
+    "files": [
+      "cosmicbreach:music/unsung/tenor_sung_1"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/bass_sung_1": {
+    "files": [
+      "cosmicbreach:music/unsung/bass_sung_1"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/alto_hum_1": {
+    "files": [
+      "cosmicbreach:music/unsung/alto_hum_1"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/tenor_hum_1": {
+    "files": [
+      "cosmicbreach:music/unsung/tenor_hum_1"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/bass_hum_1": {
+    "files": [
+      "cosmicbreach:music/unsung/bass_hum_1"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/alto_sung_2": {
+    "files": [
+      "cosmicbreach:music/unsung/alto_sung_2"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/tenor_sung_2": {
+    "files": [
+      "cosmicbreach:music/unsung/tenor_sung_2"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/bass_sung_2": {
+    "files": [
+      "cosmicbreach:music/unsung/bass_sung_2"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/alto_hum_2": {
+    "files": [
+      "cosmicbreach:music/unsung/alto_hum_2"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/tenor_hum_2": {
+    "files": [
+      "cosmicbreach:music/unsung/tenor_hum_2"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/bass_hum_2": {
+    "files": [
+      "cosmicbreach:music/unsung/bass_hum_2"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/alto_sung_3": {
+    "files": [
+      "cosmicbreach:music/unsung/alto_sung_3"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/tenor_sung_3": {
+    "files": [
+      "cosmicbreach:music/unsung/tenor_sung_3"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/bass_sung_3": {
+    "files": [
+      "cosmicbreach:music/unsung/bass_sung_3"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/alto_hum_3": {
+    "files": [
+      "cosmicbreach:music/unsung/alto_hum_3"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/tenor_hum_3": {
+    "files": [
+      "cosmicbreach:music/unsung/tenor_hum_3"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/bass_hum_3": {
+    "files": [
+      "cosmicbreach:music/unsung/bass_hum_3"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/alto_rise": {
+    "files": [
+      "cosmicbreach:music/unsung/alto_rise"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/tenor_rise": {
+    "files": [
+      "cosmicbreach:music/unsung/tenor_rise"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "music/unsung/bass_rise": {
+    "files": [
+      "cosmicbreach:music/unsung/bass_rise"
+    ],
+    "subtitle": "Music: the Unsung"
+  },
+  "astrolabe/chime": {
+    "files": [
+      "cosmicbreach:astrolabe/chime"
+    ],
+    "subtitle": "Astrolabe chimes"
+  },
+  "astrolabe/flick": {
+    "files": [
+      "cosmicbreach:astrolabe/flick"
+    ],
+    "subtitle": "Astrolabe rings flick"
+  },
+  "astrolabe/bolt_hit": {
+    "files": [
+      "cosmicbreach:astrolabe/bolt_hit"
+    ],
+    "subtitle": "Star bolt strikes"
+  },
+  "astrolabe/star_place": {
+    "files": [
+      "cosmicbreach:astrolabe/star_place"
+    ],
+    "subtitle": "Pocket Star kindles"
+  },
+  "astrolabe/hum": {
+    "files": [
+      "cosmicbreach:astrolabe/hum"
+    ],
+    "subtitle": "Pocket Star hums",
+    "loop": true
+  },
+  "astrolabe/pulse": {
+    "files": [
+      "cosmicbreach:astrolabe/pulse"
+    ],
+    "subtitle": "Pocket Star pulses"
+  },
+  "astrolabe/swallow": {
+    "files": [
+      "cosmicbreach:astrolabe/swallow"
+    ],
+    "subtitle": "Pocket Star swallows a shot"
+  },
+  "astrolabe/mark": {
+    "files": [
+      "cosmicbreach:astrolabe/mark"
+    ],
+    "subtitle": "Star marks a target"
+  },
+  "astrolabe/beam": {
+    "files": [
+      "cosmicbreach:astrolabe/beam"
+    ],
+    "subtitle": "Constellation beam"
+  },
+  "astrolabe/charge": {
+    "files": [
+      "cosmicbreach:astrolabe/charge"
+    ],
+    "subtitle": "Astrolabe rings spin up",
+    "loop": true
+  },
+  "astrolabe/supernova": {
+    "files": [
+      "cosmicbreach:astrolabe/supernova"
+    ],
+    "subtitle": "Supernova"
+  },
+  "stalker/whisper": {
+    "files": [
+      "cosmicbreach:stalker/whisper_1",
+      "cosmicbreach:stalker/whisper_2",
+      "cosmicbreach:stalker/whisper_3"
+    ],
+    "subtitle": "Something whispers"
+  },
+  "stalker/grasp_whisper": {
+    "files": [
+      "cosmicbreach:stalker/grasp_whisper_1",
+      "cosmicbreach:stalker/grasp_whisper_2",
+      "cosmicbreach:stalker/grasp_whisper_3"
+    ],
+    "subtitle": "A whisper behind you"
+  },
+  "stalker/rend_tell": {
+    "files": [
+      "cosmicbreach:stalker/rend_tell"
+    ],
+    "subtitle": "Hollow Stalker hisses"
+  },
+  "stalker/glint": {
+    "files": [
+      "cosmicbreach:stalker/glint"
+    ],
+    "subtitle": "Hollow Stalker's claw glints"
+  },
+  "stalker/rend": {
+    "files": [
+      "cosmicbreach:stalker/rend"
+    ],
+    "subtitle": "Hollow Stalker rends"
+  },
+  "stalker/grasp": {
+    "files": [
+      "cosmicbreach:stalker/grasp"
+    ],
+    "subtitle": "Hollow Stalker grasps"
+  },
+  "stalker/shriek": {
+    "files": [
+      "cosmicbreach:stalker/shriek"
+    ],
+    "subtitle": "Mask shrieks"
+  },
+  "stalker/step": {
+    "files": [
+      "cosmicbreach:stalker/step"
+    ],
+    "subtitle": "Something shifts in the dark"
+  },
+  "stalker/hurt": {
+    "files": [
+      "cosmicbreach:stalker/hurt_1",
+      "cosmicbreach:stalker/hurt_2"
+    ],
+    "subtitle": "Hollow Stalker hurts"
+  },
+  "stalker/death": {
+    "files": [
+      "cosmicbreach:stalker/death"
+    ],
+    "subtitle": "Hollow Stalker sighs and cracks"
+  },
+  "sanctum/gate_open": {
+    "files": [
+      "cosmicbreach:sanctum/gate_open"
+    ],
+    "subtitle": "Sanctum Gate opens"
+  },
+  "sanctum/gate_refuse": {
+    "files": [
+      "cosmicbreach:sanctum/gate_refuse"
+    ],
+    "subtitle": "Sanctum Gate stays shut"
+  },
+  "sanctum/lock_lit": {
+    "files": [
+      "cosmicbreach:sanctum/lock_lit"
+    ],
+    "subtitle": "Eclipse Lock lights"
+  },
+  "sanctum/stair_open": {
+    "files": [
+      "cosmicbreach:sanctum/stair_open"
+    ],
+    "subtitle": "Throne Seal dissolves"
+  },
+  "sanctum/throne_hum": {
+    "files": [
+      "cosmicbreach:sanctum/throne_hum"
+    ],
+    "subtitle": "Throne hums"
+  },
+  "sanctum/fall_rescue": {
+    "files": [
+      "cosmicbreach:sanctum/fall_rescue"
+    ],
+    "subtitle": "The Breach throws someone back"
+  },
+  "lastlight/thrust": {
+    "files": [
+      "cosmicbreach:lastlight/thrust_1",
+      "cosmicbreach:lastlight/thrust_2"
+    ],
+    "subtitle": "Glaive thrusts"
+  },
+  "lastlight/thrust_heavy": {
+    "files": [
+      "cosmicbreach:lastlight/thrust_heavy"
+    ],
+    "subtitle": "Glaive lunges"
+  },
+  "lastlight/hit": {
+    "files": [
+      "cosmicbreach:lastlight/hit_1",
+      "cosmicbreach:lastlight/hit_2"
+    ],
+    "subtitle": "Sunlit blade strikes"
+  },
+  "lastlight/charge": {
+    "files": [
+      "cosmicbreach:lastlight/charge"
+    ],
+    "subtitle": "Glaive gathers light",
+    "loop": true
+  },
+  "lastlight/sunspear": {
+    "files": [
+      "cosmicbreach:lastlight/sunspear"
+    ],
+    "subtitle": "Sunspear"
+  },
+  "lastlight/sunfall": {
+    "files": [
+      "cosmicbreach:lastlight/sunfall"
+    ],
+    "subtitle": "Sunfall lands"
+  },
+  "lastlight/dawnguard": {
+    "files": [
+      "cosmicbreach:lastlight/dawnguard"
+    ],
+    "subtitle": "Dawnguard rises"
+  },
+  "lastlight/bell": {
+    "files": [
+      "cosmicbreach:lastlight/bell"
+    ],
+    "subtitle": "A bell tolls"
+  },
+  "lastlight/daybreak": {
+    "files": [
+      "cosmicbreach:lastlight/daybreak"
+    ],
+    "subtitle": "Daybreak"
+  },
+  "lastlight/daybreak_hit": {
+    "files": [
+      "cosmicbreach:lastlight/daybreak_hit"
+    ],
+    "subtitle": "Daybreak strikes"
+  },
+  "lastlight/sunlight": {
+    "files": [
+      "cosmicbreach:lastlight/sunlight"
+    ],
+    "subtitle": "Sunlight gathers"
+  },
+  "cantor/loose": {
+    "files": [
+      "cosmicbreach:cantor/loose_1",
+      "cosmicbreach:cantor/loose_2"
+    ],
+    "subtitle": "Bowstring twangs"
+  },
+  "cantor/loose_heavy": {
+    "files": [
+      "cosmicbreach:cantor/loose_heavy"
+    ],
+    "subtitle": "Heavy bowstring twangs"
+  },
+  "cantor/draw": {
+    "files": [
+      "cosmicbreach:cantor/draw"
+    ],
+    "subtitle": "Bowstring draws",
+    "loop": true
+  },
+  "cantor/fermata": {
+    "files": [
+      "cosmicbreach:cantor/fermata"
+    ],
+    "subtitle": "Charged arrow looses"
+  },
+  "cantor/arrow_hit": {
+    "files": [
+      "cosmicbreach:cantor/arrow_hit"
+    ],
+    "subtitle": "Shadow arrow lands"
+  },
+  "cantor/note": {
+    "files": [
+      "cosmicbreach:cantor/note"
+    ],
+    "subtitle": "A note resonates"
+  },
+  "cantor/chord": {
+    "files": [
+      "cosmicbreach:cantor/chord"
+    ],
+    "subtitle": "A chord rings"
+  },
+  "cantor/pulse": {
+    "files": [
+      "cosmicbreach:cantor/pulse"
+    ],
+    "subtitle": "Chord pulses"
+  },
+  "cantor/cadence": {
+    "files": [
+      "cosmicbreach:cantor/cadence"
+    ],
+    "subtitle": "Cadence"
+  },
+  "cantor/fizzle": {
+    "files": [
+      "cosmicbreach:cantor/fizzle"
+    ],
+    "subtitle": "Silenced shot fizzles"
+  },
+  "heliarch/voice_intro": {
+    "files": [
+      "cosmicbreach:heliarch/voice_intro"
+    ],
+    "subtitle": "\"Another singer. I poured a sun into the dark for you. It was not enough.\""
+  },
+  "heliarch/voice_hollowing": {
+    "files": [
+      "cosmicbreach:heliarch/voice_hollowing"
+    ],
+    "subtitle": "\"The Hollow wants the rest of me. Let it have you instead.\""
+  },
+  "heliarch/voice_nova": {
+    "files": [
+      "cosmicbreach:heliarch/voice_nova"
+    ],
+    "subtitle": "\"Burn with me!\""
+  },
+  "heliarch/voice_collapse": {
+    "files": [
+      "cosmicbreach:heliarch/voice_collapse"
+    ],
+    "subtitle": "\"Everything falls. Everything always falls.\""
+  },
+  "heliarch/voice_death": {
+    "files": [
+      "cosmicbreach:heliarch/voice_death"
+    ],
+    "subtitle": "\"Ah... I can hear them again. Sing.\""
+  },
+  "heliarch/voice_player_down": {
+    "files": [
+      "cosmicbreach:heliarch/voice_player_down"
+    ],
+    "subtitle": "\"Silence.\""
+  },
+  "heliarch/assemble": {
+    "files": [
+      "cosmicbreach:heliarch/assemble"
+    ],
+    "subtitle": "Debris rises out of the Breach"
+  },
+  "heliarch/ignite": {
+    "files": [
+      "cosmicbreach:heliarch/ignite"
+    ],
+    "subtitle": "A sun ignites"
+  },
+  "heliarch/open": {
+    "files": [
+      "cosmicbreach:heliarch/open"
+    ],
+    "subtitle": "The halo opens"
+  },
+  "heliarch/close": {
+    "files": [
+      "cosmicbreach:heliarch/close"
+    ],
+    "subtitle": "The halo closes"
+  },
+  "heliarch/clang": {
+    "files": [
+      "cosmicbreach:heliarch/clang"
+    ],
+    "subtitle": "The halo turns the blow"
+  },
+  "heliarch/hurt": {
+    "files": [
+      "cosmicbreach:heliarch/hurt_1",
+      "cosmicbreach:heliarch/hurt_2"
+    ],
+    "subtitle": "The Heliarch's core flares"
+  },
+  "heliarch/hand_rise": {
+    "files": [
+      "cosmicbreach:heliarch/hand_rise"
+    ],
+    "subtitle": "A giant hand rises"
+  },
+  "heliarch/glint": {
+    "files": [
+      "cosmicbreach:heliarch/glint"
+    ],
+    "subtitle": "Gold glint"
+  },
+  "heliarch/slam": {
+    "files": [
+      "cosmicbreach:heliarch/slam"
+    ],
+    "subtitle": "Sunderfall"
+  },
+  "heliarch/parried": {
+    "files": [
+      "cosmicbreach:heliarch/parried"
+    ],
+    "subtitle": "Sunderfall turned aside"
+  },
+  "heliarch/sweep_tell": {
+    "files": [
+      "cosmicbreach:heliarch/sweep_tell"
+    ],
+    "subtitle": "Solar fire gathers"
+  },
+  "heliarch/sweep": {
+    "files": [
+      "cosmicbreach:heliarch/sweep"
+    ],
+    "subtitle": "Corona Sweep"
+  },
+  "heliarch/flare_tell": {
+    "files": [
+      "cosmicbreach:heliarch/flare_tell"
+    ],
+    "subtitle": "The core draws in light"
+  },
+  "heliarch/flare": {
+    "files": [
+      "cosmicbreach:heliarch/flare"
+    ],
+    "subtitle": "Corona Flare"
+  },
+  "heliarch/lance_track": {
+    "files": [
+      "cosmicbreach:heliarch/lance_track"
+    ],
+    "subtitle": "Solar Lance aims"
+  },
+  "heliarch/lance_lock": {
+    "files": [
+      "cosmicbreach:heliarch/lance_lock"
+    ],
+    "subtitle": "Solar Lance locks"
+  },
+  "heliarch/lance_fire": {
+    "files": [
+      "cosmicbreach:heliarch/lance_fire"
+    ],
+    "subtitle": "Solar Lance"
+  },
+  "heliarch/shed_flash": {
+    "files": [
+      "cosmicbreach:heliarch/shed_flash"
+    ],
+    "subtitle": "The halo's plates ring"
+  },
+  "heliarch/shed_out": {
+    "files": [
+      "cosmicbreach:heliarch/shed_out"
+    ],
+    "subtitle": "Plates fly outward"
+  },
+  "heliarch/shed_return": {
+    "files": [
+      "cosmicbreach:heliarch/shed_return"
+    ],
+    "subtitle": "Plates boomerang back"
+  },
+  "heliarch/break": {
+    "files": [
+      "cosmicbreach:heliarch/break"
+    ],
+    "subtitle": "The Heliarch Breaks"
+  },
+  "heliarch/tear": {
+    "files": [
+      "cosmicbreach:heliarch/tear"
+    ],
+    "subtitle": "The halo tears free"
+  },
+  "heliarch/monolith_slam": {
+    "files": [
+      "cosmicbreach:heliarch/monolith_slam"
+    ],
+    "subtitle": "Monoliths slam down"
+  },
+  "heliarch/pip": {
+    "files": [
+      "cosmicbreach:heliarch/pip"
+    ],
+    "subtitle": "A monolith cracks"
+  },
+  "heliarch/monolith_shatter": {
+    "files": [
+      "cosmicbreach:heliarch/monolith_shatter"
+    ],
+    "subtitle": "A monolith shatters"
+  },
+  "heliarch/beam_charge": {
+    "files": [
+      "cosmicbreach:heliarch/beam_charge"
+    ],
+    "subtitle": "The eclipse draws breath"
+  },
+  "heliarch/beam": {
+    "files": [
+      "cosmicbreach:heliarch/beam"
+    ],
+    "subtitle": "Eclipse Beam"
+  },
+  "heliarch/lash_tell": {
+    "files": [
+      "cosmicbreach:heliarch/lash_tell"
+    ],
+    "subtitle": "The floor cracks"
+  },
+  "heliarch/lash": {
+    "files": [
+      "cosmicbreach:heliarch/lash"
+    ],
+    "subtitle": "Tendril Lash"
+  },
+  "heliarch/tendril_cut": {
+    "files": [
+      "cosmicbreach:heliarch/tendril_cut"
+    ],
+    "subtitle": "A tendril is cut"
+  },
+  "heliarch/inversion": {
+    "files": [
+      "cosmicbreach:heliarch/inversion"
+    ],
+    "subtitle": "Gravity turns thin"
+  },
+  "heliarch/seed": {
+    "files": [
+      "cosmicbreach:heliarch/seed"
+    ],
+    "subtitle": "A Star Seed flies"
+  },
+  "heliarch/seed_burst": {
+    "files": [
+      "cosmicbreach:heliarch/seed_burst"
+    ],
+    "subtitle": "A Star Seed bursts"
+  },
+  "heliarch/nova_charge": {
+    "files": [
+      "cosmicbreach:heliarch/nova_charge"
+    ],
+    "subtitle": "Nova builds"
+  },
+  "heliarch/nova_blast": {
+    "files": [
+      "cosmicbreach:heliarch/nova_blast"
+    ],
+    "subtitle": "Nova detonates"
+  },
+  "heliarch/nova_break": {
+    "files": [
+      "cosmicbreach:heliarch/nova_break"
+    ],
+    "subtitle": "The Corona Shield shatters"
+  },
+  "heliarch/eclipse_drone": {
+    "files": [
+      "cosmicbreach:heliarch/eclipse_drone"
+    ],
+    "subtitle": "The Breach widens"
+  },
+  "heliarch/crack": {
+    "files": [
+      "cosmicbreach:heliarch/crack"
+    ],
+    "subtitle": "The floor cracks apart"
+  },
+  "heliarch/fall": {
+    "files": [
+      "cosmicbreach:heliarch/fall"
+    ],
+    "subtitle": "The floor falls away"
+  },
+  "heliarch/rain_tell": {
+    "files": [
+      "cosmicbreach:heliarch/rain_tell"
+    ],
+    "subtitle": "Solar Rain gathers"
+  },
+  "heliarch/rain": {
+    "files": [
+      "cosmicbreach:heliarch/rain"
+    ],
+    "subtitle": "Solar Rain strikes"
+  },
+  "heliarch/death": {
+    "files": [
+      "cosmicbreach:heliarch/death"
+    ],
+    "subtitle": "The eclipse breaks"
+  },
+  "heliarch/reliquary": {
+    "files": [
+      "cosmicbreach:heliarch/reliquary"
+    ],
+    "subtitle": "Reliquaries rise"
+  },
+  "heliarch/reliquary_open": {
+    "files": [
+      "cosmicbreach:heliarch/reliquary_open"
+    ],
+    "subtitle": "A Reliquary opens"
+  },
+  "heliarch/seal": {
+    "files": [
+      "cosmicbreach:heliarch/seal"
+    ],
+    "subtitle": "The Breach is sealed"
+  },
+  "music/heliarch_regent": {
+    "files": [
+      "cosmicbreach:music/heliarch_regent"
+    ],
+    "subtitle": "Music: the Regent"
+  },
+  "music/heliarch_hollow": {
+    "files": [
+      "cosmicbreach:music/heliarch_hollow"
+    ],
+    "subtitle": "Music: the Hollow"
+  },
+  "music/heliarch_collapse": {
+    "files": [
+      "cosmicbreach:music/heliarch_collapse"
+    ],
+    "subtitle": "Music: the Collapse"
+  },
+  "accessory/equip": {
+    "files": [
+      "cosmicbreach:accessory/equip"
+    ],
+    "subtitle": "Accessory fastens"
+  },
+  "accessory/comet_chain": {
+    "files": [
+      "cosmicbreach:accessory/comet_chain"
+    ],
+    "subtitle": "Comet trail flares"
+  },
+  "accessory/leech_heal": {
+    "files": [
+      "cosmicbreach:accessory/leech_heal"
+    ],
+    "subtitle": "Leechstar drinks"
+  },
+  "accessory/gravity_well": {
+    "files": [
+      "cosmicbreach:accessory/gravity_well"
+    ],
+    "subtitle": "Gravity Well opens"
+  },
+  "accessory/nova": {
+    "files": [
+      "cosmicbreach:accessory/nova"
+    ],
+    "subtitle": "Dying star bursts"
+  },
+  "accessory/halo_block": {
+    "files": [
+      "cosmicbreach:accessory/halo_block"
+    ],
+    "subtitle": "Halo shard shatters"
+  },
+  "accessory/halo_regrow": {
+    "files": [
+      "cosmicbreach:accessory/halo_regrow"
+    ],
+    "subtitle": "Halo shard grows back"
+  },
+  "accessory/halo_cut": {
+    "files": [
+      "cosmicbreach:accessory/halo_cut"
+    ],
+    "subtitle": "Halo shard cuts"
+  },
+  "accessory/black_hole": {
+    "files": [
+      "cosmicbreach:accessory/black_hole"
+    ],
+    "subtitle": "Black hole opens"
+  },
+  "accessory/vesper_slow": {
+    "files": [
+      "cosmicbreach:accessory/vesper_slow"
+    ],
+    "subtitle": "Hourglass sand falls"
+  },
+  "mount/stag_hoof": {
+    "files": [
+      "cosmicbreach:mount/stag_hoof_1",
+      "cosmicbreach:mount/stag_hoof_2",
+      "cosmicbreach:mount/stag_hoof_3"
+    ],
+    "subtitle": "Crystal hooves clatter"
+  },
+  "mount/stag_call": {
+    "files": [
+      "cosmicbreach:mount/stag_call_1",
+      "cosmicbreach:mount/stag_call_2"
+    ],
+    "subtitle": "Lumen Stag calls"
+  },
+  "mount/stag_hurt": {
+    "files": [
+      "cosmicbreach:mount/stag_hurt"
+    ],
+    "subtitle": "Lumen Stag hurts"
+  },
+  "mount/manta_note": {
+    "files": [
+      "cosmicbreach:mount/manta_note"
+    ],
+    "subtitle": "Drift Manta sings"
+  },
+  "mount/manta_hurt": {
+    "files": [
+      "cosmicbreach:mount/manta_hurt"
+    ],
+    "subtitle": "Drift Manta groans"
+  },
+  "mount/manta_sour": {
+    "files": [
+      "cosmicbreach:mount/manta_sour"
+    ],
+    "subtitle": "Manta's song sours"
+  },
+  "mount/chime": {
+    "files": [
+      "cosmicbreach:mount/chime"
+    ],
+    "subtitle": "Resonance Chime rings"
+  },
+  "mount/phase_blink": {
+    "files": [
+      "cosmicbreach:mount/phase_blink"
+    ],
+    "subtitle": "Phase Blink"
+  },
+  "mount/tamed": {
+    "files": [
+      "cosmicbreach:mount/tamed"
+    ],
+    "subtitle": "A mount trusts you"
+  },
+  "familiar/summon": {
+    "files": [
+      "cosmicbreach:familiar/summon"
+    ],
+    "subtitle": "Familiar appears"
+  },
+  "familiar/dismiss": {
+    "files": [
+      "cosmicbreach:familiar/dismiss"
+    ],
+    "subtitle": "Familiar returns to its lantern"
+  },
+  "familiar/mode": {
+    "files": [
+      "cosmicbreach:familiar/mode"
+    ],
+    "subtitle": "Familiar changes stance"
+  },
+  "familiar/hatch": {
+    "files": [
+      "cosmicbreach:familiar/hatch"
+    ],
+    "subtitle": "Star Egg hatches"
+  },
+  "familiar/egg_set": {
+    "files": [
+      "cosmicbreach:familiar/egg_set"
+    ],
+    "subtitle": "Star Egg settles in the brazier"
+  },
+  "familiar/hurt": {
+    "files": [
+      "cosmicbreach:familiar/hurt"
+    ],
+    "subtitle": "Familiar hurts"
+  },
+  "familiar/death": {
+    "files": [
+      "cosmicbreach:familiar/death"
+    ],
+    "subtitle": "Familiar fades"
+  },
+  "familiar/wisp_strike": {
+    "files": [
+      "cosmicbreach:familiar/wisp_strike"
+    ],
+    "subtitle": "Emberwisp strikes"
+  },
+  "familiar/scorch": {
+    "files": [
+      "cosmicbreach:familiar/scorch"
+    ],
+    "subtitle": "Emberwisp scorches"
+  },
+  "familiar/kindled": {
+    "files": [
+      "cosmicbreach:familiar/kindled"
+    ],
+    "subtitle": "Kindled"
+  },
+  "familiar/hop": {
+    "files": [
+      "cosmicbreach:familiar/hop"
+    ],
+    "subtitle": "Gravikin lands"
+  },
+  "familiar/slam": {
+    "files": [
+      "cosmicbreach:familiar/slam"
+    ],
+    "subtitle": "Gravikin slams"
+  },
+  "familiar/taunt": {
+    "files": [
+      "cosmicbreach:familiar/taunt"
+    ],
+    "subtitle": "Gravikin taunts"
+  },
+  "familiar/moth_strike": {
+    "files": [
+      "cosmicbreach:familiar/moth_strike"
+    ],
+    "subtitle": "Prism Moth strikes"
+  },
+  "familiar/refract": {
+    "files": [
+      "cosmicbreach:familiar/refract"
+    ],
+    "subtitle": "Prism Moth glints"
+  },
+  "familiar/refract_break": {
+    "files": [
+      "cosmicbreach:familiar/refract_break"
+    ],
+    "subtitle": "Refract shatters"
+  },
+  "familiar/cleanse": {
+    "files": [
+      "cosmicbreach:familiar/cleanse"
+    ],
+    "subtitle": "Prism Moth cleanses"
+  }
+}

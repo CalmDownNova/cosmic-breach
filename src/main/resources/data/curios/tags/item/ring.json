@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "cosmicbreach:twin_comet_band",
+    "cosmicbreach:leechstar_signet",
+    "cosmicbreach:perihelion_loop",
+    "cosmicbreach:gravity_loop"
+  ]
+}

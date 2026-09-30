@@ -1,0 +1,123 @@
+{
+  "parent": "cosmicbreach:item/umbra_cantor_base",
+  "loader": "neoforge:item_layers",
+  "textures": {
+    "layer0": "cosmicbreach:item/umbra_cantor",
+    "layer1": "cosmicbreach:item/umbra_cantor_light_d0_g0"
+  },
+  "neoforge_data": {
+    "layers": {
+      "1": {
+        "block_light": 15,
+        "sky_light": 15
+      }
+    }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.0,
+        "cosmicbreach:resonance": 0.34
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d0_g1"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.0,
+        "cosmicbreach:resonance": 0.67
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d0_g2"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.0,
+        "cosmicbreach:resonance": 1.0
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d0_g3"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.25,
+        "cosmicbreach:resonance": 0.0
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d1_g0"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.25,
+        "cosmicbreach:resonance": 0.34
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d1_g1"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.25,
+        "cosmicbreach:resonance": 0.67
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d1_g2"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.25,
+        "cosmicbreach:resonance": 1.0
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d1_g3"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.6,
+        "cosmicbreach:resonance": 0.0
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d2_g0"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.6,
+        "cosmicbreach:resonance": 0.34
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d2_g1"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.6,
+        "cosmicbreach:resonance": 0.67
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d2_g2"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.6,
+        "cosmicbreach:resonance": 1.0
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d2_g3"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.95,
+        "cosmicbreach:resonance": 0.0
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d3_g0"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.95,
+        "cosmicbreach:resonance": 0.34
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d3_g1"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.95,
+        "cosmicbreach:resonance": 0.67
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d3_g2"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:draw": 0.95,
+        "cosmicbreach:resonance": 1.0
+      },
+      "model": "cosmicbreach:item/umbra_cantor_d3_g3"
+    }
+  ]
+}

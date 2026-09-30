@@ -1,0 +1,28 @@
+{
+    "vertex": "cosmicbreach:sky_body",
+    "fragment": "cosmicbreach:sky_body",
+    "samplers": [
+        { "name": "Sampler0" },
+        { "name": "Sampler1" }
+    ],
+    "uniforms": [
+        { "name": "ModelViewMat", "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+        { "name": "ProjMat", "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+        { "name": "ColorModulator", "type": "float", "count": 4, "values": [ 1.0, 1.0, 1.0, 1.0 ] },
+        { "name": "PlanetPos", "type": "float", "count": 3, "values": [ -95.0, 12.0, 5.0 ] },
+        { "name": "PlanetGeom", "type": "float", "count": 4, "values": [ 17.0, 1.35, 2.25, 0.0 ] },
+        { "name": "RingAxis", "type": "float", "count": 3, "values": [ 0.3, 0.9, 0.3 ] },
+        { "name": "LightDir", "type": "float", "count": 3, "values": [ 0.0, 1.0, 0.0 ] },
+        { "name": "PlanetLight", "type": "float", "count": 4, "values": [ 1.0, 0.97, 0.9, 0.0 ] },
+        { "name": "PlanetParams", "type": "float", "count": 4, "values": [ 0.3, 0.3, 1.0, 1.0 ] },
+        { "name": "PlanetAmbient", "type": "float", "count": 3, "values": [ 0.02, 0.03, 0.06 ] },
+        { "name": "ZenithColor", "type": "float", "count": 3, "values": [ 0.25, 0.5, 0.88 ] },
+        { "name": "MidColor", "type": "float", "count": 3, "values": [ 0.45, 0.7, 0.95 ] },
+        { "name": "HazeColor", "type": "float", "count": 3, "values": [ 0.8, 0.88, 0.97 ] },
+        { "name": "HorizonColor", "type": "float", "count": 3, "values": [ 0.95, 0.9, 0.77 ] },
+        { "name": "LowColor", "type": "float", "count": 3, "values": [ 0.7, 0.76, 0.93 ] },
+        { "name": "NadirColor", "type": "float", "count": 3, "values": [ 0.3, 0.25, 0.6 ] },
+        { "name": "SunDir", "type": "float", "count": 3, "values": [ 0.0, 1.0, 0.0 ] },
+        { "name": "SunGlow", "type": "float", "count": 4, "values": [ 1.0, 0.9, 0.7, 0.0 ] }
+    ]
+}

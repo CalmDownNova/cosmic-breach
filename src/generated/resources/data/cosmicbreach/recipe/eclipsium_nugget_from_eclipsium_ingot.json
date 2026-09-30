@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cosmicbreach:eclipsium_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "cosmicbreach:eclipsium_nugget"
+  }
+}

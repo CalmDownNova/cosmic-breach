@@ -1,0 +1,11 @@
+{
+  "base_damage": 5.0,
+  "grades": { "power": "B", "agility": "C" },
+  "reach": 3.5,
+  "tier": 1,
+  "combo": ["cosmicbreach:meridian/l1", "cosmicbreach:meridian/l2", "cosmicbreach:meridian/l3"],
+  "charged": "cosmicbreach:meridian/line",
+  "plunge": "cosmicbreach:meridian/falling_star",
+  "dash_attack": "cosmicbreach:meridian/pass",
+  "ability": { "move": "cosmicbreach:meridian/zenith", "cost": 30, "cooldown": 100 }
+}

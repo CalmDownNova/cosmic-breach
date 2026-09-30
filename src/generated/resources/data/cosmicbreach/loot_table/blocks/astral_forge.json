@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "block": "cosmicbreach:astral_forge",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "tier"
+              ]
+            }
+          ],
+          "name": "cosmicbreach:astral_forge"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "cosmicbreach:blocks/astral_forge"
+}

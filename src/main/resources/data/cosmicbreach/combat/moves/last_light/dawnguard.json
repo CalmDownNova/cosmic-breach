@@ -1,0 +1,40 @@
+{
+  "kind": "ability",
+  "timing": {
+    "startup": 3,
+    "active": 30,
+    "recovery": 8
+  },
+  "hit": {
+    "mv": 2.4,
+    "impact": 20,
+    "hitstop": 3
+  },
+  "hitbox": {
+    "type": "arc",
+    "radius": 5.0,
+    "angle": 270,
+    "height": 3.0
+  },
+  "animation": "cosmicbreach:lastlight_dawnguard",
+  "movement": 0.35,
+  "cancels": [
+    {
+      "by": "dash",
+      "phase": "active",
+      "from": 10
+    }
+  ],
+  "effects": [
+    {
+      "id": "cosmicbreach:dawnguard",
+      "params": {
+        "parry_cost": 10
+      }
+    }
+  ],
+  "sound": {
+    "swing": "cosmicbreach:lastlight/dawnguard",
+    "hit": "cosmicbreach:lastlight/daybreak_hit"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "cosmicbreach:silent_nave",
+  "biomes": [
+    "cosmicbreach:rift_abyss"
+  ],
+  "step": "top_layer_modification",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "full",
+      "spawns": []
+    }
+  }
+}

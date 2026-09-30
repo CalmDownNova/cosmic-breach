@@ -1,0 +1,32 @@
+{
+  "variants": {
+    "loose=false,turn=0": {
+      "model": "cosmicbreach:block/lens_mirror_straight"
+    },
+    "loose=false,turn=1": {
+      "model": "cosmicbreach:block/lens_mirror_diagonal"
+    },
+    "loose=false,turn=2": {
+      "model": "cosmicbreach:block/lens_mirror_straight",
+      "y": 90
+    },
+    "loose=false,turn=3": {
+      "model": "cosmicbreach:block/lens_mirror_diagonal",
+      "y": 90
+    },
+    "loose=true,turn=0": {
+      "model": "cosmicbreach:block/lens_mirror_straight_loose"
+    },
+    "loose=true,turn=1": {
+      "model": "cosmicbreach:block/lens_mirror_diagonal_loose"
+    },
+    "loose=true,turn=2": {
+      "model": "cosmicbreach:block/lens_mirror_straight_loose",
+      "y": 90
+    },
+    "loose=true,turn=3": {
+      "model": "cosmicbreach:block/lens_mirror_diagonal_loose",
+      "y": 90
+    }
+  }
+}

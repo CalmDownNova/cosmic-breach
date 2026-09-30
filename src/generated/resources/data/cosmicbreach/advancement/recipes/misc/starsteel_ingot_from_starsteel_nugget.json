@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_starsteel_nugget": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cosmicbreach:starsteel_nugget"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cosmicbreach:starsteel_ingot_from_starsteel_nugget"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_starsteel_nugget"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cosmicbreach:starsteel_ingot_from_starsteel_nugget"
+    ]
+  }
+}

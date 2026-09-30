@@ -1,0 +1,100 @@
+{
+  "variants": {
+    "color=gold,facing=east,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_gold"
+    },
+    "color=gold,facing=east,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_gold_lit"
+    },
+    "color=gold,facing=north,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_gold"
+    },
+    "color=gold,facing=north,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_gold_lit"
+    },
+    "color=gold,facing=south,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_gold"
+    },
+    "color=gold,facing=south,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_gold_lit"
+    },
+    "color=gold,facing=west,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_gold"
+    },
+    "color=gold,facing=west,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_gold_lit"
+    },
+    "color=magenta,facing=east,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_magenta"
+    },
+    "color=magenta,facing=east,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_magenta_lit"
+    },
+    "color=magenta,facing=north,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_magenta"
+    },
+    "color=magenta,facing=north,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_magenta_lit"
+    },
+    "color=magenta,facing=south,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_magenta"
+    },
+    "color=magenta,facing=south,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_magenta_lit"
+    },
+    "color=magenta,facing=west,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_magenta"
+    },
+    "color=magenta,facing=west,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_magenta_lit"
+    },
+    "color=teal,facing=east,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_teal"
+    },
+    "color=teal,facing=east,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_teal_lit"
+    },
+    "color=teal,facing=north,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_teal"
+    },
+    "color=teal,facing=north,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_teal_lit"
+    },
+    "color=teal,facing=south,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_teal"
+    },
+    "color=teal,facing=south,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_teal_lit"
+    },
+    "color=teal,facing=west,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_teal"
+    },
+    "color=teal,facing=west,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_teal_lit"
+    },
+    "color=white,facing=east,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_white"
+    },
+    "color=white,facing=east,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_white_lit"
+    },
+    "color=white,facing=north,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_white"
+    },
+    "color=white,facing=north,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_white_lit"
+    },
+    "color=white,facing=south,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_white"
+    },
+    "color=white,facing=south,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_white_lit"
+    },
+    "color=white,facing=west,lit=false": {
+      "model": "cosmicbreach:block/lens_receptor_white"
+    },
+    "color=white,facing=west,lit=true": {
+      "model": "cosmicbreach:block/lens_receptor_white_lit"
+    }
+  }
+}

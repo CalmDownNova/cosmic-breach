@@ -1,0 +1,232 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "shard": "cosmicbreach:block/mask_shard",
+    "particle": "cosmicbreach:block/mask_shard"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        0,
+        7
+      ],
+      "to": [
+        12,
+        11,
+        9
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            2,
+            8,
+            13
+          ],
+          "texture": "#shard"
+        },
+        "south": {
+          "uv": [
+            8,
+            2,
+            0,
+            13
+          ],
+          "texture": "#shard"
+        },
+        "east": {
+          "uv": [
+            11,
+            2,
+            13,
+            13
+          ],
+          "texture": "#shard"
+        },
+        "west": {
+          "uv": [
+            11,
+            2,
+            13,
+            13
+          ],
+          "texture": "#shard"
+        },
+        "up": {
+          "uv": [
+            11,
+            0,
+            13,
+            8
+          ],
+          "texture": "#shard",
+          "rotation": 90
+        },
+        "down": {
+          "uv": [
+            11,
+            0,
+            13,
+            8
+          ],
+          "texture": "#shard",
+          "rotation": 90
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        11,
+        7.2
+      ],
+      "to": [
+        10,
+        13,
+        8.8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            0,
+            6,
+            2
+          ],
+          "texture": "#shard"
+        },
+        "south": {
+          "uv": [
+            6,
+            0,
+            1,
+            2
+          ],
+          "texture": "#shard"
+        },
+        "east": {
+          "uv": [
+            11,
+            0,
+            13,
+            2
+          ],
+          "texture": "#shard"
+        },
+        "west": {
+          "uv": [
+            11,
+            0,
+            13,
+            2
+          ],
+          "texture": "#shard"
+        },
+        "up": {
+          "uv": [
+            11,
+            0,
+            13,
+            5
+          ],
+          "texture": "#shard",
+          "rotation": 90
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        3,
+        6.4
+      ],
+      "to": [
+        8,
+        9,
+        7
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            4,
+            6,
+            6,
+            12
+          ],
+          "texture": "#shard"
+        },
+        "east": {
+          "uv": [
+            11,
+            6,
+            12,
+            12
+          ],
+          "texture": "#shard"
+        },
+        "west": {
+          "uv": [
+            11,
+            6,
+            12,
+            12
+          ],
+          "texture": "#shard"
+        },
+        "up": {
+          "uv": [
+            11,
+            6,
+            12,
+            8
+          ],
+          "texture": "#shard"
+        }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        20,
+        200,
+        0
+      ],
+      "translation": [
+        0,
+        1.5,
+        0
+      ],
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        2,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    }
+  }
+}

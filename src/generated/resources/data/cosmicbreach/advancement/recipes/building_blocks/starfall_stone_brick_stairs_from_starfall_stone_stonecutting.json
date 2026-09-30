@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_starfall_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cosmicbreach:starfall_stone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cosmicbreach:starfall_stone_brick_stairs_from_starfall_stone_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_starfall_stone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cosmicbreach:starfall_stone_brick_stairs_from_starfall_stone_stonecutting"
+    ]
+  }
+}

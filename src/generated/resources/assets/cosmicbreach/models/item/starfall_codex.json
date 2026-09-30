@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cosmicbreach:item/starfall_codex"
+  }
+}

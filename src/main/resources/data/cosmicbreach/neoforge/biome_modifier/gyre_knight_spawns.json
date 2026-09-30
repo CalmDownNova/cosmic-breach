@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "cosmicbreach:drift_belt",
+  "spawners": {
+    "type": "cosmicbreach:gyre_knight",
+    "weight": 3,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

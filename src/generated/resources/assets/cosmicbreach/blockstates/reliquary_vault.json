@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,ready=false": {
+      "model": "cosmicbreach:block/reliquary_vault",
+      "y": 90
+    },
+    "facing=east,ready=true": {
+      "model": "cosmicbreach:block/reliquary_vault_ready",
+      "y": 90
+    },
+    "facing=north,ready=false": {
+      "model": "cosmicbreach:block/reliquary_vault"
+    },
+    "facing=north,ready=true": {
+      "model": "cosmicbreach:block/reliquary_vault_ready"
+    },
+    "facing=south,ready=false": {
+      "model": "cosmicbreach:block/reliquary_vault",
+      "y": 180
+    },
+    "facing=south,ready=true": {
+      "model": "cosmicbreach:block/reliquary_vault_ready",
+      "y": 180
+    },
+    "facing=west,ready=false": {
+      "model": "cosmicbreach:block/reliquary_vault",
+      "y": 270
+    },
+    "facing=west,ready=true": {
+      "model": "cosmicbreach:block/reliquary_vault_ready",
+      "y": 270
+    }
+  }
+}

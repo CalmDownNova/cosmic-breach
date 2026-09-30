@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "tier": 1,
+  "order": 70,
+  "ingredients": [
+    {
+      "count": 3,
+      "item": "cosmicbreach:starsteel_ingot"
+    },
+    {
+      "count": 4,
+      "item": "cosmicbreach:starfall_stone"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:starshard"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:brazier_of_solenne"
+  }
+}

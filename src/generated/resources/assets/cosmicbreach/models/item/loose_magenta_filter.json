@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cosmicbreach:item/loose_magenta_filter"
+  }
+}

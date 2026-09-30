@@ -1,0 +1,11 @@
+{
+  "parent": "cosmicbreach:item/meridian_base",
+  "textures": {
+    "layer0": "cosmicbreach:item/meridian"
+  },
+  "overrides": [
+    { "predicate": { "cosmicbreach:resonance": 0.34 }, "model": "cosmicbreach:item/meridian_glow1" },
+    { "predicate": { "cosmicbreach:resonance": 0.67 }, "model": "cosmicbreach:item/meridian_glow2" },
+    { "predicate": { "cosmicbreach:resonance": 1.0 }, "model": "cosmicbreach:item/meridian_glow3" }
+  ]
+}

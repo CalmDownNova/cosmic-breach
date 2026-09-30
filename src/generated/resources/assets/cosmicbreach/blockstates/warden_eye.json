@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "awake=false,facing=east": {
+      "model": "cosmicbreach:block/warden_eye",
+      "y": 90
+    },
+    "awake=false,facing=north": {
+      "model": "cosmicbreach:block/warden_eye"
+    },
+    "awake=false,facing=south": {
+      "model": "cosmicbreach:block/warden_eye",
+      "y": 180
+    },
+    "awake=false,facing=west": {
+      "model": "cosmicbreach:block/warden_eye",
+      "y": 270
+    },
+    "awake=true,facing=east": {
+      "model": "cosmicbreach:block/warden_eye_awake",
+      "y": 90
+    },
+    "awake=true,facing=north": {
+      "model": "cosmicbreach:block/warden_eye_awake"
+    },
+    "awake=true,facing=south": {
+      "model": "cosmicbreach:block/warden_eye_awake",
+      "y": 180
+    },
+    "awake=true,facing=west": {
+      "model": "cosmicbreach:block/warden_eye_awake",
+      "y": 270
+    }
+  }
+}

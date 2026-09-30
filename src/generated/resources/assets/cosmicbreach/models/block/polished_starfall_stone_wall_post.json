@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "cosmicbreach:block/polished_starfall_stone"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 1,
+      "item": "cosmicbreach:silent_sigil"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:solar_ember"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:hymn_crystal"
+    },
+    {
+      "count": 4,
+      "item": "cosmicbreach:eclipsium_ingot"
+    }
+  ],
+  "order": 90,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:dying_star_heart"
+  },
+  "tier": 3
+}

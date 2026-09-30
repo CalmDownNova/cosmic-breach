@@ -1,0 +1,23 @@
+{
+  "name": "edges_l2",
+  "author": "Cosmic Breach",
+  "description": "Right Hook: the mirror of the Left Hook, the right sickle hooking across from the right. 6 ticks, active 2.",
+  "version": 3,
+  "emote": {
+    "beginTick": 0,
+    "endTick": 6,
+    "stopTick": 9,
+    "isLoop": false,
+    "returnTick": 0,
+    "degrees": true,
+    "moves": [
+      {"tick": 0, "easing": "LINEAR", "body": {"pitch": -16.0, "yaw": -0.0, "roll": -0.0, "x": 0.0, "y": 0.0109, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": -59.267, "yaw": 3.036, "roll": 0.0}, "leftArm": {"pitch": -57.616, "yaw": 1.657, "roll": 2.5}, "rightLeg": {"pitch": -36.161, "yaw": 17.835, "roll": 11.538}, "leftLeg": {"pitch": 4.929, "yaw": -25.502, "roll": -9.078}, "rightItem": {"pitch": -0.378, "yaw": 34.178, "roll": -13.619, "x": -0.616, "y": -1.529, "z": 0.954}, "leftItem": {"pitch": 2.942, "yaw": -29.379, "roll": 12.194, "x": 0.515, "y": -1.495, "z": 0.916}},
+      {"tick": 1, "easing": "LINEAR", "body": {"pitch": -17.0, "yaw": -34.0, "roll": 0.0, "x": 0.0, "y": 0.0124, "z": -0.0}, "head": {"yaw": -32.823}, "rightArm": {"pitch": -71.308, "yaw": 55.918, "roll": 0.0}, "leftArm": {"pitch": -50.675, "yaw": 9.944, "roll": 15.0}, "rightLeg": {"pitch": -2.37, "yaw": -0.602, "roll": 14.935}, "leftLeg": {"pitch": -30.159, "yaw": -46.325, "roll": -5.212}, "rightItem": {"pitch": -27.888, "yaw": -38.768, "roll": -43.42, "x": 0.365, "y": -2.767, "z": 1.013}, "leftItem": {"pitch": 4.492, "yaw": -18.374, "roll": 6.736, "x": 0.337, "y": -1.539, "z": 0.83}},
+      {"tick": 2, "easing": "LINEAR", "body": {"pitch": -19.0, "yaw": 4.0, "roll": 0.0, "x": 0.0, "y": 0.0124, "z": -0.0}, "head": {"yaw": 3.783}, "rightArm": {"pitch": -60.011, "yaw": -10.767, "roll": -50.0}, "leftArm": {"pitch": -53.299, "yaw": -2.52, "roll": 15.0}, "rightLeg": {"pitch": 1.824, "yaw": 35.312, "roll": 4.102}, "leftLeg": {"pitch": -38.71, "yaw": -10.937, "roll": -13.054}, "rightItem": {"pitch": -40.473, "yaw": 13.519, "roll": -32.757, "x": -0.541, "y": -2.336, "z": 0.864}, "leftItem": {"pitch": 0.994, "yaw": -28.009, "roll": 0.422, "x": 0.587, "y": -1.653, "z": 0.891}},
+      {"tick": 3, "easing": "LINEAR", "body": {"pitch": -17.0, "yaw": 28.0, "roll": 0.0, "x": 0.0, "y": 0.0094, "z": -0.0}, "head": {"yaw": 26.952}, "rightArm": {"pitch": -36.63, "yaw": -46.372, "roll": -50.0}, "leftArm": {"pitch": -53.299, "yaw": -2.52, "roll": 15.0}, "rightLeg": {"pitch": 7.797, "yaw": 46.473, "roll": 4.614}, "leftLeg": {"pitch": -44.9, "yaw": 2.351, "roll": -16.477}, "rightItem": {"pitch": -77.258, "yaw": 12.778, "roll": -59.691, "x": -1.067, "y": -2.473, "z": 1.423}, "leftItem": {"pitch": 0.994, "yaw": -28.009, "roll": 0.422, "x": 0.587, "y": -1.653, "z": 0.891}},
+      {"tick": 4, "easing": "LINEAR", "body": {"pitch": -17.0, "yaw": 27.0, "roll": 0.0, "x": 0.0, "y": 0.0094, "z": -0.0}, "head": {"yaw": 25.978}, "rightArm": {"pitch": -36.63, "yaw": -46.372, "roll": -50.0}, "leftArm": {"pitch": -53.299, "yaw": -2.52, "roll": 15.0}, "rightLeg": {"pitch": 7.684, "yaw": 45.52, "roll": 4.824}, "leftLeg": {"pitch": -44.631, "yaw": 1.433, "roll": -16.176}, "rightItem": {"pitch": -83.518, "yaw": 16.527, "roll": -60.15, "x": -1.121, "y": -2.492, "z": 1.558}, "leftItem": {"pitch": 0.994, "yaw": -28.009, "roll": 0.422, "x": 0.587, "y": -1.653, "z": 0.891}},
+      {"tick": 5, "easing": "LINEAR", "body": {"pitch": -16.5, "yaw": 13.5, "roll": 0.0, "x": 0.0, "y": 0.0133, "z": -0.0}, "head": {"yaw": 12.963}, "rightArm": {"pitch": -52.865, "yaw": -35.978, "roll": -25.0}, "leftArm": {"pitch": -55.636, "yaw": -0.251, "roll": 8.75}, "rightLeg": {"pitch": -13.873, "yaw": 31.652, "roll": 8.256}, "leftLeg": {"pitch": -19.503, "yaw": -11.907, "roll": -12.229}, "rightItem": {"pitch": -37.555, "yaw": 33.747, "roll": -32.343, "x": -0.837, "y": -2.079, "z": 1.006}, "leftItem": {"pitch": 1.74, "yaw": -28.79, "roll": 6.495, "x": 0.558, "y": -1.575, "z": 0.903}},
+      {"tick": 6, "easing": "INOUTSINE", "body": {"pitch": -16.0, "yaw": 0.0, "roll": 0.0, "x": 0.0, "y": 0.0109, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": -59.267, "yaw": 3.036, "roll": 0.0}, "leftArm": {"pitch": -57.616, "yaw": 1.657, "roll": 2.5}, "rightLeg": {"pitch": -36.161, "yaw": 17.835, "roll": 11.538}, "leftLeg": {"pitch": 4.929, "yaw": -25.502, "roll": -9.078}, "rightItem": {"pitch": -0.378, "yaw": 34.178, "roll": -13.619, "x": -0.616, "y": -1.529, "z": 0.954}, "leftItem": {"pitch": 2.942, "yaw": -29.379, "roll": 12.194, "x": 0.515, "y": -1.495, "z": 0.916}}
+    ]
+  }
+}

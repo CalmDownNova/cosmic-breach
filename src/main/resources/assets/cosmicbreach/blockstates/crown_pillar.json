@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "cosmicbreach:block/crown_pillar"
+    },
+    "lit=true": {
+      "model": "cosmicbreach:block/crown_pillar_lit"
+    }
+  }
+}

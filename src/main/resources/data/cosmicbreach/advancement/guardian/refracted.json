@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "cosmicbreach:prism_heart"
+    },
+    "title": {
+      "translate": "advancements.cosmicbreach.guardian.refracted.title"
+    },
+    "description": {
+      "translate": "advancements.cosmicbreach.guardian.refracted.description"
+    },
+    "background": "cosmicbreach:textures/block/starfall_stone_bricks.png",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "refracted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "refracted"
+    ]
+  ]
+}

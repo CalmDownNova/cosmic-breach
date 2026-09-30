@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.9,
+  "group": "nebulite_ingot",
+  "ingredient": {
+    "item": "cosmicbreach:raw_nebulite"
+  },
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:nebulite_ingot"
+  }
+}

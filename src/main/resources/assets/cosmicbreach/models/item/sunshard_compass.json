@@ -1,0 +1,110 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cosmicbreach:item/sunshard_compass"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.0
+      },
+      "model": "cosmicbreach:item/sunshard_compass_00"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.03125
+      },
+      "model": "cosmicbreach:item/sunshard_compass_01"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.09375
+      },
+      "model": "cosmicbreach:item/sunshard_compass_02"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.15625
+      },
+      "model": "cosmicbreach:item/sunshard_compass_03"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.21875
+      },
+      "model": "cosmicbreach:item/sunshard_compass_04"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.28125
+      },
+      "model": "cosmicbreach:item/sunshard_compass_05"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.34375
+      },
+      "model": "cosmicbreach:item/sunshard_compass_06"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.40625
+      },
+      "model": "cosmicbreach:item/sunshard_compass_07"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.46875
+      },
+      "model": "cosmicbreach:item/sunshard_compass_08"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.53125
+      },
+      "model": "cosmicbreach:item/sunshard_compass_09"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.59375
+      },
+      "model": "cosmicbreach:item/sunshard_compass_10"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.65625
+      },
+      "model": "cosmicbreach:item/sunshard_compass_11"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.71875
+      },
+      "model": "cosmicbreach:item/sunshard_compass_12"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.78125
+      },
+      "model": "cosmicbreach:item/sunshard_compass_13"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.84375
+      },
+      "model": "cosmicbreach:item/sunshard_compass_14"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.90625
+      },
+      "model": "cosmicbreach:item/sunshard_compass_15"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:needle": 0.96875
+      },
+      "model": "cosmicbreach:item/sunshard_compass_00"
+    }
+  ]
+}

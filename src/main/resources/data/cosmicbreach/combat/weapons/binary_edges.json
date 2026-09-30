@@ -1,0 +1,28 @@
+{
+  "base_damage": 3.8,
+  "grades": { "agility": "A", "power": "D" },
+  "reach": 2.8,
+  "tier": 2,
+  "combo": ["cosmicbreach:binary_edges/l1", "cosmicbreach:binary_edges/l2", "cosmicbreach:binary_edges/l3",
+            "cosmicbreach:binary_edges/l4", "cosmicbreach:binary_edges/l5"],
+  "charged": "cosmicbreach:binary_edges/orbit",
+  "plunge": "cosmicbreach:binary_edges/twin_meteor",
+  "dash_attack": "cosmicbreach:binary_edges/scissor",
+  "dash_follow": { "move": "cosmicbreach:binary_edges/l4", "window": 10 },
+  "ability": { "move": "cosmicbreach:binary_edges/tether", "cost": 25, "cooldown": 120, "cooldown_after_recast": true,
+               "recast": { "move": "cosmicbreach:binary_edges/blink", "window": 80, "auto": false } },
+  "blade": { "guard": [12.9, 18.1], "tip": [22.5, 6.5], "half_width": 3.0 },
+  "off_hand": {
+    "item": "cosmicbreach:binary_edges_left",
+    "blade": { "guard": [12.9, 18.1], "tip": [22.5, 6.5], "half_width": 3.0 },
+    "solo": { "cosmicbreach:edges_l1": "cosmicbreach:edges_l2" }
+  },
+  "animations": {
+    "cosmicbreach:combat_dash_forward": "cosmicbreach:edges_dash_forward",
+    "cosmicbreach:combat_dash_back": "cosmicbreach:edges_dash_back",
+    "cosmicbreach:combat_dash_side": "cosmicbreach:edges_dash_side",
+    "cosmicbreach:combat_parry": "cosmicbreach:edges_parry",
+    "cosmicbreach:combat_parry_success": "cosmicbreach:edges_parry_success",
+    "cosmicbreach:combat_stagger": "cosmicbreach:edges_stagger"
+  }
+}

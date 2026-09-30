@@ -1,0 +1,88 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "north": "cosmicbreach:block/falling_light",
+    "south": "cosmicbreach:block/falling_light",
+    "east": "cosmicbreach:block/falling_light",
+    "west": "cosmicbreach:block/falling_light",
+    "up": "cosmicbreach:block/falling_light",
+    "down": "cosmicbreach:block/falling_light",
+    "particle": "cosmicbreach:block/falling_light"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#north"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#south"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#east"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#west"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#up"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#down"
+        }
+      },
+      "neoforge_data": {
+        "block_light": 15,
+        "sky_light": 15
+      }
+    }
+  ],
+  "render_type": "minecraft:translucent"
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "light",
+  "timing": {
+    "startup": 6,
+    "active": 3,
+    "recovery": 10
+  },
+  "hit": {
+    "mv": 1.7,
+    "impact": 18,
+    "resonance": 7,
+    "hitstop": 3
+  },
+  "hitbox": {
+    "type": "line",
+    "length": 4.8,
+    "width": 1.6
+  },
+  "next": "cosmicbreach:last_light/l1",
+  "animation": "cosmicbreach:lastlight_l3",
+  "lunge": 1.2,
+  "sound": {
+    "swing": "cosmicbreach:lastlight/thrust_heavy",
+    "hit": "cosmicbreach:lastlight/hit"
+  },
+  "slash": {
+    "roll": 0,
+    "from": 0,
+    "to": 0,
+    "radius": 3.0,
+    "width": 1.0,
+    "color": "#FFFFFF"
+  }
+}

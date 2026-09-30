@@ -1,0 +1,7 @@
+{
+  "type": "cosmicbreach:spire_reliquary",
+  "biomes": "#cosmicbreach:has_structure/spire_reliquary",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

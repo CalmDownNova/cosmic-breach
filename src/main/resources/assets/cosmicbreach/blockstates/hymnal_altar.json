@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "cosmicbreach:block/hymnal_altar"
+    },
+    "facing=west": {
+      "model": "cosmicbreach:block/hymnal_altar",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cosmicbreach:block/hymnal_altar",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "cosmicbreach:block/hymnal_altar",
+      "y": 270
+    }
+  }
+}

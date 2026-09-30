@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "hue=magenta,lit=true": {
+      "model": "cosmicbreach:block/lichen_window_magenta"
+    },
+    "hue=magenta,lit=false": {
+      "model": "cosmicbreach:block/lichen_window_magenta_dim"
+    },
+    "hue=teal,lit=true": {
+      "model": "cosmicbreach:block/lichen_window_teal"
+    },
+    "hue=teal,lit=false": {
+      "model": "cosmicbreach:block/lichen_window_teal_dim"
+    }
+  }
+}

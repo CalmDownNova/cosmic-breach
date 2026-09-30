@@ -1,0 +1,2392 @@
+{
+  "combat/swing_light": {
+    "sounds": [
+      "cosmicbreach:combat/swing_light_1",
+      "cosmicbreach:combat/swing_light_2",
+      "cosmicbreach:combat/swing_light_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.swing_light"
+  },
+  "combat/swing_heavy": {
+    "sounds": [
+      "cosmicbreach:combat/swing_heavy_1",
+      "cosmicbreach:combat/swing_heavy_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.swing_heavy"
+  },
+  "combat/hit": {
+    "sounds": [
+      "cosmicbreach:combat/hit_1",
+      "cosmicbreach:combat/hit_2",
+      "cosmicbreach:combat/hit_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.hit"
+  },
+  "combat/hit_crit": {
+    "sounds": [
+      "cosmicbreach:combat/hit_crit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.hit_crit"
+  },
+  "combat/charge_loop": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:combat/charge_loop",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.charge_loop"
+  },
+  "combat/charge_ready": {
+    "sounds": [
+      "cosmicbreach:combat/charge_ready"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.charge_ready"
+  },
+  "combat/charge_release": {
+    "sounds": [
+      "cosmicbreach:combat/charge_release"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.charge_release"
+  },
+  "combat/plunge_whistle": {
+    "sounds": [
+      "cosmicbreach:combat/plunge_whistle"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.plunge_whistle"
+  },
+  "combat/plunge_impact": {
+    "sounds": [
+      "cosmicbreach:combat/plunge_impact"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.plunge_impact"
+  },
+  "combat/zenith": {
+    "sounds": [
+      "cosmicbreach:combat/zenith"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.zenith"
+  },
+  "combat/dash": {
+    "sounds": [
+      "cosmicbreach:combat/dash_1",
+      "cosmicbreach:combat/dash_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.dash"
+  },
+  "combat/parry": {
+    "sounds": [
+      "cosmicbreach:combat/parry"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.parry"
+  },
+  "combat/perfect_dodge": {
+    "sounds": [
+      "cosmicbreach:combat/perfect_dodge"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.perfect_dodge"
+  },
+  "combat/resonance_full": {
+    "sounds": [
+      "cosmicbreach:combat/resonance_full"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.resonance_full"
+  },
+  "combat/whiff": {
+    "sounds": [
+      "cosmicbreach:combat/whiff"
+    ],
+    "subtitle": "subtitles.cosmicbreach.combat.whiff"
+  },
+  "shardling/step": {
+    "sounds": [
+      "cosmicbreach:shardling/step_1",
+      "cosmicbreach:shardling/step_2",
+      "cosmicbreach:shardling/step_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.shardling.step"
+  },
+  "shardling/tell": {
+    "sounds": [
+      "cosmicbreach:shardling/tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.shardling.tell"
+  },
+  "shardling/lunge": {
+    "sounds": [
+      "cosmicbreach:shardling/lunge"
+    ],
+    "subtitle": "subtitles.cosmicbreach.shardling.lunge"
+  },
+  "shardling/hurt": {
+    "sounds": [
+      "cosmicbreach:shardling/hurt_1",
+      "cosmicbreach:shardling/hurt_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.shardling.hurt"
+  },
+  "shardling/death": {
+    "sounds": [
+      "cosmicbreach:shardling/death"
+    ],
+    "subtitle": "subtitles.cosmicbreach.shardling.death"
+  },
+  "shardling/spit": {
+    "sounds": [
+      "cosmicbreach:shardling/spit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.shardling.spit"
+  },
+  "shardling/needle_hit": {
+    "sounds": [
+      "cosmicbreach:shardling/needle_hit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.shardling.needle_hit"
+  },
+  "shardling/shard_tick": {
+    "sounds": [
+      "cosmicbreach:shardling/shard_tick"
+    ],
+    "subtitle": "subtitles.cosmicbreach.shardling.shard_tick"
+  },
+  "shardling/shard_burst": {
+    "sounds": [
+      "cosmicbreach:shardling/shard_burst"
+    ],
+    "subtitle": "subtitles.cosmicbreach.shardling.shard_burst"
+  },
+  "progression/level_up": {
+    "sounds": [
+      "cosmicbreach:progression/level_up"
+    ],
+    "subtitle": "subtitles.cosmicbreach.progression.level_up"
+  },
+  "maul/swing": {
+    "sounds": [
+      "cosmicbreach:maul/swing_1",
+      "cosmicbreach:maul/swing_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.maul.swing"
+  },
+  "maul/slam": {
+    "sounds": [
+      "cosmicbreach:maul/slam_1",
+      "cosmicbreach:maul/slam_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.maul.slam"
+  },
+  "maul/hit": {
+    "sounds": [
+      "cosmicbreach:maul/hit_1",
+      "cosmicbreach:maul/hit_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.maul.hit"
+  },
+  "maul/charge": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:maul/charge",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.maul.charge"
+  },
+  "maul/well": {
+    "sounds": [
+      "cosmicbreach:maul/well"
+    ],
+    "subtitle": "subtitles.cosmicbreach.maul.well"
+  },
+  "maul/collapse": {
+    "sounds": [
+      "cosmicbreach:maul/collapse"
+    ],
+    "subtitle": "subtitles.cosmicbreach.maul.collapse"
+  },
+  "ambient/reach": {
+    "sounds": [
+      "cosmicbreach:ambient/reach"
+    ],
+    "subtitle": "subtitles.cosmicbreach.ambient.reach"
+  },
+  "ambient/drift": {
+    "sounds": [
+      "cosmicbreach:ambient/drift"
+    ],
+    "subtitle": "subtitles.cosmicbreach.ambient.drift"
+  },
+  "ambient/deep": {
+    "sounds": [
+      "cosmicbreach:ambient/deep"
+    ],
+    "subtitle": "subtitles.cosmicbreach.ambient.deep"
+  },
+  "music/reach": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/reach",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.reach"
+  },
+  "music/drift": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/drift",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.drift"
+  },
+  "music/deep": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/deep",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.deep"
+  },
+  "music/arrival": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/arrival",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.arrival"
+  },
+  "edges/swing": {
+    "sounds": [
+      "cosmicbreach:edges/swing_1",
+      "cosmicbreach:edges/swing_2",
+      "cosmicbreach:edges/swing_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.swing"
+  },
+  "edges/cross": {
+    "sounds": [
+      "cosmicbreach:edges/cross_1",
+      "cosmicbreach:edges/cross_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.cross"
+  },
+  "edges/gyre": {
+    "sounds": [
+      "cosmicbreach:edges/gyre"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.gyre"
+  },
+  "edges/hit": {
+    "sounds": [
+      "cosmicbreach:edges/hit_1",
+      "cosmicbreach:edges/hit_2",
+      "cosmicbreach:edges/hit_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.hit"
+  },
+  "edges/throw": {
+    "sounds": [
+      "cosmicbreach:edges/throw"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.throw"
+  },
+  "edges/stick": {
+    "sounds": [
+      "cosmicbreach:edges/stick_1",
+      "cosmicbreach:edges/stick_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.stick"
+  },
+  "edges/return": {
+    "sounds": [
+      "cosmicbreach:edges/return"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.return"
+  },
+  "edges/blink": {
+    "sounds": [
+      "cosmicbreach:edges/blink"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.blink"
+  },
+  "edges/chime": {
+    "sounds": [
+      "cosmicbreach:edges/chime"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.chime"
+  },
+  "edges/blink_slash": {
+    "sounds": [
+      "cosmicbreach:edges/blink_slash"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.blink_slash"
+  },
+  "edges/orbit": {
+    "sounds": [
+      "cosmicbreach:edges/orbit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.orbit"
+  },
+  "edges/meteor": {
+    "sounds": [
+      "cosmicbreach:edges/meteor_1",
+      "cosmicbreach:edges/meteor_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.edges.meteor"
+  },
+  "weather/flare_hum": {
+    "sounds": [
+      "cosmicbreach:weather/flare_hum"
+    ],
+    "subtitle": "subtitles.cosmicbreach.weather.flare_hum"
+  },
+  "weather/meteor_whistle": {
+    "sounds": [
+      "cosmicbreach:weather/meteor_whistle"
+    ],
+    "subtitle": "subtitles.cosmicbreach.weather.meteor_whistle"
+  },
+  "weather/meteor_impact": {
+    "sounds": [
+      "cosmicbreach:weather/meteor_impact_1",
+      "cosmicbreach:weather/meteor_impact_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.weather.meteor_impact"
+  },
+  "weather/tide_drop": {
+    "sounds": [
+      "cosmicbreach:weather/tide_drop"
+    ],
+    "subtitle": "subtitles.cosmicbreach.weather.tide_drop"
+  },
+  "weather/surge_swell": {
+    "sounds": [
+      "cosmicbreach:weather/surge_swell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.weather.surge_swell"
+  },
+  "forge/craft": {
+    "sounds": [
+      "cosmicbreach:forge/craft_1",
+      "cosmicbreach:forge/craft_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.forge.craft"
+  },
+  "forge/tier_up": {
+    "sounds": [
+      "cosmicbreach:forge/tier_up"
+    ],
+    "subtitle": "subtitles.cosmicbreach.forge.tier_up"
+  },
+  "vanguard/shockwave": {
+    "sounds": [
+      "cosmicbreach:vanguard/shockwave_1",
+      "cosmicbreach:vanguard/shockwave_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.vanguard.shockwave"
+  },
+  "vanguard/meteor_incoming": {
+    "sounds": [
+      "cosmicbreach:vanguard/meteor_incoming"
+    ],
+    "subtitle": "subtitles.cosmicbreach.vanguard.meteor_incoming"
+  },
+  "vanguard/meteor_impact": {
+    "sounds": [
+      "cosmicbreach:vanguard/meteor_impact"
+    ],
+    "subtitle": "subtitles.cosmicbreach.vanguard.meteor_impact"
+  },
+  "onboarding/starfall_streak": {
+    "sounds": [
+      "cosmicbreach:onboarding/starfall_streak"
+    ],
+    "subtitle": "subtitles.cosmicbreach.onboarding.starfall_streak"
+  },
+  "onboarding/starfall_boom": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:onboarding/starfall_boom",
+        "attenuation_distance": 128
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.onboarding.starfall_boom"
+  },
+  "onboarding/shard_hum": {
+    "sounds": [
+      "cosmicbreach:onboarding/shard_hum"
+    ],
+    "subtitle": "subtitles.cosmicbreach.onboarding.shard_hum"
+  },
+  "onboarding/ring_activate": {
+    "sounds": [
+      "cosmicbreach:onboarding/ring_activate"
+    ],
+    "subtitle": "subtitles.cosmicbreach.onboarding.ring_activate"
+  },
+  "onboarding/breach_wind": {
+    "sounds": [
+      "cosmicbreach:onboarding/breach_wind"
+    ],
+    "subtitle": "subtitles.cosmicbreach.onboarding.breach_wind"
+  },
+  "onboarding/fall_up": {
+    "sounds": [
+      "cosmicbreach:onboarding/fall_up"
+    ],
+    "subtitle": "subtitles.cosmicbreach.onboarding.fall_up"
+  },
+  "colossus/awaken": {
+    "sounds": [
+      "cosmicbreach:colossus/awaken"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.awaken"
+  },
+  "colossus/roar": {
+    "sounds": [
+      "cosmicbreach:colossus/roar"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.roar"
+  },
+  "colossus/grind": {
+    "sounds": [
+      "cosmicbreach:colossus/grind_1",
+      "cosmicbreach:colossus/grind_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.grind"
+  },
+  "colossus/crystal_turn": {
+    "sounds": [
+      "cosmicbreach:colossus/crystal_turn"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.crystal_turn"
+  },
+  "colossus/glint": {
+    "sounds": [
+      "cosmicbreach:colossus/glint"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.glint"
+  },
+  "colossus/slam": {
+    "sounds": [
+      "cosmicbreach:colossus/slam_1",
+      "cosmicbreach:colossus/slam_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.slam"
+  },
+  "colossus/sweep": {
+    "sounds": [
+      "cosmicbreach:colossus/sweep"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.sweep"
+  },
+  "colossus/charge": {
+    "sounds": [
+      "cosmicbreach:colossus/charge"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.charge"
+  },
+  "colossus/beam": {
+    "sounds": [
+      "cosmicbreach:colossus/beam"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.beam"
+  },
+  "colossus/core_hit": {
+    "sounds": [
+      "cosmicbreach:colossus/core_hit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.core_hit"
+  },
+  "colossus/burst_tell": {
+    "sounds": [
+      "cosmicbreach:colossus/burst_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.burst_tell"
+  },
+  "colossus/burst": {
+    "sounds": [
+      "cosmicbreach:colossus/burst"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.burst"
+  },
+  "colossus/break": {
+    "sounds": [
+      "cosmicbreach:colossus/break"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.break"
+  },
+  "colossus/fracture": {
+    "sounds": [
+      "cosmicbreach:colossus/fracture"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.fracture"
+  },
+  "colossus/shatter": {
+    "sounds": [
+      "cosmicbreach:colossus/shatter"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.shatter"
+  },
+  "colossus/reform": {
+    "sounds": [
+      "cosmicbreach:colossus/reform"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.reform"
+  },
+  "colossus/death": {
+    "sounds": [
+      "cosmicbreach:colossus/death"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.death"
+  },
+  "colossus/hurt": {
+    "sounds": [
+      "cosmicbreach:colossus/hurt_1",
+      "cosmicbreach:colossus/hurt_2",
+      "cosmicbreach:colossus/hurt_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.hurt"
+  },
+  "colossus/shard_chitter": {
+    "sounds": [
+      "cosmicbreach:colossus/shard_chitter_1",
+      "cosmicbreach:colossus/shard_chitter_2",
+      "cosmicbreach:colossus/shard_chitter_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.shard_chitter"
+  },
+  "colossus/shard_tell": {
+    "sounds": [
+      "cosmicbreach:colossus/shard_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.shard_tell"
+  },
+  "colossus/shard_lunge": {
+    "sounds": [
+      "cosmicbreach:colossus/shard_lunge"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.shard_lunge"
+  },
+  "colossus/shard_hurt": {
+    "sounds": [
+      "cosmicbreach:colossus/shard_hurt_1",
+      "cosmicbreach:colossus/shard_hurt_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.shard_hurt"
+  },
+  "colossus/shard_death": {
+    "sounds": [
+      "cosmicbreach:colossus/shard_death"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.shard_death"
+  },
+  "colossus/echo": {
+    "sounds": [
+      "cosmicbreach:colossus/echo"
+    ],
+    "subtitle": "subtitles.cosmicbreach.colossus.echo"
+  },
+  "music/colossus": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/colossus",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.colossus"
+  },
+  "structures/aperture_open": {
+    "sounds": [
+      "cosmicbreach:structures/aperture_open"
+    ],
+    "subtitle": "subtitles.cosmicbreach.structures.aperture_open"
+  },
+  "structures/mirror_turn": {
+    "sounds": [
+      "cosmicbreach:structures/mirror_turn_1",
+      "cosmicbreach:structures/mirror_turn_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.structures.mirror_turn"
+  },
+  "structures/receptor_hum": {
+    "sounds": [
+      "cosmicbreach:structures/receptor_hum"
+    ],
+    "subtitle": "subtitles.cosmicbreach.structures.receptor_hum"
+  },
+  "structures/receptor_lit": {
+    "sounds": [
+      "cosmicbreach:structures/receptor_lit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.structures.receptor_lit"
+  },
+  "structures/warden_eye": {
+    "sounds": [
+      "cosmicbreach:structures/warden_eye"
+    ],
+    "subtitle": "subtitles.cosmicbreach.structures.warden_eye"
+  },
+  "structures/vault_open": {
+    "sounds": [
+      "cosmicbreach:structures/vault_open"
+    ],
+    "subtitle": "subtitles.cosmicbreach.structures.vault_open"
+  },
+  "structures/umbral_push": {
+    "sounds": [
+      "cosmicbreach:structures/umbral_push"
+    ],
+    "subtitle": "subtitles.cosmicbreach.structures.umbral_push"
+  },
+  "structures/thread": {
+    "sounds": [
+      "cosmicbreach:structures/thread"
+    ],
+    "subtitle": "subtitles.cosmicbreach.structures.thread"
+  },
+  "structures/bolt": {
+    "sounds": [
+      "cosmicbreach:structures/bolt"
+    ],
+    "subtitle": "subtitles.cosmicbreach.structures.bolt"
+  },
+  "structures/updraft": {
+    "sounds": [
+      "cosmicbreach:structures/updraft"
+    ],
+    "subtitle": "subtitles.cosmicbreach.structures.updraft"
+  },
+  "echo/first_shard": {
+    "sounds": [
+      "cosmicbreach:echo/first_shard"
+    ],
+    "subtitle": "subtitles.cosmicbreach.echo.first_shard"
+  },
+  "echo/ring_open": {
+    "sounds": [
+      "cosmicbreach:echo/ring_open"
+    ],
+    "subtitle": "subtitles.cosmicbreach.echo.ring_open"
+  },
+  "echo/arrival": {
+    "sounds": [
+      "cosmicbreach:echo/arrival"
+    ],
+    "subtitle": "subtitles.cosmicbreach.echo.arrival"
+  },
+  "echo/drift": {
+    "sounds": [
+      "cosmicbreach:echo/drift"
+    ],
+    "subtitle": "subtitles.cosmicbreach.echo.drift"
+  },
+  "echo/deep": {
+    "sounds": [
+      "cosmicbreach:echo/deep"
+    ],
+    "subtitle": "subtitles.cosmicbreach.echo.deep"
+  },
+  "echo/sanctum": {
+    "sounds": [
+      "cosmicbreach:echo/sanctum"
+    ],
+    "subtitle": "subtitles.cosmicbreach.echo.sanctum"
+  },
+  "echo/sealed": {
+    "sounds": [
+      "cosmicbreach:echo/sealed"
+    ],
+    "subtitle": "subtitles.cosmicbreach.echo.sealed"
+  },
+  "driftweave/afterimage": {
+    "sounds": [
+      "cosmicbreach:driftweave/afterimage"
+    ],
+    "subtitle": "subtitles.cosmicbreach.driftweave.afterimage"
+  },
+  "driftweave/afterimage_strike": {
+    "sounds": [
+      "cosmicbreach:driftweave/afterimage_strike_1",
+      "cosmicbreach:driftweave/afterimage_strike_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.driftweave.afterimage_strike"
+  },
+  "driftweave/drift_start": {
+    "sounds": [
+      "cosmicbreach:driftweave/drift_start"
+    ],
+    "subtitle": "subtitles.cosmicbreach.driftweave.drift_start"
+  },
+  "driftweave/drift_end": {
+    "sounds": [
+      "cosmicbreach:driftweave/drift_end"
+    ],
+    "subtitle": "subtitles.cosmicbreach.driftweave.drift_end"
+  },
+  "regalia/echo": {
+    "sounds": [
+      "cosmicbreach:regalia/echo"
+    ],
+    "subtitle": "subtitles.cosmicbreach.regalia.echo"
+  },
+  "regalia/hymn": {
+    "sounds": [
+      "cosmicbreach:regalia/hymn"
+    ],
+    "subtitle": "subtitles.cosmicbreach.regalia.hymn"
+  },
+  "choir/pad_1": {
+    "sounds": [
+      "cosmicbreach:choir/pad_1"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.pad_1"
+  },
+  "choir/pad_2": {
+    "sounds": [
+      "cosmicbreach:choir/pad_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.pad_2"
+  },
+  "choir/pad_3": {
+    "sounds": [
+      "cosmicbreach:choir/pad_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.pad_3"
+  },
+  "choir/pad_4": {
+    "sounds": [
+      "cosmicbreach:choir/pad_4"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.pad_4"
+  },
+  "choir/pad_5": {
+    "sounds": [
+      "cosmicbreach:choir/pad_5"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.pad_5"
+  },
+  "choir/pad_6": {
+    "sounds": [
+      "cosmicbreach:choir/pad_6"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.pad_6"
+  },
+  "choir/pad_7": {
+    "sounds": [
+      "cosmicbreach:choir/pad_7"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.pad_7"
+  },
+  "choir/pad_8": {
+    "sounds": [
+      "cosmicbreach:choir/pad_8"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.pad_8"
+  },
+  "choir/call": {
+    "sounds": [
+      "cosmicbreach:choir/call"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.call"
+  },
+  "choir/tick": {
+    "sounds": [
+      "cosmicbreach:choir/tick"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.tick"
+  },
+  "choir/discord": {
+    "sounds": [
+      "cosmicbreach:choir/discord"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.discord"
+  },
+  "choir/round": {
+    "sounds": [
+      "cosmicbreach:choir/round"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.round"
+  },
+  "choir/solve": {
+    "sounds": [
+      "cosmicbreach:choir/solve"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.solve"
+  },
+  "choir/rotate": {
+    "sounds": [
+      "cosmicbreach:choir/rotate"
+    ],
+    "subtitle": "subtitles.cosmicbreach.choir.rotate"
+  },
+  "crypt/rift_crack": {
+    "sounds": [
+      "cosmicbreach:crypt/rift_crack"
+    ],
+    "subtitle": "subtitles.cosmicbreach.crypt.rift_crack"
+  },
+  "crypt/rift_fall": {
+    "sounds": [
+      "cosmicbreach:crypt/rift_fall"
+    ],
+    "subtitle": "subtitles.cosmicbreach.crypt.rift_fall"
+  },
+  "crypt/seal_open": {
+    "sounds": [
+      "cosmicbreach:crypt/seal_open"
+    ],
+    "subtitle": "subtitles.cosmicbreach.crypt.seal_open"
+  },
+  "crypt/plate_hum": {
+    "sounds": [
+      "cosmicbreach:crypt/plate_hum"
+    ],
+    "subtitle": "subtitles.cosmicbreach.crypt.plate_hum"
+  },
+  "crypt/piston": {
+    "sounds": [
+      "cosmicbreach:crypt/piston"
+    ],
+    "subtitle": "subtitles.cosmicbreach.crypt.piston"
+  },
+  "crypt/chute_glint": {
+    "sounds": [
+      "cosmicbreach:crypt/chute_glint"
+    ],
+    "subtitle": "subtitles.cosmicbreach.crypt.chute_glint"
+  },
+  "crypt/chute_impact": {
+    "sounds": [
+      "cosmicbreach:crypt/chute_impact"
+    ],
+    "subtitle": "subtitles.cosmicbreach.crypt.chute_impact"
+  },
+  "gyre/hum": {
+    "sounds": [
+      "cosmicbreach:gyre/hum"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.hum"
+  },
+  "gyre/whine": {
+    "sounds": [
+      "cosmicbreach:gyre/whine"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.whine"
+  },
+  "gyre/sweep": {
+    "sounds": [
+      "cosmicbreach:gyre/sweep"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.sweep"
+  },
+  "gyre/lance_tell": {
+    "sounds": [
+      "cosmicbreach:gyre/lance_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.lance_tell"
+  },
+  "gyre/lance_fire": {
+    "sounds": [
+      "cosmicbreach:gyre/lance_fire"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.lance_fire"
+  },
+  "gyre/lance_hit": {
+    "sounds": [
+      "cosmicbreach:gyre/lance_hit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.lance_hit"
+  },
+  "gyre/recall_tell": {
+    "sounds": [
+      "cosmicbreach:gyre/recall_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.recall_tell"
+  },
+  "gyre/recall": {
+    "sounds": [
+      "cosmicbreach:gyre/recall"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.recall"
+  },
+  "gyre/blade_break": {
+    "sounds": [
+      "cosmicbreach:gyre/blade_break"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.blade_break"
+  },
+  "gyre/deflect": {
+    "sounds": [
+      "cosmicbreach:gyre/deflect_1",
+      "cosmicbreach:gyre/deflect_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.deflect"
+  },
+  "gyre/stun": {
+    "sounds": [
+      "cosmicbreach:gyre/stun"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.stun"
+  },
+  "gyre/hurt": {
+    "sounds": [
+      "cosmicbreach:gyre/hurt_1",
+      "cosmicbreach:gyre/hurt_2",
+      "cosmicbreach:gyre/hurt_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.hurt"
+  },
+  "gyre/death": {
+    "sounds": [
+      "cosmicbreach:gyre/death"
+    ],
+    "subtitle": "subtitles.cosmicbreach.gyre.death"
+  },
+  "leviathan/song": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:leviathan/song_1",
+        "attenuation_distance": 96
+      },
+      {
+        "name": "cosmicbreach:leviathan/song_2",
+        "attenuation_distance": 96
+      },
+      {
+        "name": "cosmicbreach:leviathan/song_3",
+        "attenuation_distance": 96
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.song"
+  },
+  "leviathan/swell": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:leviathan/swell",
+        "attenuation_distance": 96
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.swell"
+  },
+  "leviathan/awaken": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:leviathan/awaken",
+        "attenuation_distance": 96
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.awaken"
+  },
+  "leviathan/dive": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:leviathan/dive",
+        "attenuation_distance": 96
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.dive"
+  },
+  "leviathan/pull": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:leviathan/pull",
+        "attenuation_distance": 96
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.pull"
+  },
+  "leviathan/bite": {
+    "sounds": [
+      "cosmicbreach:leviathan/bite"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.bite"
+  },
+  "leviathan/flick_tell": {
+    "sounds": [
+      "cosmicbreach:leviathan/flick_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.flick_tell"
+  },
+  "leviathan/glint": {
+    "sounds": [
+      "cosmicbreach:leviathan/glint"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.glint"
+  },
+  "leviathan/flick": {
+    "sounds": [
+      "cosmicbreach:leviathan/flick"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.flick"
+  },
+  "leviathan/droop": {
+    "sounds": [
+      "cosmicbreach:leviathan/droop"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.droop"
+  },
+  "leviathan/shed": {
+    "sounds": [
+      "cosmicbreach:leviathan/shed"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.shed"
+  },
+  "leviathan/scale_pop": {
+    "sounds": [
+      "cosmicbreach:leviathan/scale_pop_1",
+      "cosmicbreach:leviathan/scale_pop_2",
+      "cosmicbreach:leviathan/scale_pop_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.scale_pop"
+  },
+  "leviathan/coil": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:leviathan/coil",
+        "attenuation_distance": 96
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.coil"
+  },
+  "leviathan/ripple": {
+    "sounds": [
+      "cosmicbreach:leviathan/ripple"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.ripple"
+  },
+  "leviathan/shudder": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:leviathan/shudder",
+        "attenuation_distance": 96
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.shudder"
+  },
+  "leviathan/tear_free": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:leviathan/tear_free",
+        "attenuation_distance": 96
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.tear_free"
+  },
+  "leviathan/break": {
+    "sounds": [
+      "cosmicbreach:leviathan/break"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.break"
+  },
+  "leviathan/hurt": {
+    "sounds": [
+      "cosmicbreach:leviathan/hurt_1",
+      "cosmicbreach:leviathan/hurt_2",
+      "cosmicbreach:leviathan/hurt_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.hurt"
+  },
+  "leviathan/gland_hit": {
+    "sounds": [
+      "cosmicbreach:leviathan/gland_hit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.gland_hit"
+  },
+  "leviathan/death": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:leviathan/death",
+        "attenuation_distance": 96
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.death"
+  },
+  "leviathan/pearl": {
+    "sounds": [
+      "cosmicbreach:leviathan/pearl"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.pearl"
+  },
+  "leviathan/bell": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:leviathan/bell",
+        "attenuation_distance": 96
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.bell"
+  },
+  "leviathan/grow": {
+    "sounds": [
+      "cosmicbreach:leviathan/grow"
+    ],
+    "subtitle": "subtitles.cosmicbreach.leviathan.grow"
+  },
+  "music/leviathan": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/leviathan",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.leviathan"
+  },
+  "unsung/awaken": {
+    "sounds": [
+      "cosmicbreach:unsung/awaken"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.awaken"
+  },
+  "unsung/hymnal": {
+    "sounds": [
+      "cosmicbreach:unsung/hymnal"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.hymnal"
+  },
+  "unsung/dim": {
+    "sounds": [
+      "cosmicbreach:unsung/dim"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.dim"
+  },
+  "unsung/first_alto": {
+    "sounds": [
+      "cosmicbreach:unsung/first_alto"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.first_alto"
+  },
+  "unsung/first_tenor": {
+    "sounds": [
+      "cosmicbreach:unsung/first_tenor"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.first_tenor"
+  },
+  "unsung/first_bass": {
+    "sounds": [
+      "cosmicbreach:unsung/first_bass"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.first_bass"
+  },
+  "unsung/note_form": {
+    "sounds": [
+      "cosmicbreach:unsung/note_form"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.note_form"
+  },
+  "unsung/note_burst": {
+    "sounds": [
+      "cosmicbreach:unsung/note_burst"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.note_burst"
+  },
+  "unsung/note_break": {
+    "sounds": [
+      "cosmicbreach:unsung/note_break"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.note_break"
+  },
+  "unsung/inhale": {
+    "sounds": [
+      "cosmicbreach:unsung/inhale"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.inhale"
+  },
+  "unsung/wave": {
+    "sounds": [
+      "cosmicbreach:unsung/wave"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.wave"
+  },
+  "unsung/ripple_tell": {
+    "sounds": [
+      "cosmicbreach:unsung/ripple_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.ripple_tell"
+  },
+  "unsung/ripple": {
+    "sounds": [
+      "cosmicbreach:unsung/ripple"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.ripple"
+  },
+  "unsung/drop_rise": {
+    "sounds": [
+      "cosmicbreach:unsung/drop_rise"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.drop_rise"
+  },
+  "unsung/glint": {
+    "sounds": [
+      "cosmicbreach:unsung/glint"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.glint"
+  },
+  "unsung/drop": {
+    "sounds": [
+      "cosmicbreach:unsung/drop"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.drop"
+  },
+  "unsung/tink": {
+    "sounds": [
+      "cosmicbreach:unsung/tink_1",
+      "cosmicbreach:unsung/tink_2",
+      "cosmicbreach:unsung/tink_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.tink"
+  },
+  "unsung/hurt": {
+    "sounds": [
+      "cosmicbreach:unsung/hurt_1",
+      "cosmicbreach:unsung/hurt_2",
+      "cosmicbreach:unsung/hurt_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.hurt"
+  },
+  "unsung/break": {
+    "sounds": [
+      "cosmicbreach:unsung/break"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.break"
+  },
+  "unsung/crack": {
+    "sounds": [
+      "cosmicbreach:unsung/crack"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.crack"
+  },
+  "unsung/circles": {
+    "sounds": [
+      "cosmicbreach:unsung/circles"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.circles"
+  },
+  "unsung/harmonize": {
+    "sounds": [
+      "cosmicbreach:unsung/harmonize"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.harmonize"
+  },
+  "unsung/last_chord": {
+    "sounds": [
+      "cosmicbreach:unsung/last_chord"
+    ],
+    "subtitle": "subtitles.cosmicbreach.unsung.last_chord"
+  },
+  "music/unsung/alto_sung_0": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/alto_sung_0",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/tenor_sung_0": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/tenor_sung_0",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/bass_sung_0": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/bass_sung_0",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/alto_hum_0": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/alto_hum_0",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/tenor_hum_0": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/tenor_hum_0",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/bass_hum_0": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/bass_hum_0",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/alto_sung_1": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/alto_sung_1",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/tenor_sung_1": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/tenor_sung_1",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/bass_sung_1": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/bass_sung_1",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/alto_hum_1": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/alto_hum_1",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/tenor_hum_1": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/tenor_hum_1",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/bass_hum_1": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/bass_hum_1",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/alto_sung_2": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/alto_sung_2",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/tenor_sung_2": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/tenor_sung_2",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/bass_sung_2": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/bass_sung_2",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/alto_hum_2": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/alto_hum_2",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/tenor_hum_2": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/tenor_hum_2",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/bass_hum_2": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/bass_hum_2",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/alto_sung_3": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/alto_sung_3",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/tenor_sung_3": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/tenor_sung_3",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/bass_sung_3": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/bass_sung_3",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/alto_hum_3": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/alto_hum_3",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/tenor_hum_3": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/tenor_hum_3",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/bass_hum_3": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/bass_hum_3",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/alto_rise": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/alto_rise",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/tenor_rise": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/tenor_rise",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "music/unsung/bass_rise": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/unsung/bass_rise",
+        "preload": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.unsung"
+  },
+  "astrolabe/chime": {
+    "sounds": [
+      "cosmicbreach:astrolabe/chime"
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.chime"
+  },
+  "astrolabe/flick": {
+    "sounds": [
+      "cosmicbreach:astrolabe/flick"
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.flick"
+  },
+  "astrolabe/bolt_hit": {
+    "sounds": [
+      "cosmicbreach:astrolabe/bolt_hit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.bolt_hit"
+  },
+  "astrolabe/star_place": {
+    "sounds": [
+      "cosmicbreach:astrolabe/star_place"
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.star_place"
+  },
+  "astrolabe/hum": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:astrolabe/hum",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.hum"
+  },
+  "astrolabe/pulse": {
+    "sounds": [
+      "cosmicbreach:astrolabe/pulse"
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.pulse"
+  },
+  "astrolabe/swallow": {
+    "sounds": [
+      "cosmicbreach:astrolabe/swallow"
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.swallow"
+  },
+  "astrolabe/mark": {
+    "sounds": [
+      "cosmicbreach:astrolabe/mark"
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.mark"
+  },
+  "astrolabe/beam": {
+    "sounds": [
+      "cosmicbreach:astrolabe/beam"
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.beam"
+  },
+  "astrolabe/charge": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:astrolabe/charge",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.charge"
+  },
+  "astrolabe/supernova": {
+    "sounds": [
+      "cosmicbreach:astrolabe/supernova"
+    ],
+    "subtitle": "subtitles.cosmicbreach.astrolabe.supernova"
+  },
+  "stalker/whisper": {
+    "sounds": [
+      "cosmicbreach:stalker/whisper_1",
+      "cosmicbreach:stalker/whisper_2",
+      "cosmicbreach:stalker/whisper_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.stalker.whisper"
+  },
+  "stalker/grasp_whisper": {
+    "sounds": [
+      "cosmicbreach:stalker/grasp_whisper_1",
+      "cosmicbreach:stalker/grasp_whisper_2",
+      "cosmicbreach:stalker/grasp_whisper_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.stalker.grasp_whisper"
+  },
+  "stalker/rend_tell": {
+    "sounds": [
+      "cosmicbreach:stalker/rend_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.stalker.rend_tell"
+  },
+  "stalker/glint": {
+    "sounds": [
+      "cosmicbreach:stalker/glint"
+    ],
+    "subtitle": "subtitles.cosmicbreach.stalker.glint"
+  },
+  "stalker/rend": {
+    "sounds": [
+      "cosmicbreach:stalker/rend"
+    ],
+    "subtitle": "subtitles.cosmicbreach.stalker.rend"
+  },
+  "stalker/grasp": {
+    "sounds": [
+      "cosmicbreach:stalker/grasp"
+    ],
+    "subtitle": "subtitles.cosmicbreach.stalker.grasp"
+  },
+  "stalker/shriek": {
+    "sounds": [
+      "cosmicbreach:stalker/shriek"
+    ],
+    "subtitle": "subtitles.cosmicbreach.stalker.shriek"
+  },
+  "stalker/step": {
+    "sounds": [
+      "cosmicbreach:stalker/step"
+    ],
+    "subtitle": "subtitles.cosmicbreach.stalker.step"
+  },
+  "stalker/hurt": {
+    "sounds": [
+      "cosmicbreach:stalker/hurt_1",
+      "cosmicbreach:stalker/hurt_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.stalker.hurt"
+  },
+  "stalker/death": {
+    "sounds": [
+      "cosmicbreach:stalker/death"
+    ],
+    "subtitle": "subtitles.cosmicbreach.stalker.death"
+  },
+  "sanctum/gate_open": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:sanctum/gate_open",
+        "attenuation_distance": 48
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.sanctum.gate_open"
+  },
+  "sanctum/gate_refuse": {
+    "sounds": [
+      "cosmicbreach:sanctum/gate_refuse"
+    ],
+    "subtitle": "subtitles.cosmicbreach.sanctum.gate_refuse"
+  },
+  "sanctum/lock_lit": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:sanctum/lock_lit",
+        "attenuation_distance": 48
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.sanctum.lock_lit"
+  },
+  "sanctum/stair_open": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:sanctum/stair_open",
+        "attenuation_distance": 48
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.sanctum.stair_open"
+  },
+  "sanctum/throne_hum": {
+    "sounds": [
+      "cosmicbreach:sanctum/throne_hum"
+    ],
+    "subtitle": "subtitles.cosmicbreach.sanctum.throne_hum"
+  },
+  "sanctum/fall_rescue": {
+    "sounds": [
+      "cosmicbreach:sanctum/fall_rescue"
+    ],
+    "subtitle": "subtitles.cosmicbreach.sanctum.fall_rescue"
+  },
+  "lastlight/thrust": {
+    "sounds": [
+      "cosmicbreach:lastlight/thrust_1",
+      "cosmicbreach:lastlight/thrust_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.thrust"
+  },
+  "lastlight/thrust_heavy": {
+    "sounds": [
+      "cosmicbreach:lastlight/thrust_heavy"
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.thrust_heavy"
+  },
+  "lastlight/hit": {
+    "sounds": [
+      "cosmicbreach:lastlight/hit_1",
+      "cosmicbreach:lastlight/hit_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.hit"
+  },
+  "lastlight/charge": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:lastlight/charge",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.charge"
+  },
+  "lastlight/sunspear": {
+    "sounds": [
+      "cosmicbreach:lastlight/sunspear"
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.sunspear"
+  },
+  "lastlight/sunfall": {
+    "sounds": [
+      "cosmicbreach:lastlight/sunfall"
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.sunfall"
+  },
+  "lastlight/dawnguard": {
+    "sounds": [
+      "cosmicbreach:lastlight/dawnguard"
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.dawnguard"
+  },
+  "lastlight/bell": {
+    "sounds": [
+      "cosmicbreach:lastlight/bell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.bell"
+  },
+  "lastlight/daybreak": {
+    "sounds": [
+      "cosmicbreach:lastlight/daybreak"
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.daybreak"
+  },
+  "lastlight/daybreak_hit": {
+    "sounds": [
+      "cosmicbreach:lastlight/daybreak_hit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.daybreak_hit"
+  },
+  "lastlight/sunlight": {
+    "sounds": [
+      "cosmicbreach:lastlight/sunlight"
+    ],
+    "subtitle": "subtitles.cosmicbreach.lastlight.sunlight"
+  },
+  "cantor/loose": {
+    "sounds": [
+      "cosmicbreach:cantor/loose_1",
+      "cosmicbreach:cantor/loose_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.cantor.loose"
+  },
+  "cantor/loose_heavy": {
+    "sounds": [
+      "cosmicbreach:cantor/loose_heavy"
+    ],
+    "subtitle": "subtitles.cosmicbreach.cantor.loose_heavy"
+  },
+  "cantor/draw": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:cantor/draw",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.cantor.draw"
+  },
+  "cantor/fermata": {
+    "sounds": [
+      "cosmicbreach:cantor/fermata"
+    ],
+    "subtitle": "subtitles.cosmicbreach.cantor.fermata"
+  },
+  "cantor/arrow_hit": {
+    "sounds": [
+      "cosmicbreach:cantor/arrow_hit"
+    ],
+    "subtitle": "subtitles.cosmicbreach.cantor.arrow_hit"
+  },
+  "cantor/note": {
+    "sounds": [
+      "cosmicbreach:cantor/note"
+    ],
+    "subtitle": "subtitles.cosmicbreach.cantor.note"
+  },
+  "cantor/chord": {
+    "sounds": [
+      "cosmicbreach:cantor/chord"
+    ],
+    "subtitle": "subtitles.cosmicbreach.cantor.chord"
+  },
+  "cantor/pulse": {
+    "sounds": [
+      "cosmicbreach:cantor/pulse"
+    ],
+    "subtitle": "subtitles.cosmicbreach.cantor.pulse"
+  },
+  "cantor/cadence": {
+    "sounds": [
+      "cosmicbreach:cantor/cadence"
+    ],
+    "subtitle": "subtitles.cosmicbreach.cantor.cadence"
+  },
+  "cantor/fizzle": {
+    "sounds": [
+      "cosmicbreach:cantor/fizzle"
+    ],
+    "subtitle": "subtitles.cosmicbreach.cantor.fizzle"
+  },
+  "heliarch/voice_intro": {
+    "sounds": [
+      "cosmicbreach:heliarch/voice_intro"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.voice_intro"
+  },
+  "heliarch/voice_hollowing": {
+    "sounds": [
+      "cosmicbreach:heliarch/voice_hollowing"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.voice_hollowing"
+  },
+  "heliarch/voice_nova": {
+    "sounds": [
+      "cosmicbreach:heliarch/voice_nova"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.voice_nova"
+  },
+  "heliarch/voice_collapse": {
+    "sounds": [
+      "cosmicbreach:heliarch/voice_collapse"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.voice_collapse"
+  },
+  "heliarch/voice_death": {
+    "sounds": [
+      "cosmicbreach:heliarch/voice_death"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.voice_death"
+  },
+  "heliarch/voice_player_down": {
+    "sounds": [
+      "cosmicbreach:heliarch/voice_player_down"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.voice_player_down"
+  },
+  "heliarch/assemble": {
+    "sounds": [
+      "cosmicbreach:heliarch/assemble"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.assemble"
+  },
+  "heliarch/ignite": {
+    "sounds": [
+      "cosmicbreach:heliarch/ignite"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.ignite"
+  },
+  "heliarch/open": {
+    "sounds": [
+      "cosmicbreach:heliarch/open"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.open"
+  },
+  "heliarch/close": {
+    "sounds": [
+      "cosmicbreach:heliarch/close"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.close"
+  },
+  "heliarch/clang": {
+    "sounds": [
+      "cosmicbreach:heliarch/clang"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.clang"
+  },
+  "heliarch/hurt": {
+    "sounds": [
+      "cosmicbreach:heliarch/hurt_1",
+      "cosmicbreach:heliarch/hurt_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.hurt"
+  },
+  "heliarch/hand_rise": {
+    "sounds": [
+      "cosmicbreach:heliarch/hand_rise"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.hand_rise"
+  },
+  "heliarch/glint": {
+    "sounds": [
+      "cosmicbreach:heliarch/glint"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.glint"
+  },
+  "heliarch/slam": {
+    "sounds": [
+      "cosmicbreach:heliarch/slam"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.slam"
+  },
+  "heliarch/parried": {
+    "sounds": [
+      "cosmicbreach:heliarch/parried"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.parried"
+  },
+  "heliarch/sweep_tell": {
+    "sounds": [
+      "cosmicbreach:heliarch/sweep_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.sweep_tell"
+  },
+  "heliarch/sweep": {
+    "sounds": [
+      "cosmicbreach:heliarch/sweep"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.sweep"
+  },
+  "heliarch/flare_tell": {
+    "sounds": [
+      "cosmicbreach:heliarch/flare_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.flare_tell"
+  },
+  "heliarch/flare": {
+    "sounds": [
+      "cosmicbreach:heliarch/flare"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.flare"
+  },
+  "heliarch/lance_track": {
+    "sounds": [
+      "cosmicbreach:heliarch/lance_track"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.lance_track"
+  },
+  "heliarch/lance_lock": {
+    "sounds": [
+      "cosmicbreach:heliarch/lance_lock"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.lance_lock"
+  },
+  "heliarch/lance_fire": {
+    "sounds": [
+      "cosmicbreach:heliarch/lance_fire"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.lance_fire"
+  },
+  "heliarch/shed_flash": {
+    "sounds": [
+      "cosmicbreach:heliarch/shed_flash"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.shed_flash"
+  },
+  "heliarch/shed_out": {
+    "sounds": [
+      "cosmicbreach:heliarch/shed_out"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.shed_out"
+  },
+  "heliarch/shed_return": {
+    "sounds": [
+      "cosmicbreach:heliarch/shed_return"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.shed_return"
+  },
+  "heliarch/break": {
+    "sounds": [
+      "cosmicbreach:heliarch/break"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.break"
+  },
+  "heliarch/tear": {
+    "sounds": [
+      "cosmicbreach:heliarch/tear"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.tear"
+  },
+  "heliarch/monolith_slam": {
+    "sounds": [
+      "cosmicbreach:heliarch/monolith_slam"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.monolith_slam"
+  },
+  "heliarch/pip": {
+    "sounds": [
+      "cosmicbreach:heliarch/pip"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.pip"
+  },
+  "heliarch/monolith_shatter": {
+    "sounds": [
+      "cosmicbreach:heliarch/monolith_shatter"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.monolith_shatter"
+  },
+  "heliarch/beam_charge": {
+    "sounds": [
+      "cosmicbreach:heliarch/beam_charge"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.beam_charge"
+  },
+  "heliarch/beam": {
+    "sounds": [
+      "cosmicbreach:heliarch/beam"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.beam"
+  },
+  "heliarch/lash_tell": {
+    "sounds": [
+      "cosmicbreach:heliarch/lash_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.lash_tell"
+  },
+  "heliarch/lash": {
+    "sounds": [
+      "cosmicbreach:heliarch/lash"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.lash"
+  },
+  "heliarch/tendril_cut": {
+    "sounds": [
+      "cosmicbreach:heliarch/tendril_cut"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.tendril_cut"
+  },
+  "heliarch/inversion": {
+    "sounds": [
+      "cosmicbreach:heliarch/inversion"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.inversion"
+  },
+  "heliarch/seed": {
+    "sounds": [
+      "cosmicbreach:heliarch/seed"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.seed"
+  },
+  "heliarch/seed_burst": {
+    "sounds": [
+      "cosmicbreach:heliarch/seed_burst"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.seed_burst"
+  },
+  "heliarch/nova_charge": {
+    "sounds": [
+      "cosmicbreach:heliarch/nova_charge"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.nova_charge"
+  },
+  "heliarch/nova_blast": {
+    "sounds": [
+      "cosmicbreach:heliarch/nova_blast"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.nova_blast"
+  },
+  "heliarch/nova_break": {
+    "sounds": [
+      "cosmicbreach:heliarch/nova_break"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.nova_break"
+  },
+  "heliarch/eclipse_drone": {
+    "sounds": [
+      "cosmicbreach:heliarch/eclipse_drone"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.eclipse_drone"
+  },
+  "heliarch/crack": {
+    "sounds": [
+      "cosmicbreach:heliarch/crack"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.crack"
+  },
+  "heliarch/fall": {
+    "sounds": [
+      "cosmicbreach:heliarch/fall"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.fall"
+  },
+  "heliarch/rain_tell": {
+    "sounds": [
+      "cosmicbreach:heliarch/rain_tell"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.rain_tell"
+  },
+  "heliarch/rain": {
+    "sounds": [
+      "cosmicbreach:heliarch/rain"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.rain"
+  },
+  "heliarch/death": {
+    "sounds": [
+      "cosmicbreach:heliarch/death"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.death"
+  },
+  "heliarch/reliquary": {
+    "sounds": [
+      "cosmicbreach:heliarch/reliquary"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.reliquary"
+  },
+  "heliarch/reliquary_open": {
+    "sounds": [
+      "cosmicbreach:heliarch/reliquary_open"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.reliquary_open"
+  },
+  "heliarch/seal": {
+    "sounds": [
+      "cosmicbreach:heliarch/seal"
+    ],
+    "subtitle": "subtitles.cosmicbreach.heliarch.seal"
+  },
+  "music/heliarch_regent": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/heliarch_regent",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.heliarch_regent"
+  },
+  "music/heliarch_hollow": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/heliarch_hollow",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.heliarch_hollow"
+  },
+  "music/heliarch_collapse": {
+    "sounds": [
+      {
+        "name": "cosmicbreach:music/heliarch_collapse",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.cosmicbreach.music.heliarch_collapse"
+  },
+  "accessory/equip": {
+    "sounds": [
+      "cosmicbreach:accessory/equip"
+    ],
+    "subtitle": "subtitles.cosmicbreach.accessory.equip"
+  },
+  "accessory/comet_chain": {
+    "sounds": [
+      "cosmicbreach:accessory/comet_chain"
+    ],
+    "subtitle": "subtitles.cosmicbreach.accessory.comet_chain"
+  },
+  "accessory/leech_heal": {
+    "sounds": [
+      "cosmicbreach:accessory/leech_heal"
+    ],
+    "subtitle": "subtitles.cosmicbreach.accessory.leech_heal"
+  },
+  "accessory/gravity_well": {
+    "sounds": [
+      "cosmicbreach:accessory/gravity_well"
+    ],
+    "subtitle": "subtitles.cosmicbreach.accessory.gravity_well"
+  },
+  "accessory/nova": {
+    "sounds": [
+      "cosmicbreach:accessory/nova"
+    ],
+    "subtitle": "subtitles.cosmicbreach.accessory.nova"
+  },
+  "accessory/halo_block": {
+    "sounds": [
+      "cosmicbreach:accessory/halo_block"
+    ],
+    "subtitle": "subtitles.cosmicbreach.accessory.halo_block"
+  },
+  "accessory/halo_regrow": {
+    "sounds": [
+      "cosmicbreach:accessory/halo_regrow"
+    ],
+    "subtitle": "subtitles.cosmicbreach.accessory.halo_regrow"
+  },
+  "accessory/halo_cut": {
+    "sounds": [
+      "cosmicbreach:accessory/halo_cut"
+    ],
+    "subtitle": "subtitles.cosmicbreach.accessory.halo_cut"
+  },
+  "accessory/black_hole": {
+    "sounds": [
+      "cosmicbreach:accessory/black_hole"
+    ],
+    "subtitle": "subtitles.cosmicbreach.accessory.black_hole"
+  },
+  "accessory/vesper_slow": {
+    "sounds": [
+      "cosmicbreach:accessory/vesper_slow"
+    ],
+    "subtitle": "subtitles.cosmicbreach.accessory.vesper_slow"
+  },
+  "mount/stag_hoof": {
+    "sounds": [
+      "cosmicbreach:mount/stag_hoof_1",
+      "cosmicbreach:mount/stag_hoof_2",
+      "cosmicbreach:mount/stag_hoof_3"
+    ],
+    "subtitle": "subtitles.cosmicbreach.mount.stag_hoof"
+  },
+  "mount/stag_call": {
+    "sounds": [
+      "cosmicbreach:mount/stag_call_1",
+      "cosmicbreach:mount/stag_call_2"
+    ],
+    "subtitle": "subtitles.cosmicbreach.mount.stag_call"
+  },
+  "mount/stag_hurt": {
+    "sounds": [
+      "cosmicbreach:mount/stag_hurt"
+    ],
+    "subtitle": "subtitles.cosmicbreach.mount.stag_hurt"
+  },
+  "mount/manta_note": {
+    "sounds": [
+      "cosmicbreach:mount/manta_note"
+    ],
+    "subtitle": "subtitles.cosmicbreach.mount.manta_note"
+  },
+  "mount/manta_hurt": {
+    "sounds": [
+      "cosmicbreach:mount/manta_hurt"
+    ],
+    "subtitle": "subtitles.cosmicbreach.mount.manta_hurt"
+  },
+  "mount/manta_sour": {
+    "sounds": [
+      "cosmicbreach:mount/manta_sour"
+    ],
+    "subtitle": "subtitles.cosmicbreach.mount.manta_sour"
+  },
+  "mount/chime": {
+    "sounds": [
+      "cosmicbreach:mount/chime"
+    ],
+    "subtitle": "subtitles.cosmicbreach.mount.chime"
+  },
+  "mount/phase_blink": {
+    "sounds": [
+      "cosmicbreach:mount/phase_blink"
+    ],
+    "subtitle": "subtitles.cosmicbreach.mount.phase_blink"
+  },
+  "mount/tamed": {
+    "sounds": [
+      "cosmicbreach:mount/tamed"
+    ],
+    "subtitle": "subtitles.cosmicbreach.mount.tamed"
+  },
+  "familiar/summon": {
+    "sounds": [
+      "cosmicbreach:familiar/summon"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.summon"
+  },
+  "familiar/dismiss": {
+    "sounds": [
+      "cosmicbreach:familiar/dismiss"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.dismiss"
+  },
+  "familiar/mode": {
+    "sounds": [
+      "cosmicbreach:familiar/mode"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.mode"
+  },
+  "familiar/hatch": {
+    "sounds": [
+      "cosmicbreach:familiar/hatch"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.hatch"
+  },
+  "familiar/egg_set": {
+    "sounds": [
+      "cosmicbreach:familiar/egg_set"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.egg_set"
+  },
+  "familiar/hurt": {
+    "sounds": [
+      "cosmicbreach:familiar/hurt"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.hurt"
+  },
+  "familiar/death": {
+    "sounds": [
+      "cosmicbreach:familiar/death"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.death"
+  },
+  "familiar/wisp_strike": {
+    "sounds": [
+      "cosmicbreach:familiar/wisp_strike"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.wisp_strike"
+  },
+  "familiar/scorch": {
+    "sounds": [
+      "cosmicbreach:familiar/scorch"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.scorch"
+  },
+  "familiar/kindled": {
+    "sounds": [
+      "cosmicbreach:familiar/kindled"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.kindled"
+  },
+  "familiar/hop": {
+    "sounds": [
+      "cosmicbreach:familiar/hop"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.hop"
+  },
+  "familiar/slam": {
+    "sounds": [
+      "cosmicbreach:familiar/slam"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.slam"
+  },
+  "familiar/taunt": {
+    "sounds": [
+      "cosmicbreach:familiar/taunt"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.taunt"
+  },
+  "familiar/moth_strike": {
+    "sounds": [
+      "cosmicbreach:familiar/moth_strike"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.moth_strike"
+  },
+  "familiar/refract": {
+    "sounds": [
+      "cosmicbreach:familiar/refract"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.refract"
+  },
+  "familiar/refract_break": {
+    "sounds": [
+      "cosmicbreach:familiar/refract_break"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.refract_break"
+  },
+  "familiar/cleanse": {
+    "sounds": [
+      "cosmicbreach:familiar/cleanse"
+    ],
+    "subtitle": "subtitles.cosmicbreach.familiar.cleanse"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 4,
+      "item": "cosmicbreach:halo_moss"
+    },
+    {
+      "count": 2,
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "count": 1,
+      "item": "minecraft:leather"
+    }
+  ],
+  "order": 62,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:halo_reins"
+  },
+  "tier": 2
+}

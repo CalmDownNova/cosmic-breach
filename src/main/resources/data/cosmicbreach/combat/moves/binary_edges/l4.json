@@ -1,0 +1,12 @@
+{
+  "kind": "light",
+  "timing": { "startup": 3, "active": 1, "recovery": 4 },
+  "hit": { "mv": 1.2, "impact": 5, "resonance": 2, "hitstop": 2 },
+  "hitbox": { "type": "line", "length": 3.5, "width": 1.0 },
+  "next": "cosmicbreach:binary_edges/l5",
+  "animation": "cosmicbreach:edges_l4",
+  "lunge": 2.0,
+  "sound": { "swing": "cosmicbreach:edges/cross", "hit": "cosmicbreach:edges/hit" },
+  "slash": { "roll": 0, "from": 30, "to": -30, "radius": 2.6, "width": 0.8, "color": "#5CE6FF", "off_color": "#B47CFF",
+             "blades": "both" }
+}

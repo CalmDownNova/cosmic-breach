@@ -1,0 +1,31 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.cosmicbreach.mixin",
+  "plugin": "com.cosmicbreach.client.dev.HiddenWindowMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "server.ServerMovePacketsAccessor",
+    "world.EntityGravityMixin",
+    "world.LivingJumpingAccessor"
+  ],
+  "client": [
+    "client.CompositeStateTextureAccessor",
+    "client.GeoArmorRendererCaptureMixin",
+    "client.GuideNavigationMixin",
+    "client.GuideSearchMixin",
+    "client.GuiSubtitleAccessor",
+    "client.ItemInHandLayerMixin",
+    "client.ItemInHandRendererMixin",
+    "client.ItemInHandRendererOffHandMixin",
+    "client.MinecraftNoDialogMixin",
+    "client.RenderTypeTextureAccessor",
+    "client.SectionOcclusionGraphMixin",
+    "client.ShaderInstanceFogMixin",
+    "client.TextureShardAccessor",
+    "client.WindowHiddenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

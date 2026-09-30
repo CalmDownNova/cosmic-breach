@@ -1,0 +1,33 @@
+{
+  "kind": "dash_attack",
+  "timing": {
+    "startup": 1,
+    "active": 1,
+    "recovery": 6
+  },
+  "hit": {
+    "mv": 1.2,
+    "impact": 6,
+    "resonance": 4,
+    "hitstop": 0
+  },
+  "hitbox": {
+    "type": "sphere",
+    "radius": 0.0
+  },
+  "animation": "cosmicbreach:cantor_syncopation",
+  "effects": [
+    {
+      "id": "cosmicbreach:umbra_shot",
+      "params": {
+        "speed": 3.2,
+        "range": 48,
+        "gravity": 0.02
+      }
+    }
+  ],
+  "sound": {
+    "swing": "cosmicbreach:cantor/loose",
+    "hit": "cosmicbreach:cantor/arrow_hit"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cosmicbreach:item/choir_regalia_tassets",
+    "layer1": "cosmicbreach:item/choir_regalia_tassets_trim"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 1,
+      "item": "cosmicbreach:gyre_core"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:nebulite_ingot"
+    },
+    {
+      "count": 2,
+      "item": "minecraft:leather"
+    }
+  ],
+  "order": 65,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:nebula_reins"
+  },
+  "tier": 2
+}

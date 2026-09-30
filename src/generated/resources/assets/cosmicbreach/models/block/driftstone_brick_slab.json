@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "cosmicbreach:block/driftstone_bricks",
+    "side": "cosmicbreach:block/driftstone_bricks",
+    "top": "cosmicbreach:block/driftstone_bricks"
+  }
+}

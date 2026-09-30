@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "color=gold,loose=false": {
+      "model": "cosmicbreach:block/lens_filter_gold"
+    },
+    "color=gold,loose=true": {
+      "model": "cosmicbreach:block/lens_filter_gold_loose"
+    },
+    "color=magenta,loose=false": {
+      "model": "cosmicbreach:block/lens_filter_magenta"
+    },
+    "color=magenta,loose=true": {
+      "model": "cosmicbreach:block/lens_filter_magenta_loose"
+    },
+    "color=teal,loose=false": {
+      "model": "cosmicbreach:block/lens_filter_teal"
+    },
+    "color=teal,loose=true": {
+      "model": "cosmicbreach:block/lens_filter_teal_loose"
+    }
+  }
+}

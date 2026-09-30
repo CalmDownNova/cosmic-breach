@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cosmicbreach:block/sanctum_ivory_slab"
+    },
+    "type=double": {
+      "model": "cosmicbreach:block/sanctum_ivory"
+    },
+    "type=top": {
+      "model": "cosmicbreach:block/sanctum_ivory_slab_top"
+    }
+  }
+}

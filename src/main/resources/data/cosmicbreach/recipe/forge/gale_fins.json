@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 1,
+      "item": "cosmicbreach:gyre_blade"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:rimeglass"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:nebulite_ingot"
+    }
+  ],
+  "order": 66,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:gale_fins"
+  },
+  "tier": 2
+}

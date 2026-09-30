@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cosmicbreach:block/kinetic_emitter",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cosmicbreach:block/kinetic_emitter"
+    },
+    "facing=south": {
+      "model": "cosmicbreach:block/kinetic_emitter",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cosmicbreach:block/kinetic_emitter",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "cosmicbreach:hollow_crypt",
+  "biomes": "#cosmicbreach:has_structure/hollow_crypt",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

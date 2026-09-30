@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cosmicbreach:driftstone_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:driftstone_brick_wall"
+  }
+}

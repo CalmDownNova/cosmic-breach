@@ -1,0 +1,9 @@
+{
+  "kind": "dash_attack",
+  "timing": { "startup": 1, "active": 1, "recovery": 5 },
+  "hit": { "mv": 0.8, "impact": 4, "resonance": 3, "hitstop": 0 },
+  "hitbox": { "type": "sphere", "radius": 0.0 },
+  "animation": "cosmicbreach:astrolabe_parallax",
+  "effects": [ { "id": "cosmicbreach:parallax", "params": { "bolts": 2, "first": 3, "gap": 5, "life": 14 } } ],
+  "sound": { "swing": "cosmicbreach:astrolabe/flick", "hit": "cosmicbreach:astrolabe/bolt_hit" }
+}

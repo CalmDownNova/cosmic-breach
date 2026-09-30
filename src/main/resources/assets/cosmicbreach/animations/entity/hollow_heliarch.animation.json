@@ -1,0 +1,18 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "idle": {
+      "loop": true,
+      "animation_length": 2.4,
+      "bones": {
+        "core": {
+          "scale": {
+            "0.0": [1, 1, 1],
+            "1.2": [1.05, 1.05, 1.05],
+            "2.4": [1, 1, 1]
+          }
+        }
+      }
+    }
+  }
+}

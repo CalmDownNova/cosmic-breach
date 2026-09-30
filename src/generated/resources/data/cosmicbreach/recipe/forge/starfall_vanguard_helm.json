@@ -1,0 +1,18 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 5,
+      "item": "cosmicbreach:starsteel_ingot"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:starshard"
+    }
+  ],
+  "order": 20,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:starfall_vanguard_helm"
+  }
+}

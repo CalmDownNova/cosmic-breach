@@ -1,0 +1,216 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "side": "cosmicbreach:block/hymnal_altar_side",
+    "top": "cosmicbreach:block/hymnal_altar_top",
+    "pages": "cosmicbreach:block/hymnal_altar_pages",
+    "particle": "cosmicbreach:block/hymnal_altar_side"
+  },
+  "elements": [
+    {
+      "from": [
+        2,
+        0,
+        2
+      ],
+      "to": [
+        14,
+        2,
+        14
+      ],
+      "shade": true,
+      "faces": {
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#side"
+        },
+        "down": {
+          "texture": "#side"
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        2,
+        5
+      ],
+      "to": [
+        11,
+        12,
+        11
+      ],
+      "shade": true,
+      "faces": {
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#side"
+        },
+        "down": {
+          "texture": "#side"
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        11,
+        2
+      ],
+      "to": [
+        15,
+        13,
+        14
+      ],
+      "shade": true,
+      "faces": {
+        "north": {
+          "texture": "#top"
+        },
+        "south": {
+          "texture": "#top"
+        },
+        "east": {
+          "texture": "#top"
+        },
+        "west": {
+          "texture": "#top"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "down": {
+          "texture": "#top"
+        }
+      },
+      "rotation": {
+        "angle": 22.5,
+        "axis": "x",
+        "origin": [
+          8,
+          12,
+          8
+        ]
+      }
+    },
+    {
+      "from": [
+        1.5,
+        13,
+        3.5
+      ],
+      "to": [
+        7.8,
+        13.8,
+        12.5
+      ],
+      "shade": true,
+      "faces": {
+        "up": {
+          "texture": "#pages",
+          "uv": [
+            0,
+            0,
+            8,
+            16
+          ]
+        },
+        "north": {
+          "texture": "#pages"
+        },
+        "south": {
+          "texture": "#pages"
+        },
+        "east": {
+          "texture": "#pages"
+        },
+        "west": {
+          "texture": "#pages"
+        },
+        "down": {
+          "texture": "#pages"
+        }
+      },
+      "rotation": {
+        "angle": 22.5,
+        "axis": "x",
+        "origin": [
+          8,
+          12,
+          8
+        ]
+      }
+    },
+    {
+      "from": [
+        8.2,
+        13,
+        3.5
+      ],
+      "to": [
+        14.5,
+        13.8,
+        12.5
+      ],
+      "shade": true,
+      "faces": {
+        "up": {
+          "texture": "#pages",
+          "uv": [
+            8,
+            0,
+            16,
+            16
+          ]
+        },
+        "north": {
+          "texture": "#pages"
+        },
+        "south": {
+          "texture": "#pages"
+        },
+        "east": {
+          "texture": "#pages"
+        },
+        "west": {
+          "texture": "#pages"
+        },
+        "down": {
+          "texture": "#pages"
+        }
+      },
+      "rotation": {
+        "angle": 22.5,
+        "axis": "x",
+        "origin": [
+          8,
+          12,
+          8
+        ]
+      }
+    }
+  ]
+}

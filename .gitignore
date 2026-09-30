@@ -1,0 +1,57 @@
+### Gradle ###
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/**/build/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/**/out/
+
+.run/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.eclipse/
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/**/bin/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### Minecraft Modding ###
+run/
+!**/src/**/run/
+**/src/generated/**/.cache/
+repo/
+!**/src/**/repo/
+
+### Cosmic Breach ###
+run-test/
+run-test-*/
+run-gametest/
+
+# local secrets (API keys for the asset tools); never committed
+.env
+
+# the sound preview sheet is rebuilt by tools/sound/build.py (several MB, conflicted on every merge)
+tools/sound/preview/sheet.png
+
+# local-only files kept out of the public repo
+tools/*/previews/
+tools/sound/eleven/ledger.jsonl
+share/
+HANDOFF.md

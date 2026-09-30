@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 2,
+      "item": "cosmicbreach:gyre_blade"
+    },
+    {
+      "count": 3,
+      "item": "cosmicbreach:nebulite_ingot"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:rimeglass"
+    }
+  ],
+  "order": 20,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:binary_edges"
+  },
+  "tier": 2
+}

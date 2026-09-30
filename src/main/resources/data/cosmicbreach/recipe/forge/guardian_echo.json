@@ -1,0 +1,22 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 4,
+      "item": "cosmicbreach:spire_quartz"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:starsteel_ingot"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:starbloom"
+    }
+  ],
+  "order": 60,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:guardian_echo"
+  }
+}

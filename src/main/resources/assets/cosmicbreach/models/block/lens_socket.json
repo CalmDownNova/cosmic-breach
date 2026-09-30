@@ -1,0 +1,42 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "cosmicbreach:block/polished_starfall_stone",
+    "side": "cosmicbreach:block/polished_starfall_stone",
+    "top": "cosmicbreach:block/lens_socket_top"
+  },
+  "elements": [
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        12,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "down": {
+          "texture": "#side"
+        }
+      }
+    }
+  ]
+}

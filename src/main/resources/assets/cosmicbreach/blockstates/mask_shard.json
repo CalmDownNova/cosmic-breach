@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cosmicbreach:block/mask_shard"
+    },
+    "facing=east": {
+      "model": "cosmicbreach:block/mask_shard",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "cosmicbreach:block/mask_shard",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cosmicbreach:block/mask_shard",
+      "y": 270
+    }
+  }
+}

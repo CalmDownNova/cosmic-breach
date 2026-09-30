@@ -1,0 +1,141 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "cosmicbreach:block/lens_filter_teal",
+    "glass": "cosmicbreach:block/lens_filter_teal",
+    "band": "cosmicbreach:block/lens_mirror_frame_loose",
+    "pedestal_side": "cosmicbreach:block/lens_pedestal_side",
+    "pedestal_top": "cosmicbreach:block/lens_pedestal_top"
+  },
+  "render_type": "minecraft:translucent",
+  "elements": [
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        5,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pedestal_side"
+        },
+        "south": {
+          "texture": "#pedestal_side"
+        },
+        "east": {
+          "texture": "#pedestal_side"
+        },
+        "west": {
+          "texture": "#pedestal_side"
+        },
+        "up": {
+          "texture": "#pedestal_top"
+        },
+        "down": {
+          "texture": "#pedestal_top"
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        5,
+        2
+      ],
+      "to": [
+        14,
+        7,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pedestal_side"
+        },
+        "south": {
+          "texture": "#pedestal_side"
+        },
+        "east": {
+          "texture": "#pedestal_side"
+        },
+        "west": {
+          "texture": "#pedestal_side"
+        },
+        "up": {
+          "texture": "#pedestal_top"
+        },
+        "down": {
+          "texture": "#pedestal_top"
+        }
+      }
+    },
+    {
+      "from": [
+        3.5,
+        7,
+        3.5
+      ],
+      "to": [
+        12.5,
+        8,
+        12.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#band"
+        },
+        "south": {
+          "texture": "#band"
+        },
+        "east": {
+          "texture": "#band"
+        },
+        "west": {
+          "texture": "#band"
+        },
+        "up": {
+          "texture": "#band"
+        },
+        "down": {
+          "texture": "#band"
+        }
+      }
+    },
+    {
+      "from": [
+        4.5,
+        8,
+        4.5
+      ],
+      "to": [
+        11.5,
+        15,
+        11.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#glass"
+        },
+        "south": {
+          "texture": "#glass"
+        },
+        "east": {
+          "texture": "#glass"
+        },
+        "west": {
+          "texture": "#glass"
+        },
+        "up": {
+          "texture": "#glass"
+        },
+        "down": {
+          "texture": "#glass"
+        }
+      }
+    }
+  ]
+}

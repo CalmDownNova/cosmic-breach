@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cosmicbreach:item/driftweave_coat",
+    "layer1": "cosmicbreach:item/driftweave_coat_trim"
+  }
+}

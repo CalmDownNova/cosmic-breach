@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 4,
+      "item": "minecraft:leather"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:nebulite_ingot"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:string"
+    }
+  ],
+  "order": 64,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:drift_harness"
+  },
+  "tier": 2
+}

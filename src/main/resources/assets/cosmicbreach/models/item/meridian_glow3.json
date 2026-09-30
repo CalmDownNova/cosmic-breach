@@ -1,0 +1,6 @@
+{
+  "parent": "cosmicbreach:item/meridian_base",
+  "textures": {
+    "layer0": "cosmicbreach:item/meridian_glow3"
+  }
+}

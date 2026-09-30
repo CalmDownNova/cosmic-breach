@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "cosmicbreach:block/choir_pillar"
+    },
+    "axis=z": {
+      "model": "cosmicbreach:block/choir_pillar_horizontal",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "cosmicbreach:block/choir_pillar_horizontal",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

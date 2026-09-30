@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cosmicbreach:item/binary_edges",
+    "layer1": "cosmicbreach:item/binary_edges_trim"
+  }
+}

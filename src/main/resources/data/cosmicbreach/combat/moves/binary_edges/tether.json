@@ -1,0 +1,12 @@
+{
+  "kind": "ability",
+  "timing": { "startup": 3, "active": 1, "recovery": 7 },
+  "hit": { "mv": 0.8, "impact": 4, "hitstop": 2 },
+  "hitbox": { "type": "sphere", "radius": 0.0 },
+  "animation": "cosmicbreach:edges_tether",
+  "effects": [
+    { "id": "cosmicbreach:tether", "params": { "range": 16, "speed": 2.0, "stick": 80, "solo": 0.6,
+                                               "mark_ticks": 60, "mark_crit": 0.2 } }
+  ],
+  "sound": { "swing": "cosmicbreach:edges/throw", "hit": "cosmicbreach:edges/hit" }
+}

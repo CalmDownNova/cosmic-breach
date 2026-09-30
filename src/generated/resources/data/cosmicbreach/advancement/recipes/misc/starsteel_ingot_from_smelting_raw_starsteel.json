@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_starsteel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cosmicbreach:raw_starsteel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cosmicbreach:starsteel_ingot_from_smelting_raw_starsteel"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_starsteel"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cosmicbreach:starsteel_ingot_from_smelting_raw_starsteel"
+    ]
+  }
+}

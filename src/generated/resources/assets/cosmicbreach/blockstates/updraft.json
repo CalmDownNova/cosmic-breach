@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=east,top=false": {
+      "model": "cosmicbreach:block/updraft"
+    },
+    "facing=east,top=true": {
+      "model": "cosmicbreach:block/updraft"
+    },
+    "facing=north,top=false": {
+      "model": "cosmicbreach:block/updraft"
+    },
+    "facing=north,top=true": {
+      "model": "cosmicbreach:block/updraft"
+    },
+    "facing=south,top=false": {
+      "model": "cosmicbreach:block/updraft"
+    },
+    "facing=south,top=true": {
+      "model": "cosmicbreach:block/updraft"
+    },
+    "facing=west,top=false": {
+      "model": "cosmicbreach:block/updraft"
+    },
+    "facing=west,top=true": {
+      "model": "cosmicbreach:block/updraft"
+    }
+  }
+}

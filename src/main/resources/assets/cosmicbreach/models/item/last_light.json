@@ -1,0 +1,123 @@
+{
+  "parent": "cosmicbreach:item/last_light_base",
+  "loader": "neoforge:item_layers",
+  "textures": {
+    "layer0": "cosmicbreach:item/last_light",
+    "layer1": "cosmicbreach:item/last_light_light0"
+  },
+  "neoforge_data": {
+    "layers": {
+      "1": {
+        "block_light": 15,
+        "sky_light": 15
+      }
+    }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.0,
+        "cosmicbreach:sunlight": 0.33
+      },
+      "model": "cosmicbreach:item/last_light_g0_s1"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.0,
+        "cosmicbreach:sunlight": 0.66
+      },
+      "model": "cosmicbreach:item/last_light_g0_s2"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.0,
+        "cosmicbreach:sunlight": 0.99
+      },
+      "model": "cosmicbreach:item/last_light_g0_s3"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.34,
+        "cosmicbreach:sunlight": 0.0
+      },
+      "model": "cosmicbreach:item/last_light_g1_s0"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.34,
+        "cosmicbreach:sunlight": 0.33
+      },
+      "model": "cosmicbreach:item/last_light_g1_s1"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.34,
+        "cosmicbreach:sunlight": 0.66
+      },
+      "model": "cosmicbreach:item/last_light_g1_s2"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.34,
+        "cosmicbreach:sunlight": 0.99
+      },
+      "model": "cosmicbreach:item/last_light_g1_s3"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.67,
+        "cosmicbreach:sunlight": 0.0
+      },
+      "model": "cosmicbreach:item/last_light_g2_s0"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.67,
+        "cosmicbreach:sunlight": 0.33
+      },
+      "model": "cosmicbreach:item/last_light_g2_s1"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.67,
+        "cosmicbreach:sunlight": 0.66
+      },
+      "model": "cosmicbreach:item/last_light_g2_s2"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.67,
+        "cosmicbreach:sunlight": 0.99
+      },
+      "model": "cosmicbreach:item/last_light_g2_s3"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 1.0,
+        "cosmicbreach:sunlight": 0.0
+      },
+      "model": "cosmicbreach:item/last_light_g3_s0"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 1.0,
+        "cosmicbreach:sunlight": 0.33
+      },
+      "model": "cosmicbreach:item/last_light_g3_s1"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 1.0,
+        "cosmicbreach:sunlight": 0.66
+      },
+      "model": "cosmicbreach:item/last_light_g3_s2"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 1.0,
+        "cosmicbreach:sunlight": 0.99
+      },
+      "model": "cosmicbreach:item/last_light_g3_s3"
+    }
+  ]
+}

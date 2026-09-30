@@ -1,0 +1,17 @@
+{
+  "base_damage": 11.0,
+  "grades": { "power": "A", "resilience": "C" },
+  "reach": 3.2,
+  "tier": 2,
+  "combo": ["cosmicbreach:comet_maul/l1", "cosmicbreach:comet_maul/l2", "cosmicbreach:comet_maul/l3"],
+  "charged": "cosmicbreach:comet_maul/crater",
+  "plunge": "cosmicbreach:comet_maul/meteorfall",
+  "dash_attack": "cosmicbreach:comet_maul/ram",
+  "ability": { "move": "cosmicbreach:comet_maul/gravity_well", "cost": 40, "cooldown": 180 },
+  "blade": { "guard": [20.0, 11.0], "tip": [26.0, 5.0], "half_width": 7.8 },
+  "animations": {
+    "cosmicbreach:combat_dash_forward": "cosmicbreach:maul_dash_forward",
+    "cosmicbreach:combat_dash_back": "cosmicbreach:maul_dash_back",
+    "cosmicbreach:combat_stagger": "cosmicbreach:maul_stagger"
+  }
+}

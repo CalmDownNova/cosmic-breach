@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 6,
+      "item": "cosmicbreach:nebulite_ingot"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:rimeglass"
+    },
+    {
+      "count": 2,
+      "item": "minecraft:leather"
+    }
+  ],
+  "order": 60,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:nebulite_barding"
+  },
+  "tier": 2
+}

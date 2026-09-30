@@ -1,0 +1,106 @@
+{
+  "variants": {
+    "lit=false,quadrant=0,section=0": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=1,section=0": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=2,section=0": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=3,section=0": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=0,section=1": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=1,section=1": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=2,section=1": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=3,section=1": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=0,section=2": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=1,section=2": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=2,section=2": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=3,section=2": {
+      "model": "cosmicbreach:block/crown_crystal"
+    },
+    "lit=false,quadrant=0,section=3": {
+      "model": "cosmicbreach:block/crown_crystal_tip"
+    },
+    "lit=false,quadrant=1,section=3": {
+      "model": "cosmicbreach:block/crown_crystal_tip",
+      "y": 90
+    },
+    "lit=false,quadrant=2,section=3": {
+      "model": "cosmicbreach:block/crown_crystal_tip",
+      "y": 270
+    },
+    "lit=false,quadrant=3,section=3": {
+      "model": "cosmicbreach:block/crown_crystal_tip",
+      "y": 180
+    },
+    "lit=true,quadrant=0,section=0": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=1,section=0": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=2,section=0": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=3,section=0": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=0,section=1": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=1,section=1": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=2,section=1": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=3,section=1": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=0,section=2": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=1,section=2": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=2,section=2": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=3,section=2": {
+      "model": "cosmicbreach:block/crown_crystal_lit"
+    },
+    "lit=true,quadrant=0,section=3": {
+      "model": "cosmicbreach:block/crown_crystal_tip_lit"
+    },
+    "lit=true,quadrant=1,section=3": {
+      "model": "cosmicbreach:block/crown_crystal_tip_lit",
+      "y": 90
+    },
+    "lit=true,quadrant=2,section=3": {
+      "model": "cosmicbreach:block/crown_crystal_tip_lit",
+      "y": 270
+    },
+    "lit=true,quadrant=3,section=3": {
+      "model": "cosmicbreach:block/crown_crystal_tip_lit",
+      "y": 180
+    }
+  }
+}

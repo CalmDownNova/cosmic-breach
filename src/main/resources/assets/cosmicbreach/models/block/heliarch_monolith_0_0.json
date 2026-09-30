@@ -1,0 +1,125 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "face": "cosmicbreach:block/heliarch_monolith",
+    "edge": "cosmicbreach:block/heliarch_monolith_edge",
+    "inlay": "cosmicbreach:block/heliarch_monolith_inlay",
+    "particle": "cosmicbreach:block/heliarch_monolith_edge"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            10.6667,
+            12.0,
+            16.0,
+            16.0
+          ],
+          "texture": "#face",
+          "cullface": "north"
+        },
+        "south": {
+          "uv": [
+            0.0,
+            12.0,
+            5.3333,
+            16.0
+          ],
+          "texture": "#face",
+          "cullface": "south"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#edge",
+          "cullface": "east"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#edge",
+          "cullface": "west"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#edge",
+          "cullface": "up"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#edge",
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            10.6667,
+            12.0,
+            16.0,
+            16.0
+          ],
+          "texture": "#inlay",
+          "cullface": "north"
+        },
+        "south": {
+          "uv": [
+            0.0,
+            12.0,
+            5.3333,
+            16.0
+          ],
+          "texture": "#inlay",
+          "cullface": "south"
+        }
+      },
+      "shade": false,
+      "neoforge_data": {
+        "block_light": 15,
+        "sky_light": 15
+      }
+    }
+  ]
+}

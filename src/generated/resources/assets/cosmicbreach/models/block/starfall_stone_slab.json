@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "cosmicbreach:block/starfall_stone",
+    "side": "cosmicbreach:block/starfall_stone",
+    "top": "cosmicbreach:block/starfall_stone"
+  }
+}

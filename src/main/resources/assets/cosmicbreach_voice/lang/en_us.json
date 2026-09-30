@@ -1,0 +1,13 @@
+{
+  "subtitles.cosmicbreach.echo.first_shard": "\"You can hear it... can't you? Take me home.\"",
+  "subtitles.cosmicbreach.echo.ring_open": "\"The ground remembers the sky. Now... fall up.\"",
+  "subtitles.cosmicbreach.echo.arrival": "\"Home. Oh... it's all still singing.\"",
+  "subtitles.cosmicbreach.echo.drift": "\"Do you hear that? One more voice. The Drift will carry you now.\"",
+  "subtitles.cosmicbreach.echo.deep": "\"Below us, the song goes silent. Bring your light.\"",
+  "subtitles.cosmicbreach.echo.sanctum": "\"They remember how to sing. He is waiting, at the bottom of the Breach.\"",
+  "subtitles.cosmicbreach.echo.sealed": "\"The Breach is sealed. Sing with us.\"",
+  "commands.cosmicbreach.echo.status": "The Echo has said: %s",
+  "commands.cosmicbreach.echo.reset": "The Echo will say every line again",
+  "commands.cosmicbreach.echo.play": "The Echo says %s",
+  "commands.cosmicbreach.echo.unknown": "No Echo line called %s"
+}

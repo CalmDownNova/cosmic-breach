@@ -1,0 +1,12 @@
+{
+  "structures": [
+    {
+      "structure": "cosmicbreach:breach_sanctum",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "cosmicbreach:breach_sanctum",
+    "salt": 1873040271
+  }
+}

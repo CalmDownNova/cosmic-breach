@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cosmicbreach:starsteel_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "cosmicbreach:starsteel_ingot"
+  }
+}

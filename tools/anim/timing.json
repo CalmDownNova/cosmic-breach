@@ -1,0 +1,524 @@
+{
+ "astrolabe_charge": {
+  "end": 19
+ },
+ "astrolabe_constellation": {
+  "active": [
+   4,
+   7
+  ],
+  "contact": 4,
+  "end": 20,
+  "startup": 4
+ },
+ "astrolabe_l1": {
+  "active": [
+   3,
+   3
+  ],
+  "contact": 3,
+  "end": 9,
+  "startup": 3
+ },
+ "astrolabe_l2": {
+  "active": [
+   3,
+   3
+  ],
+  "contact": 3,
+  "end": 9,
+  "startup": 3
+ },
+ "astrolabe_l3": {
+  "active": [
+   5,
+   7
+  ],
+  "contact": 5,
+  "end": 17,
+  "startup": 5
+ },
+ "astrolabe_parallax": {
+  "active": [
+   1,
+   1
+  ],
+  "contact": 1,
+  "end": 7,
+  "startup": 1
+ },
+ "astrolabe_pocket_star": {
+  "active": [
+   6,
+   6
+  ],
+  "contact": 6,
+  "end": 17,
+  "startup": 6
+ },
+ "astrolabe_starfall": {
+  "active": [
+   3,
+   3
+  ],
+  "contact": 3,
+  "end": 12,
+  "startup": 3
+ },
+ "astrolabe_supernova": {
+  "active": [
+   2,
+   2
+  ],
+  "contact": 2,
+  "end": 11,
+  "startup": 2
+ },
+ "cantor_cadence": {
+  "active": [
+   2,
+   12
+  ],
+  "contact": 2,
+  "end": 19,
+  "startup": 2
+ },
+ "cantor_draw": {
+  "end": 19
+ },
+ "cantor_fermata": {
+  "active": [
+   2,
+   2
+  ],
+  "contact": 2,
+  "end": 13,
+  "startup": 2
+ },
+ "cantor_grace_note": {
+  "active": [
+   3,
+   3
+  ],
+  "contact": 3,
+  "end": 12,
+  "startup": 3
+ },
+ "cantor_l1": {
+  "active": [
+   4,
+   4
+  ],
+  "contact": 4,
+  "end": 12,
+  "startup": 4
+ },
+ "cantor_l2": {
+  "active": [
+   4,
+   4
+  ],
+  "contact": 4,
+  "end": 12,
+  "startup": 4
+ },
+ "cantor_l3": {
+  "active": [
+   7,
+   7
+  ],
+  "contact": 7,
+  "end": 18,
+  "startup": 7
+ },
+ "cantor_syncopation": {
+  "active": [
+   1,
+   1
+  ],
+  "contact": 1,
+  "end": 8,
+  "startup": 1
+ },
+ "combat_dash_back": {
+  "end": 8
+ },
+ "combat_dash_forward": {
+  "end": 8
+ },
+ "combat_dash_side": {
+  "end": 8
+ },
+ "combat_parry": {
+  "active": [
+   0,
+   4
+  ],
+  "contact": 2,
+  "end": 14,
+  "startup": 0
+ },
+ "combat_parry_success": {
+  "active": [
+   0,
+   2
+  ],
+  "contact": 1,
+  "end": 6,
+  "startup": 0
+ },
+ "combat_stagger": {
+  "end": 10
+ },
+ "edges_blink": {
+  "active": [
+   6,
+   7
+  ],
+  "contact": 6,
+  "end": 14,
+  "startup": 6
+ },
+ "edges_charge": {
+  "end": 19
+ },
+ "edges_dash_back": {
+  "end": 8
+ },
+ "edges_dash_forward": {
+  "end": 8
+ },
+ "edges_dash_side": {
+  "end": 8
+ },
+ "edges_l1": {
+  "active": [
+   2,
+   2
+  ],
+  "contact": 2,
+  "end": 6,
+  "startup": 2
+ },
+ "edges_l2": {
+  "active": [
+   2,
+   2
+  ],
+  "contact": 2,
+  "end": 6,
+  "startup": 2
+ },
+ "edges_l3": {
+  "active": [
+   2,
+   3
+  ],
+  "contact": 2,
+  "end": 8,
+  "startup": 2
+ },
+ "edges_l4": {
+  "active": [
+   3,
+   3
+  ],
+  "contact": 3,
+  "end": 8,
+  "startup": 3
+ },
+ "edges_l5": {
+  "active": [
+   3,
+   5
+  ],
+  "contact": 3,
+  "end": 14,
+  "startup": 3
+ },
+ "edges_meteor": {
+  "end": 40
+ },
+ "edges_meteor_land": {
+  "active": [
+   0,
+   0
+  ],
+  "contact": 0,
+  "end": 8,
+  "startup": 0
+ },
+ "edges_orbit": {
+  "active": [
+   2,
+   11
+  ],
+  "contact": 2,
+  "end": 20,
+  "startup": 2
+ },
+ "edges_parry": {
+  "active": [
+   0,
+   4
+  ],
+  "contact": 2,
+  "end": 14,
+  "startup": 0
+ },
+ "edges_parry_success": {
+  "active": [
+   0,
+   2
+  ],
+  "contact": 1,
+  "end": 6,
+  "startup": 0
+ },
+ "edges_scissor": {
+  "active": [
+   1,
+   2
+  ],
+  "contact": 1,
+  "end": 8,
+  "startup": 1
+ },
+ "edges_stagger": {
+  "end": 10
+ },
+ "edges_tether": {
+  "active": [
+   3,
+   3
+  ],
+  "contact": 3,
+  "end": 11,
+  "startup": 3
+ },
+ "lastlight_charge": {
+  "end": 19
+ },
+ "lastlight_dash_back": {
+  "end": 8
+ },
+ "lastlight_dash_forward": {
+  "end": 8
+ },
+ "lastlight_dawnguard": {
+  "active": [
+   3,
+   32
+  ],
+  "contact": 3,
+  "end": 41,
+  "startup": 3
+ },
+ "lastlight_l1": {
+  "active": [
+   4,
+   5
+  ],
+  "contact": 4,
+  "end": 12,
+  "startup": 4
+ },
+ "lastlight_l2": {
+  "active": [
+   4,
+   5
+  ],
+  "contact": 4,
+  "end": 13,
+  "startup": 4
+ },
+ "lastlight_l3": {
+  "active": [
+   6,
+   8
+  ],
+  "contact": 6,
+  "end": 19,
+  "startup": 6
+ },
+ "lastlight_stagger": {
+  "end": 10
+ },
+ "lastlight_sunfall": {
+  "end": 13
+ },
+ "lastlight_sunfall_land": {
+  "active": [
+   0,
+   0
+  ],
+  "contact": 0,
+  "end": 12,
+  "startup": 0
+ },
+ "lastlight_sunspear": {
+  "active": [
+   4,
+   6
+  ],
+  "contact": 4,
+  "end": 19,
+  "startup": 4
+ },
+ "lastlight_sunstreak": {
+  "active": [
+   2,
+   4
+  ],
+  "contact": 2,
+  "end": 13,
+  "startup": 2
+ },
+ "maul_charge": {
+  "end": 19
+ },
+ "maul_crater": {
+  "active": [
+   5,
+   7
+  ],
+  "contact": 5,
+  "end": 24,
+  "startup": 5
+ },
+ "maul_dash_back": {
+  "end": 8
+ },
+ "maul_dash_forward": {
+  "end": 8
+ },
+ "maul_l1": {
+  "active": [
+   7,
+   8
+  ],
+  "contact": 7,
+  "end": 19,
+  "startup": 7
+ },
+ "maul_l2": {
+  "active": [
+   6,
+   8
+  ],
+  "contact": 6,
+  "end": 20,
+  "startup": 6
+ },
+ "maul_l3": {
+  "active": [
+   9,
+   12
+  ],
+  "contact": 9,
+  "end": 27,
+  "startup": 9
+ },
+ "maul_meteorfall": {
+  "end": 14
+ },
+ "maul_meteorfall_land": {
+  "active": [
+   0,
+   0
+  ],
+  "contact": 0,
+  "end": 14,
+  "startup": 0
+ },
+ "maul_ram": {
+  "active": [
+   3,
+   6
+  ],
+  "contact": 3,
+  "end": 17,
+  "startup": 3
+ },
+ "maul_stagger": {
+  "end": 10
+ },
+ "maul_well": {
+  "active": [
+   8,
+   38
+  ],
+  "contact": 8,
+  "end": 51,
+  "startup": 8
+ },
+ "meridian_charge": {
+  "end": 19
+ },
+ "meridian_falling_star": {
+  "end": 13
+ },
+ "meridian_falling_star_land": {
+  "active": [
+   0,
+   0
+  ],
+  "contact": 0,
+  "end": 10,
+  "startup": 0
+ },
+ "meridian_l1": {
+  "active": [
+   3,
+   4
+  ],
+  "contact": 3,
+  "end": 10,
+  "startup": 3
+ },
+ "meridian_l2": {
+  "active": [
+   3,
+   4
+  ],
+  "contact": 3,
+  "end": 11,
+  "startup": 3
+ },
+ "meridian_l3": {
+  "active": [
+   5,
+   6
+  ],
+  "contact": 5,
+  "end": 16,
+  "startup": 5
+ },
+ "meridian_line": {
+  "active": [
+   4,
+   6
+  ],
+  "contact": 4,
+  "end": 19,
+  "startup": 4
+ },
+ "meridian_pass": {
+  "active": [
+   2,
+   4
+  ],
+  "contact": 2,
+  "end": 12,
+  "startup": 2
+ },
+ "meridian_zenith": {
+  "active": [
+   6,
+   8
+  ],
+  "contact": 6,
+  "end": 19,
+  "startup": 6
+ }
+}

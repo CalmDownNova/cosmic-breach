@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cosmicbreach:item/star_egg"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cosmicbreach:familiar_kind": 0.1
+      },
+      "model": "cosmicbreach:item/star_egg_emberwisp"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:familiar_kind": 0.2
+      },
+      "model": "cosmicbreach:item/star_egg_gravikin"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:familiar_kind": 0.3
+      },
+      "model": "cosmicbreach:item/star_egg_prism_moth"
+    }
+  ]
+}

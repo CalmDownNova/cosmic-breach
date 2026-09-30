@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "cosmicbreach:block/starbloom_stage0"
+    },
+    "age=1": {
+      "model": "cosmicbreach:block/starbloom_stage1"
+    },
+    "age=2": {
+      "model": "cosmicbreach:block/starbloom_stage2"
+    },
+    "age=3": {
+      "model": "cosmicbreach:block/starbloom_stage3"
+    }
+  }
+}

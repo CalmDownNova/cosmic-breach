@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.7,
+  "group": "starsteel_ingot",
+  "ingredient": {
+    "item": "cosmicbreach:starsteel_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:starsteel_ingot"
+  }
+}

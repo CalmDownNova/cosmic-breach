@@ -1,0 +1,18 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 7,
+      "item": "cosmicbreach:starsteel_ingot"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:starshard"
+    }
+  ],
+  "order": 22,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:starfall_vanguard_greaves"
+  }
+}

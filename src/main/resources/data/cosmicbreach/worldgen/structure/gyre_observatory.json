@@ -1,0 +1,7 @@
+{
+  "type": "cosmicbreach:gyre_observatory",
+  "biomes": "#cosmicbreach:has_structure/gyre_observatory",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

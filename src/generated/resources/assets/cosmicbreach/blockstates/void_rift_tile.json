@@ -1,0 +1,58 @@
+{
+  "variants": {
+    "open=false,part=0": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=false,part=1": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=false,part=2": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=false,part=3": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=false,part=4": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=false,part=5": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=false,part=6": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=false,part=7": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=false,part=8": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=true,part=0": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=true,part=1": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=true,part=2": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=true,part=3": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=true,part=4": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=true,part=5": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=true,part=6": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=true,part=7": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    },
+    "open=true,part=8": {
+      "model": "cosmicbreach:block/void_rift_tile"
+    }
+  }
+}

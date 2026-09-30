@@ -1,0 +1,13 @@
+{
+  "base_damage": 4.8,
+  "grades": { "arcane": "S", "agility": "D" },
+  "reach": 24.0,
+  "tier": 3,
+  "combo": ["cosmicbreach:choir_astrolabe/l1", "cosmicbreach:choir_astrolabe/l2", "cosmicbreach:choir_astrolabe/l3"],
+  "charged": "cosmicbreach:choir_astrolabe/constellation",
+  "aerial": "cosmicbreach:choir_astrolabe/starfall",
+  "dash_attack": "cosmicbreach:choir_astrolabe/parallax",
+  "ability": { "move": "cosmicbreach:choir_astrolabe/pocket_star", "cost": 50, "cooldown": 240,
+               "recast": { "move": "cosmicbreach:choir_astrolabe/supernova", "window": 80 } },
+  "blade": { "guard": [14.5, 17.5], "tip": [25.5, 6.5], "half_width": 4.0 }
+}

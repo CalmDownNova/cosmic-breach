@@ -1,0 +1,9 @@
+{
+  "kind": "light",
+  "timing": { "startup": 3, "active": 2, "recovery": 5 },
+  "hit": { "mv": 1.0, "impact": 6, "resonance": 6, "hitstop": 2 },
+  "hitbox": { "type": "arc", "radius": 3.5, "angle": 110 },
+  "next": "cosmicbreach:meridian/l2",
+  "animation": "cosmicbreach:meridian_l1",
+  "slash": { "roll": 35, "from": -65, "to": 65, "radius": 2.2, "width": 1.0, "color": "#FFE8B0" }
+}

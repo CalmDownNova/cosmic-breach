@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "cosmicbreach:block/driftstone",
+    "side": "cosmicbreach:block/driftstone",
+    "top": "cosmicbreach:block/driftstone"
+  }
+}

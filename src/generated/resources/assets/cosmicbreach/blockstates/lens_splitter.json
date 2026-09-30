@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cosmicbreach:block/lens_splitter",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "cosmicbreach:block/lens_splitter",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "cosmicbreach:block/lens_splitter"
+    },
+    "facing=west": {
+      "model": "cosmicbreach:block/lens_splitter",
+      "y": 90
+    }
+  }
+}

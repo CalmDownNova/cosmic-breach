@@ -1,0 +1,10 @@
+{
+  "kind": "charged",
+  "timing": { "startup": 4, "active": 3, "recovery": 12 },
+  "hit": { "mv": 2.2, "mv_max": 3.0, "impact": 25, "resonance": 6, "hitstop": 4 },
+  "hitbox": { "type": "line", "length": 4.0, "width": 1.2 },
+  "charge": { "min": 12, "full": 24, "animation": "cosmicbreach:meridian_charge" },
+  "wave": { "length": 8.0, "mv": 1.2 },
+  "animation": "cosmicbreach:meridian_line",
+  "slash": { "roll": 90, "from": 90, "to": -70, "radius": 2.8, "width": 1.4, "color": "#FFF0C0" }
+}

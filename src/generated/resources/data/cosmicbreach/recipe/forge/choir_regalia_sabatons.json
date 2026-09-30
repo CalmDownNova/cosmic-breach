@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 2,
+      "item": "cosmicbreach:eclipsium_ingot"
+    },
+    {
+      "count": 1,
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:umbral_silk"
+    }
+  ],
+  "order": 33,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:choir_regalia_sabatons"
+  },
+  "tier": 3
+}

@@ -1,0 +1,16 @@
+{
+  "parent": "cosmicbreach:item/umbra_cantor_base",
+  "loader": "neoforge:item_layers",
+  "textures": {
+    "layer0": "cosmicbreach:item/umbra_cantor",
+    "layer1": "cosmicbreach:item/umbra_cantor_light_d0_g3"
+  },
+  "neoforge_data": {
+    "layers": {
+      "1": {
+        "block_light": 15,
+        "sky_light": 15
+      }
+    }
+  }
+}

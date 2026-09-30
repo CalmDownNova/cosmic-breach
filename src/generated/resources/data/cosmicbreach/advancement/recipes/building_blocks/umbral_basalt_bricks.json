@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_umbral_basalt": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cosmicbreach:polished_umbral_basalt"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cosmicbreach:umbral_basalt_bricks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_umbral_basalt"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cosmicbreach:umbral_basalt_bricks"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "cosmicbreach:block/starfall_stone_bricks",
+    "side": "cosmicbreach:block/starfall_stone_bricks",
+    "top": "cosmicbreach:block/starfall_stone_bricks"
+  }
+}

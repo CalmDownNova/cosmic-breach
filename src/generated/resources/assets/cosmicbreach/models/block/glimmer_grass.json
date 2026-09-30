@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "cosmicbreach:block/starfall_stone",
+    "side": "cosmicbreach:block/glimmer_grass_side",
+    "top": "cosmicbreach:block/glimmer_grass_top"
+  }
+}

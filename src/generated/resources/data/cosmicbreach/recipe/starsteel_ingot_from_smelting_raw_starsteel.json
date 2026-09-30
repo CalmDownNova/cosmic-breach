@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "starsteel_ingot",
+  "ingredient": {
+    "item": "cosmicbreach:raw_starsteel"
+  },
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:starsteel_ingot"
+  }
+}

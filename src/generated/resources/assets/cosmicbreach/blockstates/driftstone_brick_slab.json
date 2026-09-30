@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cosmicbreach:block/driftstone_brick_slab"
+    },
+    "type=double": {
+      "model": "cosmicbreach:block/driftstone_bricks"
+    },
+    "type=top": {
+      "model": "cosmicbreach:block/driftstone_brick_slab_top"
+    }
+  }
+}

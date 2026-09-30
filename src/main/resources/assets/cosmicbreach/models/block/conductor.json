@@ -1,0 +1,109 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "cosmicbreach:block/conductor_robe",
+    "plinth": "cosmicbreach:block/conductor_plinth",
+    "robe": "cosmicbreach:block/conductor_robe",
+    "hood": "cosmicbreach:block/conductor_hood",
+    "mask": "cosmicbreach:block/conductor_mask",
+    "baton": "cosmicbreach:block/conductor_baton"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        3,
+        15
+      ],
+      "faces": {
+        "north": {
+          "texture": "#plinth"
+        },
+        "south": {
+          "texture": "#plinth"
+        },
+        "east": {
+          "texture": "#plinth"
+        },
+        "west": {
+          "texture": "#plinth"
+        },
+        "up": {
+          "texture": "#plinth"
+        },
+        "down": {
+          "texture": "#plinth"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        3
+      ],
+      "to": [
+        13,
+        6,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#robe"
+        },
+        "south": {
+          "texture": "#robe"
+        },
+        "east": {
+          "texture": "#robe"
+        },
+        "west": {
+          "texture": "#robe"
+        },
+        "up": {
+          "texture": "#plinth"
+        },
+        "down": {
+          "texture": "#robe"
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        6,
+        4
+      ],
+      "to": [
+        12,
+        16,
+        12
+      ],
+      "faces": {
+        "north": {
+          "texture": "#robe"
+        },
+        "south": {
+          "texture": "#robe"
+        },
+        "east": {
+          "texture": "#robe"
+        },
+        "west": {
+          "texture": "#robe"
+        },
+        "up": {
+          "texture": "#robe"
+        },
+        "down": {
+          "texture": "#robe"
+        }
+      }
+    }
+  ]
+}

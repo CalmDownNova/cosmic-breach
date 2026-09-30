@@ -1,0 +1,54 @@
+{
+  "has_precipitation": false,
+  "temperature": 0.8,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 2759498,
+    "fog_color": 2429503,
+    "water_color": 5909114,
+    "water_fog_color": 1969971,
+    "grass_color": 5979514,
+    "foliage_color": 4861806,
+    "particle": {
+      "options": {
+        "type": "cosmicbreach:abyss_mote"
+      },
+      "probability": 0.004
+    },
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "ambient_sound": "cosmicbreach:ambient/deep",
+    "music": {
+      "sound": "cosmicbreach:music/deep",
+      "min_delay": 2400,
+      "max_delay": 6000,
+      "replace_current_music": false
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "cosmicbreach:ore_eclipsium"
+    ],
+    [
+      "cosmicbreach:crystal_chandelier"
+    ],
+    [],
+    [
+      "cosmicbreach:neon_lichen_magenta",
+      "cosmicbreach:neon_lichen_teal"
+    ]
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "cosmicbreach.shear.caught": "The song won't carry you yet.",
+  "death.attack.cosmicbreach.shear": "%1$s was thrown back by the sky",
+  "death.attack.cosmicbreach.shear.player": "%1$s was thrown back by the sky while fighting %2$s",
+  "biome.cosmicbreach.shattered_spires": "Shattered Spires",
+  "biome.cosmicbreach.sunfield_terraces": "Sunfield Terraces",
+  "biome.cosmicbreach.drift_belt": "Drift Belt",
+  "biome.cosmicbreach.rift_abyss": "Rift Abyss",
+  "commands.cosmicbreach.debug.goto": "Sent to %s ground at %s, %s, %s",
+  "commands.cosmicbreach.debug.goto.none": "Found no %s ground within 3000 blocks",
+  "commands.cosmicbreach.debug.locate.biome": "Nearest %s: %s",
+  "commands.cosmicbreach.debug.locate.ground": "Nearest safe %s ground: %s"
+}

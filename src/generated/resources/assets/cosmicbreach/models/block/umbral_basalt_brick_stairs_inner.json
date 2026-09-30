@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "cosmicbreach:block/umbral_basalt_bricks",
+    "side": "cosmicbreach:block/umbral_basalt_bricks",
+    "top": "cosmicbreach:block/umbral_basalt_bricks"
+  }
+}

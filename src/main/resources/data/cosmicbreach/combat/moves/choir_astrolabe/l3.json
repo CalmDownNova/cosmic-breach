@@ -1,0 +1,9 @@
+{
+  "kind": "light",
+  "timing": { "startup": 5, "active": 3, "recovery": 9 },
+  "hit": { "mv": 0.7, "impact": 2.67, "resonance": 3, "hitstop": 0 },
+  "hitbox": { "type": "sphere", "radius": 0.0 },
+  "animation": "cosmicbreach:astrolabe_l3",
+  "effects": [ { "id": "cosmicbreach:star_bolt", "params": { "count": 3, "spread": 15, "hand": 1, "speed": 2.0, "range": 24, "cone": 10, "turn": 8 } } ],
+  "sound": { "swing": "cosmicbreach:astrolabe/flick", "hit": "cosmicbreach:astrolabe/bolt_hit" }
+}

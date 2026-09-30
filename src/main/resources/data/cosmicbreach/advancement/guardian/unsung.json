@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "cosmicbreach:silent_sigil"
+    },
+    "title": {
+      "translate": "advancements.cosmicbreach.guardian.unsung.title"
+    },
+    "description": {
+      "translate": "advancements.cosmicbreach.guardian.unsung.description"
+    },
+    "background": "cosmicbreach:textures/block/umbral_basalt_bricks.png",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "unsung": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "unsung"
+    ]
+  ]
+}

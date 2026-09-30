@@ -1,0 +1,77 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "cosmicbreach:block/starsteel_block",
+    "stone": "cosmicbreach:block/polished_starfall_stone",
+    "bricks": "cosmicbreach:block/starfall_stone_bricks",
+    "steel": "cosmicbreach:block/starsteel_block",
+    "quartz": "cosmicbreach:block/spire_quartz"
+  },
+  "elements": [
+    {
+      "name": "plinth",
+      "from": [1, 0, 1], "to": [15, 3, 15],
+      "faces": {
+        "north": {"texture": "#stone"}, "south": {"texture": "#stone"}, "east": {"texture": "#stone"}, "west": {"texture": "#stone"},
+        "up": {"texture": "#stone"}, "down": {"texture": "#stone", "cullface": "down"}
+      }
+    },
+    {
+      "name": "step",
+      "from": [2.5, 3, 2.5], "to": [13.5, 4, 13.5],
+      "faces": {
+        "north": {"texture": "#bricks"}, "south": {"texture": "#bricks"}, "east": {"texture": "#bricks"}, "west": {"texture": "#bricks"},
+        "up": {"texture": "#bricks"}
+      }
+    },
+    {
+      "name": "waist",
+      "from": [4.5, 4, 4.5], "to": [11.5, 9, 11.5],
+      "faces": {
+        "north": {"texture": "#bricks"}, "south": {"texture": "#bricks"}, "east": {"texture": "#bricks"}, "west": {"texture": "#bricks"}
+      }
+    },
+    {
+      "name": "band",
+      "from": [4, 6, 4], "to": [12, 7, 12],
+      "faces": {
+        "north": {"texture": "#steel"}, "south": {"texture": "#steel"}, "east": {"texture": "#steel"}, "west": {"texture": "#steel"},
+        "up": {"texture": "#steel"}, "down": {"texture": "#steel"}
+      }
+    },
+    {
+      "name": "anvil_foot",
+      "from": [3, 9, 4.5], "to": [13, 10, 11.5],
+      "faces": {
+        "north": {"texture": "#steel"}, "south": {"texture": "#steel"}, "east": {"texture": "#steel"}, "west": {"texture": "#steel"},
+        "down": {"texture": "#steel"}
+      }
+    },
+    {
+      "name": "anvil_face",
+      "from": [1, 10, 4], "to": [15, 13, 12],
+      "faces": {
+        "north": {"texture": "#steel"}, "south": {"texture": "#steel"}, "east": {"texture": "#steel"}, "west": {"texture": "#steel"},
+        "up": {"texture": "#steel"}, "down": {"texture": "#steel"}
+      }
+    },
+    {
+      "name": "horn",
+      "from": [0, 10.5, 6], "to": [1, 12.5, 10],
+      "faces": {
+        "north": {"texture": "#steel"}, "south": {"texture": "#steel"}, "west": {"texture": "#steel"},
+        "up": {"texture": "#steel"}, "down": {"texture": "#steel"}
+      }
+    },
+    {
+      "name": "crystal",
+      "from": [6.5, 13, 6.5], "to": [9.5, 16, 9.5],
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 14.5, 8]},
+      "faces": {
+        "north": {"texture": "#quartz"}, "south": {"texture": "#quartz"}, "east": {"texture": "#quartz"}, "west": {"texture": "#quartz"},
+        "up": {"texture": "#quartz"}
+      }
+    }
+  ]
+}

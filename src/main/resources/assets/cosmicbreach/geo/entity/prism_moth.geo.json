@@ -1,0 +1,159 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.prism_moth",
+        "texture_width": 64,
+        "texture_height": 64,
+        "visible_bounds_width": 2,
+        "visible_bounds_height": 1,
+        "visible_bounds_offset": [0, 0.5, 0]
+      },
+      "bones": [
+        {
+          "name": "root",
+          "pivot": [0.0, 0.0, 0.0]
+        },
+        {
+          "name": "body",
+          "parent": "root",
+          "pivot": [0.0, 6.4, 0.0],
+          "cubes": [
+            {
+              "origin": [-2.0, 4.4, -2.5],
+              "size": [4.0, 4.0, 5.0],
+              "uv": [45, 10]
+            },
+            {
+              "origin": [-2.5, 5.2, -2.1],
+              "size": [5.0, 3.0, 3.0],
+              "uv": [35, 29]
+            },
+            {
+              "origin": [-1.4, 5.0, 2.1],
+              "size": [2.8, 2.6, 3.4],
+              "uv": [52, 29]
+            },
+            {
+              "origin": [-1.0, 5.0, 5.3],
+              "size": [2.0, 2.0, 3.0],
+              "uv": [0, 38],
+              "inflate": -0.1
+            }
+          ]
+        },
+        {
+          "name": "head",
+          "parent": "body",
+          "pivot": [0.0, 6.6, -2.0],
+          "cubes": [
+            {
+              "origin": [-1.2, 5.5, -4.2],
+              "size": [2.4, 2.4, 2.2],
+              "uv": [55, 38]
+            }
+          ]
+        },
+        {
+          "name": "antenna_left",
+          "parent": "head",
+          "pivot": [0.6, 7.7, -3.6],
+          "cubes": [
+            {
+              "origin": [0.1, 7.4, -8.1],
+              "size": [1.0, 1.0, 4.5],
+              "uv": [11, 38],
+              "inflate": -0.35,
+              "pivot": [0.6, 7.7, -3.6],
+              "rotation": [-52.0, 38.0, 0.0]
+            },
+            {
+              "origin": [-0.4, 7.4, -7.6],
+              "size": [2.0, 1.0, 3.6],
+              "uv": [33, 38],
+              "inflate": -0.45,
+              "pivot": [0.6, 7.7, -3.6],
+              "rotation": [-52.0, 38.0, 0.0]
+            }
+          ]
+        },
+        {
+          "name": "antenna_right",
+          "parent": "head",
+          "pivot": [-0.6, 7.7, -3.6],
+          "cubes": [
+            {
+              "origin": [-1.1, 7.4, -8.1],
+              "size": [1.0, 1.0, 4.5],
+              "uv": [22, 38],
+              "inflate": -0.35,
+              "pivot": [-0.6, 7.7, -3.6],
+              "rotation": [-52.0, -38.0, 0.0]
+            },
+            {
+              "origin": [-1.6, 7.4, -7.6],
+              "size": [2.0, 1.0, 3.6],
+              "uv": [44, 38],
+              "inflate": -0.45,
+              "pivot": [-0.6, 7.7, -3.6],
+              "rotation": [-52.0, -38.0, 0.0]
+            }
+          ]
+        },
+        {
+          "name": "wing_left",
+          "parent": "body",
+          "pivot": [1.4, 7.0, -0.6],
+          "cubes": [
+            {
+              "origin": [1.4, 6.5, -6.6],
+              "size": [14.0, 1.0, 8.0],
+              "uv": [0, 0],
+              "inflate": -0.45
+            }
+          ]
+        },
+        {
+          "name": "hindwing_left",
+          "parent": "body",
+          "pivot": [1.2, 6.7, 1.2],
+          "cubes": [
+            {
+              "origin": [1.2, 6.2, 0.6],
+              "size": [10.0, 1.0, 7.0],
+              "uv": [0, 20],
+              "inflate": -0.45
+            }
+          ]
+        },
+        {
+          "name": "wing_right",
+          "parent": "body",
+          "pivot": [-1.4, 7.0, -0.6],
+          "cubes": [
+            {
+              "origin": [-15.4, 6.5, -6.6],
+              "size": [14.0, 1.0, 8.0],
+              "uv": [0, 10],
+              "inflate": -0.45
+            }
+          ]
+        },
+        {
+          "name": "hindwing_right",
+          "parent": "body",
+          "pivot": [-1.2, 6.7, 1.2],
+          "cubes": [
+            {
+              "origin": [-11.2, 6.2, 0.6],
+              "size": [10.0, 1.0, 7.0],
+              "uv": [0, 29],
+              "inflate": -0.45
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

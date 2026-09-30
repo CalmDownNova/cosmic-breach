@@ -1,0 +1,321 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.146'
+    id 'idea'
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+version = mod_version
+group = mod_group_id
+
+sourceSets.main.resources {
+    srcDir('src/generated/resources')
+    exclude("**/*.bbmodel")
+    exclude("src/generated/**/.cache")
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'GeckoLib'
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup 'software.bernie.geckolib'
+        }
+    }
+    exclusiveContent {
+        // Curios API (GDD 9.2): ring, necklace and charm slots.
+        forRepository {
+            maven {
+                name = 'Illusive Soul Maven'
+                url = 'https://maven.theillusivec4.top/'
+            }
+        }
+        filter {
+            includeGroup 'top.theillusivec4.curios'
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Modrinth'
+                url = 'https://api.modrinth.com/maven'
+            }
+        }
+        filter {
+            includeGroup 'maven.modrinth'
+        }
+    }
+}
+
+base {
+    archivesName = mod_id
+}
+
+// Minecraft 1.21.1 runs on Java 21.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+// The hidden test client's options (all optional):
+//  -PtestGameDir=<folder>   its game folder, run-test by default (a second client needs its own)
+//  -Pjoin=<host:port>       join that server instead of making a single-player world (multiplayer scenarios)
+//  -Pusername=<name>        its player name (the dev default is Dev; two clients need two names)
+//  -PclientHeap=<size>      its -Xmx, for example 3G
+//  -PrenderDistance=<n>     its render and simulation distance, 8 by default
+//  -PnoCompat               leave out the dev-only compat mods below: a server without them refuses the join
+def testGameDir = (project.findProperty('testGameDir') ?: 'run-test').toString()
+def testRenderDistance = (project.findProperty('renderDistance') ?: '8').toString()
+
+// Runs before every runTestClient and rewrites the hidden test client's settings, so each
+// test starts from the same state and nothing ever appears on screen:
+//  - config/fml.toml: earlyWindowControl = false. FML's early loading window is created
+//    before any mod code runs and is shown with glfwShowWindow; with it off, Minecraft
+//    creates its own window and WindowHiddenMixin keeps that one hidden.
+//  - options.txt: no onboarding, tutorial, narrator or sound, no pause when unfocused,
+//    windowed at a fixed 1280x720, 60 fps without vsync, render distance 8.
+// A new game folder must get both files before its first launch, or FML's loading window shows and sound plays.
+def prepareTestClient = tasks.register('prepareTestClient') {
+    group = 'cosmicbreach'
+    description = 'Writes <testGameDir>/config/fml.toml and options.txt for the hidden test client.'
+    def runDir = file(testGameDir)
+    def distance = testRenderDistance
+    doLast {
+        def fmlToml = new File(runDir, 'config/fml.toml')
+        fmlToml.parentFile.mkdirs()
+        // Keep the rest of FML's file (it fills in its own defaults); force only these keys.
+        def kept = fmlToml.exists()
+                ? fmlToml.readLines('UTF-8').findAll { !(it ==~ /\s*(earlyWindowControl|versionCheck)\s*=.*/) }
+                : []
+        fmlToml.setText((['earlyWindowControl = false', 'versionCheck = false'] + kept).join('\n') + '\n', 'UTF-8')
+
+        // Replaced whole every run. Keys checked against 1.21.1's Options.processOptions.
+        new File(runDir, 'options.txt').setText([
+                'version:3955',
+                'onboardAccessibility:false',
+                'tutorialStep:none',
+                'skipMultiplayerWarning:true',
+                'pauseOnLostFocus:false',
+                'narrator:0',
+                'soundCategory_master:0.0',
+                'renderDistance:' + distance,
+                'simulationDistance:' + distance,
+                'fullscreen:false',
+                'overrideWidth:1280',
+                'overrideHeight:720',
+                'enableVsync:false',
+                'maxFps:60',
+                'realmsNotifications:false',
+        ].join('\n') + '\n', 'UTF-8')
+    }
+}
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        // Nate's client.
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        // Claude's test client: its own game directory and a hidden window,
+        // so a test run never pops up in front of Nate (the mod is a surprise).
+        // It always runs an autotest scenario and quits: -Pautotest=<scenario>, smoke by
+        // default (see client/dev/AutoTest). Results land in run-test/autotest/<scenario>/.
+        testClient {
+            client()
+            gameDirectory = project.file(testGameDir)
+            systemProperty 'cosmicbreach.hiddenWindow', 'true'
+            systemProperty 'cosmicbreach.autotest', (project.findProperty('autotest') ?: 'smoke').toString()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            taskBefore prepareTestClient
+            if (project.hasProperty('join')) {
+                systemProperty 'cosmicbreach.autotest.join', project.property('join').toString()
+            }
+            if (project.hasProperty('username')) {
+                programArguments.addAll '--username', project.property('username').toString()
+            }
+            if (project.hasProperty('clientHeap')) {
+                jvmArgument "-Xmx${project.property('clientHeap')}"
+            }
+            // -Pjfr=<file>: record a Java Flight Recording of the test client (profiling the stress scene)
+            if (project.hasProperty('jfr')) {
+                jvmArgument "-XX:StartFlightRecording=filename=${project.property('jfr')},settings=profile,dumponexit=true"
+            }
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        gameTestServer {
+            type = "gameTestServer"
+            gameDirectory = project.file('run-gametest')
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        data {
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.INFO
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+
+    // Puts Minecraft + NeoForge on the unit-test classpath.
+    unitTest {
+        enable()
+        testedMod = mods."${mod_id}"
+    }
+}
+
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+    // The mods a player needs beside ours, exactly as built and tested against (for releaseMods)
+    releaseMods {
+        canBeConsumed = false
+        transitive = false
+    }
+}
+
+dependencies {
+    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
+    implementation "maven.modrinth:playeranimator:${playeranimator_version}"
+    // The Starfall Codex (GDD 9.2): GuideME from Maven Central.
+    implementation "org.appliedenergistics:guideme:${guideme_version}"
+    // Accessory slots (GDD 5.2, 9.2): two rings, a necklace and a charm.
+    implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+
+    // The Slice 0 gate compares our engine with a vanilla sword under Better Combat
+    // and Combat Roll, in the same dev client. Dev runtime only; never a dependency.
+    // -PnoCompat leaves them out (a multiplayer test client must match the server's mods).
+    if (!project.hasProperty('noCompat')) {
+        localRuntime "maven.modrinth:better-combat:${bettercombat_version}"
+        localRuntime "maven.modrinth:combat-roll:${combatroll_version}"
+        localRuntime "maven.modrinth:cloth-config:${clothconfig_version}"
+    }
+
+    // -PrenderCompat=<folder>: every jar in it joins the dev runtime (Sodium and Iris for the compat-render scenario)
+    if (project.hasProperty('renderCompat')) {
+        localRuntime fileTree(dir: project.property('renderCompat'), include: '*.jar')
+    }
+
+    releaseMods "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
+    releaseMods "maven.modrinth:playeranimator:${playeranimator_version}"
+    releaseMods "org.appliedenergistics:guideme:${guideme_version}"
+    releaseMods "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// ./gradlew build releaseMods: our jar and the four mods it needs, in one folder to copy into a profile's mods folder
+tasks.register('releaseMods', Sync) {
+    group = 'build'
+    description = 'Puts the mod jar and its required mods in build/release/mods.'
+    from tasks.named('jar')
+    from configurations.releaseMods
+    into layout.buildDirectory.dir('release/mods')
+}
+
+// CREDITS.md ships at the root of the mod jar, so the ElevenLabs attribution travels with the audio.
+tasks.named('jar', Jar).configure {
+    from(rootProject.file('CREDITS.md'))
+    from(rootProject.file('LICENSE'))
+}
+
+// Expand ${} properties in the mod metadata template.
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
+// Writes the hidden test client's whole launch command to <testGameDir>/launch/command.txt (one argument a line; the
+// run's argument files are copied beside it, so a later Gradle run rewriting them cannot change this client), and the
+// run's extra environment to environment.txt. A second hidden client can then start with plain java while the first
+// one holds this project's build (two Gradle runs in one project can't run at once): scripts/second-client.sh.
+// Takes the same -P options as runTestClient.
+tasks.register('writeTestClientCommand') {
+    group = 'cosmicbreach'
+    description = 'Writes the test client launch command for scripts/second-client.sh.'
+    dependsOn prepareTestClient, 'classes'
+    dependsOn tasks.matching { it.name == 'prepareTestClientRun' }
+    notCompatibleWithConfigurationCache('reads the run task at execution time')
+    def outDir = file("${testGameDir}/launch")
+    doLast {
+        // what RunGameTask puts together when it runs: the JDK's java, its JVM arguments (the mod folders and the run's VM
+        // argument file), the classpath it adds at execution, its main class and program arguments (another file)
+        def run = tasks.named('runTestClient').get()
+        def nl = System.lineSeparator()
+        def slashes = { String path -> path.replace(File.separatorChar, '/' as char) }
+        outDir.mkdirs()
+        def keep = { String arg ->
+            if (!arg.startsWith('@')) {
+                return arg
+            }
+            def src = new File(arg.substring(1))
+            def copy = new File(outDir, src.name)
+            copy.setText(src.getText('UTF-8'), 'UTF-8')
+            return '@' + slashes(copy.absolutePath)
+        }
+        def classpathFile = new File(outDir, 'classpath.txt')
+        classpathFile.setText('-cp' + nl + run.classpathProvider.files.collect { slashes(it.absolutePath) }.join(';') + nl, 'UTF-8')
+        def lines = [run.javaLauncher.get().executablePath.asFile.absolutePath]
+        lines.addAll(run.allJvmArgs.findAll { it != null }.collect { keep(it) })
+        lines << '@' + slashes(classpathFile.absolutePath)
+        lines << run.mainClass.get()
+        lines.addAll(run.args.findAll { it != null }.collect { keep(it) })
+        new File(outDir, 'command.txt').setText(lines.join(nl) + nl, 'UTF-8')
+        def env = run.environmentProperty.get().collect { k, v -> "${k}=${v}".toString() }
+        new File(outDir, 'environment.txt').setText(env.join(nl) + nl, 'UTF-8')
+    }
+}

@@ -1,0 +1,88 @@
+{
+  "variants": {
+    "axis=x,column=0,row=0": {
+      "model": "cosmicbreach:block/heliarch_monolith_0_0"
+    },
+    "axis=x,column=0,row=1": {
+      "model": "cosmicbreach:block/heliarch_monolith_0_1"
+    },
+    "axis=x,column=0,row=2": {
+      "model": "cosmicbreach:block/heliarch_monolith_0_2"
+    },
+    "axis=x,column=0,row=3": {
+      "model": "cosmicbreach:block/heliarch_monolith_0_3"
+    },
+    "axis=x,column=1,row=0": {
+      "model": "cosmicbreach:block/heliarch_monolith_1_0"
+    },
+    "axis=x,column=1,row=1": {
+      "model": "cosmicbreach:block/heliarch_monolith_1_1"
+    },
+    "axis=x,column=1,row=2": {
+      "model": "cosmicbreach:block/heliarch_monolith_1_2"
+    },
+    "axis=x,column=1,row=3": {
+      "model": "cosmicbreach:block/heliarch_monolith_1_3"
+    },
+    "axis=x,column=2,row=0": {
+      "model": "cosmicbreach:block/heliarch_monolith_2_0"
+    },
+    "axis=x,column=2,row=1": {
+      "model": "cosmicbreach:block/heliarch_monolith_2_1"
+    },
+    "axis=x,column=2,row=2": {
+      "model": "cosmicbreach:block/heliarch_monolith_2_2"
+    },
+    "axis=x,column=2,row=3": {
+      "model": "cosmicbreach:block/heliarch_monolith_2_3"
+    },
+    "axis=z,column=0,row=0": {
+      "model": "cosmicbreach:block/heliarch_monolith_0_0",
+      "y": 90
+    },
+    "axis=z,column=0,row=1": {
+      "model": "cosmicbreach:block/heliarch_monolith_0_1",
+      "y": 90
+    },
+    "axis=z,column=0,row=2": {
+      "model": "cosmicbreach:block/heliarch_monolith_0_2",
+      "y": 90
+    },
+    "axis=z,column=0,row=3": {
+      "model": "cosmicbreach:block/heliarch_monolith_0_3",
+      "y": 90
+    },
+    "axis=z,column=1,row=0": {
+      "model": "cosmicbreach:block/heliarch_monolith_1_0",
+      "y": 90
+    },
+    "axis=z,column=1,row=1": {
+      "model": "cosmicbreach:block/heliarch_monolith_1_1",
+      "y": 90
+    },
+    "axis=z,column=1,row=2": {
+      "model": "cosmicbreach:block/heliarch_monolith_1_2",
+      "y": 90
+    },
+    "axis=z,column=1,row=3": {
+      "model": "cosmicbreach:block/heliarch_monolith_1_3",
+      "y": 90
+    },
+    "axis=z,column=2,row=0": {
+      "model": "cosmicbreach:block/heliarch_monolith_2_0",
+      "y": 90
+    },
+    "axis=z,column=2,row=1": {
+      "model": "cosmicbreach:block/heliarch_monolith_2_1",
+      "y": 90
+    },
+    "axis=z,column=2,row=2": {
+      "model": "cosmicbreach:block/heliarch_monolith_2_2",
+      "y": 90
+    },
+    "axis=z,column=2,row=3": {
+      "model": "cosmicbreach:block/heliarch_monolith_2_3",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 2,
+      "item": "cosmicbreach:nebulite_ingot"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:heartstone"
+    },
+    {
+      "count": 2,
+      "item": "minecraft:leather"
+    }
+  ],
+  "order": 61,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:comet_bridle"
+  },
+  "tier": 2
+}

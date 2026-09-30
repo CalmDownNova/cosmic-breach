@@ -1,0 +1,34 @@
+{
+  "kind": "light",
+  "timing": {
+    "startup": 4,
+    "active": 1,
+    "recovery": 7
+  },
+  "hit": {
+    "mv": 1.0,
+    "impact": 4,
+    "resonance": 4,
+    "hitstop": 0
+  },
+  "hitbox": {
+    "type": "sphere",
+    "radius": 0.0
+  },
+  "next": "cosmicbreach:umbra_cantor/l2",
+  "animation": "cosmicbreach:cantor_l1",
+  "effects": [
+    {
+      "id": "cosmicbreach:umbra_shot",
+      "params": {
+        "speed": 3.0,
+        "range": 48,
+        "gravity": 0.02
+      }
+    }
+  ],
+  "sound": {
+    "swing": "cosmicbreach:cantor/loose",
+    "hit": "cosmicbreach:cantor/arrow_hit"
+  }
+}

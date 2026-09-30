@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "cosmicbreach:sunfield_terraces",
+  "spawners": {
+    "type": "cosmicbreach:lumen_stag",
+    "weight": 12,
+    "minCount": 3,
+    "maxCount": 5
+  }
+}

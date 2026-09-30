@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cosmicbreach:starfall_stone"
+  },
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:polished_starfall_stone_wall"
+  }
+}

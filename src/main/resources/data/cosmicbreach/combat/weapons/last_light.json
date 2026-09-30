@@ -1,0 +1,38 @@
+{
+  "base_damage": 9.0,
+  "grades": {
+    "resilience": "A",
+    "power": "B"
+  },
+  "reach": 4.2,
+  "tier": 4,
+  "combo": [
+    "cosmicbreach:last_light/l1",
+    "cosmicbreach:last_light/l2",
+    "cosmicbreach:last_light/l3"
+  ],
+  "charged": "cosmicbreach:last_light/sunspear",
+  "plunge": "cosmicbreach:last_light/sunfall",
+  "dash_attack": "cosmicbreach:last_light/sunstreak",
+  "ability": {
+    "move": "cosmicbreach:last_light/dawnguard",
+    "cost": 35,
+    "cooldown": 180
+  },
+  "blade": {
+    "guard": [
+      19.0,
+      12.0
+    ],
+    "tip": [
+      30.5,
+      0.5
+    ],
+    "half_width": 4.0
+  },
+  "animations": {
+    "cosmicbreach:combat_dash_forward": "cosmicbreach:lastlight_dash_forward",
+    "cosmicbreach:combat_dash_back": "cosmicbreach:lastlight_dash_back",
+    "cosmicbreach:combat_stagger": "cosmicbreach:lastlight_stagger"
+  }
+}

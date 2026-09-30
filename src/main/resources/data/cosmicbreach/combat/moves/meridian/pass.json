@@ -1,0 +1,9 @@
+{
+  "kind": "dash_attack",
+  "timing": { "startup": 2, "active": 3, "recovery": 7 },
+  "hit": { "mv": 1.2, "impact": 10, "resonance": 6, "hitstop": 2 },
+  "hitbox": { "type": "line", "length": 3.0, "width": 1.5 },
+  "animation": "cosmicbreach:meridian_pass",
+  "lunge": 3.0,
+  "slash": { "roll": -15, "from": 70, "to": -70, "radius": 2.4, "width": 1.0, "color": "#FFE8B0" }
+}

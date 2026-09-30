@@ -1,0 +1,14 @@
+{
+  "type": "cosmicbreach:crown_spire",
+  "biomes": [
+    "cosmicbreach:shattered_spires"
+  ],
+  "step": "top_layer_modification",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "full",
+      "spawns": []
+    }
+  }
+}

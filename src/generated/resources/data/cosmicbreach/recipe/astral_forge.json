@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "cosmicbreach:starsteel_ingot"
+    },
+    "Q": {
+      "item": "cosmicbreach:spire_quartz"
+    },
+    "S": {
+      "item": "cosmicbreach:starfall_stone"
+    }
+  },
+  "pattern": [
+    "ISI",
+    "SQS",
+    "ISI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:astral_forge"
+  }
+}

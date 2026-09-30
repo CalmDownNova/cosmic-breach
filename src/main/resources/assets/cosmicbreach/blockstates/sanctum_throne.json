@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,heart=false": {
+      "model": "cosmicbreach:block/sanctum_throne"
+    },
+    "facing=north,heart=true": {
+      "model": "cosmicbreach:block/sanctum_throne_heart"
+    },
+    "facing=east,heart=false": {
+      "model": "cosmicbreach:block/sanctum_throne",
+      "y": 90
+    },
+    "facing=east,heart=true": {
+      "model": "cosmicbreach:block/sanctum_throne_heart",
+      "y": 90
+    },
+    "facing=south,heart=false": {
+      "model": "cosmicbreach:block/sanctum_throne",
+      "y": 180
+    },
+    "facing=south,heart=true": {
+      "model": "cosmicbreach:block/sanctum_throne_heart",
+      "y": 180
+    },
+    "facing=west,heart=false": {
+      "model": "cosmicbreach:block/sanctum_throne",
+      "y": 270
+    },
+    "facing=west,heart=true": {
+      "model": "cosmicbreach:block/sanctum_throne_heart",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "open=false": {
+      "model": "cosmicbreach:block/sun_aperture"
+    },
+    "open=true": {
+      "model": "cosmicbreach:block/sun_aperture_open"
+    }
+  }
+}

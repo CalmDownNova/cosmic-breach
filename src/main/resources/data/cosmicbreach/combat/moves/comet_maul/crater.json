@@ -1,0 +1,18 @@
+{
+  "kind": "charged",
+  "timing": { "startup": 5, "active": 3, "recovery": 16 },
+  "hit": { "mv": 2.5, "mv_max": 3.5, "impact": 60, "resonance": 12, "hitstop": 4 },
+  "hitbox": { "type": "sphere", "radius": 4.0, "offset": 1.0 },
+  "charge": { "min": 16, "full": 30, "animation": "cosmicbreach:maul_charge", "color": "#FF9A3C" },
+  "animation": "cosmicbreach:maul_crater",
+  "hyper_armor": 30,
+  "movement": 0.3,
+  "effects": [
+    { "id": "cosmicbreach:slam", "params": { "ahead": 1.2, "crack": 1.8, "ring": 4.6, "debris": 26, "embers": 22, "shake": 0.45, "kick": 4.5 } },
+    { "id": "cosmicbreach:crater", "params": { "radius": 4.0, "ticks": 60, "slow": 0.3, "offset": 1.0 } },
+    { "id": "cosmicbreach:embers", "params": { "per_tick": 4, "before": 5 } }
+  ],
+  "sound": { "swing": "cosmicbreach:maul/swing", "hit": "cosmicbreach:maul/hit", "slam": "cosmicbreach:maul/slam",
+             "charge": "cosmicbreach:maul/charge" },
+  "slash": { "roll": 90, "from": 100, "to": -50, "radius": 3.0, "width": 2.0, "color": "#FF8030" }
+}

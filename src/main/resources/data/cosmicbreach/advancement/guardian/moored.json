@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "cosmicbreach:leviathan_pearl"
+    },
+    "title": {
+      "translate": "advancements.cosmicbreach.guardian.moored.title"
+    },
+    "description": {
+      "translate": "advancements.cosmicbreach.guardian.moored.description"
+    },
+    "background": "cosmicbreach:textures/block/driftstone_bricks.png",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "moored": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "moored"
+    ]
+  ]
+}

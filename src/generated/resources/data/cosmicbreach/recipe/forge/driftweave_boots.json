@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 2,
+      "item": "cosmicbreach:nebulite_ingot"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:rimeglass"
+    },
+    {
+      "count": 4,
+      "item": "minecraft:string"
+    }
+  ],
+  "order": 33,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:driftweave_boots"
+  },
+  "tier": 2
+}

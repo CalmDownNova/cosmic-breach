@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "cosmicbreach:block/driftwood_log_top",
+    "side": "cosmicbreach:block/driftwood_log"
+  }
+}

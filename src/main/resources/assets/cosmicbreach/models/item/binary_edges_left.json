@@ -1,0 +1,26 @@
+{
+  "parent": "cosmicbreach:item/binary_edges_sickle",
+  "textures": {
+    "layer0": "cosmicbreach:item/binary_edges_left"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.34
+      },
+      "model": "cosmicbreach:item/binary_edges_left_glow1"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.67
+      },
+      "model": "cosmicbreach:item/binary_edges_left_glow2"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 1.0
+      },
+      "model": "cosmicbreach:item/binary_edges_left_glow3"
+    }
+  ]
+}

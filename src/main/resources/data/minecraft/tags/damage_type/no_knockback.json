@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "cosmicbreach:shear",
+    "cosmicbreach:scorch",
+    "cosmicbreach:meteor",
+    "cosmicbreach:prism_beam",
+    "cosmicbreach:prism_core",
+    "cosmicbreach:chord"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "cosmicbreach:block/lens_umbral",
+    "umbral": "cosmicbreach:block/lens_umbral",
+    "pedestal_side": "cosmicbreach:block/lens_pedestal_side",
+    "pedestal_top": "cosmicbreach:block/lens_pedestal_top"
+  },
+  "elements": [
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        5,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pedestal_side"
+        },
+        "south": {
+          "texture": "#pedestal_side"
+        },
+        "east": {
+          "texture": "#pedestal_side"
+        },
+        "west": {
+          "texture": "#pedestal_side"
+        },
+        "up": {
+          "texture": "#pedestal_top"
+        },
+        "down": {
+          "texture": "#pedestal_top"
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        5,
+        2
+      ],
+      "to": [
+        14,
+        7,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pedestal_side"
+        },
+        "south": {
+          "texture": "#pedestal_side"
+        },
+        "east": {
+          "texture": "#pedestal_side"
+        },
+        "west": {
+          "texture": "#pedestal_side"
+        },
+        "up": {
+          "texture": "#pedestal_top"
+        },
+        "down": {
+          "texture": "#pedestal_top"
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        6,
+        2
+      ],
+      "to": [
+        14,
+        15,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#umbral"
+        },
+        "south": {
+          "texture": "#umbral"
+        },
+        "east": {
+          "texture": "#umbral"
+        },
+        "west": {
+          "texture": "#umbral"
+        },
+        "up": {
+          "texture": "#umbral"
+        },
+        "down": {
+          "texture": "#umbral"
+        }
+      }
+    }
+  ]
+}

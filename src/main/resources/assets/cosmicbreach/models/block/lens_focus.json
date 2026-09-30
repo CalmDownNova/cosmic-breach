@@ -1,0 +1,148 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "cosmicbreach:block/lens_focus",
+    "crystal": "cosmicbreach:block/lens_focus",
+    "pedestal_side": "cosmicbreach:block/lens_pedestal_side",
+    "pedestal_top": "cosmicbreach:block/lens_pedestal_top"
+  },
+  "elements": [
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        5,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pedestal_side"
+        },
+        "south": {
+          "texture": "#pedestal_side"
+        },
+        "east": {
+          "texture": "#pedestal_side"
+        },
+        "west": {
+          "texture": "#pedestal_side"
+        },
+        "up": {
+          "texture": "#pedestal_top"
+        },
+        "down": {
+          "texture": "#pedestal_top"
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        5,
+        2
+      ],
+      "to": [
+        14,
+        7,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#pedestal_side"
+        },
+        "south": {
+          "texture": "#pedestal_side"
+        },
+        "east": {
+          "texture": "#pedestal_side"
+        },
+        "west": {
+          "texture": "#pedestal_side"
+        },
+        "up": {
+          "texture": "#pedestal_top"
+        },
+        "down": {
+          "texture": "#pedestal_top"
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        7,
+        5
+      ],
+      "to": [
+        11,
+        13,
+        11
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": 45
+      },
+      "faces": {
+        "north": {
+          "texture": "#crystal"
+        },
+        "south": {
+          "texture": "#crystal"
+        },
+        "east": {
+          "texture": "#crystal"
+        },
+        "west": {
+          "texture": "#crystal"
+        },
+        "up": {
+          "texture": "#crystal"
+        },
+        "down": {
+          "texture": "#crystal"
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        9,
+        1
+      ],
+      "to": [
+        10,
+        13,
+        3
+      ],
+      "faces": {
+        "north": {
+          "texture": "#crystal"
+        },
+        "south": {
+          "texture": "#crystal"
+        },
+        "east": {
+          "texture": "#crystal"
+        },
+        "west": {
+          "texture": "#crystal"
+        },
+        "up": {
+          "texture": "#crystal"
+        },
+        "down": {
+          "texture": "#crystal"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "has_precipitation": false,
+  "temperature": 0.8,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 8829170,
+    "fog_color": 16181184,
+    "water_color": 10934512,
+    "water_fog_color": 8369872,
+    "grass_color": 15254618,
+    "foliage_color": 14202970,
+    "particle": {
+      "options": {
+        "type": "minecraft:dust",
+        "color": [
+          1.0,
+          0.86,
+          0.45
+        ],
+        "scale": 0.6
+      },
+      "probability": 0.004
+    },
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "ambient_sound": "cosmicbreach:ambient/reach",
+    "music": {
+      "sound": "cosmicbreach:music/reach",
+      "min_delay": 2400,
+      "max_delay": 6000,
+      "replace_current_music": false
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [
+      "cosmicbreach:terrace_pool"
+    ],
+    [
+      "cosmicbreach:spire_field",
+      "cosmicbreach:quartz_outcrop_sparse"
+    ],
+    [],
+    [],
+    [],
+    [
+      "cosmicbreach:ore_starsteel"
+    ],
+    [
+      "cosmicbreach:crystal_stalactite"
+    ],
+    [],
+    [
+      "cosmicbreach:halo_moss",
+      "cosmicbreach:starbloom_meadow"
+    ]
+  ]
+}

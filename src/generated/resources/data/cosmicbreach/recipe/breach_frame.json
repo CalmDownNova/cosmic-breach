@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "S": {
+      "tag": "minecraft:stone_crafting_materials"
+    }
+  },
+  "pattern": [
+    "CSC",
+    "SSS",
+    "CSC"
+  ],
+  "result": {
+    "count": 6,
+    "id": "cosmicbreach:breach_frame"
+  }
+}

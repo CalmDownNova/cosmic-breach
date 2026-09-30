@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cosmicbreach:block/starfall_stone_slab"
+    },
+    "type=double": {
+      "model": "cosmicbreach:block/starfall_stone"
+    },
+    "type=top": {
+      "model": "cosmicbreach:block/starfall_stone_slab_top"
+    }
+  }
+}

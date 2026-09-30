@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_eclipsium_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cosmicbreach:eclipsium_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cosmicbreach:eclipsium_nugget_from_eclipsium_ingot"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_eclipsium_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cosmicbreach:eclipsium_nugget_from_eclipsium_ingot"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "cosmicbreach:block/sanctum_ivory",
+    "side": "cosmicbreach:block/sanctum_ivory",
+    "top": "cosmicbreach:block/sanctum_ivory"
+  }
+}

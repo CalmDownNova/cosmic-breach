@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "group": "eclipsium_ingot",
+  "ingredient": {
+    "item": "cosmicbreach:raw_eclipsium"
+  },
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:eclipsium_ingot"
+  }
+}

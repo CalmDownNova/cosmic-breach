@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "cosmicbreach:block/polished_umbral_basalt_slab"
+    },
+    "type=double": {
+      "model": "cosmicbreach:block/polished_umbral_basalt"
+    },
+    "type=top": {
+      "model": "cosmicbreach:block/polished_umbral_basalt_slab_top"
+    }
+  }
+}

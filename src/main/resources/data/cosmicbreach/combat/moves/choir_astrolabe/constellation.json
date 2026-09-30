@@ -1,0 +1,10 @@
+{
+  "kind": "charged",
+  "timing": { "startup": 4, "active": 4, "recovery": 12 },
+  "hit": { "mv": 1.8, "mv_max": 1.8, "impact": 15, "resonance": 3, "hitstop": 0 },
+  "hitbox": { "type": "sphere", "radius": 0.0 },
+  "animation": "cosmicbreach:astrolabe_constellation",
+  "charge": { "min": 8, "full": 30, "animation": "cosmicbreach:astrolabe_charge", "color": "#CFE6FF" },
+  "effects": [ { "id": "cosmicbreach:constellation", "params": { "max": 5, "range": 24 } } ],
+  "sound": { "swing": "cosmicbreach:astrolabe/beam", "hit": "cosmicbreach:astrolabe/bolt_hit", "charge": "cosmicbreach:astrolabe/charge" }
+}

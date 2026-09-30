@@ -1,0 +1,14 @@
+{
+  "kind": "ability",
+  "timing": { "startup": 6, "active": 2, "recovery": 6 },
+  "hit": { "mv": 2.0, "impact": 12, "hitstop": 3 },
+  "hitbox": { "type": "arc", "radius": 3.0, "angle": 200 },
+  "animation": "cosmicbreach:edges_blink",
+  "invulnerable": "startup",
+  "effects": [
+    { "id": "cosmicbreach:blink", "params": { "travel": 6 } }
+  ],
+  "sound": { "swing": "cosmicbreach:edges/blink_slash", "hit": "cosmicbreach:edges/hit" },
+  "slash": { "roll": 10, "from": 100, "to": -100, "radius": 2.8, "width": 1.1, "color": "#5CE6FF", "off_color": "#B47CFF",
+             "blades": "both" }
+}

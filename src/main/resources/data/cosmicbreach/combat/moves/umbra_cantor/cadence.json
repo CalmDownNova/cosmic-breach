@@ -1,0 +1,35 @@
+{
+  "kind": "ability",
+  "timing": {
+    "startup": 2,
+    "active": 11,
+    "recovery": 6
+  },
+  "hit": {
+    "mv": 1.2,
+    "impact": 8,
+    "hitstop": 0
+  },
+  "hitbox": {
+    "type": "sphere",
+    "radius": 0.0
+  },
+  "animation": "cosmicbreach:cantor_cadence",
+  "movement": 0.5,
+  "effects": [
+    {
+      "id": "cosmicbreach:cadence",
+      "params": {
+        "speed": 3.5,
+        "range": 48,
+        "gravity": 0.02,
+        "spread": 8,
+        "lift": 2.5
+      }
+    }
+  ],
+  "sound": {
+    "swing": "cosmicbreach:cantor/cadence",
+    "hit": "cosmicbreach:cantor/arrow_hit"
+  }
+}

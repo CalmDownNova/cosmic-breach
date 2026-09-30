@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_eclipsium_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cosmicbreach:eclipsium_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cosmicbreach:eclipsium_ingot_from_smelting_eclipsium_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_eclipsium_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cosmicbreach:eclipsium_ingot_from_smelting_eclipsium_ore"
+    ]
+  }
+}

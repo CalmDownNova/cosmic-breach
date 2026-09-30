@@ -1,0 +1,22 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 3,
+      "item": "cosmicbreach:starsteel_ingot"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:spire_quartz"
+    },
+    {
+      "count": 1,
+      "item": "minecraft:stick"
+    }
+  ],
+  "order": 10,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:meridian"
+  }
+}

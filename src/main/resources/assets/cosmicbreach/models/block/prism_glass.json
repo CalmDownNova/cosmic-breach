@@ -1,0 +1,90 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "north": "cosmicbreach:block/prism_glass",
+    "south": "cosmicbreach:block/prism_glass",
+    "east": "cosmicbreach:block/prism_glass",
+    "west": "cosmicbreach:block/prism_glass",
+    "up": "cosmicbreach:block/prism_glass",
+    "down": "cosmicbreach:block/prism_glass",
+    "particle": "cosmicbreach:block/prism_glass"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "shade": true,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#north",
+          "cullface": "north"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#south",
+          "cullface": "south"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#east",
+          "cullface": "east"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#west",
+          "cullface": "west"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#up",
+          "cullface": "up"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#down",
+          "cullface": "down"
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:translucent"
+}

@@ -1,0 +1,43 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "cosmicbreach:block/sun_aperture_open",
+    "lens": "cosmicbreach:block/sun_aperture_open",
+    "side": "cosmicbreach:block/starfall_stone_bricks"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#side"
+        },
+        "down": {
+          "texture": "#lens"
+        }
+      }
+    }
+  ],
+  "ambientocclusion": false
+}

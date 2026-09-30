@@ -1,0 +1,16 @@
+{
+  "kind": "ability",
+  "timing": { "startup": 8, "active": 31, "recovery": 12 },
+  "hit": { "mv": 2.0, "impact": 45, "hitstop": 4 },
+  "hitbox": { "type": "sphere", "radius": 3.0 },
+  "animation": "cosmicbreach:maul_well",
+  "hyper_armor": 30,
+  "root": true,
+  "cancels": [ { "by": "dash", "phase": "active", "from": 11 } ],
+  "effects": [
+    { "id": "cosmicbreach:gravity_well", "params": { "radius": 6, "pull": 0.12, "pull_ticks": 30, "offset": 1.0,
+                                                  "collapse_radius": 3, "early_scale": 0.6 } },
+    { "id": "cosmicbreach:slam", "params": { "ahead": 0.8, "crack": 1.2, "ring": 2.0, "debris": 10, "embers": 8, "shake": 0.15, "kick": 1.6 } }
+  ],
+  "sound": { "swing": "cosmicbreach:maul/well", "slam": "cosmicbreach:maul/slam" }
+}

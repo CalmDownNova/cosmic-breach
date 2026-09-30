@@ -1,0 +1,27 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 1,
+      "item": "cosmicbreach:leviathan_scale"
+    },
+    {
+      "count": 3,
+      "item": "cosmicbreach:eclipsium_ingot"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:spire_quartz"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:umbral_silk"
+    }
+  ],
+  "order": 10,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:choir_astrolabe"
+  },
+  "tier": 3
+}

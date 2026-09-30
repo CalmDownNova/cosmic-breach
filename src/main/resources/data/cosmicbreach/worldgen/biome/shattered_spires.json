@@ -1,0 +1,72 @@
+{
+  "has_precipitation": false,
+  "temperature": 0.8,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 8368880,
+    "fog_color": 15984324,
+    "water_color": 9422824,
+    "water_fog_color": 7317704,
+    "grass_color": 14271598,
+    "foliage_color": 13219952,
+    "particle": {
+      "options": {
+        "type": "minecraft:dust",
+        "color": [
+          1.0,
+          0.86,
+          0.45
+        ],
+        "scale": 0.6
+      },
+      "probability": 0.004
+    },
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "ambient_sound": "cosmicbreach:ambient/reach",
+    "music": {
+      "sound": "cosmicbreach:music/reach",
+      "min_delay": 2400,
+      "max_delay": 6000,
+      "replace_current_music": false
+    }
+  },
+  "spawners": {
+    "monster": [
+      {
+        "type": "cosmicbreach:shardling",
+        "weight": 5,
+        "minCount": 3,
+        "maxCount": 3
+      }
+    ]
+  },
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [
+      "cosmicbreach:spire_field",
+      "cosmicbreach:quartz_outcrop"
+    ],
+    [],
+    [],
+    [],
+    [
+      "cosmicbreach:ore_starsteel"
+    ],
+    [
+      "cosmicbreach:crystal_stalactite"
+    ],
+    [],
+    [
+      "cosmicbreach:halo_moss",
+      "cosmicbreach:starbloom_patch"
+    ]
+  ]
+}

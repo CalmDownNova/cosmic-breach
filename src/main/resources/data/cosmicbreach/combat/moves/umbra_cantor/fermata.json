@@ -1,0 +1,42 @@
+{
+  "kind": "charged",
+  "timing": {
+    "startup": 2,
+    "active": 1,
+    "recovery": 10
+  },
+  "hit": {
+    "mv": 2.0,
+    "mv_max": 2.0,
+    "impact": 14,
+    "resonance": 4,
+    "hitstop": 0
+  },
+  "hitbox": {
+    "type": "sphere",
+    "radius": 0.0
+  },
+  "charge": {
+    "min": 20,
+    "full": 20,
+    "animation": "cosmicbreach:cantor_draw",
+    "color": "#B98CFF"
+  },
+  "animation": "cosmicbreach:cantor_fermata",
+  "effects": [
+    {
+      "id": "cosmicbreach:umbra_shot",
+      "params": {
+        "speed": 3.5,
+        "range": 48,
+        "gravity": 0.02,
+        "note": 1
+      }
+    }
+  ],
+  "sound": {
+    "swing": "cosmicbreach:cantor/fermata",
+    "hit": "cosmicbreach:cantor/arrow_hit",
+    "charge": "cosmicbreach:cantor/draw"
+  }
+}

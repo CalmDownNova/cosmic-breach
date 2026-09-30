@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer1": "cosmicbreach:item/meridian_trim"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, -90, 55],
+      "translation": [0, 3.5, 0.16],
+      "scale": [1.02, 1.02, 1.02]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, 90, -55],
+      "translation": [0, 3.5, 0.16],
+      "scale": [1.02, 1.02, 1.02]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, -90, 25],
+      "translation": [1.13, 3.0, 0.7],
+      "scale": [0.82, 0.82, 0.82]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 90, -25],
+      "translation": [1.13, 3.0, 0.7],
+      "scale": [0.82, 0.82, 0.82]
+    }
+  }
+}

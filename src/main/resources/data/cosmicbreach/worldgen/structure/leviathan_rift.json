@@ -1,0 +1,14 @@
+{
+  "type": "cosmicbreach:leviathan_rift",
+  "biomes": [
+    "cosmicbreach:drift_belt"
+  ],
+  "step": "top_layer_modification",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "full",
+      "spawns": []
+    }
+  }
+}

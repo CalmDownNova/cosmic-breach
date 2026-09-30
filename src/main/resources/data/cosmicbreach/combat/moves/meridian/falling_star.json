@@ -1,0 +1,8 @@
+{
+  "kind": "plunge",
+  "timing": { "startup": 2, "active": 0, "recovery": 10 },
+  "hit": { "mv": 1.4, "mv_per_block": 0.1, "mv_max": 2.4, "impact": 20, "resonance": 6, "hitstop": 4 },
+  "hitbox": { "type": "sphere", "radius": 2.5 },
+  "animation": "cosmicbreach:meridian_falling_star",
+  "land_animation": "cosmicbreach:meridian_falling_star_land"
+}

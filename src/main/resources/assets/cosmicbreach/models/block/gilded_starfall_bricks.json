@@ -1,0 +1,89 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "north": "cosmicbreach:block/gilded_starfall_bricks",
+    "south": "cosmicbreach:block/gilded_starfall_bricks",
+    "east": "cosmicbreach:block/gilded_starfall_bricks",
+    "west": "cosmicbreach:block/gilded_starfall_bricks",
+    "up": "cosmicbreach:block/gilded_starfall_bricks",
+    "down": "cosmicbreach:block/gilded_starfall_bricks",
+    "particle": "cosmicbreach:block/gilded_starfall_bricks"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "shade": true,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#north",
+          "cullface": "north"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#south",
+          "cullface": "south"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#east",
+          "cullface": "east"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#west",
+          "cullface": "west"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#up",
+          "cullface": "up"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#down",
+          "cullface": "down"
+        }
+      }
+    }
+  ]
+}

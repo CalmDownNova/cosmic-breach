@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "cosmicbreach:silent_nave",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 48,
+    "separation": 18,
+    "salt": 707161843
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "axis=x,middle=false": {
+      "model": "cosmicbreach:block/starfall_chute",
+      "y": 90
+    },
+    "axis=x,middle=true": {
+      "model": "cosmicbreach:block/starfall_chute",
+      "y": 90
+    },
+    "axis=z,middle=false": {
+      "model": "cosmicbreach:block/starfall_chute"
+    },
+    "axis=z,middle=true": {
+      "model": "cosmicbreach:block/starfall_chute"
+    }
+  }
+}

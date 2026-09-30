@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "cosmicbreach:polished_umbral_basalt"
+  },
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:umbral_basalt_brick_stairs"
+  }
+}

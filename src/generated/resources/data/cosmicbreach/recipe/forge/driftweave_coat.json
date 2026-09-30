@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 5,
+      "item": "cosmicbreach:nebulite_ingot"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:gyre_core"
+    },
+    {
+      "count": 8,
+      "item": "minecraft:string"
+    }
+  ],
+  "order": 31,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:driftweave_coat"
+  },
+  "tier": 2
+}

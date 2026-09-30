@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "cosmicbreach:block/polished_starfall_stone"
+  }
+}

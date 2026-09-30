@@ -1,0 +1,23 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "ingredients": [
+    {
+      "count": 2,
+      "item": "cosmicbreach:nebulite_ingot"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:spire_quartz"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:rimeglass"
+    }
+  ],
+  "order": 63,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:resonance_chime"
+  },
+  "tier": 2
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "charged",
+  "timing": { "startup": 2, "active": 10, "recovery": 8 },
+  "hit": { "mv": 0.5, "impact": 3, "resonance": 2, "hitstop": 1, "hits": 6 },
+  "hitbox": { "type": "sphere", "radius": 3.5 },
+  "charge": { "min": 12, "full": 20, "animation": "cosmicbreach:edges_charge", "color": "#8FD6FF" },
+  "animation": "cosmicbreach:edges_orbit",
+  "movement": 0.6,
+  "effects": [
+    { "id": "cosmicbreach:binary_orbit", "params": { "radius": 2.7, "turns": 3, "height": 1.0 } }
+  ],
+  "sound": { "swing": "cosmicbreach:edges/orbit", "hit": "cosmicbreach:edges/hit" }
+}

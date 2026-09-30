@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "cosmicbreach:block/silence_circle"
+    },
+    "lit=true": {
+      "model": "cosmicbreach:block/silence_circle_lit"
+    }
+  }
+}

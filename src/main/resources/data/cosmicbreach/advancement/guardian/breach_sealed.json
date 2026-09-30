@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "cosmicbreach:heliarchs_crown"
+    },
+    "title": {
+      "translate": "advancements.cosmicbreach.guardian.breach_sealed.title"
+    },
+    "description": {
+      "translate": "advancements.cosmicbreach.guardian.breach_sealed.description"
+    },
+    "background": "cosmicbreach:textures/block/sanctum_ivory_bricks.png",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "breach_sealed": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "breach_sealed"
+    ]
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "cosmicbreach:item/binary_edges_right_held_glow1"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "cosmicbreach:item/binary_edges_pair_glow1"
+    },
+    "ground": {
+      "parent": "cosmicbreach:item/binary_edges_pair_glow1"
+    },
+    "fixed": {
+      "parent": "cosmicbreach:item/binary_edges_pair_glow1"
+    }
+  }
+}

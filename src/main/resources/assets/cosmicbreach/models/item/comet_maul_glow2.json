@@ -1,0 +1,6 @@
+{
+  "parent": "cosmicbreach:item/comet_maul_base",
+  "textures": {
+    "layer0": "cosmicbreach:item/comet_maul_glow2"
+  }
+}

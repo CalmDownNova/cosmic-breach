@@ -1,0 +1,43 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "cosmicbreach:block/observatory_vault_side",
+    "front": "cosmicbreach:block/observatory_vault_front",
+    "side": "cosmicbreach:block/observatory_vault_side",
+    "top": "cosmicbreach:block/observatory_vault_top"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        15,
+        15
+      ],
+      "faces": {
+        "north": {
+          "texture": "#front"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "down": {
+          "texture": "#top"
+        }
+      }
+    }
+  ]
+}

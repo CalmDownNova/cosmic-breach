@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cosmicbreach:item/familiar_lantern"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cosmicbreach:familiar_kind": 0.1
+      },
+      "model": "cosmicbreach:item/familiar_lantern_emberwisp"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:familiar_kind": 0.2
+      },
+      "model": "cosmicbreach:item/familiar_lantern_gravikin"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:familiar_kind": 0.3
+      },
+      "model": "cosmicbreach:item/familiar_lantern_prism_moth"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:lantern": 0.5
+      },
+      "model": "cosmicbreach:item/familiar_lantern_out"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:lantern": 1.0
+      },
+      "model": "cosmicbreach:item/familiar_lantern_dark"
+    }
+  ]
+}

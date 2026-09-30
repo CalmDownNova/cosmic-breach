@@ -1,0 +1,67 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+authors="${mod_authors}"
+logoFile="cosmicbreach_logo.png"
+logoBlur=false
+credits='''Made by Nate, built with Claude Opus 5.5 in Claude Code.
+Audio: voice lines made with ElevenLabs v4 (eleven_v4) and some sound effects made with ElevenLabs (eleven_text_to_sound_v2), elevenlabs.io. Every other sound is synthesized.
+Built on GeckoLib, playerAnimator, the Curios API and GuideME.
+Full credits and licences: CREDITS.md inside this jar.'''
+description='''
+Something fell from the sky last night.
+It is still humming, and it wants to go home.
+
+Free to play, include in modpacks (link to the Modrinth page, don't re-upload), and make videos and streams, monetized ones included.
+Code: MIT. Assets: All Rights Reserved. Voices and some sound effects by ElevenLabs (elevenlabs.io).
+'''
+
+[[mixins]]
+config="cosmicbreach.mixins.json"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="[${neo_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="geckolib"
+    type="required"
+    versionRange="[4.9,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="playeranimator"
+    type="required"
+    versionRange="[2,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="guideme"
+    type="required"
+    versionRange="[21.1.19,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="curios"
+    type="required"
+    versionRange="[9.5,)"
+    ordering="AFTER"
+    side="BOTH"

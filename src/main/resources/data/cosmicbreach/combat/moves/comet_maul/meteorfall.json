@@ -1,0 +1,14 @@
+{
+  "kind": "plunge",
+  "timing": { "startup": 3, "active": 0, "recovery": 14 },
+  "hit": { "mv": 1.8, "mv_per_block": 0.15, "mv_max": 3.3, "impact": 45, "resonance": 12, "hitstop": 4 },
+  "hitbox": { "type": "sphere", "radius": 3.5 },
+  "animation": "cosmicbreach:maul_meteorfall",
+  "land_animation": "cosmicbreach:maul_meteorfall_land",
+  "hyper_armor": 30,
+  "effects": [
+    { "id": "cosmicbreach:comet" },
+    { "id": "cosmicbreach:slam", "params": { "ahead": 1.0, "crack": 2.0, "ring": 3.8, "debris": 22, "embers": 18, "shake": 0.35, "kick": 3.5, "per_block": 0.06 } }
+  ],
+  "sound": { "hit": "cosmicbreach:maul/hit", "slam": "cosmicbreach:maul/slam" }
+}

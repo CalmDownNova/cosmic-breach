@@ -1,0 +1,79 @@
+{
+  "variants": {
+    "part=0": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=1": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=10": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=11": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=12": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=13": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=14": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=15": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=16": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=17": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=18": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=19": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=2": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=20": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=21": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=22": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=23": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=24": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=3": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=4": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=5": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=6": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=7": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=8": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    },
+    "part=9": {
+      "model": "cosmicbreach:block/gravity_sigil"
+    }
+  }
+}

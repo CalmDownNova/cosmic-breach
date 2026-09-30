@@ -1,0 +1,9 @@
+{
+  "kind": "ability",
+  "timing": { "startup": 6, "active": 3, "recovery": 10 },
+  "hit": { "mv": 1.4, "impact": 18, "hitstop": 3 },
+  "hitbox": { "type": "arc", "radius": 3.0, "angle": 120 },
+  "launch": { "height": 3.5, "suspend_ticks": 30, "max_poise": 40, "rise": 3.0 },
+  "animation": "cosmicbreach:meridian_zenith",
+  "slash": { "roll": 80, "from": -70, "to": 85, "radius": 2.4, "width": 1.2, "color": "#FFF6E0" }
+}

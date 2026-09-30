@@ -1,0 +1,7 @@
+{
+  "parent": "cosmicbreach:item/binary_edges_sickle",
+  "textures": {
+    "layer0": "cosmicbreach:item/binary_edges_right_glow2",
+    "layer1": "cosmicbreach:item/binary_edges_right_trim"
+  }
+}

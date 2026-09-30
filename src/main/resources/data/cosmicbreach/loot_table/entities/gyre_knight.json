@@ -1,0 +1,64 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cosmicbreach:gyre_core"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cosmicbreach:nebulite_ingot",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.5
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cosmicbreach:gyre_blade"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.08
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cosmicbreach:gravity_loop"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "cosmicbreach:entities/gyre_knight"
+}

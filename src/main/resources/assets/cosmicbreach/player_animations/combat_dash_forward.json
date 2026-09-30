@@ -1,0 +1,25 @@
+{
+  "name": "combat_dash_forward",
+  "author": "Cosmic Breach",
+  "description": "Dash forward: low fast lean, arms and blade trailing. 8 ticks.",
+  "version": 3,
+  "emote": {
+    "beginTick": 0,
+    "endTick": 8,
+    "stopTick": 11,
+    "isLoop": false,
+    "returnTick": 0,
+    "degrees": true,
+    "moves": [
+      {"tick": 0, "easing": "LINEAR", "body": {"pitch": -5.0, "yaw": -0.0, "roll": -0.0, "x": 0.0, "y": 0.0139, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": -70.123, "yaw": -47.776, "roll": 0.0}, "leftArm": {"pitch": -61.595, "yaw": 56.725, "roll": 0.0}, "rightLeg": {"pitch": -14.023, "yaw": 6.238, "roll": 2.464}, "leftLeg": {"pitch": 3.849, "yaw": -14.207, "roll": -1.744}, "rightItem": {"pitch": -11.98, "yaw": -33.353, "roll": -373.767, "x": 0.707, "y": -2.12, "z": 0.913}},
+      {"tick": 1, "easing": "LINEAR", "body": {"pitch": -20.0, "yaw": 0.0, "roll": 0.0, "x": 0.0, "y": 0.0059, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": -26.725, "yaw": -2.62, "roll": 0.0}, "leftArm": {"pitch": -11.7, "yaw": 23.031, "roll": -21.0}, "rightLeg": {"pitch": -38.044, "yaw": 4.784, "roll": 1.449}, "leftLeg": {"pitch": 3.679, "yaw": -10.417, "roll": 0.638}, "rightItem": {"pitch": -8.681, "yaw": -26.695, "roll": -452.933, "x": 0.097, "y": -2.588, "z": 0.842}},
+      {"tick": 2, "easing": "LINEAR", "body": {"pitch": -32.0, "yaw": 0.0, "roll": 0.0, "x": 0.0, "y": -0.0157, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": 33.109, "yaw": 8.126, "roll": 0.0}, "leftArm": {"pitch": 35.0, "yaw": 0.0, "roll": -22.0}, "rightLeg": {"pitch": -58.087, "yaw": 4.981, "roll": 0.42}, "leftLeg": {"pitch": 1.49, "yaw": -10.054, "roll": 2.812}, "rightItem": {"pitch": -105.096, "yaw": -14.922, "roll": -335.88, "x": 0.528, "y": -3.19, "z": 2.018}},
+      {"tick": 3, "easing": "LINEAR", "body": {"pitch": -31.333, "yaw": 0.0, "roll": 0.0, "x": 0.0, "y": -0.0157, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": 33.109, "yaw": 8.126, "roll": 0.0}, "leftArm": {"pitch": 35.0, "yaw": 0.0, "roll": -22.0}, "rightLeg": {"pitch": -57.417, "yaw": 4.976, "roll": 0.478}, "leftLeg": {"pitch": 2.166, "yaw": -10.086, "roll": 2.694}, "rightItem": {"pitch": -105.096, "yaw": -14.922, "roll": -335.88, "x": 0.528, "y": -3.19, "z": 2.018}},
+      {"tick": 4, "easing": "LINEAR", "body": {"pitch": -30.667, "yaw": 0.0, "roll": 0.0, "x": 0.0, "y": -0.0157, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": 33.109, "yaw": 8.126, "roll": 0.0}, "leftArm": {"pitch": 35.0, "yaw": 0.0, "roll": -22.0}, "rightLeg": {"pitch": -56.748, "yaw": 4.97, "roll": 0.536}, "leftLeg": {"pitch": 2.843, "yaw": -10.117, "roll": 2.575}, "rightItem": {"pitch": -105.096, "yaw": -14.922, "roll": -335.88, "x": 0.528, "y": -3.19, "z": 2.018}},
+      {"tick": 5, "easing": "LINEAR", "body": {"pitch": -30.0, "yaw": 0.0, "roll": 0.0, "x": 0.0, "y": -0.0157, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": 33.109, "yaw": 8.126, "roll": 0.0}, "leftArm": {"pitch": 35.0, "yaw": 0.0, "roll": -22.0}, "rightLeg": {"pitch": -56.079, "yaw": 4.963, "roll": 0.594}, "leftLeg": {"pitch": 3.519, "yaw": -10.146, "roll": 2.456}, "rightItem": {"pitch": -105.096, "yaw": -14.922, "roll": -335.88, "x": 0.528, "y": -3.19, "z": 2.018}},
+      {"tick": 6, "easing": "LINEAR", "body": {"pitch": -22.0, "yaw": 0.0, "roll": 0.0, "x": 0.0, "y": -0.016, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": 47.526, "yaw": -57.387, "roll": 0.0}, "leftArm": {"pitch": 17.137, "yaw": -8.719, "roll": -27.0}, "rightLeg": {"pitch": -48.051, "yaw": 4.832, "roll": 1.281}, "leftLeg": {"pitch": 11.646, "yaw": -10.388, "roll": 1.006}, "rightItem": {"pitch": -51.033, "yaw": 7.808, "roll": -172.788, "x": 0.043, "y": -1.209, "z": 0.967}},
+      {"tick": 7, "easing": "LINEAR", "body": {"pitch": -14.0, "yaw": 0.0, "roll": 0.0, "x": 0.0, "y": 0.0115, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": -46.806, "yaw": -24.264, "roll": 0.0}, "leftArm": {"pitch": -29.942, "yaw": 24.626, "roll": -18.0}, "rightLeg": {"pitch": -28.048, "yaw": 5.577, "roll": 1.699}, "leftLeg": {"pitch": 1.681, "yaw": -12.364, "roll": 0.037}, "rightItem": {"pitch": -59.821, "yaw": -41.05, "roll": -54.844, "x": -0.415, "y": -3.025, "z": 1.312}},
+      {"tick": 8, "easing": "INOUTSINE", "body": {"pitch": -5.0, "yaw": 0.0, "roll": 0.0, "x": 0.0, "y": 0.0139, "z": -0.0}, "head": {"yaw": 0.0}, "rightArm": {"pitch": -70.123, "yaw": -47.776, "roll": 0.0}, "leftArm": {"pitch": -61.595, "yaw": 56.725, "roll": 0.0}, "rightLeg": {"pitch": -14.023, "yaw": 6.238, "roll": 2.464}, "leftLeg": {"pitch": 3.849, "yaw": -14.207, "roll": -1.744}, "rightItem": {"pitch": -11.98, "yaw": -33.353, "roll": -13.767, "x": 0.707, "y": -2.12, "z": 0.913}}
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "cosmicbreach:item/binary_edges_right_held"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "cosmicbreach:item/binary_edges_pair"
+    },
+    "ground": {
+      "parent": "cosmicbreach:item/binary_edges_pair"
+    },
+    "fixed": {
+      "parent": "cosmicbreach:item/binary_edges_pair"
+    }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.34
+      },
+      "model": "cosmicbreach:item/binary_edges_glow1"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 0.67
+      },
+      "model": "cosmicbreach:item/binary_edges_glow2"
+    },
+    {
+      "predicate": {
+        "cosmicbreach:resonance": 1.0
+      },
+      "model": "cosmicbreach:item/binary_edges_glow3"
+    }
+  ]
+}

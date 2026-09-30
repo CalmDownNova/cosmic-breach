@@ -1,0 +1,49 @@
+Cosmic Breach is licensed in two parts.
+
+1. CODE: MIT License (full text below)
+
+   Covers the source code: the Java code in src/main/java and src/test/java, the shaders in
+   src/main/resources/assets/cosmicbreach/shaders, the Gradle build files, and the Python and shell tools in
+   tools/ and scripts/.
+
+2. ASSETS: All Rights Reserved
+
+   Textures, models, animations, sounds, music and text (language files, guide book pages and other in-game
+   writing) are All Rights Reserved. Do not re-upload them, redistribute them outside modpacks, or sell them.
+
+   You are free to play Cosmic Breach, include it in modpacks (link to the Modrinth page, don't re-upload), and
+   make videos and streams, monetized ones included.
+
+Excluded from the MIT grant:
+
+- Audio made with ElevenLabs (elevenlabs.io): voice lines and some sound-effect layers, including the source takes in
+  tools/sound/eleven/. Credited in CREDITS.md and covered by ElevenLabs' terms.
+- src/main/resources/assets/minecraft/shaders/include/fog.glsl: a modified copy of a Minecraft file, which remains
+  under Mojang's terms.
+
+Minecraft is a trademark of Mojang Studios. Cosmic Breach is not an official Minecraft product and is not approved by
+or associated with Mojang or Microsoft.
+
+--------------------------------------------------------------------------------
+
+MIT License
+
+Copyright (c) 2026 CalmDownNova
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

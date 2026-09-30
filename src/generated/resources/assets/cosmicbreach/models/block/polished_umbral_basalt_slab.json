@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "cosmicbreach:block/polished_umbral_basalt",
+    "side": "cosmicbreach:block/polished_umbral_basalt",
+    "top": "cosmicbreach:block/polished_umbral_basalt"
+  }
+}

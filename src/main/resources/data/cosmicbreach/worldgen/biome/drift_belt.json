@@ -1,0 +1,48 @@
+{
+  "has_precipitation": false,
+  "temperature": 0.8,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 10470616,
+    "fog_color": 11065576,
+    "water_color": 10477035,
+    "water_fog_color": 7319752,
+    "grass_color": 11127234,
+    "foliage_color": 10207160,
+    "particle": {
+      "options": {
+        "type": "minecraft:white_ash"
+      },
+      "probability": 0.01
+    },
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "ambient_sound": "cosmicbreach:ambient/drift",
+    "music": {
+      "sound": "cosmicbreach:music/drift",
+      "min_delay": 2400,
+      "max_delay": 6000,
+      "replace_current_music": false
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [
+      "cosmicbreach:asteroid_decor"
+    ],
+    [],
+    [],
+    [],
+    [
+      "cosmicbreach:ore_nebulite"
+    ]
+  ]
+}

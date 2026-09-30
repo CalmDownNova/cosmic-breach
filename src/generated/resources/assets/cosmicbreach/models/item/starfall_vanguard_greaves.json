@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cosmicbreach:item/starfall_vanguard_greaves",
+    "layer1": "cosmicbreach:item/starfall_vanguard_greaves_trim"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "plunge",
+  "timing": {
+    "startup": 2,
+    "active": 0,
+    "recovery": 12
+  },
+  "hit": {
+    "mv": 1.6,
+    "mv_per_block": 0.12,
+    "mv_max": 2.8,
+    "impact": 24,
+    "resonance": 7,
+    "hitstop": 4
+  },
+  "hitbox": {
+    "type": "sphere",
+    "radius": 3.0
+  },
+  "animation": "cosmicbreach:lastlight_sunfall",
+  "land_animation": "cosmicbreach:lastlight_sunfall_land",
+  "effects": [
+    {
+      "id": "cosmicbreach:sunfall",
+      "params": {
+        "radius": 3.0
+      }
+    }
+  ],
+  "sound": {
+    "hit": "cosmicbreach:lastlight/hit",
+    "slam": "cosmicbreach:lastlight/sunfall"
+  }
+}
