@@ -42,6 +42,7 @@ STEPS = [
     "gen_heliarchs_crown",  # the Heliarch's Crown: textures, block model, state, item model, loot (G9b; after gen_blocks_reach)
     "gen_heliarch",      # the Hollow Heliarch (geo, animations, textures, glowmask), its monoliths, the Reliquary, its FX textures (G9a)
     "gen_curios",        # four accessories' icons, the Sunshard Compass's 16 needle frames, the Halo's shard, the Vesper slow icon (G6a)
+    "gen_status_icons",  # the Rift, Scorch and Silenced effect icons, missing until playtest 3
     "gen_mounts",        # the Lumen Stag and the Drift Manta (geo, animations, textures, glowmasks), their gear's icons, the tack slot (G6b)
     "gen_stable_crystal",  # the Stable Crystal, empty and full (1.1 task B2.7)
     "gen_shrines",  # the four boss shrines: geo, idle animation, texture and glowmask (1.1 tasks B4 and B5)

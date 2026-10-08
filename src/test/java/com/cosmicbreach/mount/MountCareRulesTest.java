@@ -41,6 +41,20 @@ class MountCareRulesTest {
     }
 
     @Test
+    void aMountItsRiderParkedBelowItsLayerStaysThere() {
+        // ridden down into the Deep and left there: parked, not lost
+        assertTrue(MountCareRules.ridBelow(MANTA, 120));
+        assertFalse(MountCareRules.needsRescue(true, false, true, MANTA, 120, MountCareRules.ridBelow(MANTA, 120)));
+        // got off in the Drift, then fell below on its own: still rescued
+        assertFalse(MountCareRules.ridBelow(MANTA, 200));
+        assertTrue(MountCareRules.needsRescue(true, false, true, MANTA, 120, MountCareRules.ridBelow(MANTA, 200)));
+        // the same for a stag ridden down past its gap
+        assertTrue(MountCareRules.ridBelow(STAG, 250));
+        assertFalse(MountCareRules.needsRescue(true, false, true, STAG, 250, true));
+        assertFalse(MountCareRules.ridBelow(STAG, 340));
+    }
+
+    @Test
     void theRescueClimbsTheWayItFellThenCrossesWithoutOvershooting() {
         assertEquals(new Vec3(0, MountCareRules.RESCUE_SPEED, 0), MountCareRules.rescueVelocity(new Vec3(10, 120, 10), new Vec3(14, 200, 10)));
         Vec3 across = MountCareRules.rescueVelocity(new Vec3(10, 200, 10), new Vec3(14, 200, 10));

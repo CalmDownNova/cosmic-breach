@@ -39,6 +39,7 @@ PORCELAIN_SHADE = (176, 176, 182)
 CRACK = (140, 128, 124)
 SLIT = (46, 8, 40)
 MAGENTA = (255, 64, 222)
+MAGENTA_DIM = (176, 34, 150)
 
 
 class Cube:
@@ -354,7 +355,7 @@ def anims():
 
 # ------------------------------------------------------------------ the Mask Shard block
 def mask_shard_texture():
-    """16x16: the shard's porcelain front (left 10 columns: a broken half-mask with one slit), its edges (right)."""
+    """16x16: the shard's porcelain front (left 10 columns: a broken half-mask with one magenta eye slit), its edges (right)."""
     img = np.zeros((16, 16, 4), np.uint8)
     ys, xs = np.mgrid[0:16, 0:16] + 0.5
     front = (xs < 10.5)
@@ -365,9 +366,9 @@ def mask_shard_texture():
         for x in range(11):
             k = 1.0 - 0.18 * (y / 15.0) - 0.1 * (x / 10.0)
             img[y, x, :3] = [int(c * k) for c in PORCELAIN]
-    for x in range(2, 7):  # the slit
+    for x in range(2, 7):  # the slit, lit magenta as the Stalker's own eyes are (the Codex's page shows this shard)
         y = 5 + (x - 2) // 3
-        img[y, x, :3] = SLIT
+        img[y, x, :3] = MAGENTA if 3 <= x <= 5 else MAGENTA_DIM
     for y in range(7, 14):  # a crack
         img[y, 7 + (y % 3 == 0), :3] = CRACK
     img[:, 11:, :3] = PORCELAIN_SIDE

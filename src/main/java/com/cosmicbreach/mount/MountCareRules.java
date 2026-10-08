@@ -57,7 +57,26 @@ public final class MountCareRules {
 
     /** True if a mount should climb back now. */
     public static boolean needsRescue(boolean tamed, boolean ridden, boolean inAetheria, MountGear.Kind kind, double y) {
-        return tamed && !ridden && inAetheria && y < safeFloor(kind);
+        return needsRescue(tamed, ridden, inAetheria, kind, y, false);
+    }
+
+    /**
+     * True if a mount should climb back now; {@code leftByRider}: its rider took it below its floor and got off there
+     * ({@link #ridBelow}), so it was parked, not lost, and stays where it was left (playtest 3: a stingray left in the Deep
+     * flew straight back up to the Drift the moment its rider stepped off).
+     */
+    public static boolean needsRescue(boolean tamed, boolean ridden, boolean inAetheria, MountGear.Kind kind, double y,
+            boolean leftByRider) {
+        return tamed && !ridden && inAetheria && !leftByRider && y < safeFloor(kind);
+    }
+
+    /**
+     * Kept every tick a mount is ridden: true while its rider has it below its floor. When the rider gets off, the last
+     * value stays with the mount ("left by its rider"), so a mount parked below its layer is not rescued; one that falls
+     * there on its own still is.
+     */
+    public static boolean ridBelow(MountGear.Kind kind, double y) {
+        return y < safeFloor(kind);
     }
 
     /** The rescue's velocity: straight up to the safe spot's height first (back the way it fell), then across to it. */

@@ -96,13 +96,20 @@ public final class StalkerRules {
 
     /** Close and watched this long, it attacks from the front after all. */
     public static final int PATIENCE = 60;
-    /** A natural spawn attempt that passes the light rules starts a Stalker this often (x1.5 in an Eclipse Surge). */
-    public static final float SPAWN_CHANCE = 0.5f;
+    /**
+     * A natural spawn attempt that passes the light rules starts a Stalker this often (x1.5 in an Eclipse Surge). Playtest 3
+     * halved it (it was 0.5): the Deep is dark nearly everywhere and they are its only natural monster, so they came back as
+     * fast as they were killed.
+     */
+    public static final float SPAWN_CHANCE = 0.25f;
     /** Natural spawns need block light at or under this (lichen and torches keep them off). */
     public static final int SPAWN_BLOCK_LIGHT = 3;
-    /** No natural spawn where this many Stalkers already are within {@link #SPAWN_SPACING} blocks. */
-    public static final int SPAWN_NEIGHBOURS = 2;
+    /** No natural spawn where this many Stalkers already are within {@link #SPAWN_SPACING} blocks (2 before playtest 3). */
+    public static final int SPAWN_NEIGHBOURS = 1;
     public static final double SPAWN_SPACING = 32.0;
+    /** And none where this many are within {@link #AREA_RADIUS} blocks: a cap for the whole stretch round a player. */
+    public static final int AREA_CAP = 3;
+    public static final double AREA_RADIUS = 64.0;
 
     private StalkerRules() {
     }
@@ -274,6 +281,14 @@ public final class StalkerRules {
     public enum Attack { REND, GRASP }
 
     /** The light and luck part of the natural spawn rule: dark ground, little block light, one attempt in two (x surge). */
+    /**
+     * True if a natural spawn may not go where {@code near} Stalkers are within {@value #SPAWN_SPACING} blocks and
+     * {@code area} within {@value #AREA_RADIUS} (an ambusher, not a swarm).
+     */
+    public static boolean crowded(int near, int area) {
+        return near >= SPAWN_NEIGHBOURS || area >= AREA_CAP;
+    }
+
     public static boolean spawnRule(boolean ground, int light, int blockLight, float roll, double surge) {
         return ground && dark(light, blockLight) && blockLight <= SPAWN_BLOCK_LIGHT && roll < SPAWN_CHANCE * surge;
     }

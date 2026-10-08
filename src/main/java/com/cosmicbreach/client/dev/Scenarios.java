@@ -121,6 +121,7 @@ public final class Scenarios {
         register("leviathan-fight", () -> new com.cosmicbreach.client.dev.scenario.LeviathanScenario(
                 com.cosmicbreach.client.dev.scenario.LeviathanScenario.Part.FIGHT));
         register("rift-lift", com.cosmicbreach.client.dev.scenario.RiftLiftScenario::new);
+        register("rift-items", com.cosmicbreach.client.dev.scenario.RiftItemsScenario::new);
         register("gyre-knight", com.cosmicbreach.client.dev.scenario.GyreKnightScenario::new);
         register("boss-voice-colossus", () -> new com.cosmicbreach.client.dev.scenario.BossVoiceScenario(
                 com.cosmicbreach.client.dev.scenario.BossVoiceScenario.Part.COLOSSUS));
@@ -159,6 +160,7 @@ public final class Scenarios {
         register("stable", com.cosmicbreach.client.dev.scenario.StableScenario::new);
         register("stable-stag", com.cosmicbreach.client.dev.scenario.StableStagScenario::new);
         register("stable-void", com.cosmicbreach.client.dev.scenario.StableVoidScenario::new);
+        register("mount-park", com.cosmicbreach.client.dev.scenario.MountParkScenario::new);
         register("shrines", () -> new com.cosmicbreach.client.dev.scenario.ShrineScenario(
                 com.cosmicbreach.client.dev.scenario.ShrineScenario.Part.KEEP));
         register("shrines-deaths", () -> new com.cosmicbreach.client.dev.scenario.ShrineScenario(
@@ -168,6 +170,7 @@ public final class Scenarios {
         register("ascent", com.cosmicbreach.client.dev.scenario.AscentScenario::new);
         register("familiars", com.cosmicbreach.client.dev.scenario.FamiliarsScenario::new);
         register("codex", com.cosmicbreach.client.dev.scenario.CodexScenario::new);
+        register("codex-layers", com.cosmicbreach.client.dev.scenario.CodexLayersScenario::new);
         register("config", com.cosmicbreach.client.dev.scenario.ConfigScenario::new);
         register("compat", com.cosmicbreach.client.dev.scenario.CompatScenario::new);
         register("compat-render", com.cosmicbreach.client.dev.scenario.RenderCompatScenario::new);

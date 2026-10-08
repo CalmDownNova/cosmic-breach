@@ -159,12 +159,13 @@ class StalkerRulesTest {
 
     @Test
     void naturalSpawnsNeedDarkGroundAndComeHalfAgainAsOftenInASurge() {
-        assertTrue(StalkerRules.spawnRule(true, 4, 0, 0.3f, 1.0));
-        assertFalse(StalkerRules.spawnRule(false, 4, 0, 0.3f, 1.0), "no ground");
-        assertFalse(StalkerRules.spawnRule(true, 9, 0, 0.3f, 1.0), "lit ground");
-        assertFalse(StalkerRules.spawnRule(true, 5, 5, 0.3f, 1.0), "lichen light keeps them off");
-        assertFalse(StalkerRules.spawnRule(true, 4, 0, 0.6f, 1.0), "one attempt in two");
-        assertTrue(StalkerRules.spawnRule(true, 4, 0, 0.6f, 1.5), "three in four in an Eclipse Surge");
+        assertTrue(StalkerRules.spawnRule(true, 4, 0, 0.2f, 1.0));
+        assertFalse(StalkerRules.spawnRule(false, 4, 0, 0.2f, 1.0), "no ground");
+        assertFalse(StalkerRules.spawnRule(true, 9, 0, 0.2f, 1.0), "lit ground");
+        assertFalse(StalkerRules.spawnRule(true, 5, 5, 0.2f, 1.0), "lichen light keeps them off");
+        assertFalse(StalkerRules.spawnRule(true, 4, 0, 0.3f, 1.0), "one attempt in four (playtest 3: was one in two)");
+        assertTrue(StalkerRules.spawnRule(true, 4, 0, 0.3f, 1.5), "three in eight in an Eclipse Surge");
+        assertFalse(StalkerRules.spawnRule(true, 4, 0, 0.4f, 1.5));
     }
 
     @Test
@@ -175,5 +176,13 @@ class StalkerRulesTest {
         assertFalse(StalkerRules.rendGlinting(15));
         assertTrue(StalkerRules.rendGlinting(16));
         assertTrue(StalkerRules.rendGlinting(20));
+    }
+
+    @Test
+    void oneToAStretchAndAFewToAnArea() {
+        assertFalse(StalkerRules.crowded(0, 0));
+        assertTrue(StalkerRules.crowded(1, 1), "one already this close");
+        assertFalse(StalkerRules.crowded(0, 2));
+        assertTrue(StalkerRules.crowded(0, 3), "the area round a player is full");
     }
 }

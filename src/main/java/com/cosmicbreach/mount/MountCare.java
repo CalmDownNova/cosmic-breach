@@ -71,6 +71,11 @@ public final class MountCare {
             return;
         }
         MountGear.Kind kind = mount.kind();
+        if (mount.isVehicle()) {
+            mount.setLeftBelow(MountCareRules.ridBelow(kind, mount.getY()));
+        } else if (mount.leftBelowByRider() && mount.isRescuing()) {
+            mount.endRescue(); // parked below its layer by its rider (a rescue saved before this rule): it stays
+        }
         if (!mount.isRescuing() && MountCareRules.rememberNow(mount.tickCount, mount.getId())
                 && MountCareRules.safeHere(kind, mount.getY(), mount.onGround(), Layer.at(mount.getY()) == Layer.DRIFT)) {
             mount.rememberSafe(mount.position());
@@ -84,7 +89,7 @@ public final class MountCare {
             }
         }
         if (!mount.isRescuing()) {
-            if (MountCareRules.needsRescue(true, mount.isVehicle(), true, kind, mount.getY())) {
+            if (MountCareRules.needsRescue(true, mount.isVehicle(), true, kind, mount.getY(), mount.leftBelowByRider())) {
                 mount.startRescue();
             }
             return;
@@ -125,7 +130,7 @@ public final class MountCare {
      */
     private static @Nullable Vec3 ownersSide(CelestialMount mount, MountGear.Kind kind) {
         // a mount a crystal set down stays where it was put: the fallback is for mounts from worlds saved before 1.1
-        if (mount.placedByCrystal() || !MountCareRules.needsRescue(true, mount.isVehicle(), true, kind, mount.getY())
+        if (mount.placedByCrystal() || !MountCareRules.needsRescue(true, mount.isVehicle(), true, kind, mount.getY(), mount.leftBelowByRider())
                 || !(mount.getOwner() instanceof Player owner)) {
             return null;
         }

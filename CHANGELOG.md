@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.1
+
+Fixes from the third round of playtesting. Worlds from 1.1.0 load as they are; every player and the server need 1.1.1.
+
+- Items dropped into a boss arena's pit are returned to the platform.
+- Mounts stay parked where you dismount, on every layer.
+- The Codex's boss locate targets the boss of the layer you are standing in.
+- Missing status effect icons added.
+- Fewer hollow stalker spawns.
+- A Codex picture fix.
+- Tooltip clarity.
+
 ## 1.1.0
 
 Answers the second round of playtest feedback. Worlds from 1.0.x load, but 1.0.x clients cannot join a 1.1 server: every

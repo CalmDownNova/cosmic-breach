@@ -241,6 +241,8 @@ public abstract class CelestialMount extends AbstractHorse implements GeoEntity 
     private boolean rescueSetDown;
     /** True for a mount a Stable Crystal set down and that has not yet recorded a safe spot of its own: the old-world rescue leaves it where it was put. */
     private boolean placed;
+    /** Its rider got off it below its layer (kept while ridden, see {@link MountCareRules#ridBelow}). */
+    private boolean leftBelow;
 
     @Override
     public void tick() {
@@ -276,6 +278,15 @@ public abstract class CelestialMount extends AbstractHorse implements GeoEntity 
     /** True if a Stable Crystal set this mount down and it has not recorded a safe spot of its own since. */
     public boolean placedByCrystal() {
         return placed;
+    }
+
+    /** True if its rider last got off it below its layer: it was parked there and stays (see {@link MountCareRules#ridBelow}). */
+    public boolean leftBelowByRider() {
+        return leftBelow;
+    }
+
+    void setLeftBelow(boolean left) {
+        leftBelow = left;
     }
 
     void markPlaced() {
@@ -378,6 +389,7 @@ public abstract class CelestialMount extends AbstractHorse implements GeoEntity 
         }
         tag.putBoolean("CareRescue", rescuing);
         tag.putBoolean("CarePlaced", placed);
+        tag.putBoolean("CareLeftBelow", leftBelow);
     }
 
     @Override
@@ -400,6 +412,7 @@ public abstract class CelestialMount extends AbstractHorse implements GeoEntity 
             setNoGravity(true);
         }
         placed = tag.getBoolean("CarePlaced");
+        leftBelow = tag.getBoolean("CareLeftBelow");
         syncSaddleToClients();
     }
 

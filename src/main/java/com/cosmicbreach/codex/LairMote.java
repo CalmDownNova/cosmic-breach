@@ -31,6 +31,9 @@ import net.minecraft.world.phys.Vec3;
  * in Aetheria, the book throws a mote of light that flies a few seconds toward the nearest lair of a guardian the
  * player has not yet beaten and can reach (the Colossus in the Reach; the Leviathan once attuned to the Drift; the
  * Unsung once attuned to the Deep), and toward the Breach Sanctum when none is left and the Breach is not sealed.
+ * It points at the layer the player stands in first: a lair of that layer wins over a nearer one in another layer
+ * (the layers stack, so "nearer across" used to send a player in the Deep back up to a lair above them). With
+ * nothing left in this layer it points to the earliest guardian still unbeaten, in the order the layers are played.
  * The mote is particles sent from the server along a path, so nothing is saved and nothing can be picked up.
  */
 public final class LairMote {
@@ -41,9 +44,15 @@ public final class LairMote {
     /** One throw per player this often. */
     public static final int COOLDOWN_TICKS = 40;
 
-    /** A lair the mote could point at. */
-    public record Candidate(String name, BlockPos centre, boolean reachable, boolean defeated) {
+    /**
+     * A lair the mote could point at: {@code layer} is the layer the lair belongs to and {@code rank} its place in the
+     * order the game is played (Colossus 0, Leviathan 1, Unsung 2, the Sanctum 3).
+     */
+    public record Candidate(String name, BlockPos centre, Layer layer, int rank, boolean reachable, boolean defeated) {
     }
+
+    /** The Sanctum's place in the order of play: after every guardian. */
+    public static final int SANCTUM_RANK = 3;
 
     private record Mote(ServerLevel level, UUID owner, Vec3 start, Vec3 dir, long born) {
     }
@@ -56,23 +65,54 @@ public final class LairMote {
     private LairMote() {
     }
 
-    /** The nearest lair (horizontally) among the reachable, undefeated candidates, or empty. Pure. */
-    public static Optional<Candidate> choose(BlockPos from, List<Candidate> candidates) {
+    /**
+     * The lair to point at from {@code from}, standing in {@code here}, among the reachable, undefeated candidates, or
+     * empty. Lairs of the player's own layer come first; with none there, every layer counts. Within that the earliest
+     * in the order of play wins, and among equals the nearest (horizontally). Pure.
+     */
+    public static Optional<Candidate> choose(Layer here, BlockPos from, List<Candidate> candidates) {
+        List<Candidate> open = new ArrayList<>();
+        for (Candidate c : candidates) {
+            if (c.reachable() && !c.defeated()) {
+                open.add(c);
+            }
+        }
+        List<Candidate> pool = new ArrayList<>();
+        for (Candidate c : open) {
+            if (c.layer() == here) {
+                pool.add(c);
+            }
+        }
+        if (pool.isEmpty()) {
+            pool = open;
+        }
         Candidate best = null;
         double bestD = Double.MAX_VALUE;
-        for (Candidate c : candidates) {
-            if (!c.reachable() || c.defeated()) {
-                continue;
-            }
+        for (Candidate c : pool) {
             double dx = c.centre().getX() - from.getX();
             double dz = c.centre().getZ() - from.getZ();
             double d = dx * dx + dz * dz;
-            if (d < bestD) {
+            if (best == null || c.rank() < best.rank() || (c.rank() == best.rank() && d < bestD)) {
                 bestD = d;
                 best = c;
             }
         }
         return Optional.ofNullable(best);
+    }
+
+    /** The layer a guardian's lair belongs to, and its place in the order of play. */
+    static Layer homeLayer(GuardianType type) {
+        if (type == GuardianTypes.COLOSSUS) {
+            return Layer.REACH;
+        }
+        return type == GuardianTypes.LEVIATHAN ? Layer.DRIFT : Layer.DEEP;
+    }
+
+    static int rank(GuardianType type) {
+        if (type == GuardianTypes.COLOSSUS) {
+            return 0;
+        }
+        return type == GuardianTypes.LEVIATHAN ? 1 : 2;
     }
 
     /**
@@ -112,11 +152,11 @@ public final class LairMote {
         add(candidates, level, player, from, GuardianTypes.COLOSSUS, true);
         add(candidates, level, player, from, GuardianTypes.LEVIATHAN, LayerAttunement.has(player, Layer.DRIFT));
         add(candidates, level, player, from, GuardianTypes.UNSUNG, LayerAttunement.has(player, Layer.DEEP));
-        Optional<Candidate> pick = choose(from, candidates);
-        if (pick.isEmpty() && LayerAttunement.hasSanctum(player)
-                && !GuardianRewards.hasAdvancement(player, Codices.BREACH_SEALED)) {
-            pick = Optional.of(new Candidate("sanctum", SanctumArena.THRONE, true, false));
+        if (LayerAttunement.hasSanctum(player)) {
+            candidates.add(new Candidate("sanctum", SanctumArena.THRONE, Layer.at(SanctumArena.THRONE.getY()), SANCTUM_RANK, true,
+                    GuardianRewards.hasAdvancement(player, Codices.BREACH_SEALED)));
         }
+        Optional<Candidate> pick = choose(Layer.at(player.getY()), from, candidates);
         if (pick.isEmpty()) {
             lastTarget = null;
             player.displayClientMessage(Component.translatable("cosmicbreach.codex.mote.none"), true);
@@ -140,7 +180,8 @@ public final class LairMote {
         if (defeated) {
             return;
         }
-        GuardianLairs.nearest(level, from, type).ifPresent(centre -> out.add(new Candidate(type.name(), centre, true, false)));
+        GuardianLairs.nearest(level, from, type)
+                .ifPresent(centre -> out.add(new Candidate(type.name(), centre, homeLayer(type), rank(type), true, false)));
     }
 
     /** "north-east, and far below": the way the mote flies, for the message under the hotbar. */

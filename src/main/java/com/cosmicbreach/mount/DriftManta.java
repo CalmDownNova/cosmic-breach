@@ -432,7 +432,10 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
             }
         }
         double wy = want.y;
-        if (!drift) {
+        // a tamed stingray left with nowhere to go is parked: it holds where it was left in any layer (outside the Drift it
+        // used to glide down, into the void under the Deep)
+        boolean parked = isTamed() && swimTarget == null && !isRescuing();
+        if (!drift && !parked) {
             wy = onGround() ? 0.0 : Math.min(wy, -MantaRules.GLIDE_SINK);
         }
         double hx = want.x;
@@ -441,7 +444,7 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
             hx *= MantaRules.GROUND_SHARE;
             hz *= MantaRules.GROUND_SHARE;
         }
-        double k = 0.08;
+        double k = parked ? MantaRules.PARK_BRAKE : 0.08;
         Vec3 next = new Vec3(v.x + (hx - v.x) * k, v.y + (wy - v.y) * k, v.z + (hz - v.z) * k);
         if (!drift && next.y > 0) {
             next = new Vec3(next.x, 0, next.z);

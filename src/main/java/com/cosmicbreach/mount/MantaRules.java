@@ -25,6 +25,8 @@ public final class MantaRules {
     /** Pitch, degrees, that asks for the full climb or dive while moving forward. */
     public static final double FULL_CLIMB_PITCH = 35.0;
     public static final double GLIDE_SINK = 0.06;
+    /** How hard a parked (tamed, unridden, idle) stingray brakes each tick: it settles within a couple of blocks of where it was left. */
+    public static final double PARK_BRAKE = 0.3;
     /** On the ground outside the Drift it can only shuffle, at this share of its speed. */
     public static final double GROUND_SHARE = 0.3;
 

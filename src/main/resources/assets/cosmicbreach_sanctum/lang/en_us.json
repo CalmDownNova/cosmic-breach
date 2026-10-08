@@ -15,6 +15,7 @@
   "block.cosmicbreach.sanctum_vault": "Sanctum Vault",
   "item.cosmicbreach.dying_star_heart": "Dying Star Heart",
   "item.cosmicbreach.dying_star_heart.tip": "Set it on the Regent's Throne in the Breach Sanctum",
+  "item.cosmicbreach.dying_star_heart.what": "It summons the Breach's last guardian. Each summon spends a Heart",
   "item.cosmicbreach.event_horizon_lens": "Event Horizon Lens",
   "item.cosmicbreach.hourglass_of_vesper": "Hourglass of Vesper",
   "effect.cosmicbreach.voidsick": "Voidsick",

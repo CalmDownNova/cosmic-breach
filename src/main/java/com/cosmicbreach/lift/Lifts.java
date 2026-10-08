@@ -70,6 +70,7 @@ public final class Lifts {
 
     public static void register(IEventBus modBus, IEventBus game) {
         LiftRegistry.register(modBus);
+        RiftItemReturn.register(game);
         modBus.addListener(RegisterPayloadHandlersEvent.class, Lifts::registerPayloads);
         game.addListener(PlayerTickEvent.Post.class, Lifts::onPlayerTick);
         game.addListener(ServerTickEvent.Post.class, Lifts::broadcastRiders);

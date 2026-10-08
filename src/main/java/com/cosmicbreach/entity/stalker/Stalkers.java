@@ -65,7 +65,7 @@ import org.jetbrains.annotations.Nullable;
  * Grasp's damage type {@code cosmicbreach:hollow_grasp} (through armor), the Rift status, 180 Attunement XP a kill, and
  * its natural spawns: in the Rift Abyss, in the dark (the biome modifier
  * {@code data/cosmicbreach/neoforge/biome_modifier/hollow_stalker_spawns.json}; {@link #canSpawn} keeps them to dark
- * ground and makes them half again as common in an Eclipse Surge). Also the light that answers them: {@link TempLights}
+ * ground and makes them half again as common in an Eclipse Surge, one at a time (groups of one)). Also the light that answers them: {@link TempLights}
  * and every weapon ability's light ({@link AbilityLight}).
  * Debug: {@code /cosmicbreach debug stalker spawn [distance]|info|ready|rend}.
  */
@@ -139,8 +139,9 @@ public final class Stalkers {
 
     /**
      * Natural spawns: in the Deep (any layer outside Aetheria), on ground, where it is dark to a Stalker and block light
-     * is at most {@value StalkerRules#SPAWN_BLOCK_LIGHT}, one attempt in two (three in four in an Eclipse Surge), fewer than
-     * {@value StalkerRules#SPAWN_NEIGHBOURS} others within {@value StalkerRules#SPAWN_SPACING} blocks, not on Peaceful.
+     * is at most {@value StalkerRules#SPAWN_BLOCK_LIGHT}, one attempt in four (three in eight in an Eclipse Surge), fewer than
+     * {@value StalkerRules#SPAWN_NEIGHBOURS} others within {@value StalkerRules#SPAWN_SPACING} blocks and fewer than
+     * {@value StalkerRules#AREA_CAP} within {@value StalkerRules#AREA_RADIUS}, not on Peaceful.
      * Other reasons (the crypt, commands) always may.
      */
     public static boolean canSpawn(EntityType<HollowStalker> type, ServerLevelAccessor level, MobSpawnType reason, BlockPos pos,
@@ -164,8 +165,16 @@ public final class Stalkers {
             return false;
         }
         // an ambusher, not a swarm: the dark is nearly everywhere in the Deep, so no more than a couple share a stretch of it
-        return level.getEntitiesOfClass(HollowStalker.class, new net.minecraft.world.phys.AABB(pos).inflate(StalkerRules.SPAWN_SPACING))
-                .size() < StalkerRules.SPAWN_NEIGHBOURS;
+        java.util.List<HollowStalker> area = level.getEntitiesOfClass(HollowStalker.class,
+                new net.minecraft.world.phys.AABB(pos).inflate(StalkerRules.AREA_RADIUS));
+        int near = 0;
+        for (HollowStalker s : area) {
+            if (Math.abs(s.getX() - pos.getX() - 0.5) <= StalkerRules.SPAWN_SPACING && Math.abs(s.getY() - pos.getY()) <= StalkerRules.SPAWN_SPACING
+                    && Math.abs(s.getZ() - pos.getZ() - 0.5) <= StalkerRules.SPAWN_SPACING) {
+                near++;
+            }
+        }
+        return !StalkerRules.crowded(near, area.size());
     }
 
     // ------------------------------------------------------------------ debug

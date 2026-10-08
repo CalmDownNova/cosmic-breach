@@ -564,6 +564,7 @@ public final class StableScenario implements Scenario {
      */
     private void ownerFallback(Steps steps) {
         int[] ticks = {0};
+        Vec3[] ownerAtStart = {null};
         steps.run("it forgets where it was safe, and is dropped below the Drift in the shaft", () -> ServerQuery.ask(p -> {
             DriftManta m = server(p, manta);
             m.forgetSafe();
@@ -571,6 +572,9 @@ public final class StableScenario implements Scenario {
             return true;
         }));
         softWait(steps, "the climb starts though it remembers no spot", 40, () -> ServerQuery.ask(p -> server(p, manta).isRescuing()));
+        // where the owner was when the spot beside them was taken: a creative owner hovering over the rock can float off by
+        // a block during the climb, and the spot does not follow them
+        steps.run("where the owner is as the climb starts", () -> ownerAtStart[0] = ServerQuery.ask(p -> p.position()));
         softWait(steps, "it climbs back up to its owner's side", 900, () -> {
             ticks[0]++;
             return ServerQuery.ask(p -> {
@@ -581,11 +585,12 @@ public final class StableScenario implements Scenario {
         steps.run("it ended beside its owner, by arriving", () -> {
             double[] end = ServerQuery.ask(p -> {
                 DriftManta m = server(p, manta);
-                return new double[] {m.getX() - p.getX(), m.getY() - p.getY(), m.getZ() - p.getZ(), m.rescueEndedStuck() ? 1 : 0,
-                        m.isRescuing() ? 1 : 0};
+                Vec3 o = ownerAtStart[0] != null ? ownerAtStart[0] : p.position();
+                return new double[] {m.getX() - o.x, m.getY() - o.y, m.getZ() - o.z, m.rescueEndedStuck() ? 1 : 0,
+                        m.isRescuing() ? 1 : 0, p.position().distanceTo(o)};
             });
-            String line = String.format(Locale.ROOT, "no remembered spot: ended %.1f east, %.1f up, %.1f south of its owner after %d ticks%s",
-                    end[0], end[1], end[2], ticks[0], end[3] > 0 ? ", by the stuck rule" : "");
+            String line = String.format(Locale.ROOT, "no remembered spot: ended %.1f east, %.1f up, %.1f south of where its owner was as it began after %d ticks%s (the owner moved %.1f since)",
+                    end[0], end[1], end[2], ticks[0], end[3] > 0 ? ", by the stuck rule" : "", end[5]);
             results.add(line);
             expect(line, Math.hypot(end[0], end[2]) <= 3.5 && end[1] >= -0.5 && end[1] <= 3.0 && end[3] == 0 && end[4] == 0);
         });

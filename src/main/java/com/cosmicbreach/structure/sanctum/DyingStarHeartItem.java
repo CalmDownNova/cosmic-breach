@@ -19,6 +19,7 @@ public class DyingStarHeartItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> lines, TooltipFlag flag) {
         lines.add(Component.translatable("item.cosmicbreach.dying_star_heart.tip").withStyle(ChatFormatting.GOLD));
+        lines.add(Component.translatable("item.cosmicbreach.dying_star_heart.what").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
