@@ -1,0 +1,510 @@
+{
+  "boss": "unsung",
+  "global_gap_seconds": 20,
+  "wait_seconds": 8,
+  "caption_color": "#E8E2F4",
+  "reference": {
+    "weapon_tier": 3,
+    "armor": 20,
+    "toughness": 8,
+    "resilience": 24,
+    "level_min": 32,
+    "level_max": 36,
+    "typical_hit": 20
+  },
+  "lines": [
+    {
+      "id": "open_solo",
+      "trigger": "fight_start",
+      "condition": "players:solo, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "Who comes to the choir without a song?",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_open_solo",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_open_solo",
+          "length_ticks": 110,
+          "speech_start_ticks": 2,
+          "speech_ticks": 73,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "Who comes"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 26,
+              "text": "to the choir"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 50,
+              "text": "without a song?"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "open_group",
+      "trigger": "fight_start",
+      "condition": "players:group, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "So many of you, and not one knows the words.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_open_group",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_open_group",
+          "length_ticks": 108,
+          "speech_start_ticks": 2,
+          "speech_ticks": 77,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "So many of you,"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 26,
+              "text": "and not one"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 50,
+              "text": "knows the words."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "open_again",
+      "trigger": "fight_start",
+      "condition": "returning",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "You came back to hear us forget again.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_open_again",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_open_again",
+          "length_ticks": 115,
+          "speech_start_ticks": 2,
+          "speech_ticks": 75,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "You came back"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 26,
+              "text": "to hear us"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 50,
+              "text": "forget again."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "one_gone",
+      "trigger": "hp_threshold:67",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "words": "Who will sing its part now?",
+      "variants": {
+        "12": {
+          "event": "cosmicbreach:bossvoice/unsung_one_gone_12",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_one_gone_12",
+          "length_ticks": 99,
+          "speech_start_ticks": 2,
+          "speech_ticks": 50,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "Who will sing"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 26,
+              "text": "its part now?"
+            }
+          ]
+        },
+        "13": {
+          "event": "cosmicbreach:bossvoice/unsung_one_gone_13",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_one_gone_13",
+          "length_ticks": 94,
+          "speech_start_ticks": 2,
+          "speech_ticks": 49,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "Who will sing"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 26,
+              "text": "its part now?"
+            }
+          ]
+        },
+        "23": {
+          "event": "cosmicbreach:bossvoice/unsung_one_gone_23",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_one_gone_23",
+          "length_ticks": 94,
+          "speech_start_ticks": 2,
+          "speech_ticks": 49,
+          "fragments": [
+            {
+              "mask": 2,
+              "start_ticks": 2,
+              "text": "Who will sing"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 26,
+              "text": "its part now?"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "alone",
+      "trigger": "hp_threshold:33",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "words": "I cannot... finish it... alone.",
+      "variants": {
+        "1": {
+          "event": "cosmicbreach:bossvoice/unsung_alone_1",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_alone_1",
+          "length_ticks": 101,
+          "speech_start_ticks": 2,
+          "speech_ticks": 59,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "I cannot... finish it... alone."
+            }
+          ]
+        },
+        "2": {
+          "event": "cosmicbreach:bossvoice/unsung_alone_2",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_alone_2",
+          "length_ticks": 105,
+          "speech_start_ticks": 2,
+          "speech_ticks": 60,
+          "fragments": [
+            {
+              "mask": 2,
+              "start_ticks": 2,
+              "text": "I cannot... finish it... alone."
+            }
+          ]
+        },
+        "3": {
+          "event": "cosmicbreach:bossvoice/unsung_alone_3",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_alone_3",
+          "length_ticks": 112,
+          "speech_start_ticks": 2,
+          "speech_ticks": 67,
+          "fragments": [
+            {
+              "mask": 3,
+              "start_ticks": 2,
+              "text": "I cannot... finish it... alone."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "voice_falls",
+      "trigger": "player_death",
+      "condition": "masks:3",
+      "priority": 70,
+      "repeat": "once per fight",
+      "words": "Another voice falls silent in the song.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_voice_falls",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_voice_falls",
+          "length_ticks": 102,
+          "speech_start_ticks": 2,
+          "speech_ticks": 64,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "Another voice"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 20,
+              "text": "falls silent"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 44,
+              "text": "in the song."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "breathe",
+      "trigger": "player_low_health",
+      "condition": "health<=25%, masks:3",
+      "priority": 60,
+      "repeat": "once per fight",
+      "words": "Breathe, little voice, between the beats.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_breathe",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_breathe",
+          "length_ticks": 100,
+          "speech_start_ticks": 2,
+          "speech_ticks": 64,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "Breathe,"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 14,
+              "text": "little voice,"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 32,
+              "text": "between the beats."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "thief",
+      "trigger": "weapon:forge_tier_3",
+      "condition": "item:choir_astrolabe, also:forge_tier_4, masks:3",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "Gently, thief, that astrolabe was ours.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_thief",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_thief",
+          "length_ticks": 110,
+          "speech_start_ticks": 2,
+          "speech_ticks": 70,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "Gently, thief,"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 26,
+              "text": "that astrolabe"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 50,
+              "text": "was ours."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "robes",
+      "trigger": "armor:mod_full_set",
+      "condition": "set:regalia, masks:3",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "You wear our robes, but you do not sing.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_robes",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_robes",
+          "length_ticks": 99,
+          "speech_start_ticks": 2,
+          "speech_ticks": 63,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "You wear our robes,"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 32,
+              "text": "but you do not"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 50,
+              "text": "sing."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "so_little_song",
+      "trigger": "gear:over",
+      "condition": "masks:3",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "All that armor, and so little song.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_so_little_song",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_so_little_song",
+          "length_ticks": 102,
+          "speech_start_ticks": 2,
+          "speech_ticks": 64,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "All that armor,"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 32,
+              "text": "and so little"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 50,
+              "text": "song."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "let_us_rise",
+      "trigger": "taunt",
+      "condition": "on:break, masks:3",
+      "priority": 60,
+      "repeat": "once per fight",
+      "words": "Let us rise, we have not finished.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_let_us_rise",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_let_us_rise",
+          "length_ticks": 102,
+          "speech_start_ticks": 2,
+          "speech_ticks": 63,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "Let us rise,"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 32,
+              "text": "we have not"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 50,
+              "text": "finished."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "found_silence",
+      "trigger": "taunt",
+      "condition": "on:harmonize_all_safe, masks:3",
+      "priority": 55,
+      "repeat": "once per fight",
+      "words": "You found the silence we never could.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_found_silence",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_found_silence",
+          "length_ticks": 99,
+          "speech_start_ticks": 2,
+          "speech_ticks": 59,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "You found"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 14,
+              "text": "the silence"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 32,
+              "text": "we never could."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "finished",
+      "trigger": "boss_kill",
+      "condition": "none",
+      "priority": 100,
+      "repeat": "once per fight",
+      "words": "The hymn is finished, at last.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/unsung_finished",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_finished",
+          "length_ticks": 89,
+          "speech_start_ticks": 1,
+          "speech_ticks": 45,
+          "fragments": [
+            {
+              "mask": 1,
+              "start_ticks": 2,
+              "text": "The hymn"
+            },
+            {
+              "mask": 2,
+              "start_ticks": 14,
+              "text": "is finished,"
+            },
+            {
+              "mask": 3,
+              "start_ticks": 26,
+              "text": "at last."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

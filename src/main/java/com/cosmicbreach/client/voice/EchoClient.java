@@ -68,7 +68,9 @@ public final class EchoClient {
                 keepSubtitle(mc, playing);
             }
         }
-        boolean blocked = mc.level == null || mc.player == null || FallUpClient.active() || mc.screen instanceof ReceivingLevelScreen;
+        // one voice at a time: the guide waits while a boss line plays or waits for it (1.1)
+        boolean blocked = mc.level == null || mc.player == null || FallUpClient.active() || mc.screen instanceof ReceivingLevelScreen
+                || com.cosmicbreach.client.voice.BossVoiceClient.speaking();
         EchoLine next = QUEUE.next(ticks, blocked);
         if (next != null) {
             playing = new Voice(next);

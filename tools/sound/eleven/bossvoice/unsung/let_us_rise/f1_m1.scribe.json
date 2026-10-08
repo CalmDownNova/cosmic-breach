@@ -1,0 +1,40 @@
+{
+ "text": "Let us rise",
+ "words": [
+  {
+   "text": "Let",
+   "start": 0.22,
+   "end": 0.36,
+   "type": "word",
+   "logprob": -9.929640509653836e-05
+  },
+  {
+   "text": " ",
+   "start": 0.36,
+   "end": 0.42,
+   "type": "spacing",
+   "logprob": -4.5536911784438416e-05
+  },
+  {
+   "text": "us",
+   "start": 0.42,
+   "end": 0.54,
+   "type": "word",
+   "logprob": -4.5536911784438416e-05
+  },
+  {
+   "text": " ",
+   "start": 0.54,
+   "end": 0.68,
+   "type": "spacing",
+   "logprob": -1.6569954823353328e-05
+  },
+  {
+   "text": "rise",
+   "start": 0.68,
+   "end": 1.32,
+   "type": "word",
+   "logprob": -1.6569954823353328e-05
+  }
+ ]
+}

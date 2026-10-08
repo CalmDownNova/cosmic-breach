@@ -1,0 +1,249 @@
+{
+  "kind": "colossus",
+  "anim": {
+    "length": 6.0,
+    "bones": {
+      "glow": {
+        "bob": 1.5,
+        "spin_y": 90.0
+      }
+    }
+  },
+  "bones": [
+    {
+      "name": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [
+        {
+          "origin": [
+            -8,
+            0,
+            -8
+          ],
+          "size": [
+            16,
+            2,
+            16
+          ],
+          "paint": "stone"
+        },
+        {
+          "origin": [
+            -6,
+            2,
+            -6
+          ],
+          "size": [
+            12,
+            2,
+            12
+          ],
+          "paint": "stone"
+        },
+        {
+          "origin": [
+            -4,
+            4,
+            -4
+          ],
+          "size": [
+            8,
+            8,
+            8
+          ],
+          "paint": "pillar"
+        },
+        {
+          "origin": [
+            -6,
+            12,
+            -6
+          ],
+          "size": [
+            12,
+            2,
+            12
+          ],
+          "paint": "gold"
+        }
+      ]
+    },
+    {
+      "name": "glow",
+      "parent": "root",
+      "pivot": [
+        0,
+        29,
+        0
+      ],
+      "cubes": [
+        {
+          "origin": [
+            -1.0,
+            17,
+            -1.0
+          ],
+          "size": [
+            2,
+            2,
+            2
+          ],
+          "paint": "crystal",
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "pivot": [
+            0,
+            18.0,
+            0
+          ]
+        },
+        {
+          "origin": [
+            -2.5,
+            19,
+            -2.5
+          ],
+          "size": [
+            5,
+            3,
+            5
+          ],
+          "paint": "crystal",
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "pivot": [
+            0,
+            20.5,
+            0
+          ]
+        },
+        {
+          "origin": [
+            -4.0,
+            22,
+            -4.0
+          ],
+          "size": [
+            8,
+            4,
+            8
+          ],
+          "paint": "crystal_band",
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "pivot": [
+            0,
+            24.0,
+            0
+          ]
+        },
+        {
+          "origin": [
+            -5.5,
+            26,
+            -5.5
+          ],
+          "size": [
+            11,
+            5,
+            11
+          ],
+          "paint": "crystal_band",
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "pivot": [
+            0,
+            28.5,
+            0
+          ]
+        },
+        {
+          "origin": [
+            -4.0,
+            31,
+            -4.0
+          ],
+          "size": [
+            8,
+            4,
+            8
+          ],
+          "paint": "crystal_band",
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "pivot": [
+            0,
+            33.0,
+            0
+          ]
+        },
+        {
+          "origin": [
+            -2.5,
+            35,
+            -2.5
+          ],
+          "size": [
+            5,
+            3,
+            5
+          ],
+          "paint": "crystal",
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "pivot": [
+            0,
+            36.5,
+            0
+          ]
+        },
+        {
+          "origin": [
+            -1.0,
+            38,
+            -1.0
+          ],
+          "size": [
+            2,
+            3,
+            2
+          ],
+          "paint": "tip",
+          "rotation": [
+            0,
+            45,
+            0
+          ],
+          "pivot": [
+            0,
+            39.5,
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

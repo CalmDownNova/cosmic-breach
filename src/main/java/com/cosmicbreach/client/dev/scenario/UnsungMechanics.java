@@ -184,10 +184,10 @@ final class UnsungMechanics {
                 .waitUntil("the hymnal wakes the choir", 40, () -> UnsungScenario.ask(u -> u.state() == Unsung.State.INTRO))
                 .check("250 health a mask for one player, one bar of 750", () -> UnsungScenario.ask(u -> Math.abs(u.totalMaxHealth() - 750f) < 0.01f
                         && u.masks().values().stream().allMatch(m -> Math.abs(m.getMaxHealth() - 250f) < 0.01f)))
-                .check("the first line is an 8-beat line of Vesper's clock, 8 to 15 beats away", () -> UnsungScenario.ask(u -> {
+                .check("the first line is an 8-beat line of Vesper's clock, 8 to 23 beats away (one more turn when her wake sounds need it)", () -> UnsungScenario.ask(u -> {
                     long start = u.fightStart();
                     long now = u.level().getGameTime();
-                    return VesperClock.beat(start) % 8 == 0 && start % 12 == 0 && start - now >= 7 * 12 && start - now <= 16 * 12;
+                    return VesperClock.beat(start) % 8 == 0 && start % 12 == 0 && start - now >= 7 * 12 && start - now <= 24 * 12;
                 }))
                 .run("back to the Maul", () -> KeyMapping.click(mc.options.keyHotbarSlots[0].getKey()))
                 .run("onto the choir floor", () -> {

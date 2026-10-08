@@ -1,0 +1,1834 @@
+{
+  "bossvoice/unsung/open_solo/f1_m1_take1": {
+    "ok": true,
+    "heard": "Who comes?",
+    "speech_s": 0.52,
+    "span_s": 0.581,
+    "f0": 228.5,
+    "sha": "ab8fca36286ee8ae",
+    "placed_s": 0.597
+  },
+  "bossvoice/unsung/open_solo/f2_m2_take1": {
+    "ok": true,
+    "heard": "To the choir",
+    "speech_s": 0.66,
+    "span_s": 0.775,
+    "f0": 102.8,
+    "sha": "f4ddb4aefbfecd71",
+    "placed_s": 0.819
+  },
+  "bossvoice/unsung/open_solo/f3_m3_take1": {
+    "ok": true,
+    "heard": "Without a song",
+    "speech_s": 0.94,
+    "span_s": 1.121,
+    "f0": 84.6,
+    "sha": "8c85709469a653b5",
+    "placed_s": 1.282
+  },
+  "heliarch/open_group_take1": {
+    "ok": true,
+    "heard": "A whole choir in the dark. I poured a sun into it for you. It was not enough",
+    "speech_s": 7.1,
+    "span_s": 7.275,
+    "f0": 100.9,
+    "sha": "6e99ce076337ec4d"
+  },
+  "heliarch/open_again_take1": {
+    "ok": true,
+    "heard": "You again. Was my light not enough the first time?",
+    "speech_s": 3.46,
+    "span_s": 3.756,
+    "f0": 122.0,
+    "sha": "a210253458719ac7"
+  },
+  "heliarch/loud_light_take1": {
+    "ok": true,
+    "heard": "Your light is loud the hollow can hear it",
+    "speech_s": 2.94,
+    "span_s": 3.091,
+    "f0": 117.9,
+    "sha": "24e17422f1fc835a"
+  },
+  "heliarch/nova_again_take1": {
+    "ok": true,
+    "heard": "Again! Burn!",
+    "speech_s": 1.64,
+    "span_s": 1.775,
+    "f0": 173.0,
+    "sha": "6afc4b0c33d5e1db"
+  },
+  "heliarch/nova_broken_take1": {
+    "ok": true,
+    "heard": "My son broken again",
+    "speech_s": 2.92,
+    "span_s": 3.144,
+    "f0": 172.9,
+    "sha": "e7521894ffd0727b"
+  },
+  "heliarch/nova_failed_take1": {
+    "ok": true,
+    "heard": "Too slow. The dark is always faster.",
+    "speech_s": 2.94,
+    "span_s": 3.162,
+    "f0": 108.9,
+    "sha": "69a0d99a0dbc580e"
+  },
+  "heliarch/not_again_take1": {
+    "ok": true,
+    "heard": "Not again. Not the dark again",
+    "speech_s": 2.28,
+    "span_s": 2.601,
+    "f0": 161.5,
+    "sha": "36070b2283b06974"
+  },
+  "heliarch/alone_now_take1": {
+    "ok": true,
+    "heard": "Alone now as I was",
+    "speech_s": 2.28,
+    "span_s": 2.551,
+    "f0": 100.3,
+    "sha": "4df88ce60da61b50"
+  },
+  "heliarch/one_less_take1": {
+    "ok": true,
+    "heard": "One less voice",
+    "speech_s": 1.02,
+    "span_s": 1.318,
+    "f0": 109.2,
+    "sha": "ae4e0c5cf9e7b8d1"
+  },
+  "heliarch/flicker_take1": {
+    "ok": true,
+    "heard": "Flickering. I remember how that feels",
+    "speech_s": 2.74,
+    "span_s": 2.99,
+    "f0": 108.9,
+    "sha": "e0f104ef6629a7b0"
+  },
+  "heliarch/spat_out_take1": {
+    "ok": true,
+    "heard": "Even the Hollow will not have you",
+    "speech_s": 1.82,
+    "span_s": 2.057,
+    "f0": 93.0,
+    "sha": "ca7179385507845f"
+  },
+  "heliarch/withdraw_take1": {
+    "ok": true,
+    "heard": "Go then I have waited longer than you have lived",
+    "speech_s": 3.68,
+    "span_s": 3.88,
+    "f0": 110.4,
+    "sha": "083a66ba76b7a159"
+  },
+  "heliarch/came_back_take1": {
+    "ok": true,
+    "heard": "You came back. They always come back",
+    "speech_s": 3.16,
+    "span_s": 3.479,
+    "f0": 102.6,
+    "sha": "66dfeb9237e09b68"
+  },
+  "heliarch/my_light_take1": {
+    "ok": true,
+    "heard": "That light was mine",
+    "speech_s": 1.9,
+    "span_s": 2.077,
+    "f0": 120.5,
+    "sha": "278d80e23b39de66"
+  },
+  "heliarch/arrows_take1": {
+    "ok": true,
+    "heard": "Arrows. My halo has eaten a thousand",
+    "speech_s": 2.98,
+    "span_s": 3.102,
+    "f0": 116.5,
+    "sha": "133e15f3d8d09707"
+  },
+  "heliarch/fists_take1": {
+    "ok": true,
+    "heard": "You strike a sun with your hands?",
+    "speech_s": 2.12,
+    "span_s": 2.371,
+    "f0": 162.2,
+    "sha": "72b3e8a8a08e3f49"
+  },
+  "heliarch/strange_steel_take1": {
+    "ok": true,
+    "heard": "That steel was not forged under my sun",
+    "speech_s": 2.66,
+    "span_s": 2.828,
+    "f0": 100.6,
+    "sha": "cda6cba0dc97edb8"
+  },
+  "heliarch/vestments_take1": {
+    "ok": true,
+    "heard": "You wear my choir's vestments. Take them off",
+    "speech_s": 3.08,
+    "span_s": 3.316,
+    "f0": 198.6,
+    "sha": "fe7dd9c09263d3ef"
+  },
+  "heliarch/no_armor_take1": {
+    "ok": true,
+    "heard": "No armor at all? You came to burn",
+    "speech_s": 2.96,
+    "span_s": 3.236,
+    "f0": 218.3,
+    "sha": "ab70a4bd6f7e028a"
+  },
+  "heliarch/give_it_take1": {
+    "ok": true,
+    "heard": "So much light on one singer. Give it to me",
+    "speech_s": 2.92,
+    "span_s": 3.216,
+    "f0": 152.6,
+    "sha": "dbb3d3f23b8b95d2"
+  },
+  "heliarch/in_that_take1": {
+    "ok": true,
+    "heard": "You came down here in that?",
+    "speech_s": 1.7,
+    "span_s": 1.907,
+    "f0": 168.3,
+    "sha": "66904aad256438ff"
+  },
+  "heliarch/too_close_take1": {
+    "ok": true,
+    "heard": "Too close to the sun, singer",
+    "speech_s": 1.78,
+    "span_s": 2.934,
+    "f0": 135.7,
+    "sha": "855c1f84c3bb5eab"
+  },
+  "heliarch/dim_me_take1": {
+    "ok": true,
+    "heard": "You dim me",
+    "speech_s": 1.44,
+    "span_s": 2.785,
+    "f0": 196.9,
+    "sha": "99c9447714f08896"
+  },
+  "heliarch/long_fight_take1": {
+    "ok": true,
+    "heard": "The light is leaving us both",
+    "speech_s": 1.7,
+    "span_s": 2.171,
+    "f0": 107.6,
+    "sha": "c56bb5e08a14ebd6"
+  },
+  "heliarch/nova_again_take2": {
+    "ok": true,
+    "heard": "Again, burn",
+    "speech_s": 1.72,
+    "span_s": 1.874,
+    "f0": 151.8,
+    "sha": "bec8a89976d0a853"
+  },
+  "heliarch/nova_broken_take2": {
+    "ok": true,
+    "heard": "My son broken again",
+    "speech_s": 3.0,
+    "span_s": 3.219,
+    "f0": 158.1,
+    "sha": "7c472d29fdc5521a"
+  },
+  "heliarch/came_back_take2": {
+    "ok": true,
+    "heard": "You came back. They always come back",
+    "speech_s": 3.1,
+    "span_s": 3.423,
+    "f0": 106.3,
+    "sha": "2c369491a1088766"
+  },
+  "heliarch/no_armor_take2": {
+    "ok": true,
+    "heard": "No armor at all? You came to burn",
+    "speech_s": 2.82,
+    "span_s": 3.032,
+    "f0": 196.0,
+    "sha": "640ebb618225ad43"
+  },
+  "heliarch/too_close_take2": {
+    "ok": true,
+    "heard": "Too close to the sun, singer",
+    "speech_s": 1.8,
+    "span_s": 2.987,
+    "f0": 127.8,
+    "sha": "3a26f27f4f77e2f5"
+  },
+  "heliarch/dim_me_take2": {
+    "ok": true,
+    "heard": "[gasps] You dim me",
+    "speech_s": 1.36,
+    "span_s": 2.768,
+    "f0": 197.3,
+    "sha": "17aec9bf294abc92"
+  },
+  "bossvoice/unsung/open_solo/f1_m1_take2": {
+    "ok": true,
+    "heard": "Who comes?",
+    "speech_s": 0.44,
+    "span_s": 0.54,
+    "f0": 225.6,
+    "sha": "a39b4577c718f433",
+    "placed_s": 0.566
+  },
+  "bossvoice/unsung/open_solo/f2_m2_take2": {
+    "ok": true,
+    "heard": "To the choir",
+    "speech_s": 0.68,
+    "span_s": 0.777,
+    "f0": 101.8,
+    "sha": "4c25a949eaf1277c",
+    "placed_s": 0.819
+  },
+  "bossvoice/unsung/open_solo/f3_m3_take2": {
+    "ok": true,
+    "heard": "Without a song",
+    "speech_s": 1.06,
+    "span_s": 1.153,
+    "f0": 87.2,
+    "sha": "4bfefd62b37fca68",
+    "placed_s": 1.306
+  },
+  "bossvoice/unsung/open_group/f1_m1_take1": {
+    "ok": true,
+    "heard": "So many of you",
+    "speech_s": 1.16,
+    "span_s": 1.408,
+    "f0": 212.5,
+    "sha": "f2a5dcc3f3b97f2f",
+    "placed_s": 1.571
+  },
+  "bossvoice/unsung/open_group/f1_m1_take2": {
+    "ok": true,
+    "heard": "So many of you",
+    "speech_s": 1.1,
+    "span_s": 1.332,
+    "f0": 194.3,
+    "sha": "1d6bd9709c7cc7ad",
+    "placed_s": 1.5
+  },
+  "bossvoice/unsung/open_group/f2_m2_take1": {
+    "ok": true,
+    "heard": "And not one",
+    "speech_s": 0.94,
+    "span_s": 1.073,
+    "f0": 107.8,
+    "sha": "7c4e6d9204603f02",
+    "placed_s": 1.27
+  },
+  "bossvoice/unsung/open_group/f2_m2_take2": {
+    "ok": true,
+    "heard": "And not one",
+    "speech_s": 0.88,
+    "span_s": 1.047,
+    "f0": 109.7,
+    "sha": "b65e2493d7b16e94",
+    "placed_s": 1.231
+  },
+  "bossvoice/unsung/open_group/f3_m3_take1": {
+    "ok": true,
+    "heard": "knows the words",
+    "speech_s": 1.08,
+    "span_s": 1.298,
+    "f0": 99.5,
+    "sha": "cc4f713dab234f63",
+    "placed_s": 1.46
+  },
+  "bossvoice/unsung/open_group/f3_m3_take2": {
+    "ok": true,
+    "heard": "knows the words",
+    "speech_s": 1.12,
+    "span_s": 1.308,
+    "f0": 103.8,
+    "sha": "5d20440fe92c14a1",
+    "placed_s": 1.484
+  },
+  "bossvoice/unsung/open_again/f1_m1_take1": {
+    "ok": true,
+    "heard": "You came back",
+    "speech_s": 0.72,
+    "span_s": 0.785,
+    "f0": 211.0,
+    "sha": "13e0375ef2aa99fb",
+    "placed_s": 0.911
+  },
+  "bossvoice/unsung/open_again/f1_m1_take2": {
+    "ok": true,
+    "heard": "You came back",
+    "speech_s": 0.86,
+    "span_s": 0.826,
+    "f0": 214.6,
+    "sha": "cbd0f9f13a8f1bba",
+    "placed_s": 0.954
+  },
+  "bossvoice/unsung/open_again/f2_m2_take1": {
+    "ok": true,
+    "heard": "to hear us",
+    "speech_s": 0.62,
+    "span_s": 0.717,
+    "f0": 125.1,
+    "sha": "b0ecc7b76036e829",
+    "placed_s": 0.72
+  },
+  "bossvoice/unsung/open_again/f2_m2_take2": {
+    "ok": true,
+    "heard": "To hear us",
+    "speech_s": 0.6,
+    "span_s": 0.683,
+    "f0": 122.8,
+    "sha": "a1aeb2f324ac0d9e",
+    "placed_s": 0.72
+  },
+  "bossvoice/unsung/open_again/f3_m3_take1": {
+    "ok": true,
+    "heard": "Forget again",
+    "speech_s": 1.02,
+    "span_s": 1.249,
+    "f0": 114.5,
+    "sha": "8d08d08f9485df03",
+    "placed_s": 1.384
+  },
+  "bossvoice/unsung/open_again/f3_m3_take2": {
+    "ok": true,
+    "heard": "Forget again",
+    "speech_s": 1.06,
+    "span_s": 1.352,
+    "f0": 123.9,
+    "sha": "59f3e2f898267d83",
+    "placed_s": 1.526
+  },
+  "bossvoice/unsung/one_gone/f1_m1_take1": {
+    "ok": false,
+    "heard": "Who will see?",
+    "speech_s": 0.58,
+    "span_s": 0.747,
+    "f0": 261.7,
+    "sha": "49d9683f897822c1",
+    "placed_s": 0.78
+  },
+  "bossvoice/unsung/one_gone/f1_m1_take2": {
+    "ok": false,
+    "heard": "Who will save",
+    "speech_s": 0.68,
+    "span_s": 0.88,
+    "f0": 254.2,
+    "sha": "37b9ebd44961e8ec",
+    "placed_s": 0.916
+  },
+  "bossvoice/unsung/one_gone/f1_m2_take1": {
+    "ok": true,
+    "heard": "Who will sing",
+    "speech_s": 0.62,
+    "span_s": 0.782,
+    "f0": 188.5,
+    "sha": "032d79c15ce06460",
+    "placed_s": 0.818
+  },
+  "bossvoice/unsung/one_gone/f1_m2_take2": {
+    "ok": false,
+    "heard": "Who will see?",
+    "speech_s": 0.62,
+    "span_s": 0.825,
+    "f0": 188.5,
+    "sha": "1c487d5eb092fac9",
+    "placed_s": 0.889
+  },
+  "bossvoice/unsung/one_gone/f2_m2_take1": {
+    "ok": true,
+    "heard": "It's part now",
+    "speech_s": 0.98,
+    "span_s": 1.14,
+    "f0": 135.9,
+    "sha": "1cd396ddf02ddc47",
+    "placed_s": 1.28
+  },
+  "bossvoice/unsung/one_gone/f2_m2_take2": {
+    "ok": true,
+    "heard": "It's part now",
+    "speech_s": 1.0,
+    "span_s": 1.143,
+    "f0": 133.6,
+    "sha": "38455cd0b8e00bc7",
+    "placed_s": 1.317
+  },
+  "bossvoice/unsung/one_gone/f2_m3_take1": {
+    "ok": true,
+    "heard": "It's part now",
+    "speech_s": 0.94,
+    "span_s": 1.116,
+    "f0": 73.8,
+    "sha": "f67d1daa24c1a478",
+    "placed_s": 1.264
+  },
+  "bossvoice/unsung/one_gone/f2_m3_take2": {
+    "ok": true,
+    "heard": "It's part now",
+    "speech_s": 0.94,
+    "span_s": 1.142,
+    "f0": 71.8,
+    "sha": "c7ece507e4629615",
+    "placed_s": 1.289
+  },
+  "bossvoice/unsung/alone/f1_m1_take1": {
+    "ok": true,
+    "heard": "I cannot finish it alone",
+    "speech_s": 2.76,
+    "span_s": 2.926,
+    "f0": 208.0,
+    "sha": "cccbffba40f82a7d",
+    "placed_s": 3.051
+  },
+  "bossvoice/unsung/alone/f1_m1_take2": {
+    "ok": true,
+    "heard": "I cannot finish it alone",
+    "speech_s": 2.6,
+    "span_s": 2.804,
+    "f0": 210.0,
+    "sha": "196cd19f8aa4dfe5",
+    "placed_s": 2.972
+  },
+  "bossvoice/unsung/alone/f1_m2_take1": {
+    "ok": true,
+    "heard": "I cannot finish it alone.",
+    "speech_s": 2.66,
+    "span_s": 2.932,
+    "f0": 129.9,
+    "sha": "6311596959cd0bc5",
+    "placed_s": 3.135
+  },
+  "bossvoice/unsung/alone/f1_m2_take2": {
+    "ok": true,
+    "heard": "I cannot finish it alone.",
+    "speech_s": 2.66,
+    "span_s": 2.847,
+    "f0": 126.4,
+    "sha": "769bc024a402aa9d",
+    "placed_s": 2.978
+  },
+  "bossvoice/unsung/alone/f1_m3_take1": {
+    "ok": true,
+    "heard": "I cannot finish it alone",
+    "speech_s": 2.94,
+    "span_s": 3.196,
+    "f0": 119.5,
+    "sha": "4cb8c9e0c4d9d867",
+    "placed_s": 3.379
+  },
+  "bossvoice/unsung/alone/f1_m3_take2": {
+    "ok": true,
+    "heard": "I cannot finish it alone",
+    "speech_s": 2.98,
+    "span_s": 3.256,
+    "f0": 113.7,
+    "sha": "ceb8da6816c8dd2d",
+    "placed_s": 3.387
+  },
+  "bossvoice/unsung/voice_falls/f1_m1_take1": {
+    "ok": true,
+    "heard": "Another voice",
+    "speech_s": 0.84,
+    "span_s": 0.936,
+    "f0": 188.5,
+    "sha": "232e34937495983a",
+    "placed_s": 1.085,
+    "start_db": -75.5,
+    "end_db": -2.4,
+    "end_hf": 1.0
+  },
+  "bossvoice/unsung/voice_falls/f1_m1_take2": {
+    "ok": true,
+    "heard": "Another voice",
+    "speech_s": 0.86,
+    "span_s": 0.942,
+    "f0": 186.9,
+    "sha": "0785613f4eb36af9",
+    "placed_s": 1.096,
+    "start_db": -73.9,
+    "end_db": -7.5,
+    "end_hf": 1.0
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take1": {
+    "ok": false,
+    "heard": "Fall silent",
+    "speech_s": 1.0,
+    "span_s": 1.117,
+    "f0": 111.6,
+    "sha": "f58729eab302f377",
+    "placed_s": 1.27,
+    "start_db": -29.4,
+    "end_db": -15.3,
+    "end_hf": 0.16
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take2": {
+    "ok": false,
+    "heard": "Fall silent",
+    "speech_s": 0.84,
+    "span_s": 0.966,
+    "f0": 106.3,
+    "sha": "c790abbbefba8831",
+    "placed_s": 1.189,
+    "start_db": -31.0,
+    "end_db": -14.1,
+    "end_hf": 0.06
+  },
+  "bossvoice/unsung/voice_falls/f3_m3_take1": {
+    "ok": true,
+    "heard": "In the song",
+    "speech_s": 0.76,
+    "span_s": 0.976,
+    "f0": 76.8,
+    "sha": "373b938fb676e634",
+    "placed_s": 1.143,
+    "start_db": -8.8,
+    "end_db": -72.0,
+    "end_hf": 0.19
+  },
+  "bossvoice/unsung/voice_falls/f3_m3_take2": {
+    "ok": true,
+    "heard": "In the song",
+    "speech_s": 0.76,
+    "span_s": 1.004,
+    "f0": 74.9,
+    "sha": "9aee73e7cda85c2d",
+    "placed_s": 1.166,
+    "start_db": -17.4,
+    "end_db": -75.9,
+    "end_hf": 0.06
+  },
+  "bossvoice/unsung/breathe/f1_m1_take1": {
+    "ok": true,
+    "heard": "Breathe.",
+    "speech_s": 0.7,
+    "span_s": 0.759,
+    "f0": 176.4,
+    "sha": "2f6fb9481ed38170",
+    "placed_s": 0.933
+  },
+  "bossvoice/unsung/breathe/f1_m1_take2": {
+    "ok": true,
+    "heard": "Breathe.",
+    "speech_s": 0.58,
+    "span_s": 0.61,
+    "f0": 169.0,
+    "sha": "ea770f778cfad73c",
+    "placed_s": 0.793
+  },
+  "bossvoice/unsung/breathe/f2_m2_take1": {
+    "ok": true,
+    "heard": "Little voice",
+    "speech_s": 0.8,
+    "span_s": 0.978,
+    "f0": 108.9,
+    "sha": "0caf5793e2858524",
+    "placed_s": 1.14
+  },
+  "bossvoice/unsung/breathe/f2_m2_take2": {
+    "ok": true,
+    "heard": "Little voice",
+    "speech_s": 0.8,
+    "span_s": 0.952,
+    "f0": 116.1,
+    "sha": "ff8c23c84f583652",
+    "placed_s": 1.115
+  },
+  "bossvoice/unsung/breathe/f3_m3_take1": {
+    "ok": false,
+    "heard": "Breathe the beats",
+    "speech_s": 1.12,
+    "span_s": 1.308,
+    "f0": 94.7,
+    "sha": "d456730f7c64cc8e",
+    "placed_s": 1.46
+  },
+  "bossvoice/unsung/breathe/f3_m3_take2": {
+    "ok": false,
+    "heard": "Breathe the beats",
+    "speech_s": 1.22,
+    "span_s": 1.408,
+    "f0": 101.6,
+    "sha": "fdea73310f7d2355",
+    "placed_s": 1.563
+  },
+  "bossvoice/unsung/thief/f1_m1_take1": {
+    "ok": true,
+    "heard": "Gently, thief",
+    "speech_s": 1.0,
+    "span_s": 1.072,
+    "f0": 247.8,
+    "sha": "e39e699916615ca2",
+    "placed_s": 1.243
+  },
+  "bossvoice/unsung/thief/f1_m1_take2": {
+    "ok": true,
+    "heard": "Gently, thief",
+    "speech_s": 0.98,
+    "span_s": 1.061,
+    "f0": 308.4,
+    "sha": "1b5d7ae0de9b1dd8",
+    "placed_s": 1.237
+  },
+  "bossvoice/unsung/thief/f2_m2_take1": {
+    "ok": true,
+    "heard": "That astrolabe",
+    "speech_s": 1.02,
+    "span_s": 1.036,
+    "f0": 104.3,
+    "sha": "d7479143a2c743e9",
+    "placed_s": 1.24
+  },
+  "bossvoice/unsung/thief/f2_m2_take2": {
+    "ok": true,
+    "heard": "That astrolabe",
+    "speech_s": 1.02,
+    "span_s": 1.075,
+    "f0": 106.8,
+    "sha": "adfe12e8f29439dc",
+    "placed_s": 1.231
+  },
+  "bossvoice/unsung/thief/f3_m3_take1": {
+    "ok": true,
+    "heard": "was ours.",
+    "speech_s": 0.9,
+    "span_s": 1.07,
+    "f0": 131.2,
+    "sha": "d631f27198ab95fa",
+    "placed_s": 1.23,
+    "start_db": -69.1,
+    "end_db": -68.6,
+    "end_hf": 0.21
+  },
+  "bossvoice/unsung/thief/f3_m3_take2": {
+    "ok": true,
+    "heard": "was ours",
+    "speech_s": 0.86,
+    "span_s": 1.058,
+    "f0": 129.7,
+    "sha": "00d50d441b1afd35",
+    "placed_s": 1.225,
+    "start_db": -72.4,
+    "end_db": -74.2,
+    "end_hf": 0.09
+  },
+  "bossvoice/unsung/robes/f1_m1_take1": {
+    "ok": true,
+    "heard": "You wear our robes",
+    "speech_s": 1.46,
+    "span_s": 1.643,
+    "f0": 204.2,
+    "sha": "5c8fc6156b4b0a50",
+    "placed_s": 1.838
+  },
+  "bossvoice/unsung/robes/f1_m1_take2": {
+    "ok": true,
+    "heard": "You wear our robes",
+    "speech_s": 1.42,
+    "span_s": 1.557,
+    "f0": 211.0,
+    "sha": "554828e12a8a6989",
+    "placed_s": 1.716
+  },
+  "bossvoice/unsung/robes/f2_m2_take1": {
+    "ok": true,
+    "heard": "But you do not",
+    "speech_s": 0.74,
+    "span_s": 0.835,
+    "f0": 128.2,
+    "sha": "3d9302520fb52976",
+    "placed_s": 0.995
+  },
+  "bossvoice/unsung/robes/f2_m2_take2": {
+    "ok": true,
+    "heard": "But you do not",
+    "speech_s": 0.74,
+    "span_s": 0.854,
+    "f0": 126.4,
+    "sha": "4b2266467dc10ae1",
+    "placed_s": 1.007
+  },
+  "bossvoice/unsung/robes/f3_m3_take1": {
+    "ok": true,
+    "heard": "Sing",
+    "speech_s": 0.38,
+    "span_s": 0.607,
+    "f0": 83.1,
+    "sha": "c53dce45a6591276",
+    "placed_s": 0.801
+  },
+  "bossvoice/unsung/robes/f3_m3_take2": {
+    "ok": true,
+    "heard": "Sing",
+    "speech_s": 0.46,
+    "span_s": 0.69,
+    "f0": 79.0,
+    "sha": "b757b0c4848d62ac",
+    "placed_s": 0.867
+  },
+  "bossvoice/unsung/so_little_song/f1_m1_take1": {
+    "ok": true,
+    "heard": "All that armor",
+    "speech_s": 1.2,
+    "span_s": 1.348,
+    "f0": 199.1,
+    "sha": "cf92a3b42e3ae5ce",
+    "placed_s": 1.559
+  },
+  "bossvoice/unsung/so_little_song/f1_m1_take2": {
+    "ok": true,
+    "heard": "All that armor",
+    "speech_s": 1.12,
+    "span_s": 1.362,
+    "f0": 209.0,
+    "sha": "a43e1152364d2808",
+    "placed_s": 1.572
+  },
+  "bossvoice/unsung/so_little_song/f2_m2_take1": {
+    "ok": true,
+    "heard": "And so little",
+    "speech_s": 0.86,
+    "span_s": 0.944,
+    "f0": 124.2,
+    "sha": "49658b6b7c3213d2",
+    "placed_s": 1.095
+  },
+  "bossvoice/unsung/so_little_song/f2_m2_take2": {
+    "ok": true,
+    "heard": "And so little",
+    "speech_s": 0.86,
+    "span_s": 0.959,
+    "f0": 117.3,
+    "sha": "5c17268b500debba",
+    "placed_s": 1.11
+  },
+  "bossvoice/unsung/so_little_song/f3_m3_take1": {
+    "ok": true,
+    "heard": "Song",
+    "speech_s": 0.42,
+    "span_s": 0.655,
+    "f0": 77.2,
+    "sha": "3cdca53e9822f095",
+    "placed_s": 0.839
+  },
+  "bossvoice/unsung/so_little_song/f3_m3_take2": {
+    "ok": true,
+    "heard": "Song",
+    "speech_s": 0.48,
+    "span_s": 0.631,
+    "f0": 66.9,
+    "sha": "ba438201446cbc53",
+    "placed_s": 0.799
+  },
+  "bossvoice/unsung/let_us_rise/f1_m1_take1": {
+    "ok": true,
+    "heard": "Let us rise",
+    "speech_s": 1.1,
+    "span_s": 1.225,
+    "f0": 249.2,
+    "sha": "8fc61ceb2ea47b4a",
+    "placed_s": 1.39
+  },
+  "bossvoice/unsung/let_us_rise/f1_m1_take2": {
+    "ok": true,
+    "heard": "Let us rise",
+    "speech_s": 1.1,
+    "span_s": 1.387,
+    "f0": 234.6,
+    "sha": "8bb9786be85b92d9",
+    "placed_s": 1.609
+  },
+  "bossvoice/unsung/let_us_rise/f2_m2_take1": {
+    "ok": true,
+    "heard": "We have not",
+    "speech_s": 0.64,
+    "span_s": 0.759,
+    "f0": 112.9,
+    "sha": "ac0e34700dca0579",
+    "placed_s": 0.922
+  },
+  "bossvoice/unsung/let_us_rise/f2_m2_take2": {
+    "ok": true,
+    "heard": "We have not",
+    "speech_s": 0.64,
+    "span_s": 0.774,
+    "f0": 113.1,
+    "sha": "d3caaa2eddf15df0",
+    "placed_s": 0.95
+  },
+  "bossvoice/unsung/let_us_rise/f3_m3_take1": {
+    "ok": true,
+    "heard": "Finished",
+    "speech_s": 0.5,
+    "span_s": 0.599,
+    "f0": 71.4,
+    "sha": "e01f9e4c53a3d60f",
+    "placed_s": 0.76
+  },
+  "bossvoice/unsung/let_us_rise/f3_m3_take2": {
+    "ok": true,
+    "heard": "Finished",
+    "speech_s": 0.5,
+    "span_s": 0.601,
+    "f0": 72.2,
+    "sha": "1de216cf87b17e17",
+    "placed_s": 0.754
+  },
+  "bossvoice/unsung/found_silence/f1_m1_take1": {
+    "ok": true,
+    "heard": "You found",
+    "speech_s": 0.5,
+    "span_s": 0.591,
+    "f0": 211.0,
+    "sha": "c34ad3a2869ec321",
+    "placed_s": 0.743
+  },
+  "bossvoice/unsung/found_silence/f1_m1_take2": {
+    "ok": true,
+    "heard": "You found",
+    "speech_s": 0.5,
+    "span_s": 0.59,
+    "f0": 211.0,
+    "sha": "684f07b3bc3929fa",
+    "placed_s": 0.743
+  },
+  "bossvoice/unsung/found_silence/f2_m2_take1": {
+    "ok": true,
+    "heard": "The silence",
+    "speech_s": 0.82,
+    "span_s": 0.933,
+    "f0": 109.6,
+    "sha": "5cc196ae15dd817c",
+    "placed_s": 1.094
+  },
+  "bossvoice/unsung/found_silence/f2_m2_take2": {
+    "ok": true,
+    "heard": "The silence",
+    "speech_s": 0.78,
+    "span_s": 0.872,
+    "f0": 110.8,
+    "sha": "f3cec24475b28fd1",
+    "placed_s": 1.03
+  },
+  "bossvoice/unsung/found_silence/f3_m3_take1": {
+    "ok": true,
+    "heard": "We never could.",
+    "speech_s": 1.12,
+    "span_s": 1.301,
+    "f0": 90.0,
+    "sha": "34c4619e2114f55d",
+    "placed_s": 1.484
+  },
+  "bossvoice/unsung/found_silence/f3_m3_take2": {
+    "ok": true,
+    "heard": "We never could",
+    "speech_s": 1.12,
+    "span_s": 1.348,
+    "f0": 101.4,
+    "sha": "2cdb84850fe91d66",
+    "placed_s": 1.527
+  },
+  "bossvoice/unsung/finished/f1_m1_take1": {
+    "ok": false,
+    "heard": "For him",
+    "speech_s": 0.42,
+    "span_s": 0.493,
+    "f0": 0.0,
+    "sha": "aa6ae053d807a5d7",
+    "placed_s": 0.539
+  },
+  "bossvoice/unsung/finished/f1_m1_take2": {
+    "ok": true,
+    "heard": "The hymn",
+    "speech_s": 0.42,
+    "span_s": 0.476,
+    "f0": 247.8,
+    "sha": "76195ba3b29c5a4c",
+    "placed_s": 0.521
+  },
+  "bossvoice/unsung/finished/f2_m2_take1": {
+    "ok": true,
+    "heard": "is finished",
+    "speech_s": 0.86,
+    "span_s": 0.965,
+    "f0": 0.0,
+    "sha": "61f60e317655bfaa",
+    "placed_s": 0.991
+  },
+  "bossvoice/unsung/finished/f2_m2_take2": {
+    "ok": true,
+    "heard": "is finished",
+    "speech_s": 0.84,
+    "span_s": 0.928,
+    "f0": 0.0,
+    "sha": "eb4c32e9208f7a38",
+    "placed_s": 0.951
+  },
+  "bossvoice/unsung/finished/f3_m3_take1": {
+    "ok": true,
+    "heard": "At last",
+    "speech_s": 0.8,
+    "span_s": 0.916,
+    "f0": 0.0,
+    "sha": "a69a95b33de96bdc",
+    "placed_s": 0.943
+  },
+  "bossvoice/unsung/finished/f3_m3_take2": {
+    "ok": false,
+    "heard": "At peace at last",
+    "speech_s": 2.24,
+    "span_s": 2.312,
+    "f0": 0.0,
+    "sha": "68a1f01b69df610b",
+    "placed_s": 2.324
+  },
+  "bossvoice/unsung/open_group/f1_m1_take3": {
+    "ok": true,
+    "heard": "So many of you",
+    "speech_s": 1.2,
+    "span_s": 1.419,
+    "f0": 210.0,
+    "sha": "3e2b45c6d3f6441b",
+    "placed_s": 1.586
+  },
+  "bossvoice/unsung/open_group/f3_m3_take3": {
+    "ok": true,
+    "heard": "knows the words",
+    "speech_s": 1.04,
+    "span_s": 1.223,
+    "f0": 141.6,
+    "sha": "5437cda31ce9c9c0",
+    "placed_s": 1.385
+  },
+  "bossvoice/unsung/open_again/f3_m3_take3": {
+    "ok": true,
+    "heard": "Forget again",
+    "speech_s": 0.96,
+    "span_s": 1.23,
+    "f0": 113.1,
+    "sha": "f67af820234edd47",
+    "placed_s": 1.418
+  },
+  "bossvoice/unsung/one_gone/f1_m1_take3": {
+    "ok": true,
+    "heard": "Who will sing",
+    "speech_s": 0.64,
+    "span_s": 0.8,
+    "f0": 269.7,
+    "sha": "fcda8cea5ae21d95",
+    "placed_s": 0.834
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take3": {
+    "ok": false,
+    "heard": "Fall silent",
+    "speech_s": 0.84,
+    "span_s": 0.962,
+    "f0": 106.9,
+    "sha": "0c1c9802ce9c544a",
+    "placed_s": 1.148,
+    "start_db": -30.5,
+    "end_db": -69.7,
+    "end_hf": 0.01
+  },
+  "bossvoice/unsung/breathe/f3_m3_take3": {
+    "ok": false,
+    "heard": "Breathe Labitz",
+    "speech_s": 1.2,
+    "span_s": 1.312,
+    "f0": 98.7,
+    "sha": "e0cc614fa7e4d92e",
+    "placed_s": 1.472
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take4": {
+    "ok": false,
+    "heard": "Fall silent",
+    "speech_s": 1.08,
+    "span_s": 1.247,
+    "f0": 102.7,
+    "sha": "84e1cf9c58c7d2eb",
+    "placed_s": 1.397,
+    "start_db": -72.2,
+    "end_db": -14.7,
+    "end_hf": 0.15
+  },
+  "bossvoice/unsung/breathe/f3_m3_take4": {
+    "ok": true,
+    "heard": "Between the beats",
+    "speech_s": 1.4,
+    "span_s": 1.575,
+    "f0": 83.1,
+    "sha": "2fe194d2e835eaf0",
+    "placed_s": 1.738
+  },
+  "bossvoice/unsung/finished/f2_m2_take3": {
+    "ok": true,
+    "heard": "is finished.",
+    "speech_s": 0.7,
+    "span_s": 0.831,
+    "f0": 0.0,
+    "sha": "05f79a48a702b2e2",
+    "placed_s": 0.857
+  },
+  "bossvoice/unsung/finished/f2_m2_take4": {
+    "ok": true,
+    "heard": "is finished",
+    "speech_s": 0.7,
+    "span_s": 0.798,
+    "f0": 0.0,
+    "sha": "3c8abbcb506758b1",
+    "placed_s": 0.835
+  },
+  "bossvoice/unsung/finished/f2_m2_take5": {
+    "ok": true,
+    "heard": "is finished",
+    "speech_s": 0.7,
+    "span_s": 0.773,
+    "f0": 0.0,
+    "sha": "ffbd879f3eb8824d",
+    "placed_s": 0.806
+  },
+  "bossvoice/unsung/finished/f2_m2_take6": {
+    "ok": false,
+    "heard": "It's finished",
+    "speech_s": 0.74,
+    "span_s": 0.787,
+    "f0": 0.0,
+    "sha": "f2c1d9f0ab2933c5",
+    "placed_s": 0.817
+  },
+  "bossvoice/unsung/thief/f3_m3_take3": {
+    "ok": true,
+    "heard": "was ours.",
+    "speech_s": 0.94,
+    "span_s": 1.085,
+    "f0": 139.1,
+    "sha": "43f01afd72fb1537",
+    "placed_s": 1.25,
+    "start_db": -73.0,
+    "end_db": -76.8,
+    "end_hf": 0.03
+  },
+  "bossvoice/unsung/thief/f3_m3_take4": {
+    "ok": true,
+    "heard": "was ours.",
+    "speech_s": 0.98,
+    "span_s": 1.106,
+    "f0": 132.0,
+    "sha": "fa57d4c21907bd71",
+    "placed_s": 1.263,
+    "start_db": -48.9,
+    "end_db": -73.7,
+    "end_hf": 0.03
+  },
+  "bossvoice/unsung/thief/f3_m3_take5": {
+    "ok": true,
+    "heard": "was ours.",
+    "speech_s": 0.82,
+    "span_s": 0.969,
+    "start_db": -69.9,
+    "end_db": -63.8,
+    "end_hf": 0.43,
+    "placed_s": 1.133,
+    "f0": 76.8,
+    "sha": "bbffe56e60bc6c7c"
+  },
+  "bossvoice/unsung/thief/f3_m3_take6": {
+    "ok": true,
+    "heard": "was ours.",
+    "speech_s": 0.8,
+    "span_s": 0.973,
+    "start_db": -73.7,
+    "end_db": -67.5,
+    "end_hf": 0.08,
+    "placed_s": 1.13,
+    "f0": 83.3,
+    "sha": "dd7bd514ed0873ce"
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take5": {
+    "ok": false,
+    "heard": "Fall silent",
+    "speech_s": 0.94,
+    "span_s": 0.962,
+    "start_db": -21.4,
+    "end_db": -24.9,
+    "end_hf": 0.13,
+    "placed_s": 1.189,
+    "f0": 105.5,
+    "sha": "dbd6ca65a8b65071"
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take6": {
+    "ok": true,
+    "heard": "Falls silent",
+    "speech_s": 1.98,
+    "span_s": 2.094,
+    "start_db": -29.4,
+    "end_db": -55.1,
+    "end_hf": 0.01,
+    "placed_s": 2.264,
+    "f0": 110.7,
+    "sha": "9a908ceef87aefcd"
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take7": {
+    "ok": true,
+    "heard": "Falls silent",
+    "speech_s": 1.72,
+    "span_s": 1.837,
+    "start_db": -30.3,
+    "end_db": -14.6,
+    "end_hf": 0.18,
+    "placed_s": 1.99,
+    "f0": 111.2,
+    "sha": "fd6bd4f72672a712"
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take8": {
+    "ok": false,
+    "heard": "Fall silent",
+    "speech_s": 0.9,
+    "span_s": 0.992,
+    "start_db": -74.4,
+    "end_db": -15.5,
+    "end_hf": 0.2,
+    "placed_s": 1.218,
+    "f0": 109.4,
+    "sha": "491c49ee6944e717"
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take9": {
+    "ok": false,
+    "heard": "Full silence",
+    "speech_s": 0.92,
+    "span_s": 1.047,
+    "start_db": -73.2,
+    "end_db": -45.9,
+    "end_hf": 0.01,
+    "placed_s": 1.224,
+    "f0": 100.9,
+    "sha": "b2c987d33a17fd8c"
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take10": {
+    "ok": false,
+    "heard": "Fall silent",
+    "speech_s": 1.0,
+    "span_s": 1.146,
+    "start_db": -26.4,
+    "end_db": -75.5,
+    "end_hf": 0.16,
+    "placed_s": 1.325,
+    "f0": 102.6,
+    "sha": "f31b4423861fb186"
+  },
+  "bossvoice/unsung/voice_falls/f2_m2_take11": {
+    "ok": true,
+    "heard": "Falls silent",
+    "speech_s": 1.16,
+    "span_s": 1.277,
+    "start_db": -28.3,
+    "end_db": -15.0,
+    "end_hf": 0.07,
+    "placed_s": 1.43,
+    "f0": 105.5,
+    "sha": "585cd046e747b8ee"
+  },
+  "bossvoice/leviathan/fork_take1": {
+    "ok": true,
+    "heard": "A fork? I am no fish",
+    "speech_s": 2.52,
+    "span_s": 2.734,
+    "start_db": -73.6,
+    "end_db": -76.8,
+    "end_hf": 0.09,
+    "tempo_fit": null,
+    "f0": 195.2,
+    "sha": "34168c6db7eb1594"
+  },
+  "bossvoice/colossus/wait_take1": {
+    "ok": true,
+    "heard": "I will wait",
+    "speech_s": 0.7,
+    "span_s": 1.137,
+    "start_db": -72.9,
+    "end_db": -75.2,
+    "end_hf": 0.13,
+    "f0": 84.6,
+    "sha": "46a9b2f7a05fac6d"
+  },
+  "bossvoice/leviathan/fork_take2": {
+    "ok": true,
+    "heard": "A fork? I am no fish",
+    "speech_s": 2.26,
+    "span_s": 2.539,
+    "start_db": -75.3,
+    "end_db": -77.9,
+    "end_hf": 0.07,
+    "tempo_fit": null,
+    "f0": 217.6,
+    "sha": "724dfce979eb2fff"
+  },
+  "bossvoice/leviathan/fork_take3": {
+    "ok": true,
+    "heard": "A fork? I am no fish",
+    "speech_s": 1.74,
+    "span_s": 1.878,
+    "start_db": -73.0,
+    "end_db": -78.3,
+    "end_hf": 0.08,
+    "tempo_fit": 1.0,
+    "f0": 204.2,
+    "sha": "92bfa9468e6d5e2a"
+  },
+  "bossvoice/colossus/wait_take2": {
+    "ok": true,
+    "heard": "I will wait",
+    "speech_s": 1.18,
+    "span_s": 1.723,
+    "start_db": -75.5,
+    "end_db": -77.4,
+    "end_hf": 0.07,
+    "f0": 82.6,
+    "sha": "c19f120c76cdf972"
+  },
+  "bossvoice/colossus/wait_take3": {
+    "ok": true,
+    "heard": "I will wait.",
+    "speech_s": 1.16,
+    "span_s": 1.71,
+    "start_db": -73.6,
+    "end_db": -75.7,
+    "end_hf": 0.07,
+    "f0": 108.4,
+    "sha": "57458b2d80f0f471"
+  },
+  "bossvoice/leviathan/fork_take4": {
+    "ok": true,
+    "heard": "A fork? I am no fish",
+    "speech_s": 2.14,
+    "span_s": 2.347,
+    "start_db": -74.2,
+    "end_db": -75.1,
+    "end_hf": 0.06,
+    "tempo_fit": null,
+    "f0": 221.6,
+    "sha": "b2287177fe7545b5"
+  },
+  "bossvoice/colossus/open_solo_take1": {
+    "ok": true,
+    "heard": "A climber Come learn",
+    "speech_s": 3.64,
+    "span_s": 4.118,
+    "start_db": -77.2,
+    "end_db": -82.4,
+    "end_hf": 0.03,
+    "f0": 86.6,
+    "sha": "9f116c4f14278bf8"
+  },
+  "bossvoice/colossus/open_group_take1": {
+    "ok": true,
+    "heard": "Many climbers. Good. Come",
+    "speech_s": 3.28,
+    "span_s": 3.979,
+    "start_db": -77.3,
+    "end_db": -79.8,
+    "end_hf": 0.05,
+    "f0": 105.0,
+    "sha": "adcf1c6728850371"
+  },
+  "bossvoice/colossus/fracture_take1": {
+    "ok": true,
+    "heard": "Now I remember",
+    "speech_s": 2.32,
+    "span_s": 2.862,
+    "start_db": -77.0,
+    "end_db": -79.6,
+    "end_hf": 0.03,
+    "f0": 99.3,
+    "sha": "d25f37412e315bb2"
+  },
+  "bossvoice/colossus/shatter_take1": {
+    "ok": true,
+    "heard": "All three or none?",
+    "speech_s": 1.96,
+    "span_s": 2.318,
+    "start_db": -71.8,
+    "end_db": -75.4,
+    "end_hf": 0.13,
+    "f0": 95.6,
+    "sha": "08241176f6fec824"
+  },
+  "bossvoice/colossus/player_down_take1": {
+    "ok": true,
+    "heard": "Rest then climb again.",
+    "speech_s": 3.16,
+    "span_s": 3.663,
+    "start_db": -73.8,
+    "end_db": -77.2,
+    "end_hf": 0.03,
+    "f0": 89.9,
+    "sha": "9acdfec7a4e395c9"
+  },
+  "bossvoice/colossus/my_heart_take1": {
+    "ok": true,
+    "heard": "My heart in your blade",
+    "speech_s": 2.64,
+    "span_s": 3.074,
+    "start_db": -74.6,
+    "end_db": -74.9,
+    "end_hf": 0.1,
+    "f0": 92.5,
+    "sha": "d44f60f2df15fbea"
+  },
+  "bossvoice/colossus/fists_take1": {
+    "ok": true,
+    "heard": "Fists? Bold",
+    "speech_s": 2.12,
+    "span_s": 2.76,
+    "start_db": -75.5,
+    "end_db": -76.4,
+    "end_hf": 0.01,
+    "f0": 111.1,
+    "sha": "580a57c2621d974e"
+  },
+  "bossvoice/colossus/kill_take1": {
+    "ok": true,
+    "heard": "Go down and listen",
+    "speech_s": 2.26,
+    "span_s": 2.595,
+    "start_db": -74.6,
+    "end_db": -76.6,
+    "end_hf": 0.03,
+    "f0": 94.3,
+    "sha": "7e3d0470628f3136"
+  },
+  "bossvoice/leviathan/open_solo_take1": {
+    "ok": true,
+    "heard": "A small heavy singer in my sky. Show me how you swim",
+    "speech_s": 4.5,
+    "span_s": 4.74,
+    "start_db": -74.5,
+    "end_db": -76.3,
+    "end_hf": 0.15,
+    "tempo_fit": 1.0,
+    "f0": 152.1,
+    "sha": "fda8a836bd2a3819"
+  },
+  "bossvoice/leviathan/open_group_take1": {
+    "ok": true,
+    "heard": "A chorus! No one has sung with me in an age.",
+    "speech_s": 4.12,
+    "span_s": 4.257,
+    "start_db": -73.9,
+    "end_db": -77.7,
+    "end_hf": 0.08,
+    "tempo_fit": 1.0,
+    "f0": 206.1,
+    "sha": "7f2b664031a92d3c"
+  },
+  "bossvoice/leviathan/open_again_take1": {
+    "ok": true,
+    "heard": "Back again? You missed my song",
+    "speech_s": 3.02,
+    "span_s": 3.372,
+    "start_db": -65.0,
+    "end_db": -61.2,
+    "end_hf": 0.12,
+    "tempo_fit": 1.0,
+    "f0": 258.7,
+    "sha": "59ac9f18ed915d40"
+  },
+  "bossvoice/leviathan/moor_first_take1": {
+    "ok": true,
+    "heard": "Come little one, climb me",
+    "speech_s": 2.08,
+    "span_s": 2.471,
+    "start_db": -56.3,
+    "end_db": -75.7,
+    "end_hf": 0.05,
+    "tempo_fit": 1.0,
+    "f0": 149.0,
+    "sha": "7ecc831d8b7ce119"
+  },
+  "bossvoice/leviathan/moor_last_take1": {
+    "ok": true,
+    "heard": "My song is running out",
+    "speech_s": 1.66,
+    "span_s": 1.951,
+    "start_db": -49.3,
+    "end_db": -70.3,
+    "end_hf": 0.1,
+    "tempo_fit": 1.0,
+    "f0": 122.5,
+    "sha": "7d371a25ef7da377"
+  },
+  "bossvoice/leviathan/player_down_take1": {
+    "ok": true,
+    "heard": "Hush, sleep in the current",
+    "speech_s": 1.56,
+    "span_s": 1.711,
+    "start_db": -72.4,
+    "end_db": -75.3,
+    "end_hf": 0.1,
+    "tempo_fit": 1.0,
+    "f0": 210.0,
+    "sha": "11fa46a7b9af014f"
+  },
+  "bossvoice/leviathan/fell_take1": {
+    "ok": true,
+    "heard": "My sky always gives you back",
+    "speech_s": 1.62,
+    "span_s": 1.737,
+    "start_db": -72.2,
+    "end_db": -74.9,
+    "end_hf": 0.15,
+    "tempo_fit": 1.0,
+    "f0": 272.2,
+    "sha": "35bb58e7e7c7438d"
+  },
+  "bossvoice/leviathan/my_pearl_take1": {
+    "ok": true,
+    "heard": "My pearl sings in that blade",
+    "speech_s": 1.8,
+    "span_s": 1.897,
+    "start_db": -75.0,
+    "end_db": -77.1,
+    "end_hf": 0.06,
+    "tempo_fit": 1.0,
+    "f0": 195.1,
+    "sha": "d23d831c48169573"
+  },
+  "bossvoice/leviathan/crab_take1": {
+    "ok": true,
+    "heard": "No shell? Brave little crab",
+    "speech_s": 1.9,
+    "span_s": 1.948,
+    "start_db": -72.5,
+    "end_db": -77.1,
+    "end_hf": 0.11,
+    "tempo_fit": 1.05,
+    "f0": 196.9,
+    "sha": "60e29bbe1053f26c"
+  },
+  "bossvoice/leviathan/too_soon_take1": {
+    "ok": true,
+    "heard": "You came too soon, little one",
+    "speech_s": 1.46,
+    "span_s": 1.604,
+    "start_db": -72.7,
+    "end_db": -40.0,
+    "end_hf": 0.04,
+    "tempo_fit": 1.0,
+    "f0": 254.9,
+    "sha": "12cb83c40071f564"
+  },
+  "bossvoice/leviathan/cousins_take1": {
+    "ok": true,
+    "heard": "Riding my little cousins? Clever",
+    "speech_s": 1.96,
+    "span_s": 1.941,
+    "start_db": -72.6,
+    "end_db": -78.4,
+    "end_hf": 0.04,
+    "tempo_fit": 1.11,
+    "f0": 277.4,
+    "sha": "011dd0d26bbb76a6"
+  },
+  "bossvoice/leviathan/coming_round_take1": {
+    "ok": true,
+    "heard": "Wait for me. I am coming round",
+    "speech_s": 1.74,
+    "span_s": 1.85,
+    "start_db": -73.5,
+    "end_db": -77.7,
+    "end_hf": 0.1,
+    "tempo_fit": 1.0,
+    "f0": 242.3,
+    "sha": "5ee240e6194144d6"
+  },
+  "bossvoice/leviathan/kill_take1": {
+    "ok": true,
+    "heard": "Carry my song down they have forgotten theirs.",
+    "speech_s": 3.58,
+    "span_s": 3.685,
+    "start_db": -55.9,
+    "end_db": -74.9,
+    "end_hf": 0.08,
+    "tempo_fit": 1.0,
+    "f0": 133.2,
+    "sha": "f1f01f313aa06c6f"
+  },
+  "bossvoice/colossus/open_again_take1": {
+    "ok": true,
+    "heard": "[chuckles] You again. Come then",
+    "speech_s": 1.82,
+    "span_s": 3.543,
+    "start_db": -77.3,
+    "end_db": -79.2,
+    "end_hf": 0.02,
+    "f0": 100.2,
+    "sha": "9394326b2d81b2fe"
+  },
+  "bossvoice/colossus/reform_take1": {
+    "ok": true,
+    "heard": "Together again",
+    "speech_s": 1.8,
+    "span_s": 2.43,
+    "start_db": -35.1,
+    "end_db": -78.1,
+    "end_hf": 0.03,
+    "f0": 134.3,
+    "sha": "e18bd37553c0a801"
+  },
+  "bossvoice/colossus/player_down_take2": {
+    "ok": true,
+    "heard": "Rest, then climb again.",
+    "speech_s": 2.84,
+    "span_s": 3.217,
+    "start_db": -76.7,
+    "end_db": -78.1,
+    "end_hf": 0.03,
+    "f0": 86.6,
+    "sha": "63fcb3cfee310049"
+  },
+  "bossvoice/colossus/breathe_take1": {
+    "ok": true,
+    "heard": "Breathe. Step back",
+    "speech_s": 1.8,
+    "span_s": 2.189,
+    "start_db": -76.3,
+    "end_db": -75.0,
+    "end_hf": 0.01,
+    "f0": 151.5,
+    "sha": "ce26fa46f4bae665"
+  },
+  "bossvoice/colossus/fists_take2": {
+    "ok": true,
+    "heard": "Fists? Bold",
+    "speech_s": 1.82,
+    "span_s": 2.345,
+    "start_db": -70.1,
+    "end_db": -75.0,
+    "end_hf": 0.03,
+    "f0": 85.0,
+    "sha": "cc71e6e7ec246542"
+  },
+  "bossvoice/colossus/fallen_stars_take1": {
+    "ok": true,
+    "heard": "You wear fallen stars",
+    "speech_s": 2.44,
+    "span_s": 2.917,
+    "start_db": -73.1,
+    "end_db": -75.1,
+    "end_hf": 0.02,
+    "f0": 121.7,
+    "sha": "465ecd3b18a9782f"
+  },
+  "bossvoice/colossus/too_strong_take1": {
+    "ok": true,
+    "heard": "Too strong for this lesson",
+    "speech_s": 2.32,
+    "span_s": 2.708,
+    "start_db": -75.8,
+    "end_db": -76.4,
+    "end_hf": 0.02,
+    "f0": 93.0,
+    "sha": "396cb8ad29dbbdf8"
+  },
+  "bossvoice/colossus/open_solo_take2": {
+    "ok": true,
+    "heard": "A climber. Come learn",
+    "speech_s": 3.48,
+    "span_s": 3.938,
+    "start_db": -77.2,
+    "end_db": -81.4,
+    "end_hf": 0.1,
+    "f0": 87.6,
+    "sha": "883ac146bbda3751"
+  },
+  "bossvoice/colossus/open_group_take2": {
+    "ok": true,
+    "heard": "Many climbers. Good. Come",
+    "speech_s": 3.24,
+    "span_s": 3.879,
+    "start_db": -76.9,
+    "end_db": -80.6,
+    "end_hf": 0.04,
+    "f0": 107.6,
+    "sha": "1efd2c470a5e54f6"
+  },
+  "bossvoice/colossus/fracture_take2": {
+    "ok": true,
+    "heard": "Now I remember",
+    "speech_s": 2.36,
+    "span_s": 2.918,
+    "start_db": -74.4,
+    "end_db": -75.4,
+    "end_hf": 0.02,
+    "f0": 94.2,
+    "sha": "e76f864b4ba2a004"
+  },
+  "bossvoice/colossus/reform_take2": {
+    "ok": true,
+    "heard": "Together again",
+    "speech_s": 1.82,
+    "span_s": 2.309,
+    "start_db": -72.5,
+    "end_db": -73.3,
+    "end_hf": 0.02,
+    "f0": 68.6,
+    "sha": "f32acaed262927a9"
+  },
+  "bossvoice/colossus/player_down_take3": {
+    "ok": true,
+    "heard": "Rest then climb again.",
+    "speech_s": 2.72,
+    "span_s": 3.077,
+    "start_db": -74.6,
+    "end_db": -79.4,
+    "end_hf": 0.03,
+    "f0": 94.8,
+    "sha": "893b326569afb95c"
+  },
+  "bossvoice/colossus/breathe_take2": {
+    "ok": true,
+    "heard": "Breathe. Step back.",
+    "speech_s": 2.02,
+    "span_s": 2.365,
+    "start_db": -71.6,
+    "end_db": -71.5,
+    "end_hf": 0.01,
+    "f0": 75.5,
+    "sha": "3c9d5ac2a472a747"
+  },
+  "bossvoice/colossus/my_heart_take2": {
+    "ok": true,
+    "heard": "My heart in your blade",
+    "speech_s": 2.64,
+    "span_s": 3.071,
+    "start_db": -73.9,
+    "end_db": -76.4,
+    "end_hf": 0.04,
+    "f0": 94.6,
+    "sha": "67101253f74da448"
+  },
+  "bossvoice/colossus/fists_take3": {
+    "ok": true,
+    "heard": "Fists? Bold",
+    "speech_s": 1.88,
+    "span_s": 2.445,
+    "start_db": -41.6,
+    "end_db": -37.4,
+    "end_hf": 0.02,
+    "f0": 90.0,
+    "sha": "ef5bf8fe32da2ba2"
+  },
+  "bossvoice/colossus/fallen_stars_take2": {
+    "ok": true,
+    "heard": "You wear fallen stars",
+    "speech_s": 2.4,
+    "span_s": 2.841,
+    "start_db": -72.7,
+    "end_db": -73.3,
+    "end_hf": 0.01,
+    "f0": 88.6,
+    "sha": "e771185aed36462f"
+  },
+  "bossvoice/colossus/open_solo_take3": {
+    "ok": true,
+    "heard": "A climber. Come learn.",
+    "speech_s": 3.02,
+    "span_s": 3.419,
+    "start_db": -81.0,
+    "end_db": -79.8,
+    "end_hf": 0.02,
+    "f0": 94.6,
+    "sha": "c1cbb6122b535a57"
+  },
+  "bossvoice/colossus/open_group_take3": {
+    "ok": true,
+    "heard": "Many climbers. Good. Come",
+    "speech_s": 2.7,
+    "span_s": 3.15,
+    "start_db": -77.1,
+    "end_db": -77.6,
+    "end_hf": 0.02,
+    "f0": 112.2,
+    "sha": "3fd276f506252ec4"
+  },
+  "bossvoice/colossus/fracture_take3": {
+    "ok": true,
+    "heard": "Now I remember",
+    "speech_s": 2.14,
+    "span_s": 2.67,
+    "start_db": -80.3,
+    "end_db": -78.4,
+    "end_hf": 0.02,
+    "f0": 170.9,
+    "sha": "4a2eabaee2e61c2e"
+  },
+  "bossvoice/leviathan/fell_take2": {
+    "ok": true,
+    "heard": "My sky always gives you back",
+    "speech_s": 1.64,
+    "span_s": 1.744,
+    "start_db": -67.5,
+    "end_db": -69.8,
+    "end_hf": 0.04,
+    "tempo_fit": 1.0,
+    "f0": 0.0,
+    "sha": "a3a51bf05ccab419"
+  },
+  "bossvoice/leviathan/cousins_take2": {
+    "ok": true,
+    "heard": "Riding my little cousins? Clever",
+    "speech_s": 1.88,
+    "span_s": 2.032,
+    "start_db": -69.3,
+    "end_db": -73.4,
+    "end_hf": 0.22,
+    "tempo_fit": 1.05,
+    "f0": 191.7,
+    "sha": "c1d3aa478ae00ae0"
+  },
+  "bossvoice/colossus/reform_take3": {
+    "ok": true,
+    "heard": "[chuckles] Together again",
+    "speech_s": 1.86,
+    "span_s": 2.845,
+    "start_db": -61.1,
+    "end_db": -77.5,
+    "end_hf": 0.05,
+    "f0": 89.1,
+    "sha": "5c0f05eb599a7e6a"
+  },
+  "bossvoice/colossus/breathe_take3": {
+    "ok": true,
+    "heard": "Breathe. Step back",
+    "speech_s": 2.06,
+    "span_s": 2.494,
+    "start_db": -80.2,
+    "end_db": -77.8,
+    "end_hf": 0.03,
+    "f0": 93.2,
+    "sha": "fe82227c88cbc4f3"
+  },
+  "bossvoice/colossus/reform_take4": {
+    "ok": true,
+    "heard": "Together again",
+    "speech_s": 1.68,
+    "span_s": 2.076,
+    "start_db": -74.0,
+    "end_db": -68.6,
+    "end_hf": 0.01,
+    "f0": 75.4,
+    "sha": "aa1ee51ed47a8615"
+  },
+  "bossvoice/colossus/open_again_take2": {
+    "ok": true,
+    "heard": "[chuckles] You again. Come then",
+    "speech_s": 1.84,
+    "span_s": 3.454,
+    "start_db": -55.2,
+    "end_db": -80.5,
+    "end_hf": 0.02,
+    "f0": 110.8,
+    "sha": "913621ceeaabb841"
+  }
+}

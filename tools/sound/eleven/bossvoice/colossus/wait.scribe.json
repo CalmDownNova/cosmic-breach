@@ -1,0 +1,40 @@
+{
+ "text": "I will wait",
+ "words": [
+  {
+   "text": "I",
+   "start": 0.4,
+   "end": 0.64,
+   "type": "word",
+   "logprob": -2.4914430468925275e-05
+  },
+  {
+   "text": " ",
+   "start": 0.64,
+   "end": 0.7,
+   "type": "spacing",
+   "logprob": -1.4305104514278355e-06
+  },
+  {
+   "text": "will",
+   "start": 0.7,
+   "end": 0.94,
+   "type": "word",
+   "logprob": -1.4305104514278355e-06
+  },
+  {
+   "text": " ",
+   "start": 0.94,
+   "end": 1.08,
+   "type": "spacing",
+   "logprob": -4.768360213347478e-06
+  },
+  {
+   "text": "wait",
+   "start": 1.12,
+   "end": 1.58,
+   "type": "word",
+   "logprob": -4.768360213347478e-06
+  }
+ ]
+}

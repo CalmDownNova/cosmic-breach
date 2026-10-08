@@ -1,0 +1,82 @@
+{
+ "text": "You came down here in that?",
+ "words": [
+  {
+   "text": "You",
+   "start": 0.22,
+   "end": 0.3,
+   "type": "word",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": " ",
+   "start": 0.3,
+   "end": 0.42,
+   "type": "spacing",
+   "logprob": -9.536738616588991e-07
+  },
+  {
+   "text": "came",
+   "start": 0.42,
+   "end": 0.64,
+   "type": "word",
+   "logprob": -9.536738616588991e-07
+  },
+  {
+   "text": " ",
+   "start": 0.64,
+   "end": 0.72,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "down",
+   "start": 0.72,
+   "end": 0.94,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 0.94,
+   "end": 1.02,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "here",
+   "start": 1.02,
+   "end": 1.24,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 1.24,
+   "end": 1.28,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "in",
+   "start": 1.28,
+   "end": 1.46,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": " ",
+   "start": 1.46,
+   "end": 1.54,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "that?",
+   "start": 1.54,
+   "end": 1.92,
+   "type": "word",
+   "logprob": -1.9477849127724768e-05
+  }
+ ]
+}

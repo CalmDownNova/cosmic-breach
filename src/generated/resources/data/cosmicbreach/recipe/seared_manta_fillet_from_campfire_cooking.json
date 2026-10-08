@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "cosmicbreach:manta_fillet"
+  },
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:seared_manta_fillet"
+  }
+}

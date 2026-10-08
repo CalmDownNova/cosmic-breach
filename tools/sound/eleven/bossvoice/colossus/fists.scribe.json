@@ -1,0 +1,26 @@
+{
+ "text": "Fists? Bold",
+ "words": [
+  {
+   "text": "Fists?",
+   "start": 0.26,
+   "end": 0.82,
+   "type": "word",
+   "logprob": -0.000103923441505079
+  },
+  {
+   "text": " ",
+   "start": 0.82,
+   "end": 0.82,
+   "type": "spacing",
+   "logprob": -7.486063259420916e-05
+  },
+  {
+   "text": "Bold",
+   "start": 1.54,
+   "end": 2.08,
+   "type": "word",
+   "logprob": -7.486063259420916e-05
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "text": "One less voice",
+ "words": [
+  {
+   "text": "One",
+   "start": 0.4,
+   "end": 0.58,
+   "type": "word",
+   "logprob": -4.1126360883936286e-05
+  },
+  {
+   "text": " ",
+   "start": 0.58,
+   "end": 0.68,
+   "type": "spacing",
+   "logprob": -0.003616105066612363
+  },
+  {
+   "text": "less",
+   "start": 0.68,
+   "end": 0.9,
+   "type": "word",
+   "logprob": -0.003616105066612363
+  },
+  {
+   "text": " ",
+   "start": 0.9,
+   "end": 1.02,
+   "type": "spacing",
+   "logprob": -2.2053474822314456e-05
+  },
+  {
+   "text": "voice",
+   "start": 1.02,
+   "end": 1.42,
+   "type": "word",
+   "logprob": -2.2053474822314456e-05
+  }
+ ]
+}

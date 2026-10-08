@@ -1,0 +1,68 @@
+{
+ "text": "Hush, sleep in the current",
+ "words": [
+  {
+   "text": "Hush,",
+   "start": 0.1,
+   "end": 0.4,
+   "type": "word",
+   "logprob": -0.04753165066879319
+  },
+  {
+   "text": " ",
+   "start": 0.4,
+   "end": 0.84,
+   "type": "spacing",
+   "logprob": -0.0005029367166571319
+  },
+  {
+   "text": "sleep",
+   "start": 0.84,
+   "end": 1.06,
+   "type": "word",
+   "logprob": -0.0005029367166571319
+  },
+  {
+   "text": " ",
+   "start": 1.06,
+   "end": 1.1,
+   "type": "spacing",
+   "logprob": -4.768370445162873e-07
+  },
+  {
+   "text": "in",
+   "start": 1.1,
+   "end": 1.16,
+   "type": "word",
+   "logprob": -4.768370445162873e-07
+  },
+  {
+   "text": " ",
+   "start": 1.16,
+   "end": 1.18,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "the",
+   "start": 1.18,
+   "end": 1.26,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 1.26,
+   "end": 1.3,
+   "type": "spacing",
+   "logprob": -3.5523738915799186e-05
+  },
+  {
+   "text": "current",
+   "start": 1.3,
+   "end": 1.66,
+   "type": "word",
+   "logprob": -3.5523738915799186e-05
+  }
+ ]
+}

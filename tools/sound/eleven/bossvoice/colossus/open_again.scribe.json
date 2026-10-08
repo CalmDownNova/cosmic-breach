@@ -1,0 +1,68 @@
+{
+ "text": "[chuckles] You again. Come then",
+ "words": [
+  {
+   "text": "[chuckles]",
+   "start": 0.18,
+   "end": 1.16,
+   "type": "audio_event",
+   "logprob": -0.06625947960613605
+  },
+  {
+   "text": " ",
+   "start": 1.16,
+   "end": 1.18,
+   "type": "spacing",
+   "logprob": -8.689979586051777e-05
+  },
+  {
+   "text": "You",
+   "start": 1.24,
+   "end": 1.38,
+   "type": "word",
+   "logprob": -8.689979586051777e-05
+  },
+  {
+   "text": " ",
+   "start": 1.38,
+   "end": 1.46,
+   "type": "spacing",
+   "logprob": -1.9073468138230965e-06
+  },
+  {
+   "text": "again.",
+   "start": 1.46,
+   "end": 1.86,
+   "type": "word",
+   "logprob": -0.0023655531291903267
+  },
+  {
+   "text": " ",
+   "start": 1.86,
+   "end": 1.88,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "Come",
+   "start": 2.64,
+   "end": 2.84,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": " ",
+   "start": 2.84,
+   "end": 2.88,
+   "type": "spacing",
+   "logprob": -0.0013261580606922507
+  },
+  {
+   "text": "then",
+   "start": 2.88,
+   "end": 3.08,
+   "type": "word",
+   "logprob": -0.0013261580606922507
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+{
+ "text": "You came too soon, little one",
+ "words": [
+  {
+   "text": "You",
+   "start": 0.16,
+   "end": 0.2,
+   "type": "word",
+   "logprob": -1.0609570381348021e-05
+  },
+  {
+   "text": " ",
+   "start": 0.2,
+   "end": 0.3,
+   "type": "spacing",
+   "logprob": -3.6954811548639555e-06
+  },
+  {
+   "text": "came",
+   "start": 0.3,
+   "end": 0.5,
+   "type": "word",
+   "logprob": -3.6954811548639555e-06
+  },
+  {
+   "text": " ",
+   "start": 0.5,
+   "end": 0.54,
+   "type": "spacing",
+   "logprob": -3.576272320060525e-06
+  },
+  {
+   "text": "too",
+   "start": 0.54,
+   "end": 0.66,
+   "type": "word",
+   "logprob": -3.576272320060525e-06
+  },
+  {
+   "text": " ",
+   "start": 0.66,
+   "end": 0.76,
+   "type": "spacing",
+   "logprob": -1.9073468138230965e-06
+  },
+  {
+   "text": "soon,",
+   "start": 0.82,
+   "end": 1.08,
+   "type": "word",
+   "logprob": -0.0008187027633539401
+  },
+  {
+   "text": " ",
+   "start": 1.08,
+   "end": 1.14,
+   "type": "spacing",
+   "logprob": -1.3232143828645349e-05
+  },
+  {
+   "text": "little",
+   "start": 1.14,
+   "end": 1.32,
+   "type": "word",
+   "logprob": -1.3232143828645349e-05
+  },
+  {
+   "text": " ",
+   "start": 1.32,
+   "end": 1.4,
+   "type": "spacing",
+   "logprob": -4.172316494077677e-06
+  },
+  {
+   "text": "one",
+   "start": 1.4,
+   "end": 1.62,
+   "type": "word",
+   "logprob": -4.172316494077677e-06
+  }
+ ]
+}

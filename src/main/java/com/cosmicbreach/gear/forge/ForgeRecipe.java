@@ -23,11 +23,13 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
 /**
  * An Astral Forge recipe ({@code "type": "cosmicbreach:astral_forge"}): the ingredients with their counts, the
- * result, and the Forge tier it needs. The Forge crafts from what the player carries, so there is no grid:
+ * result, the Forge tier it needs and the screen tab it sits in. The Forge crafts from what the player carries, so
+ * there is no grid:
  *
  * <pre>
  * {
  *   "type": "cosmicbreach:astral_forge",
+ *   "category": "weapons",
  *   "tier": 2,
  *   "order": 10,
  *   "ingredients": [
@@ -38,10 +40,11 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
  * }
  * </pre>
  *
- * {@code tier} defaults to 1 and {@code order} (its place among the recipes of its tier in the Forge's list)
- * to 100. Recipes of a tier above the Forge's show locked.
+ * {@code tier} defaults to 1, {@code order} (its place among the recipes of its tier in the Forge's list) to 100,
+ * and {@code category} (its tab: weapons, armor, tools, mount_gear or other, see {@link ForgeCategory}) to other.
+ * Recipes of a tier above the Forge's show locked.
  */
-public record ForgeRecipe(List<SizedIngredient> ingredients, ItemStack result, int tier, int order)
+public record ForgeRecipe(List<SizedIngredient> ingredients, ItemStack result, int tier, int order, ForgeCategory category)
         implements Recipe<ForgeRecipe.Input> {
     public static final int DEFAULT_ORDER = 100;
 
@@ -49,7 +52,8 @@ public record ForgeRecipe(List<SizedIngredient> ingredients, ItemStack result, i
             ExtraCodecs.nonEmptyList(SizedIngredient.FLAT_CODEC.listOf()).fieldOf("ingredients").forGetter(ForgeRecipe::ingredients),
             ItemStack.STRICT_CODEC.fieldOf("result").forGetter(ForgeRecipe::result),
             Codec.intRange(GearTier.MIN, GearTier.MAX).optionalFieldOf("tier", 1).forGetter(ForgeRecipe::tier),
-            Codec.INT.optionalFieldOf("order", DEFAULT_ORDER).forGetter(ForgeRecipe::order)
+            Codec.INT.optionalFieldOf("order", DEFAULT_ORDER).forGetter(ForgeRecipe::order),
+            ForgeCategory.FIELD.forGetter(ForgeRecipe::category)
     ).apply(i, ForgeRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ForgeRecipe> STREAM_CODEC = StreamCodec.composite(
@@ -57,10 +61,16 @@ public record ForgeRecipe(List<SizedIngredient> ingredients, ItemStack result, i
             ItemStack.STREAM_CODEC, ForgeRecipe::result,
             ByteBufCodecs.VAR_INT, ForgeRecipe::tier,
             ByteBufCodecs.VAR_INT, ForgeRecipe::order,
+            ForgeCategory.STREAM_CODEC, ForgeRecipe::category,
             ForgeRecipe::new);
 
     public ForgeRecipe {
         ingredients = List.copyOf(ingredients);
+    }
+
+    /** A recipe in the Other tab, the tab a recipe without a category gets. */
+    public ForgeRecipe(List<SizedIngredient> ingredients, ItemStack result, int tier, int order) {
+        this(ingredients, result, tier, order, ForgeCategory.OTHER);
     }
 
     /** What the player carries, as the recipe sees it. */

@@ -1,0 +1,96 @@
+{
+ "text": "Arrows. My halo has eaten a thousand",
+ "words": [
+  {
+   "text": "Arrows.",
+   "start": 0.2,
+   "end": 0.76,
+   "type": "word",
+   "logprob": -0.027199293752866133
+  },
+  {
+   "text": " ",
+   "start": 0.76,
+   "end": 1.18,
+   "type": "spacing",
+   "logprob": -1.7881377516459906e-06
+  },
+  {
+   "text": "My",
+   "start": 1.18,
+   "end": 1.34,
+   "type": "word",
+   "logprob": -1.7881377516459906e-06
+  },
+  {
+   "text": " ",
+   "start": 1.34,
+   "end": 1.5,
+   "type": "spacing",
+   "logprob": -0.12706422805786133
+  },
+  {
+   "text": "halo",
+   "start": 1.5,
+   "end": 1.82,
+   "type": "word",
+   "logprob": -0.12706422805786133
+  },
+  {
+   "text": " ",
+   "start": 1.82,
+   "end": 1.88,
+   "type": "spacing",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": "has",
+   "start": 1.88,
+   "end": 2.0,
+   "type": "word",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": " ",
+   "start": 2.0,
+   "end": 2.1,
+   "type": "spacing",
+   "logprob": -3.2186455882765586e-06
+  },
+  {
+   "text": "eaten",
+   "start": 2.1,
+   "end": 2.34,
+   "type": "word",
+   "logprob": -3.2186455882765586e-06
+  },
+  {
+   "text": " ",
+   "start": 2.34,
+   "end": 2.36,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "a",
+   "start": 2.38,
+   "end": 2.54,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 2.54,
+   "end": 2.58,
+   "type": "spacing",
+   "logprob": -2.145764938177308e-06
+  },
+  {
+   "text": "thousand",
+   "start": 2.58,
+   "end": 3.18,
+   "type": "word",
+   "logprob": -2.145764938177308e-06
+  }
+ ]
+}

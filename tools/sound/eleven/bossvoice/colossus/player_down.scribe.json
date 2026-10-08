@@ -1,0 +1,54 @@
+{
+ "text": "Rest then climb again.",
+ "words": [
+  {
+   "text": "Rest",
+   "start": 0.32,
+   "end": 0.82,
+   "type": "word",
+   "logprob": -0.00545560522004962
+  },
+  {
+   "text": " ",
+   "start": 0.82,
+   "end": 0.82,
+   "type": "spacing",
+   "logprob": -0.001780949649401009
+  },
+  {
+   "text": "then",
+   "start": 1.78,
+   "end": 2.04,
+   "type": "word",
+   "logprob": -0.001780949649401009
+  },
+  {
+   "text": " ",
+   "start": 2.04,
+   "end": 2.24,
+   "type": "spacing",
+   "logprob": -5.8412379075889476e-06
+  },
+  {
+   "text": "climb",
+   "start": 2.24,
+   "end": 2.54,
+   "type": "word",
+   "logprob": -5.8412379075889476e-06
+  },
+  {
+   "text": " ",
+   "start": 2.54,
+   "end": 2.6,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "again.",
+   "start": 2.6,
+   "end": 3.04,
+   "type": "word",
+   "logprob": -0.03368405004342397
+  }
+ ]
+}

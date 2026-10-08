@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket;
 import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket;
@@ -39,11 +40,11 @@ import org.jetbrains.annotations.Nullable;
  *       subtitle "The song won't carry you yet." and a chime. Arrival grace: a player who has not stood on
  *       anything in Aetheria yet (just arrived and missed the island) goes to the nearest safe island top
  *       and takes no damage. Creative and spectator players pass freely; rising through a band is never
- *       stopped.</li>
+ *       stopped. A rider on their own tamed mount is caught with it: both go back together.</li>
  *   <li>An attuned player falls through and gets 5 s of Slow Falling, once per pass.</li>
  *   <li>A mob that falls into a band is removed without drops, so each layer keeps its own population. Tamed
- *       mobs go back to their owner instead; fliers are only taken when plummeting; a mount follows its
- *       rider's fate.</li>
+ *       mobs go back to their owner instead; fliers are only taken when plummeting; a tamed mount is never taken
+ *       (it climbs back on its own) and goes back with its caught rider.</li>
  * </ul>
  * Server side; called every tick for each entity in Aetheria from {@link AetheriaRules}.
  */
@@ -74,12 +75,14 @@ public final class ShearBands {
         UUID id = player.getUUID();
         Double lastY = LAST_Y.put(id, player.getY());
         double dy = lastY == null ? 0.0 : player.getY() - lastY;
-        if (player.onGround() && !player.isPassenger()) {
-            BlockPos on = player.getOnPos();
+        // what stands: the player, or the tamed mount they ride (so a rider's last ground is where their mount last stood)
+        Entity standing = player.isPassenger() ? player.getVehicle() : player;
+        if (standing != null && standing.onGround() && (standing == player || com.cosmicbreach.mount.MountCare.tamedMount(standing))) {
+            BlockPos on = standing.getOnPos();
             // the supporting block is cached from the last move, so just after a teleport it can still be the one
-            // the player left (in another place or dimension): only trust one right under their feet
-            boolean underFeet = Math.abs(player.getY() - (on.getY() + 1)) < 1.0
-                    && Math.abs(player.getX() - (on.getX() + 0.5)) < 1.5 && Math.abs(player.getZ() - (on.getZ() + 0.5)) < 1.5;
+            // left behind (in another place or dimension): only trust one right under the feet
+            boolean underFeet = Math.abs(standing.getY() - (on.getY() + 1)) < 1.0
+                    && Math.abs(standing.getX() - (on.getX() + 0.5)) < 1.5 && Math.abs(standing.getZ() - (on.getZ() + 0.5)) < 1.5;
             if (underFeet && !player.level().getBlockState(on).isAir() && ShearBand.at(on.getY()) == null) {
                 LAST_STOOD.put(id, on.immutable());
             }
@@ -109,8 +112,18 @@ public final class ShearBands {
         // is set down on the nearest island without the damage
         boolean grace = !LAST_STOOD.containsKey(player.getUUID());
         BlockPos feet = returnSpot(level, player, band);
-        player.stopRiding();
-        player.teleportTo(level, feet.getX() + 0.5, feet.getY(), feet.getZ() + 0.5, Set.of(), player.getYRot(), player.getXRot());
+        Entity mount = carriedMount(player);
+        if (mount != null) {
+            // the gap throws mount and rider back together (1.1 design 4): move the mount and its rider comes along
+            Vec3 at = roomFor(mount, feet);
+            mount.teleportTo(at.x, at.y, at.z);
+            mount.setDeltaMovement(Vec3.ZERO);
+            mount.resetFallDistance();
+            player.connection.send(new ClientboundMoveVehiclePacket(mount)); // the rider's client flies the mount: put it there too
+        } else {
+            player.stopRiding();
+            player.teleportTo(level, feet.getX() + 0.5, feet.getY(), feet.getZ() + 0.5, Set.of(), player.getYRot(), player.getXRot());
+        }
         player.setDeltaMovement(Vec3.ZERO);
         player.hurtMarked = true;
         player.resetFallDistance();
@@ -124,6 +137,28 @@ public final class ShearBands {
         level.playSound(null, feet, SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 1.0f, 0.7f);
         level.sendParticles(ParticleTypes.END_ROD, feet.getX() + 0.5, feet.getY() + 1.0, feet.getZ() + 0.5, 24, 0.4, 0.8, 0.4, 0.02);
         caught++;
+    }
+
+    /** The tamed mount {@code player} rides, owns and steers, which a catch carries with them; else null. */
+    static @Nullable Entity carriedMount(ServerPlayer player) {
+        Entity vehicle = player.getVehicle();
+        return vehicle != null && com.cosmicbreach.mount.MountCare.tamedMount(vehicle) && vehicle instanceof OwnableEntity o
+                && player.getUUID().equals(o.getOwnerUUID()) && vehicle.getControllingPassenger() == player ? vehicle : null;
+    }
+
+    /**
+     * Where {@code mount} is set down for a rider whose feet go to {@code feet}: there if the mount's own box (a stingray is
+     * wider than a player) clears the blocks, else up to two blocks higher (it holds itself up or settles the short
+     * fall), else there anyway.
+     */
+    private static Vec3 roomFor(Entity mount, BlockPos feet) {
+        for (int up = 0; up <= 2; up++) {
+            Vec3 at = new Vec3(feet.getX() + 0.5, feet.getY() + up, feet.getZ() + 0.5);
+            if (mount.level().noCollision(mount, mount.getBoundingBox().move(at.subtract(mount.position())))) {
+                return at;
+            }
+        }
+        return new Vec3(feet.getX() + 0.5, feet.getY(), feet.getZ() + 0.5);
     }
 
     /** Where a caught player goes: the last block they stood on (if it is still safe), else the nearest island top. */
@@ -145,6 +180,9 @@ public final class ShearBands {
 
     /** Mobs (and anything they carry) falling into a band. */
     public static void onMobTick(Mob mob) {
+        if (com.cosmicbreach.mount.MountCare.tamedMount(mob)) {
+            return; // the mod's tamed mounts climb back on their own (MountCare); a gap never removes or moves them
+        }
         ShearBand band = ShearBand.at(mob.getY());
         if (band == null || mob.isNoGravity() || mob.getDeltaMovement().y >= 0 || mob.isPassenger()) {
             return;

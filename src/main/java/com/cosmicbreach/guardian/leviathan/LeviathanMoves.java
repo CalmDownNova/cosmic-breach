@@ -67,6 +67,13 @@ public final class LeviathanMoves {
     /** Ticks between the end of one attack and the choice of the next (it swims its orbit meanwhile). */
     public static final int GAP = 50;
     public static final int FIRST_ATTACK = 60;
+    /** Her song in the intro starts this many ticks in, and plays in full whatever else is said (it is her identity). */
+    public static final int INTRO_SONG = 150;
+
+    /** The intro tick her song is over on: its watched length ({@code BossVoiceSounds}), counted from {@link #INTRO_SONG}. */
+    public static int introSongOver() {
+        return INTRO_SONG + com.cosmicbreach.voice.boss.BossVoiceSounds.clearTicks("leviathan/song");
+    }
 
     // ------------------------------------------------------------------ Breach Dive
     public static final int DIVE_TELL = 30;

@@ -1,0 +1,54 @@
+{
+ "text": "That light was mine",
+ "words": [
+  {
+   "text": "That",
+   "start": 0.28,
+   "end": 0.52,
+   "type": "word",
+   "logprob": -4.7444173105759546e-05
+  },
+  {
+   "text": " ",
+   "start": 0.52,
+   "end": 0.58,
+   "type": "spacing",
+   "logprob": -3.6954811548639555e-06
+  },
+  {
+   "text": "light",
+   "start": 0.58,
+   "end": 0.92,
+   "type": "word",
+   "logprob": -3.6954811548639555e-06
+  },
+  {
+   "text": " ",
+   "start": 0.92,
+   "end": 0.92,
+   "type": "spacing",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": "was",
+   "start": 1.52,
+   "end": 1.7,
+   "type": "word",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": " ",
+   "start": 1.7,
+   "end": 1.78,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "mine",
+   "start": 1.78,
+   "end": 2.18,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  }
+ ]
+}

@@ -84,7 +84,7 @@ import org.joml.Vector3f;
  * </ul>
  * Nobody on the choir floor for 30 s resets it. Fights are not saved: a reload leaves it asleep.
  */
-public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight {
+public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight, com.cosmicbreach.voice.boss.VoicedBoss {
     public enum State { DORMANT, INTRO, FIGHT, DYING }
 
     public static final byte EVENT_AWAKEN = 100;
@@ -125,6 +125,8 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
     private @Nullable BlockPos altarPos;
     private State state = State.DORMANT;
     private long fightStart;
+    /** A Guardian Echo woke this fight (its voice greets a returning party). */
+    private boolean wokenByEcho;
     private final Map<Voice, UnsungMask> masks = new EnumMap<>(Voice.class);
     private final Map<Voice, Vec3> blendFrom = new EnumMap<>(Voice.class);
     private final Map<Voice, Long> blendStart = new EnumMap<>(Voice.class);
@@ -342,6 +344,7 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
             return;
         }
         long now = server.getGameTime();
+        wokenByEcho = echo;
         ensureMasks(server, now);
         playersAtStart = Math.max(1, Math.min(GuardianHealth.MAX_PLAYERS, fightersOnFloor().size()));
         double max = GuardianHealth.scaled(UnsungMoves.MASK_HEALTH, playersAtStart);
@@ -350,7 +353,10 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
             m.setMode(UnsungMask.Mode.REST, now);
         }
         clearFight();
-        fightStart = UnsungSong.fightStart(now);
+        // the opener's first word is a beat after the Alto's lift and waits for the wake sounds to be over: if the lift would come
+        // sooner, the whole intro takes one more turn
+        fightStart = UnsungSong.fightStartAfterWake(now, com.cosmicbreach.voice.boss.BossVoiceSounds.clearTicks("unsung/awaken")
+                + com.cosmicbreach.voice.boss.VoiceDirector.QUIET_MARGIN);
         entityData.set(DATA_FIGHT_START, fightStart);
         setState(State.INTRO, now);
         lastPlayerOnFloor = now;
@@ -363,6 +369,8 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
         server.broadcastEntityEvent(this, EVENT_AWAKEN);
         playAt(arena.centre().add(0, 3, 0), UnsungRegistry.AWAKEN.get(), 3.0f, 1.0f);
         playAt(arena.centre().add(0, 3, 0), UnsungRegistry.DIM.get(), 2.0f, 1.0f);
+        com.cosmicbreach.voice.boss.BossVoices.soundPlayed(this, UnsungRegistry.AWAKEN.get());
+        com.cosmicbreach.voice.boss.BossVoices.soundPlayed(this, UnsungRegistry.DIM.get());
         CosmicBreach.LOGGER.debug("[cosmicbreach] The Unsung awakened at {} for {} player(s), {} health a mask{}, first line at tick {} ({} ticks of intro)",
                 arena.centreBlock(), playersAtStart, (int) max, echo ? " (Guardian Echo)" : "", fightStart, fightStart - now);
     }
@@ -511,6 +519,11 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
                 playAt(m.face(), firstNote(v), 2.5f, 1.0f);
                 server.broadcastEntityEvent(m, UnsungMask.EVENT_FIRST_NOTE);
             }
+        }
+        if (now == liftStart + BEAT - com.cosmicbreach.voice.boss.BossVoices.LEAD) {
+            // the opener is relayed on the lifts: its first word a beat after the Alto's first note (the wake sounds are over by
+            // then, see awaken), each later fragment a beat after its mask's; its words end before the fight starts or it is skipped
+            com.cosmicbreach.voice.boss.BossVoices.fire(this, "fight_start", fightStart);
         }
         songPrepare(now);
         if (now >= fightStart) {
@@ -915,6 +928,10 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
         }
         harmonizes++;
         harmonizeHits += caught;
+        if (caught == 0 && !spots.isEmpty()) {
+            // two beats after the clean downbeat, when the beat rules allow
+            com.cosmicbreach.voice.boss.BossVoices.raiseEventAt(this, "harmonize_all_safe", now + 2L * BEAT);
+        }
         landed(4, now);
         endWarning(server, now);
         server.broadcastEntityEvent(this, EVENT_HARMONIZE);
@@ -991,6 +1008,7 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
         }
         server.broadcastEntityEvent(this, EVENT_BREAK);
         playAt(arena.centre().add(0, 2, 0), UnsungRegistry.BREAK.get(), 3.5f, 1.0f);
+        com.cosmicbreach.voice.boss.BossVoices.raiseEventAt(this, "break", now + BEAT);
         CosmicBreach.LOGGER.debug("[cosmicbreach] The Unsung Broken at {} health", String.format(java.util.Locale.ROOT, "%.1f", totalHealth()));
     }
 
@@ -1110,6 +1128,11 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
         });
         server.broadcastEntityEvent(mask, UnsungMask.EVENT_SHATTER);
         playAt(mask.face(), UnsungRegistry.CRACK.get(), 3.5f, 1.0f);
+        int whole = living().size();
+        if (whole == 2 || whole == 1) {
+            // a third of the bar each: the survivors' line, from a beat after the crack, on the next beat the rules allow
+            com.cosmicbreach.voice.boss.BossVoices.raiseAt(this, whole == 2 ? "hp_threshold:67" : "hp_threshold:33", now + BEAT);
+        }
         CosmicBreach.LOGGER.debug("[cosmicbreach] The {} mask broke at tick {} of the fight ({} left): its line leaves the song",
                 v.id(), now - fightStart, living().size());
         if (living().isEmpty()) {
@@ -1326,6 +1349,9 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
 
     private void startDying(ServerLevel server, long now) {
         setState(State.DYING, now);
+        // the ghosts' relay, its first word on death tick 36 after the last soft chord (which is pulled down under it); it ends
+        // before the guide speaks
+        com.cosmicbreach.voice.boss.BossVoices.fireAt(this, "boss_kill", now + 36);
         cancelAttacks();
         if (warningActive) {
             endWarning(server, now);
@@ -1778,5 +1804,91 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
     @Override
     public Component getDisplayName() {
         return getType().getDescription();
+    }
+
+    // ------------------------------------------------------------------ the voice (1.1)
+
+    @Override
+    public String voiceBoss() {
+        return "unsung";
+    }
+
+    @Override
+    public BlockPos voiceHome() {
+        return arena != null ? arena.centreBlock() : blockPosition();
+    }
+
+    @Override
+    public List<ServerPlayer> voiceFighters() {
+        return fightersOnFloor();
+    }
+
+    @Override
+    public int voicePlayers() {
+        return playersAtStart;
+    }
+
+    @Override
+    public double voiceHealth() {
+        float max = totalMaxHealth();
+        return max <= 0 ? 0.0 : Math.max(0.0, totalHealth() / max);
+    }
+
+    @Override
+    public net.minecraft.resources.ResourceLocation voiceKillAdvancement() {
+        return GuardianTypes.UNSUNG.advancement();
+    }
+
+    @Override
+    public boolean voiceWokenByEcho() {
+        return wokenByEcho;
+    }
+
+    /** The bar's thirds are the mask breaks (67 and 33), fired by the break itself. */
+    @Override
+    public java.util.Set<Integer> voicePhaseThresholds() {
+        return java.util.Set.of(67, 33);
+    }
+
+    /** On a beat of the fight's clock, never on a Harmonize downbeat (Voice Script rule 8). */
+    @Override
+    public boolean voiceMayStart(long now) {
+        return state == State.FIGHT && UnsungSong.onBeat(now, fightStart) && !UnsungSong.downbeat(UnsungSong.fightBeat(now, fightStart));
+    }
+
+    /** Ticks until the next Harmonize warning (none inside one); nothing to cover in the intro or after the last mask. */
+    @Override
+    public int voiceQuietTicks(long now) {
+        if (state != State.FIGHT) {
+            return Integer.MAX_VALUE;
+        }
+        long beat = UnsungSong.fightBeat(now, fightStart);
+        if (UnsungSong.warning(beat)) {
+            return 0;
+        }
+        long beatsLeft = UnsungMoves.CYCLE_BEATS - UnsungMoves.WARNING_BEATS - UnsungSong.inCycle(beat);
+        return (int) (beatsLeft * BEAT - Math.floorMod(now - fightStart, BEAT));
+    }
+
+    /** The living masks in song order, as the takes of a break line are named: "123", "13", "2". */
+    @Override
+    public String voiceLiving() {
+        StringBuilder s = new StringBuilder();
+        for (Voice v : Voice.values()) {
+            if (living().contains(v)) {
+                s.append(v.ordinal() + 1);
+            }
+        }
+        return s.toString();
+    }
+
+    @Override
+    public int voiceMasks() {
+        return living().size();
+    }
+
+    @Override
+    public boolean voiceOwns(Entity hit) {
+        return hit == this || hit instanceof UnsungMask m && m.choir() == this;
     }
 }

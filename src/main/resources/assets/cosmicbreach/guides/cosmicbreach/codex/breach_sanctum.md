@@ -17,6 +17,9 @@ edge.
 when it opens comes in as their party, and the Gate remembers them: they may come and go as they please. To everyone
 else it stays shut.
 
+**The way back up** is the way you came: the Gate opens for you from inside, and the causeway leads out to the
+platform of the Deep.
+
 **The Antechamber** divides in two.
 
 - **West, the Lens of Solenne:** the greatest of the Lens Arrays, seven by seven, three crystals to light, with

@@ -1,0 +1,82 @@
+{
+ "text": "My sky always gives you back",
+ "words": [
+  {
+   "text": "My",
+   "start": 0.14,
+   "end": 0.28,
+   "type": "word",
+   "logprob": -0.00022587609419133514
+  },
+  {
+   "text": " ",
+   "start": 0.28,
+   "end": 0.32,
+   "type": "spacing",
+   "logprob": -0.10808347910642624
+  },
+  {
+   "text": "sky",
+   "start": 0.32,
+   "end": 0.62,
+   "type": "word",
+   "logprob": -0.10808347910642624
+  },
+  {
+   "text": " ",
+   "start": 0.62,
+   "end": 0.7,
+   "type": "spacing",
+   "logprob": -4.529942543740617e-06
+  },
+  {
+   "text": "always",
+   "start": 0.7,
+   "end": 1.04,
+   "type": "word",
+   "logprob": -4.529942543740617e-06
+  },
+  {
+   "text": " ",
+   "start": 1.04,
+   "end": 1.08,
+   "type": "spacing",
+   "logprob": -3.6954811548639555e-06
+  },
+  {
+   "text": "gives",
+   "start": 1.08,
+   "end": 1.24,
+   "type": "word",
+   "logprob": -3.6954811548639555e-06
+  },
+  {
+   "text": " ",
+   "start": 1.24,
+   "end": 1.28,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "you",
+   "start": 1.28,
+   "end": 1.38,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 1.38,
+   "end": 1.42,
+   "type": "spacing",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": "back",
+   "start": 1.42,
+   "end": 1.76,
+   "type": "word",
+   "logprob": -5.960462772236497e-07
+  }
+ ]
+}

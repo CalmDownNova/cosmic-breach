@@ -1,0 +1,250 @@
+{
+ "text": "A whole choir in the dark. I poured a sun into it for you. It was not enough",
+ "words": [
+  {
+   "text": "A",
+   "start": 0.32,
+   "end": 0.4,
+   "type": "word",
+   "logprob": -0.0002203936892328784
+  },
+  {
+   "text": " ",
+   "start": 0.4,
+   "end": 0.5,
+   "type": "spacing",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": "whole",
+   "start": 0.5,
+   "end": 0.76,
+   "type": "word",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": " ",
+   "start": 0.76,
+   "end": 0.94,
+   "type": "spacing",
+   "logprob": -2.50339189733495e-06
+  },
+  {
+   "text": "choir",
+   "start": 0.94,
+   "end": 1.44,
+   "type": "word",
+   "logprob": -2.50339189733495e-06
+  },
+  {
+   "text": " ",
+   "start": 1.44,
+   "end": 1.48,
+   "type": "spacing",
+   "logprob": -0.00014435203047469258
+  },
+  {
+   "text": "in",
+   "start": 2.1,
+   "end": 2.2,
+   "type": "word",
+   "logprob": -0.00014435203047469258
+  },
+  {
+   "text": " ",
+   "start": 2.2,
+   "end": 2.24,
+   "type": "spacing",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": "the",
+   "start": 2.24,
+   "end": 2.34,
+   "type": "word",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": " ",
+   "start": 2.34,
+   "end": 2.4,
+   "type": "spacing",
+   "logprob": -1.311301275563892e-06
+  },
+  {
+   "text": "dark.",
+   "start": 2.4,
+   "end": 2.82,
+   "type": "word",
+   "logprob": -1.6021167539292946e-05
+  },
+  {
+   "text": " ",
+   "start": 2.82,
+   "end": 2.82,
+   "type": "spacing",
+   "logprob": -4.589452510117553e-05
+  },
+  {
+   "text": "I",
+   "start": 4.04,
+   "end": 4.14,
+   "type": "word",
+   "logprob": -4.589452510117553e-05
+  },
+  {
+   "text": " ",
+   "start": 4.14,
+   "end": 4.24,
+   "type": "spacing",
+   "logprob": -2.098061486321967e-05
+  },
+  {
+   "text": "poured",
+   "start": 4.24,
+   "end": 4.48,
+   "type": "word",
+   "logprob": -2.098061486321967e-05
+  },
+  {
+   "text": " ",
+   "start": 4.48,
+   "end": 4.54,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "a",
+   "start": 4.54,
+   "end": 4.6,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 4.6,
+   "end": 4.76,
+   "type": "spacing",
+   "logprob": -3.504691630951129e-05
+  },
+  {
+   "text": "sun",
+   "start": 4.76,
+   "end": 4.96,
+   "type": "word",
+   "logprob": -3.504691630951129e-05
+  },
+  {
+   "text": " ",
+   "start": 4.96,
+   "end": 5.02,
+   "type": "spacing",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": "into",
+   "start": 5.02,
+   "end": 5.26,
+   "type": "word",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": " ",
+   "start": 5.26,
+   "end": 5.3,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "it",
+   "start": 5.3,
+   "end": 5.42,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 5.42,
+   "end": 5.48,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "for",
+   "start": 5.48,
+   "end": 5.66,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 5.66,
+   "end": 5.72,
+   "type": "spacing",
+   "logprob": -9.536738616588991e-07
+  },
+  {
+   "text": "you.",
+   "start": 5.72,
+   "end": 5.88,
+   "type": "word",
+   "logprob": -4.809645872683177e-05
+  },
+  {
+   "text": " ",
+   "start": 5.88,
+   "end": 5.88,
+   "type": "spacing",
+   "logprob": -9.536738616588991e-07
+  },
+  {
+   "text": "It",
+   "start": 6.54,
+   "end": 6.6,
+   "type": "word",
+   "logprob": -9.536738616588991e-07
+  },
+  {
+   "text": " ",
+   "start": 6.6,
+   "end": 6.64,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "was",
+   "start": 6.64,
+   "end": 6.78,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 6.78,
+   "end": 6.84,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "not",
+   "start": 6.84,
+   "end": 6.98,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 6.98,
+   "end": 7.04,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "enough",
+   "start": 7.04,
+   "end": 7.42,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  }
+ ]
+}

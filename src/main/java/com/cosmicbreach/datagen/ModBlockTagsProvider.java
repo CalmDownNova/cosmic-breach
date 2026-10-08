@@ -39,8 +39,10 @@ public final class ModBlockTagsProvider extends BlockTagsProvider {
         com.cosmicbreach.guardian.unsung.UnsungRegistry.blockTags((key, blocks) -> tag(key).add(blocks));
         com.cosmicbreach.entity.stalker.Stalkers.blockTags((key, blocks) -> tag(key).add(blocks));
         com.cosmicbreach.structure.sanctum.SanctumRegistry.blockTags((key, blocks) -> tag(key).add(blocks));
+        com.cosmicbreach.provision.ProvisionRegistry.blockTags((key, blocks) -> tag(key).add(blocks));
         com.cosmicbreach.guardian.heliarch.HeliarchRegistry.blockTags((key, blocks) -> tag(key).add(blocks));
         com.cosmicbreach.familiar.FamiliarRegistry.blockTags((key, blocks) -> tag(key).add(blocks));
+        com.cosmicbreach.shrine.ShrineRegistry.blockTags((key, blocks) -> tag(key).add(blocks));
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(com.cosmicbreach.structure.StructureRegistry.SUNSTONE.get(),
                 com.cosmicbreach.structure.StructureRegistry.NEBULITE_LAMP.get(), com.cosmicbreach.structure.StructureRegistry.KINETIC_EMITTER.get());
         tag(BlockTags.NEEDS_IRON_TOOL).add(com.cosmicbreach.structure.StructureRegistry.KINETIC_EMITTER.get());

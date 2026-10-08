@@ -384,7 +384,8 @@ EVENTS = [
     Event("colossus/fracture", "Prism Colossus fractures", [fracture], length=3.0, level=3.0, fade_out=0.7),
     Event("colossus/shatter", "Prism Colossus shatters", [shatter_all], length=3.2, level=6.0, fade_out=0.9),
     Event("colossus/reform", "Prism Shards re-merge", [reform], length=2.5, level=1.0, fade_out=0.5),
-    Event("colossus/death", "Prism Colossus falls", [death], length=5.0, level=2.0, fade_out=1.2),
+    # level 2.5 dB down from 2.0 (1.1.0 final pass): the kill line sits under this sound and must stay 3 LU over it (test_colossus_death.py)
+    Event("colossus/death", "Prism Colossus falls", [death], length=5.0, level=-0.5, fade_out=1.2),
     Event("colossus/hurt", "Prism Colossus hurts", [partial(hurt, 1321, 1300.0), partial(hurt, 1322, 1550.0),
                                                      partial(hurt, 1323, 1100.0)], length=0.35, level=-4.0, fade_out=0.08),
     Event("colossus/shard_chitter", "Prism Shard chitters", [partial(chitter, 1331), partial(chitter, 1332), partial(chitter, 1333)],

@@ -1,0 +1,54 @@
+{
+ "text": "All three or none?",
+ "words": [
+  {
+   "text": "All",
+   "start": 0.22,
+   "end": 0.36,
+   "type": "word",
+   "logprob": -6.69933797325939e-05
+  },
+  {
+   "text": " ",
+   "start": 0.36,
+   "end": 0.46,
+   "type": "spacing",
+   "logprob": -5.602820692729438e-06
+  },
+  {
+   "text": "three",
+   "start": 0.46,
+   "end": 0.84,
+   "type": "word",
+   "logprob": -5.602820692729438e-06
+  },
+  {
+   "text": " ",
+   "start": 0.84,
+   "end": 0.84,
+   "type": "spacing",
+   "logprob": -2.253030106658116e-05
+  },
+  {
+   "text": "or",
+   "start": 1.56,
+   "end": 1.66,
+   "type": "word",
+   "logprob": -2.253030106658116e-05
+  },
+  {
+   "text": " ",
+   "start": 1.66,
+   "end": 1.82,
+   "type": "spacing",
+   "logprob": -7.390948667307384e-06
+  },
+  {
+   "text": "none?",
+   "start": 1.82,
+   "end": 2.18,
+   "type": "word",
+   "logprob": -0.12440181968413526
+  }
+ ]
+}

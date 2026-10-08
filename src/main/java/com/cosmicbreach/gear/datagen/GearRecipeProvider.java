@@ -24,6 +24,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
 /**
@@ -51,7 +52,7 @@ public final class GearRecipeProvider extends RecipeProvider {
 
         // Forge I
         forge(out, ModItems.MERIDIAN.get(), 1, 10, need(ModMaterials.STARSTEEL_INGOT.get(), 3), need(ModBlocks.SPIRE_QUARTZ.get(), 1),
-                need(Items.STICK, 1));
+                need(Tags.Items.RODS_WOODEN, 1));
         forge(out, GearRegistry.VANGUARD.helmet().get(), 1, 20, need(ModMaterials.STARSTEEL_INGOT.get(), 5), need(ModItems.STARSHARD.get(), 1));
         forge(out, GearRegistry.VANGUARD.chestplate().get(), 1, 21, need(ModMaterials.STARSTEEL_INGOT.get(), 8),
                 need(ModItems.STARSHARD.get(), 2));
@@ -68,23 +69,23 @@ public final class GearRecipeProvider extends RecipeProvider {
                 need(ModBlocks.RIMEGLASS.get(), 1));
         // Forge II: the Driftweave (GDD 5.1)
         forge(out, GearSets.DRIFTWEAVE.helmet().get(), 2, 30, need(ModMaterials.NEBULITE_INGOT.get(), 3), need(ModBlocks.RIMEGLASS.get(), 2),
-                need(Items.STRING, 4));
+                need(Tags.Items.STRINGS, 4));
         forge(out, GearSets.DRIFTWEAVE.chestplate().get(), 2, 31, need(ModMaterials.NEBULITE_INGOT.get(), 5),
-                need(ModMaterials.GYRE_CORE.get(), 1), need(Items.STRING, 8));
+                need(ModMaterials.GYRE_CORE.get(), 1), need(Tags.Items.STRINGS, 8));
         forge(out, GearSets.DRIFTWEAVE.leggings().get(), 2, 32, need(ModMaterials.NEBULITE_INGOT.get(), 4),
-                need(ModBlocks.RIMEGLASS.get(), 2), need(Items.STRING, 6));
+                need(ModBlocks.RIMEGLASS.get(), 2), need(Tags.Items.STRINGS, 6));
         forge(out, GearSets.DRIFTWEAVE.boots().get(), 2, 33, need(ModMaterials.NEBULITE_INGOT.get(), 2), need(ModBlocks.RIMEGLASS.get(), 1),
-                need(Items.STRING, 4));
+                need(Tags.Items.STRINGS, 4));
         // Forge III: the Choir Astrolabe (GDD 4.2)
         forge(out, ModItems.CHOIR_ASTROLABE.get(), 3, 10, need(ModMaterials.LEVIATHAN_SCALE.get(), 1), need(ModMaterials.ECLIPSIUM_INGOT.get(), 3), need(ModBlocks.SPIRE_QUARTZ.get(), 2), need(ModMaterials.UMBRAL_SILK.get(), 1));
         // Forge III: the Choir Regalia (GDD 5.1)
-        forge(out, GearSets.REGALIA.helmet().get(), 3, 30, need(ModMaterials.ECLIPSIUM_INGOT.get(), 3), need(Items.GOLD_INGOT, 2),
+        forge(out, GearSets.REGALIA.helmet().get(), 3, 30, need(ModMaterials.ECLIPSIUM_INGOT.get(), 3), need(com.cosmicbreach.provision.ProvisionRegistry.GILDING, 2),
                 need(ModMaterials.UMBRAL_SILK.get(), 2));
-        forge(out, GearSets.REGALIA.chestplate().get(), 3, 31, need(ModMaterials.ECLIPSIUM_INGOT.get(), 5), need(Items.GOLD_INGOT, 3),
+        forge(out, GearSets.REGALIA.chestplate().get(), 3, 31, need(ModMaterials.ECLIPSIUM_INGOT.get(), 5), need(com.cosmicbreach.provision.ProvisionRegistry.GILDING, 3),
                 need(ModMaterials.UMBRAL_SILK.get(), 4));
-        forge(out, GearSets.REGALIA.leggings().get(), 3, 32, need(ModMaterials.ECLIPSIUM_INGOT.get(), 4), need(Items.GOLD_INGOT, 2),
+        forge(out, GearSets.REGALIA.leggings().get(), 3, 32, need(ModMaterials.ECLIPSIUM_INGOT.get(), 4), need(com.cosmicbreach.provision.ProvisionRegistry.GILDING, 2),
                 need(ModMaterials.UMBRAL_SILK.get(), 3));
-        forge(out, GearSets.REGALIA.boots().get(), 3, 33, need(ModMaterials.ECLIPSIUM_INGOT.get(), 2), need(Items.GOLD_INGOT, 1),
+        forge(out, GearSets.REGALIA.boots().get(), 3, 33, need(ModMaterials.ECLIPSIUM_INGOT.get(), 2), need(com.cosmicbreach.provision.ProvisionRegistry.GILDING, 1),
                 need(ModMaterials.UMBRAL_SILK.get(), 2));
     }
 
@@ -99,6 +100,15 @@ public final class GearRecipeProvider extends RecipeProvider {
     private static void forge(RecipeOutput out, ItemLike result, int tier, int order, SizedIngredient... ingredients) {
         String name = BuiltInRegistries.ITEM.getKey(result.asItem()).getPath();
         out.accept(CosmicBreach.id("forge/" + name), new ForgeRecipe(new ArrayList<>(List.of(ingredients)), new ItemStack(result),
-                tier, order), null);
+                tier, order, tab(result.asItem())), null);
+    }
+
+    /**
+     * A generated recipe's Forge tab (1.1 design section 10) follows its result (see {@link ForgeTabRule}: mount gear,
+     * armor, a combat weapon or a digging tool; anything else goes to Other). It is written out as "category", so every
+     * recipe file names its tab. Fully qualified names keep this change out of the import block, which other lanes edit.
+     */
+    private static com.cosmicbreach.gear.forge.ForgeCategory tab(Item item) {
+        return ForgeTabRule.of(item.getClass());
     }
 }

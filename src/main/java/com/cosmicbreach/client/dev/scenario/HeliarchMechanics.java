@@ -2,15 +2,14 @@ package com.cosmicbreach.client.dev.scenario;
 
 import com.cosmicbreach.client.combat.ModKeyMappings;
 import com.cosmicbreach.client.dev.Steps;
-import com.cosmicbreach.client.guardian.heliarch.HeliarchClient;
 import com.cosmicbreach.client.guardian.heliarch.HeliarchSky;
 import com.cosmicbreach.client.sanctum.SanctumClient;
+import com.cosmicbreach.client.voice.BossVoiceClient;
 import com.cosmicbreach.client.voice.EchoClient;
 import com.cosmicbreach.guardian.GuardianRewards;
 import com.cosmicbreach.guardian.heliarch.CollapseSchedule;
 import com.cosmicbreach.guardian.heliarch.HeliarchArena;
 import com.cosmicbreach.guardian.heliarch.HeliarchArenaRules;
-import com.cosmicbreach.guardian.heliarch.HeliarchLine;
 import com.cosmicbreach.guardian.heliarch.HeliarchLoot;
 import com.cosmicbreach.guardian.heliarch.HeliarchMoves;
 import com.cosmicbreach.guardian.heliarch.HeliarchRegistry;
@@ -24,7 +23,9 @@ import com.cosmicbreach.structure.sanctum.SanctumLayout;
 import com.cosmicbreach.structure.sanctum.SanctumRegistry;
 import com.cosmicbreach.structure.sanctum.SanctumThroneBlock;
 import com.cosmicbreach.voice.EchoLine;
+import com.cosmicbreach.voice.boss.BossVoices;
 import com.cosmicbreach.world.weather.EclipseSurge;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.function.BooleanSupplier;
@@ -125,6 +126,8 @@ final class HeliarchMechanics {
                 .waitTicks(3)
                 .check("a block placed on the arena before the fight", () -> CryptKit.server(srv -> HeliarchScenario.level(srv)
                         .getBlockState(new BlockPos(20, 64, 3)).is(net.minecraft.world.level.block.Blocks.COBBLESTONE)))
+                // a first summon for this player, so the solo opener is the one that plays
+                .command("advancement revoke @s only cosmicbreach:guardian/breach_sealed")
                 .command("item replace entity @s hotbar." + SLOT_HEART + " with cosmicbreach:dying_star_heart")
                 .run("before the throne", () -> CryptKit.tp(mc, new Vec3(0.5, SanctumLayout.ARENA_Y, 0.5 + side * 2.6),
                         new Vec3(0.5, SanctumLayout.ARENA_Y + 0.6, 0.5)))
@@ -132,6 +135,8 @@ final class HeliarchMechanics {
                 .run("hold the Heart", () -> select(mc, SLOT_HEART))
                 .waitTicks(3)
                 .run("aim at the throne's seat", () -> CryptKit.aim(mc, new Vec3(0.5, SanctumLayout.ARENA_Y + 0.5, 0.5)))
+                // one voice with the guide: a boss line is dropped if the guide is still speaking, so the fight starts in her quiet
+                .waitUntil("the guide is quiet", 900, () -> EchoClient.playing() == null && EchoClient.waiting().isEmpty())
                 .press(mc.options.keyUse)
                 .waitUntil("the Heliarch rises from the Heart", 60, HeliarchScenario::fighting)
                 .check("1,200 health for one player, the Heart burning in the throne", () -> HeliarchScenario.ask(h -> Math.abs(h.maxHealth() - 1200)
@@ -142,7 +147,7 @@ final class HeliarchMechanics {
                 .waitUntil("the Heart was spent", 20, () -> count(mc, SanctumRegistry.DYING_STAR_HEART.get()) == 0)
                 .check("the block placed before the fight was cleared", () -> CryptKit.server(srv -> HeliarchScenario.level(srv)
                         .getBlockState(new BlockPos(20, 64, 3)).isAir()))
-                .waitUntil("the intro line", 80, () -> HeliarchClient.spoken().contains(HeliarchLine.INTRO))
+                .waitUntil("the intro line", 80, () -> BossVoiceClient.heard("heliarch", "intro"))
                 .run("into the arena", () -> CryptKit.tp(mc, new Vec3(12.5, SanctumLayout.ARENA_Y, 0.5), core))
                 .waitTicks(5)
                 // nothing can be placed
@@ -332,6 +337,29 @@ final class HeliarchMechanics {
                 .run("note", () -> results.add("regent: " + HeliarchScenario.ask(HollowHeliarch::summary)));
     }
 
+    // ------------------------------------------------------------------ the regent's lines (A5.3)
+
+    /**
+     * Every line of the regent met in the fight ({@link VoiceSweep}), with its attacks held in phase 1: the voice forgets, each
+     * line's own moment is raised, and the client must play it to its end on the Voice channel with its caption. Its opener and
+     * its kill are the other parts' (the regent part hears them in a real summon and a real kill).
+     */
+    void lines(Steps steps, Minecraft mc) {
+        List<String> problems = new ArrayList<>();
+        List<String> heard = new ArrayList<>();
+        equip(steps, mc);
+        ensureFight(steps, mc);
+        steps.run("let the sound engine play, inaudibly", () -> VoiceProbe.audible(true))
+                .waitUntil("the guide is quiet", 900, () -> EchoClient.playing() == null && EchoClient.waiting().isEmpty());
+        VoiceSweep.sweep(steps, "heliarch", problems, heard, () -> HeliarchScenario.ask(BossVoiceScenario::note));
+        steps.run("mute again", () -> VoiceProbe.audible(false))
+                .log("heard", () -> heard.size() + " lines met: " + String.join(", ", heard))
+                .log("problems", () -> problems.size() + " problems: " + String.join("; ", problems))
+                .check("every line met was heard to its end with its caption, on the Voice channel, as its catalog says", problems::isEmpty)
+                .check("no line was cut short but by the rules, all on the Voice channel", () -> BossVoiceClient.interruptions() == 0
+                        && BossVoiceClient.history().stream().allMatch(h -> h.source() == net.minecraft.sounds.SoundSource.VOICE));
+    }
+
     // ------------------------------------------------------------------ 2. the Hollow
 
     void hollow(Steps steps, Minecraft mc) {
@@ -343,7 +371,7 @@ final class HeliarchMechanics {
         steps.run("heal", CryptKit::heal)
                 .command("cosmicbreach debug heliarch hold " + HOLD)
                 .command("cosmicbreach debug heliarch hollow")
-                .waitUntil("the Hollowing's line", 80, () -> HeliarchClient.spoken().contains(HeliarchLine.HOLLOWING))
+                .waitUntil("the Hollowing's line", 80, () -> BossVoiceClient.heard("heliarch", "hollowing"))
                 .waitUntil("phase 2", 200, () -> HeliarchScenario.ask(h -> h.state() == State.HOLLOW))
                 .command("cosmicbreach debug heliarch hold " + HOLD)
                 .waitUntil("the eclipse hangs over the pillars", 80, () -> HeliarchScenario.ask(h -> h.core(h.level().getGameTime()).y
@@ -428,7 +456,7 @@ final class HeliarchMechanics {
                 .command("cosmicbreach debug heliarch nova")
                 .waitUntil("Nova channels", 80, () -> HeliarchScenario.ask(h -> h.action() == Action.NOVA))
                 .command("cosmicbreach debug heliarch hold " + HOLD)
-                .waitUntil("Nova's line", 60, () -> HeliarchClient.spoken().contains(HeliarchLine.NOVA))
+                .waitUntil("Nova's line", 60, () -> BossVoiceClient.heard("heliarch", "nova"))
                 .run("mark", () -> {
                     markHealth();
                     tallyMark = tally("nova (covered)");
@@ -492,7 +520,7 @@ final class HeliarchMechanics {
                 .command("cosmicbreach debug heliarch collapse")
                 .waitUntil("the Collapse", 60, () -> HeliarchScenario.ask(h -> h.state() == State.COLLAPSE))
                 .command("cosmicbreach debug heliarch hold " + HOLD)
-                .waitUntil("the Collapse's line", 60, () -> HeliarchClient.spoken().contains(HeliarchLine.COLLAPSE))
+                .waitUntil("the Collapse's line", 60, () -> BossVoiceClient.heard("heliarch", "collapse"))
                 .check("the first rim segment shakes", () -> HeliarchScenario.ask(h -> new CollapseSchedule(h.side())
                         .state(SanctumArena.Ring.RIM, CollapseSchedule.startSegment(h.side()), h.level().getGameTime() - h.collapseStart())
                         == CollapseSchedule.State.SHAKING))
@@ -542,10 +570,11 @@ final class HeliarchMechanics {
                     return true;
                 }))
                 .screenshot("heliarch_mech_collapse")
-                // a death, and the player_down line
+                // a death, and the player_down line: once the voice has settled, so the line is not held by the global gap
+                .waitUntil("the regent's voice has settled", 800, () -> HeliarchScenario.ask(BossVoices::settled))
                 .command("execute in cosmicbreach:aetheria run spawnpoint @s 0 64 4")
                 .command("kill @s")
-                .waitUntil("the player_down line", 60, () -> HeliarchClient.spoken().contains(HeliarchLine.PLAYER_DOWN))
+                .waitUntil("the player_down line", 60, () -> BossVoiceClient.heard("heliarch", "player_down"))
                 .check("the fight saw it", () -> HeliarchScenario.ask(HollowHeliarch::playerDowns) >= 1)
                 .waitTicks(10)
                 .run("respawn", () -> mc.player.respawn())
@@ -560,7 +589,10 @@ final class HeliarchMechanics {
                 })
                 // the kill
                 .command("cosmicbreach debug heliarch kill")
-                .waitUntil("the death line", 60, () -> HeliarchClient.spoken().contains(HeliarchLine.DEATH))
+                .waitUntil("the death line", 60, () -> BossVoiceClient.heard("heliarch", "death"))
+                .log("boss lines heard", () -> String.valueOf(BossVoiceClient.history()))
+                .check("every line on the Voice channel, none cut short", () -> BossVoiceClient.interruptions() == 0
+                        && BossVoiceClient.history().stream().allMatch(h -> h.source() == net.minecraft.sounds.SoundSource.VOICE))
                 .waitUntil("a Reliquary rises for me", 200, () -> reliquary() != null)
                 .waitUntil("the fight is over", 200, () -> !HeliarchScenario.fighting())
                 .check("the arena rose again", () -> CryptKit.server(srv -> {

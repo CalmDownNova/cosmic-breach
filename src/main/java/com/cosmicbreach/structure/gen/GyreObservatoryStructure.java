@@ -40,9 +40,10 @@ public class GyreObservatoryStructure extends Structure {
                 pieces -> pieces.addPiece(new ObservatoryPiece(s.centre(), seed, s.radius(), s.headroom()))));
     }
 
-    /** A place near column (x, z): the chunk's middle first, then four spots 40 blocks out. */
+    /** A place near column (x, z): the chunk's middle first, then four spots a belt cell out. */
     public static Optional<Site> site(AetheriaTerrain t, int x, int z) {
-        int[][] offsets = {{0, 0}, {40, 0}, {-40, 0}, {0, 40}, {0, -40}};
+        int c = DriftBelts.CELL;
+        int[][] offsets = {{0, 0}, {c, 0}, {-c, 0}, {0, c}, {0, -c}};
         for (int[] o : offsets) {
             Optional<Site> s = siteNear(t, x + o[0], z + o[1]);
             if (s.isPresent()) {
@@ -60,7 +61,7 @@ public class GyreObservatoryStructure extends Structure {
         double bestDist = Double.MAX_VALUE;
         for (int di = -1; di <= 1; di++) {
             for (int dj = -1; dj <= 1; dj++) {
-                for (int k = 4; k <= 7; k++) {
+                for (int k = DriftBelts.K_MIN; k <= DriftBelts.K_MAX; k++) {
                     DriftBelts.Asteroid a = t.drift.asteroid(ci + di, cj + dj, k);
                     if (a == null || a.shard || a.r < 9 || a.r > 16) {
                         continue;

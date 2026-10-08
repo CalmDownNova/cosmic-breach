@@ -1,0 +1,527 @@
+{
+  "boss": "heliarch",
+  "global_gap_seconds": 12,
+  "wait_seconds": 4,
+  "caption_color": "#FFD27A",
+  "reference": {
+    "weapon_tier": 3,
+    "armor": 20,
+    "toughness": 10,
+    "resilience": 30,
+    "level_min": 35,
+    "level_max": 40,
+    "typical_hit": 24
+  },
+  "lines": [
+    {
+      "id": "intro",
+      "trigger": "fight_start",
+      "condition": "players:solo, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "Another singer. I poured a sun into the dark for you. It was not enough.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_intro",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_intro",
+          "length_ticks": 161,
+          "speech_start_ticks": 4,
+          "speech_ticks": 130
+        }
+      }
+    },
+    {
+      "id": "open_group",
+      "trigger": "fight_start",
+      "condition": "players:group, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "A whole choir, in the dark. I poured a sun into it for you. It was not enough.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_open_group",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_open_group",
+          "length_ticks": 185,
+          "speech_start_ticks": 6,
+          "speech_ticks": 153
+        }
+      }
+    },
+    {
+      "id": "open_again",
+      "trigger": "fight_start",
+      "condition": "returning",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "You again. Was my light not enough the first time?",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_open_again",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_open_again",
+          "length_ticks": 108,
+          "speech_start_ticks": 4,
+          "speech_ticks": 80
+        }
+      }
+    },
+    {
+      "id": "loud_light",
+      "trigger": "hp_threshold:80",
+      "condition": "none",
+      "priority": 75,
+      "repeat": "once per fight",
+      "words": "Your light is loud. The Hollow can hear it.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_loud_light",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_loud_light",
+          "length_ticks": 96,
+          "speech_start_ticks": 4,
+          "speech_ticks": 66
+        }
+      }
+    },
+    {
+      "id": "hollowing",
+      "trigger": "hp_threshold:60",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "words": "The Hollow wants the rest of me. Let it have you instead.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_hollowing",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_hollowing",
+          "length_ticks": 124,
+          "speech_start_ticks": 4,
+          "speech_ticks": 94
+        }
+      }
+    },
+    {
+      "id": "nova",
+      "trigger": "hp_threshold:40",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "words": "Burn with me!",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_nova",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_nova",
+          "length_ticks": 60,
+          "speech_start_ticks": 4,
+          "speech_ticks": 30
+        }
+      }
+    },
+    {
+      "id": "nova_again",
+      "trigger": "taunt",
+      "condition": "on:nova_return",
+      "priority": 95,
+      "repeat": "cooldown 30 s",
+      "words": "Again! Burn!",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_nova_again",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_nova_again",
+          "length_ticks": 74,
+          "speech_start_ticks": 4,
+          "speech_ticks": 40
+        }
+      }
+    },
+    {
+      "id": "nova_broken",
+      "trigger": "taunt",
+      "condition": "on:nova_broken",
+      "priority": 80,
+      "repeat": "once per fight",
+      "words": "My sun... broken. Again.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_nova_broken",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_nova_broken",
+          "length_ticks": 104,
+          "speech_start_ticks": 3,
+          "speech_ticks": 69
+        }
+      }
+    },
+    {
+      "id": "nova_failed",
+      "trigger": "taunt",
+      "condition": "on:nova_detonated",
+      "priority": 80,
+      "repeat": "once per fight",
+      "words": "Too slow. The dark is always faster.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_nova_failed",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_nova_failed",
+          "length_ticks": 97,
+          "speech_start_ticks": 4,
+          "speech_ticks": 68
+        }
+      }
+    },
+    {
+      "id": "collapse",
+      "trigger": "hp_threshold:20",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "words": "Everything falls. Everything always falls.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_collapse",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_collapse",
+          "length_ticks": 98,
+          "speech_start_ticks": 4,
+          "speech_ticks": 70
+        }
+      }
+    },
+    {
+      "id": "not_again",
+      "trigger": "hp_threshold:10",
+      "condition": "none",
+      "priority": 75,
+      "repeat": "once per fight",
+      "words": "Not again. Not the dark again.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_not_again",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_not_again",
+          "length_ticks": 91,
+          "speech_start_ticks": 4,
+          "speech_ticks": 57
+        }
+      }
+    },
+    {
+      "id": "death",
+      "trigger": "boss_kill",
+      "condition": "none",
+      "priority": 100,
+      "repeat": "once per fight",
+      "words": "Ah... I can hear them again. Sing.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_death",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_death",
+          "length_ticks": 103,
+          "speech_start_ticks": 3,
+          "speech_ticks": 81
+        }
+      }
+    },
+    {
+      "id": "alone_now",
+      "trigger": "player_death",
+      "condition": "players:group, last_alive",
+      "priority": 75,
+      "repeat": "once per fight",
+      "words": "Alone now. As I was.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_alone_now",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_alone_now",
+          "length_ticks": 84,
+          "speech_start_ticks": 3,
+          "speech_ticks": 55
+        }
+      }
+    },
+    {
+      "id": "player_down",
+      "trigger": "player_death",
+      "condition": "none",
+      "priority": 70,
+      "repeat": "once per fight",
+      "words": "Silence.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_player_down",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_player_down",
+          "length_ticks": 52,
+          "speech_start_ticks": 5,
+          "speech_ticks": 24
+        }
+      }
+    },
+    {
+      "id": "one_less",
+      "trigger": "player_death",
+      "condition": "none",
+      "priority": 70,
+      "repeat": "once per fight",
+      "words": "One less voice.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_one_less",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_one_less",
+          "length_ticks": 59,
+          "speech_start_ticks": 3,
+          "speech_ticks": 31
+        }
+      }
+    },
+    {
+      "id": "flicker",
+      "trigger": "player_low_health",
+      "condition": "health<=25%",
+      "priority": 60,
+      "repeat": "once per fight",
+      "words": "Flickering. I remember how that feels.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_flicker",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_flicker",
+          "length_ticks": 94,
+          "speech_start_ticks": 6,
+          "speech_ticks": 66
+        }
+      }
+    },
+    {
+      "id": "spat_out",
+      "trigger": "player_fell",
+      "condition": "none",
+      "priority": 60,
+      "repeat": "once per fight",
+      "words": "Even the Hollow will not have you.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_spat_out",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_spat_out",
+          "length_ticks": 74,
+          "speech_start_ticks": 4,
+          "speech_ticks": 46
+        }
+      }
+    },
+    {
+      "id": "withdraw",
+      "trigger": "player_left",
+      "condition": "all_gone, away>=5s",
+      "priority": 40,
+      "repeat": "once per fight",
+      "words": "Go, then. I have waited longer than you have lived.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_withdraw",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_withdraw",
+          "length_ticks": 109,
+          "speech_start_ticks": 4,
+          "speech_ticks": 82
+        }
+      }
+    },
+    {
+      "id": "came_back",
+      "trigger": "player_returned",
+      "condition": "away>=10s",
+      "priority": 40,
+      "repeat": "once per fight",
+      "words": "You came back. They always come back.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_came_back",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_came_back",
+          "length_ticks": 103,
+          "speech_start_ticks": 4,
+          "speech_ticks": 73
+        }
+      }
+    },
+    {
+      "id": "my_light",
+      "trigger": "weapon:forge_tier_4",
+      "condition": "none",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "That light... was mine.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_my_light",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_my_light",
+          "length_ticks": 75,
+          "speech_start_ticks": 4,
+          "speech_ticks": 46
+        }
+      }
+    },
+    {
+      "id": "arrows",
+      "trigger": "weapon:bow",
+      "condition": "also:crossbow",
+      "priority": 45,
+      "repeat": "once per fight",
+      "words": "Arrows. My halo has eaten a thousand.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_arrows",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_arrows",
+          "length_ticks": 97,
+          "speech_start_ticks": 4,
+          "speech_ticks": 67
+        }
+      }
+    },
+    {
+      "id": "fists",
+      "trigger": "weapon:bare_hands",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "words": "You strike a sun with your hands?",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_fists",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_fists",
+          "length_ticks": 89,
+          "speech_start_ticks": 4,
+          "speech_ticks": 52
+        }
+      }
+    },
+    {
+      "id": "strange_steel",
+      "trigger": "weapon:mod_weapon",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "words": "That steel was not forged under my sun.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_strange_steel",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_strange_steel",
+          "length_ticks": 90,
+          "speech_start_ticks": 4,
+          "speech_ticks": 61
+        }
+      }
+    },
+    {
+      "id": "vestments",
+      "trigger": "armor:mod_full_set",
+      "condition": "set:regalia",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "You wear my choir's vestments. Take them off.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_vestments",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_vestments",
+          "length_ticks": 107,
+          "speech_start_ticks": 4,
+          "speech_ticks": 71
+        }
+      }
+    },
+    {
+      "id": "no_armor",
+      "trigger": "armor:none",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "words": "No armor at all? You came to burn.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_no_armor",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_no_armor",
+          "length_ticks": 99,
+          "speech_start_ticks": 3,
+          "speech_ticks": 65
+        }
+      }
+    },
+    {
+      "id": "give_it",
+      "trigger": "gear:over",
+      "condition": "none",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "So much light on one singer. Give it to me.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_give_it",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_give_it",
+          "length_ticks": 98,
+          "speech_start_ticks": 4,
+          "speech_ticks": 69
+        }
+      }
+    },
+    {
+      "id": "in_that",
+      "trigger": "gear:under",
+      "condition": "none",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "You came down here in that?",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_in_that",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_in_that",
+          "length_ticks": 73,
+          "speech_start_ticks": 4,
+          "speech_ticks": 43
+        }
+      }
+    },
+    {
+      "id": "too_close",
+      "trigger": "taunt",
+      "condition": "on:corona_flare",
+      "priority": 60,
+      "repeat": "cooldown 90 s",
+      "words": "Too close to the sun, singer.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_too_close",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_too_close",
+          "length_ticks": 96,
+          "speech_start_ticks": 4,
+          "speech_ticks": 63
+        }
+      }
+    },
+    {
+      "id": "dim_me",
+      "trigger": "taunt",
+      "condition": "on:break",
+      "priority": 60,
+      "repeat": "once per fight",
+      "words": "You... dim me.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_dim_me",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_dim_me",
+          "length_ticks": 98,
+          "speech_start_ticks": 3,
+          "speech_ticks": 60
+        }
+      }
+    },
+    {
+      "id": "long_fight",
+      "trigger": "taunt",
+      "condition": "on:soft_enrage",
+      "priority": 70,
+      "repeat": "once per fight",
+      "words": "The light is leaving us both.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:heliarch/voice_long_fight",
+          "subtitle": "subtitles.cosmicbreach.heliarch.voice_long_fight",
+          "length_ticks": 78,
+          "speech_start_ticks": 4,
+          "speech_ticks": 48
+        }
+      }
+    }
+  ]
+}

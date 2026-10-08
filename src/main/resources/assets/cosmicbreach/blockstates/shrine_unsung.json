@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "cosmicbreach:block/shrine_unsung" },
+    "facing=east": { "model": "cosmicbreach:block/shrine_unsung" },
+    "facing=south": { "model": "cosmicbreach:block/shrine_unsung" },
+    "facing=west": { "model": "cosmicbreach:block/shrine_unsung" }
+  }
+}

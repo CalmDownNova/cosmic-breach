@@ -1,0 +1,26 @@
+{
+ "text": "The silence",
+ "words": [
+  {
+   "text": "The",
+   "start": 0.06,
+   "end": 0.1,
+   "type": "word",
+   "logprob": -0.0015993434935808182
+  },
+  {
+   "text": " ",
+   "start": 0.1,
+   "end": 0.26,
+   "type": "spacing",
+   "logprob": -0.0004892344586551189
+  },
+  {
+   "text": "silence",
+   "start": 0.26,
+   "end": 0.84,
+   "type": "word",
+   "logprob": -0.0004892344586551189
+  }
+ ]
+}

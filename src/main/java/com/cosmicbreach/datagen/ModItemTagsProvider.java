@@ -57,5 +57,6 @@ public final class ModItemTagsProvider extends ItemTagsProvider {
                 ModMaterials.ECLIPSIUM_INGOT.get());
         tag(ItemTags.VILLAGER_PLANTABLE_SEEDS).add(ModBlocks.STARBLOOM_SEEDS.get());
         tag(ItemTags.CHICKEN_FOOD).add(ModBlocks.STARBLOOM_SEEDS.get());
+        com.cosmicbreach.provision.ProvisionRegistry.itemTags((key, items) -> tag(key).add(items), (key, sub) -> tag(key).addTag(sub));
     }
 }

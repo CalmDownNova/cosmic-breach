@@ -42,7 +42,7 @@ public final class AsteroidDecorFeature extends Feature<NoneFeatureConfiguration
         int j0 = Math.floorDiv(z0, DriftBelts.CELL);
         for (int i = i0 - 1; i <= i0 + 1; i++) {
             for (int j = j0 - 1; j <= j0 + 1; j++) {
-                for (int k = 4; k <= 7; k++) {
+                for (int k = DriftBelts.K_MIN; k <= DriftBelts.K_MAX; k++) {
                     DriftBelts.Asteroid a = terrain.drift.asteroid(i, j, k);
                     if (a != null && a.cx >= x0 && a.cx < x0 + 16 && a.cz >= z0 && a.cz < z0 + 16) {
                         here.add(a);

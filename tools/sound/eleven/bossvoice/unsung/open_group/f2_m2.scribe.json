@@ -1,0 +1,40 @@
+{
+ "text": "And not one",
+ "words": [
+  {
+   "text": "And",
+   "start": 0.06,
+   "end": 0.18,
+   "type": "word",
+   "logprob": -0.10022179037332535
+  },
+  {
+   "text": " ",
+   "start": 0.18,
+   "end": 0.24,
+   "type": "spacing",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": "not",
+   "start": 0.24,
+   "end": 0.42,
+   "type": "word",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": " ",
+   "start": 0.42,
+   "end": 0.64,
+   "type": "spacing",
+   "logprob": -6.198863957251888e-06
+  },
+  {
+   "text": "one",
+   "start": 0.64,
+   "end": 0.94,
+   "type": "word",
+   "logprob": -6.198863957251888e-06
+  }
+ ]
+}

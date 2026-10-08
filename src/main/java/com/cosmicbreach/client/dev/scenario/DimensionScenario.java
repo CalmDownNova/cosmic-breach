@@ -374,7 +374,7 @@ public final class DimensionScenario implements Scenario {
             double weight = 0;
             for (int i = ci - 4; i <= ci + 4; i++) {
                 for (int j = cj - 4; j <= cj + 4; j++) {
-                    for (int k = 4; k <= 7; k++) {
+                    for (int k = DriftBelts.K_MIN; k <= DriftBelts.K_MAX; k++) {
                         DriftBelts.Asteroid a = t.drift.asteroid(i, j, k);
                         if (a == null) {
                             continue;

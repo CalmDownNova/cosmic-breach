@@ -1,0 +1,24 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "category": "mount_gear",
+  "ingredients": [
+    {
+      "count": 2,
+      "item": "cosmicbreach:spire_quartz"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:starsteel_ingot"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:starbloom"
+    }
+  ],
+  "order": 67,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:stable_crystal"
+  },
+  "tier": 1
+}

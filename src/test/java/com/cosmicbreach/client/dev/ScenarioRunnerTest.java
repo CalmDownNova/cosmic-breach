@@ -148,5 +148,8 @@ class ScenarioRunnerTest {
         assertTrue(HiddenWindowMixinPlugin.shouldApply(window, true));
         assertTrue(HiddenWindowMixinPlugin.shouldApply(dialogs, true));
         assertTrue(HiddenWindowMixinPlugin.shouldApply(other, false));
+        String mouse = "com.cosmicbreach.mixin.client.MouseHandlerAccessor";
+        assertFalse(HiddenWindowMixinPlugin.shouldApply(mouse, false), "the test cursor never reaches a normal game");
+        assertTrue(HiddenWindowMixinPlugin.shouldApply(mouse, true));
     }
 }

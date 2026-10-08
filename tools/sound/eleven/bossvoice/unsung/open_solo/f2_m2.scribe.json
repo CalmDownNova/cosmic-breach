@@ -1,0 +1,40 @@
+{
+ "text": "To the choir",
+ "words": [
+  {
+   "text": "To",
+   "start": 0.12,
+   "end": 0.22,
+   "type": "word",
+   "logprob": -0.25211071968078613
+  },
+  {
+   "text": " ",
+   "start": 0.22,
+   "end": 0.26,
+   "type": "spacing",
+   "logprob": -0.00020382710499688983
+  },
+  {
+   "text": "the",
+   "start": 0.26,
+   "end": 0.36,
+   "type": "word",
+   "logprob": -0.00020382710499688983
+  },
+  {
+   "text": " ",
+   "start": 0.36,
+   "end": 0.42,
+   "type": "spacing",
+   "logprob": -0.10164093971252441
+  },
+  {
+   "text": "choir",
+   "start": 0.42,
+   "end": 0.78,
+   "type": "word",
+   "logprob": -0.10164093971252441
+  }
+ ]
+}

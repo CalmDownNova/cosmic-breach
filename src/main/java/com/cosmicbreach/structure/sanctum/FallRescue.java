@@ -68,6 +68,7 @@ public final class FallRescue {
         level.sendParticles(ParticleTypes.FLAME, spot[0], SanctumLayout.ARENA_Y + 0.2, spot[1], 16, 0.6, 0.1, 0.6, 0.02);
         Sanctums.subtitle(p, Component.translatable("cosmicbreach.sanctum.rescued"));
         rescues++;
+        com.cosmicbreach.voice.boss.BossVoices.playerFell(p);
         return true;
     }
 

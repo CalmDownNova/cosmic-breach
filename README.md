@@ -18,6 +18,9 @@ Download: [latest GitHub release](https://github.com/CalmDownNova/cosmic-breach/
 [playerAnimator](https://modrinth.com/mod/playeranimator), [Curios API](https://modrinth.com/mod/curios) and
 [GuideME](https://modrinth.com/mod/guideme), on NeoForge 21.1.252 or newer. Install it on the client and the server.
 
+On a dedicated server, set `allow-flight=true` in `server.properties`. The mod's movement (dashes, mounts, the fall up
+through the ring) can look like flying to vanilla's anti-fly check, and without the setting players get kicked.
+
 ## What's in layer one
 
 - **The Starfall.** At your first sunset a Starfall Shard lands nearby under a beam of light. It gives you the Starfall

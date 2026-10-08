@@ -218,7 +218,7 @@ class AetheriaTerrainTest {
     }
 
     @Test
-    void beltsHoldAboutOneAsteroidPer40BlockCube() {
+    void beltsHoldAboutOneAsteroidPerCell() {
         int inBelt = 0;
         int filled = 0;
         for (int i = -60; i <= 60; i++) {
@@ -241,10 +241,10 @@ class AetheriaTerrainTest {
         assertTrue(ratio > 0.6, "asteroids in belt cores: " + ratio);
         for (int i = -40; i <= 40; i++) {
             for (int j = -40; j <= 40; j++) {
-                for (int k = 4; k <= 7; k++) {
+                for (int k = DriftBelts.K_MIN; k <= DriftBelts.K_MAX; k++) {
                     DriftBelts.Asteroid a = t.drift.asteroid(i, j, k);
                     if (a != null) {
-                        assertTrue(a.r >= 2 && a.r <= 15, "asteroid radius " + a.r);
+                        assertTrue(a.r >= 3 && a.r <= 13, "asteroid radius " + a.r);
                         assertTrue(a.cy - a.bound >= DriftBelts.FLOOR_Y - 0.5 && a.cy + a.bound <= DriftBelts.CEIL_Y + 0.5, "asteroid out of the Drift");
                     }
                 }

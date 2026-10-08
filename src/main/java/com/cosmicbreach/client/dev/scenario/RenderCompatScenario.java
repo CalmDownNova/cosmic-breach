@@ -21,8 +21,8 @@ import net.neoforged.fml.ModList;
 
 /**
  * Sodium and Iris beside ours (F1). Needs both as runtime mods and a shader pack configured but off
- * ({@code AUTOTEST_ARGS=-PrenderCompat=<folder of their jars> scripts/autotest.sh compat-render}, with
- * {@code run-test/shaderpacks/} and {@code run-test/config/iris.properties} set up). Under Sodium with shaders off: our sky
+ * ({@code AUTOTEST_ARGS=-PrenderCompat=<folder of their jars> bash scripts/client-gate.sh run <who> client scripts/autotest.sh
+ * compat-render}, with {@code run-test/shaderpacks/} and {@code run-test/config/iris.properties} set up). Under Sodium with shaders off: our sky
  * draws, our fog runs, the Deep's darkness still comes through the lightmap. With a pack on: our sky steps aside for the
  * pack's, and what the pack makes of the Deep is measured. Nothing of ours throws. Screenshots of each.
  */

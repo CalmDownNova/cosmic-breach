@@ -149,7 +149,26 @@ public final class StructuresScenario implements Scenario {
             observatory(steps, mc, s);
             natural(steps, mc, s, false);
         }
+        // Stopping the server while chunk generation is still queued can hang it (the game then waits for the watchdog), and the
+        // last view above asks for a wide ring of fresh chunks: shrink the view and let the loaded chunks settle first.
+        steps.run("a small view", () -> mc.options.renderDistance().set(2))
+                .waitUntil("the chunks settle", 1200, chunksSettled(mc));
         steps.log("results", () -> String.join(System.lineSeparator(), s.results));
+    }
+
+    /** True once the Drift's server level has held the same number of chunks for 100 ticks. */
+    private static BooleanSupplier chunksSettled(Minecraft mc) {
+        long[] last = {-1, 0};
+        return () -> {
+            long loaded = server(srv -> srv.getLevel(AetheriaWorld.LEVEL).getChunkSource().getLoadedChunksCount());
+            long now = mc.level.getGameTime();
+            if (loaded != last[0]) {
+                last[0] = loaded;
+                last[1] = now;
+                return false;
+            }
+            return now - last[1] >= 100;
+        };
     }
 
     // ------------------------------------------------------------------ the Reliquary

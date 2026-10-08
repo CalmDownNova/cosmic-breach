@@ -55,10 +55,13 @@ public final class CosmicBreachClient {
         com.cosmicbreach.client.weather.WeatherClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.onboarding.OnboardingClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.structure.StructuresClient.register(modBus, NeoForge.EVENT_BUS);
+        com.cosmicbreach.client.lift.LiftClient.register(modBus, NeoForge.EVENT_BUS);
+        com.cosmicbreach.client.shrine.ShrinesClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.crypt.CryptClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.sanctum.SanctumClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.guardian.heliarch.HeliarchClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.voice.EchoClient.register(modBus, NeoForge.EVENT_BUS);
+        com.cosmicbreach.client.voice.BossVoiceClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.codex.CodexGuide.build();
         AutoTest.installIfRequested();
     }

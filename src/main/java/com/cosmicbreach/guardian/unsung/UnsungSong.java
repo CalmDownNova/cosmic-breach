@@ -77,6 +77,19 @@ public final class UnsungSong {
         return line * BEAT;
     }
 
+    /**
+     * {@link #fightStart} for an awakening whose wake sounds are over {@code soundsOver} ticks after it: the opener's first word is
+     * a beat after the Alto's lift, which is {@value UnsungMoves#INTRO_BEATS} beats before the fight's first turn, and it must not
+     * sound before they are over, so a lift that would come sooner takes one more turn (8 beats) first.
+     */
+    public static long fightStartAfterWake(long awakeTick, long soundsOver) {
+        long start = fightStart(awakeTick);
+        while (start - (long) INTRO_BEATS * BEAT + BEAT < awakeTick + soundsOver) {
+            start += UnsungMoves.TURN_TICKS;
+        }
+        return start;
+    }
+
     /** The fight's beat at {@code tick} (beat 0 starts at {@code fightStart}; negative in the intro). */
     public static long fightBeat(long tick, long fightStart) {
         return Math.floorDiv(tick - fightStart, BEAT);

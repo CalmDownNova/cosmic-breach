@@ -13,24 +13,12 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 /**
- * The Heliarch's messages to clients that its synced state can't carry: a line it speaks, a volley of Solar Rain, a
- * segment of the floor about to fall (the client keeps its blocks to draw them falling), and the world's seal over the
+ * The Heliarch's messages to clients that its synced state can't carry: a volley of Solar Rain, a segment of the floor
+ * about to fall (the client keeps its blocks to draw them falling), and the world's seal over the
  * Breach after the first kill. The one-shot effects of the fight itself go as entity events.
  */
 public final class HeliarchNet {
     private HeliarchNet() {
-    }
-
-    /** The Heliarch says {@code line}. */
-    public record Speak(int line) implements CustomPacketPayload {
-        public static final Type<Speak> TYPE = new Type<>(CosmicBreach.id("heliarch_speak"));
-        public static final StreamCodec<ByteBuf, Speak> STREAM_CODEC = StreamCodec.of((buf, p) -> buf.writeByte(p.line),
-                buf -> new Speak(buf.readByte()));
-
-        @Override
-        public Type<Speak> type() {
-            return TYPE;
-        }
     }
 
     /** Solar Rain: gold circles at {@code circles} (floor level), the impacts at game time {@code land}. */
@@ -91,20 +79,12 @@ public final class HeliarchNet {
     static void register(RegisterPayloadHandlersEvent event) {
         var registrar = event.registrar("1");
         // lambdas calling the client class, so a dedicated server never loads it
-        registrar.playToClient(Speak.TYPE, Speak.STREAM_CODEC,
-                (p, context) -> com.cosmicbreach.client.guardian.heliarch.HeliarchClient.onSpeak(p.line()));
         registrar.playToClient(Rain.TYPE, Rain.STREAM_CODEC,
                 (p, context) -> com.cosmicbreach.client.guardian.heliarch.HeliarchClient.onRain(p.circles(), p.land()));
         registrar.playToClient(Fall.TYPE, Fall.STREAM_CODEC,
                 (p, context) -> com.cosmicbreach.client.guardian.heliarch.HeliarchClient.onFall(p.ring(), p.segment(), p.restore()));
         registrar.playToClient(Seal.TYPE, Seal.STREAM_CODEC,
                 (p, context) -> com.cosmicbreach.client.guardian.heliarch.HeliarchClient.onSeal(p.sealed(), p.forming()));
-    }
-
-    public static void speak(Collection<ServerPlayer> to, HeliarchLine line) {
-        for (ServerPlayer p : to) {
-            PacketDistributor.sendToPlayer(p, new Speak(line.ordinal()));
-        }
     }
 
     public static void rain(Collection<ServerPlayer> to, List<Vec3> circles, long land) {

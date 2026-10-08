@@ -18,6 +18,8 @@ class Event:
     loop: bool = False                         # seamless loop: never trimmed or faded
     quality: int = 5                           # libvorbis -q:a (a loop gets more, see README)
     speech: bool = False                       # a spoken line: `level` is its gated programme loudness, not the loudest 100 ms
+    keep_level: bool = False                   # a voice levelled speaker by speaker (bossvoice): the build only holds its peaks
+    headroom_db: float = 0.0                   # room left under the true-peak ceiling before encoding (Vorbis lifts a peak a little)
 
     def file_stems(self) -> List[str]:
         """Names of the files for this event, without extension, relative to sounds/."""

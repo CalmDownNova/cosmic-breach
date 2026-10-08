@@ -1,0 +1,110 @@
+{
+ "text": "That steel was not forged under my sun",
+ "words": [
+  {
+   "text": "That",
+   "start": 0.22,
+   "end": 0.4,
+   "type": "word",
+   "logprob": -0.00016091958968900144
+  },
+  {
+   "text": " ",
+   "start": 0.4,
+   "end": 0.48,
+   "type": "spacing",
+   "logprob": -0.00026067672297358513
+  },
+  {
+   "text": "steel",
+   "start": 0.58,
+   "end": 0.94,
+   "type": "word",
+   "logprob": -0.00026067672297358513
+  },
+  {
+   "text": " ",
+   "start": 0.94,
+   "end": 0.98,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "was",
+   "start": 0.98,
+   "end": 1.12,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 1.12,
+   "end": 1.26,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "not",
+   "start": 1.26,
+   "end": 1.52,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 1.52,
+   "end": 1.6,
+   "type": "spacing",
+   "logprob": -5.280832192511298e-05
+  },
+  {
+   "text": "forged",
+   "start": 1.6,
+   "end": 1.98,
+   "type": "word",
+   "logprob": -5.280832192511298e-05
+  },
+  {
+   "text": " ",
+   "start": 1.98,
+   "end": 2.02,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "under",
+   "start": 2.02,
+   "end": 2.24,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": " ",
+   "start": 2.24,
+   "end": 2.3,
+   "type": "spacing",
+   "logprob": -9.536738616588991e-07
+  },
+  {
+   "text": "my",
+   "start": 2.3,
+   "end": 2.54,
+   "type": "word",
+   "logprob": -9.536738616588991e-07
+  },
+  {
+   "text": " ",
+   "start": 2.54,
+   "end": 2.6,
+   "type": "spacing",
+   "logprob": -0.001279131742194295
+  },
+  {
+   "text": "sun",
+   "start": 2.6,
+   "end": 2.88,
+   "type": "word",
+   "logprob": -0.001279131742194295
+  }
+ ]
+}

@@ -229,7 +229,8 @@ own `MirrorModifier` when mirrored. Per-animation choices live in `AnimationStyl
 
 - Timing: the library ticks animations at the head of `Player.tick()`, and the
   combat runtime starts the local player's from `PlayerTickEvent.Pre` right
-  after, so tick t shows during the move's tick t. `scripts/autotest.sh anim`
+  after, so tick t shows during the move's tick t. The `anim` autotest
+  (`bash scripts/client-gate.sh run <who> client scripts/autotest.sh anim`)
   checks it on the first active tick of every move.
 - First person shows the blade alone (the arms are huge from inside the head and
   a high guard's fists fill the view), 0.3 blocks further ahead and 0.1 lower,

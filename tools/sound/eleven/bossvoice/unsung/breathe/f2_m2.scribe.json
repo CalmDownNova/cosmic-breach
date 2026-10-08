@@ -1,0 +1,26 @@
+{
+ "text": "Little voice",
+ "words": [
+  {
+   "text": "Little",
+   "start": 0.08,
+   "end": 0.32,
+   "type": "word",
+   "logprob": -0.12705393135547638
+  },
+  {
+   "text": " ",
+   "start": 0.32,
+   "end": 0.44,
+   "type": "spacing",
+   "logprob": -0.07890131324529648
+  },
+  {
+   "text": "voice",
+   "start": 0.44,
+   "end": 0.88,
+   "type": "word",
+   "logprob": -0.07890131324529648
+  }
+ ]
+}

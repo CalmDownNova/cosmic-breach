@@ -37,7 +37,9 @@ import org.joml.Vector3f;
  * trailing moving blades; gold glints on the blades before a sweep cuts; red aim lines from each blade to its target
  * through a Lance Volley's telegraphs, and from each blade back through where the target stood to the core through a
  * Recall Crash's, outlined too, with a bright red flare at each aimed blade's tip that faces the eye (a lance aimed at you
- * is end on: its line shrinks to a point, the flare doesn't). Lines keep at least 5 px on screen.
+ * is end on: its line shrinks to a point, the flare doesn't). Lines keep at least 5 px on screen; the rings only out to 16
+ * blocks, then they scale with the ring and fade out from 40 to 56 blocks, and they are never drawn where the body is not
+ * ({@link RingFade}).
  */
 public final class GyreFx implements GyreEffects.Handler {
     static final int SILVER = 0xDDE8F4;
@@ -181,10 +183,19 @@ public final class GyreFx implements GyreEffects.Handler {
 
     // ------------------------------------------------------------------ every frame
 
+    /** Ring segments drawn in the last frame, for tests. */
+    private static int ringSegments;
+
+    /** How many ring segments the last frame drew (tests: 0 when every knight's rings are faded or culled). */
+    public static int ringSegmentsLastFrame() {
+        return ringSegments;
+    }
+
     static void render(RenderLevelStageEvent event) {
         if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
             return;
         }
+        ringSegments = 0;
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null) {
             return;
@@ -196,7 +207,11 @@ public final class GyreFx implements GyreEffects.Handler {
         boolean any = false;
         for (Entity e : mc.level.entitiesForRendering()) {
             if (e instanceof GyreKnight k && k.isAlive() && e.distanceToSqr(cam) < 96 * 96) {
-                draw(k, camera, cam, partial, time);
+                // the rings belong to the body: none where vanilla culls it (87.5 blocks at render distance 8 and 100% entity
+                // distance; it scales with both) or where it is off screen
+                boolean bodyDrawn = k.shouldRenderAtSqrDistance(k.distanceToSqr(cam))
+                        && event.getFrustum().isVisible(k.getBoundingBoxForCulling().inflate(GyreModes.SWEEP_RADIUS + 0.5));
+                draw(k, camera, cam, partial, time, bodyDrawn);
                 any = true;
             }
         }
@@ -259,12 +274,14 @@ public final class GyreFx implements GyreEffects.Handler {
         }
     }
 
-    private static void draw(GyreKnight k, Camera camera, Vec3 cam, float partial, double time) {
+    private static void draw(GyreKnight k, Camera camera, Vec3 cam, float partial, double time, boolean bodyDrawn) {
         GyreModes.Mode mode = k.mode();
         double t = time - k.modeStart();
         Vec3 core = k.getPosition(partial).add(0, GyreKnight.CORE_Y, 0);
-        // the rings: each blade's orbit at its radius, their size telling the mode; thick, outlined dark
-        if (mode != GyreModes.Mode.STUNNED) {
+        // the rings: each blade's orbit at its radius, their size telling the mode; outlined dark. A pixel minimum only
+        // out to 16 blocks, then they scale like geometry, and they fade out from 40 to 56 blocks (RingFade)
+        float fade = bodyDrawn ? RingFade.alpha(core.distanceTo(cam)) : 0.0f;
+        if (mode != GyreModes.Mode.STUNNED && fade > 0.01f) {
             double r = GyreModes.ringRadius(mode, t, k.approachEnd());
             boolean gold = mode == GyreModes.Mode.SWEEP && k.approachEnd() >= 0 && t >= k.approachEnd();
             float[] col = ShardDraw.rgb(gold ? GOLD : RING);
@@ -282,16 +299,17 @@ public final class GyreFx implements GyreEffects.Handler {
                 }
             }
             for (Vec3[] sg : segs) {
-                TelegraphDraw.line(BUFFERS.getBuffer(ShardDraw.solid()), camera, sg[0], sg[1], TelegraphDraw.screenWidth(sg[0], 10.0, 0.07),
-                        TelegraphDraw.screenWidth(sg[1], 10.0, 0.07), dark, 0.6f);
+                TelegraphDraw.line(BUFFERS.getBuffer(ShardDraw.solid()), camera, sg[0], sg[1], RingFade.width(sg[0].length(), 10.0, 0.07),
+                        RingFade.width(sg[1].length(), 10.0, 0.07), dark, 0.6f * fade);
             }
             for (Vec3[] sg : segs) {
-                TelegraphDraw.taper(BUFFERS.getBuffer(FxRenderTypes.additive(FxRenderTypes.BEAM)), camera, sg[0], sg[1], 0.4, 0.4, col, 0.35f);
+                TelegraphDraw.taper(BUFFERS.getBuffer(FxRenderTypes.additive(FxRenderTypes.BEAM)), camera, sg[0], sg[1], 0.4, 0.4, col, 0.35f * fade);
             }
             for (Vec3[] sg : segs) {
-                TelegraphDraw.line(BUFFERS.getBuffer(ShardDraw.solid()), camera, sg[0], sg[1], TelegraphDraw.screenWidth(sg[0], 6.0, 0.045),
-                        TelegraphDraw.screenWidth(sg[1], 6.0, 0.045), col, alpha);
+                TelegraphDraw.line(BUFFERS.getBuffer(ShardDraw.solid()), camera, sg[0], sg[1], RingFade.width(sg[0].length(), 6.0, 0.045),
+                        RingFade.width(sg[1].length(), 6.0, 0.045), col, alpha * fade);
             }
+            ringSegments += segs.size();
         }
         // red aim lines: each blade to its target through its telegraph
         float[] red = ShardDraw.rgb(RED);
@@ -338,11 +356,13 @@ public final class GyreFx implements GyreEffects.Handler {
                 }
             }
         }
-        // the core's halo, brighter while exposed
-        Vec3 at = core.subtract(cam);
-        at = at.subtract(at.normalize().scale(0.3));
-        boolean exposed = k.coreExposed();
-        TelegraphDraw.glow(BUFFERS.getBuffer(FxRenderTypes.additive(ShardDraw.GLOW)), camera, at, exposed ? 1.1f : 0.7f,
-                ShardDraw.rgb(exposed ? 0xFFFFFF : RING), exposed ? 0.7f : 0.4f);
+        // the core's halo, brighter while exposed; it fades with the rings (past them the body's own glow marks it)
+        if (fade > 0.01f) {
+            Vec3 at = core.subtract(cam);
+            at = at.subtract(at.normalize().scale(0.3));
+            boolean exposed = k.coreExposed();
+            TelegraphDraw.glow(BUFFERS.getBuffer(FxRenderTypes.additive(ShardDraw.GLOW)), camera, at, exposed ? 1.1f : 0.7f,
+                    ShardDraw.rgb(exposed ? 0xFFFFFF : RING), (exposed ? 0.7f : 0.4f) * fade);
+        }
     }
 }

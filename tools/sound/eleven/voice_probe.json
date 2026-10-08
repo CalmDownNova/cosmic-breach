@@ -1,0 +1,71 @@
+{
+  "verdict": "unknown",
+  "seed_deterministic": false,
+  "accepted": true,
+  "role": "unsung_m2",
+  "label": "voiced",
+  "text": "to hear us",
+  "previous_text": "You came back",
+  "next_text": "forget again.",
+  "seed": 4242,
+  "takes": {
+    "seed_a": {
+      "heard": "to hear us",
+      "words_ok": true,
+      "leaked": [],
+      "speech_s": 0.78,
+      "f0": 103.0
+    },
+    "seed_b": {
+      "heard": "to hear us",
+      "words_ok": true,
+      "leaked": [],
+      "speech_s": 0.78,
+      "f0": 96.2
+    },
+    "context": {
+      "heard": "To hear us",
+      "words_ok": true,
+      "leaked": [],
+      "speech_s": 0.62,
+      "f0": 121.8
+    }
+  },
+  "time_utc": "2026-10-01T13:36:21Z",
+  "earlier": [
+    {
+      "verdict": "unknown",
+      "seed_deterministic": false,
+      "accepted": true,
+      "role": "unsung_m2",
+      "text": "[hushed] to the choir",
+      "previous_text": "Who comes",
+      "next_text": "without a song?",
+      "seed": 4242,
+      "takes": {
+        "seed_a": {
+          "heard": "To the choir",
+          "words_ok": true,
+          "leaked": [],
+          "speech_s": 0.76,
+          "f0": 376.9
+        },
+        "seed_b": {
+          "heard": "To the choir",
+          "words_ok": true,
+          "leaked": [],
+          "speech_s": 0.76,
+          "f0": 385.2
+        },
+        "context": {
+          "heard": "To the choir",
+          "words_ok": true,
+          "leaked": [],
+          "speech_s": 0.78,
+          "f0": 250.6
+        }
+      },
+      "time_utc": "2026-10-01T11:58:41Z"
+    }
+  ]
+}

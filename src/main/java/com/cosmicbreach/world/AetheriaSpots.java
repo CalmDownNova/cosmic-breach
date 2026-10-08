@@ -106,7 +106,7 @@ public final class AetheriaSpots {
         for (int ring = 0; ring * DriftBelts.CELL <= maxRadius && out.size() < limit; ring++) {
             List<BlockPos> found = new ArrayList<>();
             for (int[] d : ring(ring)) {
-                for (int k = 4; k <= 7; k++) {
+                for (int k = DriftBelts.K_MIN; k <= DriftBelts.K_MAX; k++) {
                     DriftBelts.Asteroid a = t.drift.asteroid(ci + d[0], cj + d[1], k);
                     // flat-topped rocks first: level ground to land on
                     if (a != null && a.r >= 7.0 && !a.shard && a.flatTop < Double.POSITIVE_INFINITY) {

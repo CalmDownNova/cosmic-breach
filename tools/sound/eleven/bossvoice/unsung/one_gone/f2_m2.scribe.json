@@ -1,0 +1,40 @@
+{
+ "text": "It's part now",
+ "words": [
+  {
+   "text": "It's",
+   "start": 0.08,
+   "end": 0.3,
+   "type": "word",
+   "logprob": -0.00013305556421983056
+  },
+  {
+   "text": " ",
+   "start": 0.3,
+   "end": 0.36,
+   "type": "spacing",
+   "logprob": -0.10333580523729324
+  },
+  {
+   "text": "part",
+   "start": 0.36,
+   "end": 0.64,
+   "type": "word",
+   "logprob": -0.10333580523729324
+  },
+  {
+   "text": " ",
+   "start": 0.64,
+   "end": 0.76,
+   "type": "spacing",
+   "logprob": -0.0006145734223537147
+  },
+  {
+   "text": "now",
+   "start": 0.76,
+   "end": 1.08,
+   "type": "word",
+   "logprob": -0.0006145734223537147
+  }
+ ]
+}

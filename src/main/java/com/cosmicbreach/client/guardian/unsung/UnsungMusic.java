@@ -84,7 +84,8 @@ public final class UnsungMusic {
                     stop();
                 }
             }
-            volume = level * fade * falter;
+            // a mask's own line over the choir pulls it down (1.1)
+            volume = level * fade * falter * com.cosmicbreach.client.voice.BossVoiceClient.duckFactor(getLocation());
         }
 
         @Override

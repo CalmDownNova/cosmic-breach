@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_neon_lichen": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#cosmicbreach:neon_lichens"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cosmicbreach:torch_from_neon_lichen"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_neon_lichen"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cosmicbreach:torch_from_neon_lichen"
+    ]
+  }
+}

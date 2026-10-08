@@ -1,0 +1,110 @@
+{
+ "text": "No armor at all? You came to burn",
+ "words": [
+  {
+   "text": "No",
+   "start": 0.18,
+   "end": 0.34,
+   "type": "word",
+   "logprob": -0.000432278640801087
+  },
+  {
+   "text": " ",
+   "start": 0.34,
+   "end": 0.44,
+   "type": "spacing",
+   "logprob": -0.005942889489233494
+  },
+  {
+   "text": "armor",
+   "start": 0.44,
+   "end": 0.78,
+   "type": "word",
+   "logprob": -0.005942889489233494
+  },
+  {
+   "text": " ",
+   "start": 0.78,
+   "end": 0.82,
+   "type": "spacing",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": "at",
+   "start": 0.82,
+   "end": 0.98,
+   "type": "word",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": " ",
+   "start": 0.98,
+   "end": 1.1,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "all?",
+   "start": 1.1,
+   "end": 1.34,
+   "type": "word",
+   "logprob": -1.3112682603733106e-05
+  },
+  {
+   "text": " ",
+   "start": 1.34,
+   "end": 1.34,
+   "type": "spacing",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": "You",
+   "start": 1.9,
+   "end": 2.0,
+   "type": "word",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": " ",
+   "start": 2.0,
+   "end": 2.06,
+   "type": "spacing",
+   "logprob": -1.6689286894688848e-06
+  },
+  {
+   "text": "came",
+   "start": 2.06,
+   "end": 2.26,
+   "type": "word",
+   "logprob": -1.6689286894688848e-06
+  },
+  {
+   "text": " ",
+   "start": 2.26,
+   "end": 2.3,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "to",
+   "start": 2.3,
+   "end": 2.5,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 2.5,
+   "end": 2.54,
+   "type": "spacing",
+   "logprob": -0.0001854724541772157
+  },
+  {
+   "text": "burn",
+   "start": 2.54,
+   "end": 3.0,
+   "type": "word",
+   "logprob": -0.0001854724541772157
+  }
+ ]
+}

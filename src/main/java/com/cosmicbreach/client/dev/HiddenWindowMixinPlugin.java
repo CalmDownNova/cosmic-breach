@@ -19,7 +19,8 @@ public final class HiddenWindowMixinPlugin implements IMixinConfigPlugin {
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final Set<String> HIDDEN_WINDOW_MIXINS = Set.of(
             "com.cosmicbreach.mixin.client.WindowHiddenMixin",
-            "com.cosmicbreach.mixin.client.MinecraftNoDialogMixin");
+            "com.cosmicbreach.mixin.client.MinecraftNoDialogMixin",
+            "com.cosmicbreach.mixin.client.MouseHandlerAccessor");
     // Read directly (the constant is inlined) so the plugin never loads client classes on a server.
     private static final boolean HIDDEN_WINDOW_MODE = Boolean.getBoolean(HiddenWindow.PROPERTY);
 

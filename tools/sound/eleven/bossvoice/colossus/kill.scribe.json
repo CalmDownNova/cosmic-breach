@@ -1,0 +1,54 @@
+{
+ "text": "Go down and listen",
+ "words": [
+  {
+   "text": "Go",
+   "start": 0.34,
+   "end": 0.56,
+   "type": "word",
+   "logprob": -9.643566590966657e-05
+  },
+  {
+   "text": " ",
+   "start": 0.56,
+   "end": 0.62,
+   "type": "spacing",
+   "logprob": -7.271740287251305e-06
+  },
+  {
+   "text": "down",
+   "start": 0.62,
+   "end": 1.16,
+   "type": "word",
+   "logprob": -7.271740287251305e-06
+  },
+  {
+   "text": " ",
+   "start": 1.16,
+   "end": 1.16,
+   "type": "spacing",
+   "logprob": -1.8715683836489916e-05
+  },
+  {
+   "text": "and",
+   "start": 1.9,
+   "end": 2.06,
+   "type": "word",
+   "logprob": -1.8715683836489916e-05
+  },
+  {
+   "text": " ",
+   "start": 2.06,
+   "end": 2.16,
+   "type": "spacing",
+   "logprob": -8.22540732769994e-06
+  },
+  {
+   "text": "listen",
+   "start": 2.16,
+   "end": 2.6,
+   "type": "word",
+   "logprob": -8.22540732769994e-06
+  }
+ ]
+}

@@ -1,0 +1,138 @@
+{
+ "text": "So much light on one singer. Give it to me",
+ "words": [
+  {
+   "text": "So",
+   "start": 0.36,
+   "end": 0.52,
+   "type": "word",
+   "logprob": -4.0649541915627196e-05
+  },
+  {
+   "text": " ",
+   "start": 0.52,
+   "end": 0.6,
+   "type": "spacing",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": "much",
+   "start": 0.6,
+   "end": 0.78,
+   "type": "word",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": " ",
+   "start": 0.78,
+   "end": 0.98,
+   "type": "spacing",
+   "logprob": -4.1126360883936286e-05
+  },
+  {
+   "text": "light",
+   "start": 0.98,
+   "end": 1.26,
+   "type": "word",
+   "logprob": -4.1126360883936286e-05
+  },
+  {
+   "text": " ",
+   "start": 1.26,
+   "end": 1.3,
+   "type": "spacing",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": "on",
+   "start": 1.3,
+   "end": 1.42,
+   "type": "word",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": " ",
+   "start": 1.42,
+   "end": 1.56,
+   "type": "spacing",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": "one",
+   "start": 1.56,
+   "end": 1.74,
+   "type": "word",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": " ",
+   "start": 1.74,
+   "end": 1.88,
+   "type": "spacing",
+   "logprob": -0.0006675875629298389
+  },
+  {
+   "text": "singer.",
+   "start": 1.94,
+   "end": 2.32,
+   "type": "word",
+   "logprob": -0.0014042721429307545
+  },
+  {
+   "text": " ",
+   "start": 2.32,
+   "end": 2.74,
+   "type": "spacing",
+   "logprob": -3.814689989667386e-06
+  },
+  {
+   "text": "Give",
+   "start": 2.74,
+   "end": 2.84,
+   "type": "word",
+   "logprob": -3.814689989667386e-06
+  },
+  {
+   "text": " ",
+   "start": 2.84,
+   "end": 2.88,
+   "type": "spacing",
+   "logprob": -8.344646857949556e-07
+  },
+  {
+   "text": "it",
+   "start": 2.88,
+   "end": 2.98,
+   "type": "word",
+   "logprob": -8.344646857949556e-07
+  },
+  {
+   "text": " ",
+   "start": 2.98,
+   "end": 3.02,
+   "type": "spacing",
+   "logprob": -4.768370445162873e-07
+  },
+  {
+   "text": "to",
+   "start": 3.02,
+   "end": 3.1,
+   "type": "word",
+   "logprob": -4.768370445162873e-07
+  },
+  {
+   "text": " ",
+   "start": 3.1,
+   "end": 3.14,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "me",
+   "start": 3.14,
+   "end": 3.28,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  }
+ ]
+}

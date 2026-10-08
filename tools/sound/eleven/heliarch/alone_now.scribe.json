@@ -1,0 +1,68 @@
+{
+ "text": "Alone now as I was",
+ "words": [
+  {
+   "text": "Alone",
+   "start": 0.2,
+   "end": 0.6,
+   "type": "word",
+   "logprob": -0.00320504535920918
+  },
+  {
+   "text": " ",
+   "start": 0.6,
+   "end": 0.68,
+   "type": "spacing",
+   "logprob": -1.5020257706055418e-05
+  },
+  {
+   "text": "now",
+   "start": 0.68,
+   "end": 0.96,
+   "type": "word",
+   "logprob": -1.5020257706055418e-05
+  },
+  {
+   "text": " ",
+   "start": 0.96,
+   "end": 0.96,
+   "type": "spacing",
+   "logprob": -0.00018368464952800423
+  },
+  {
+   "text": "as",
+   "start": 1.78,
+   "end": 1.9,
+   "type": "word",
+   "logprob": -0.00018368464952800423
+  },
+  {
+   "text": " ",
+   "start": 1.9,
+   "end": 2.06,
+   "type": "spacing",
+   "logprob": -0.00012337400403339416
+  },
+  {
+   "text": "I",
+   "start": 2.06,
+   "end": 2.12,
+   "type": "word",
+   "logprob": -0.00012337400403339416
+  },
+  {
+   "text": " ",
+   "start": 2.12,
+   "end": 2.18,
+   "type": "spacing",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": "was",
+   "start": 2.18,
+   "end": 2.48,
+   "type": "word",
+   "logprob": -2.3841855067985307e-07
+  }
+ ]
+}

@@ -93,7 +93,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
  * rises and each participant gets their own rewards ({@link LeviathanLoot}). Nobody in the sphere for 30 s resets it.
  */
 public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, ParryableAttacker, ImpactSink, GuardianPart.Owner,
-        LairGuardian, GuardianFights.Fight {
+        LairGuardian, GuardianFights.Fight, com.cosmicbreach.voice.boss.VoicedBoss {
     public enum State { DORMANT, INTRO, FIGHT, MOORAGE, DYING }
 
     public enum Moor { NONE, SWIM_IN, COILED, TEAR, SWIM_OUT }
@@ -166,9 +166,13 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
     private Attack action = Attack.NONE;
     private long actionStart;
     private long nextActionAt;
+    /** How many times her intro song has played since she woke (checks: once). */
+    private int introSongs;
     private long holdUntil = Long.MIN_VALUE;
     private long lastPlayerInside;
     private int playersAtStart = 1;
+    /** A Guardian Echo woke this fight (its voice greets a returning climber). */
+    private boolean wokenByEcho;
     private long fightStart;
     private long breakUntil = Long.MIN_VALUE;
     private boolean pendingMoorage;
@@ -380,6 +384,7 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
             return;
         }
         long now = server.getGameTime();
+        wokenByEcho = echo;
         playersAtStart = Math.max(1, fightersInside().size());
         double max = GuardianHealth.scaled(LeviathanMoves.BASE_HEALTH, playersAtStart);
         getAttribute(Attributes.MAX_HEALTH).setBaseValue(max);
@@ -413,6 +418,10 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
         ensureParts(server);
         server.broadcastEntityEvent(this, EVENT_AWAKEN);
         playSoundAt(head, LeviathanRegistry.AWAKEN.get(), 5.0f, 1.0f);
+        com.cosmicbreach.voice.boss.BossVoices.soundPlayed(this, LeviathanRegistry.AWAKEN.get());
+        // her intro song plays in full (below); no line of hers may sound before it is over
+        com.cosmicbreach.voice.boss.BossVoices.soundWillPlay(this, LeviathanRegistry.SONG.get(), now + LeviathanMoves.INTRO_SONG);
+        introSongs = 0;
         CosmicBreach.LOGGER.debug("[cosmicbreach] Thalassine Leviathan awakened at {} for {} player(s), {} health{}", layout.centreBlock(),
                 playersAtStart, (int) max, echo ? " (Guardian Echo)" : by != null ? " (" + by.getGameProfile().getName() + ")" : "");
     }
@@ -582,8 +591,15 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
     private void introTick(ServerLevel server, long now) {
         swimTick(now, LeviathanMoves.SPEED);
         long t = now - stateStart();
-        if (t == 150) {
+        if (t == 40 - com.cosmicbreach.voice.boss.BossVoices.LEAD) {
+            // the fight has begun for her voice (the armor and gear checks run from here); her opening line is not said now: her song
+            // fills the intro and the window after it is 14 ticks, so the opener comes at her first Moorage (startMoorage)
+            com.cosmicbreach.voice.boss.BossVoices.begin(this);
+        }
+        if (t == LeviathanMoves.INTRO_SONG) {
+            // her song in the intro is her identity: it always plays, and in full (the opener waits for it, not the other way round)
             playSoundAt(head, LeviathanRegistry.SONG.get(), 5.0f, 0.9f);
+            introSongs++;
         }
         if (t >= LeviathanMoves.INTRO) {
             setState(State.FIGHT, now);
@@ -615,6 +631,7 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
         if (action != Attack.NONE) {
             actionTick(server, now, now - actionStart);
         } else if (now >= nextActionAt && swim == null) {
+            // an attack never waits for a line (1.1): a line starts only if its words fit before the swell, see voiceQuietTicks
             startNextAction(server, now);
         }
     }
@@ -1036,6 +1053,14 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
         double mid = t != null ? layout.nearestPlatform(LeviathanOrbit.angleOf(layout.centre(), t.position())).angle() : a + 2.6;
         startSwim(LeviathanPaths.moorage(layout.centre(), wave, head, a, mid), Swim.MOOR_IN, LeviathanMoves.SWIM_IN_SPEED);
         playSoundAt(head, LeviathanRegistry.SWELL.get(), 5.0f, 0.8f);
+        if (mooragesStarted == 1) {
+            // her opening line: free, in the swim in once the swell has passed and the window (the rest of the swim and the coil's
+            // first pause) covers its words; her first Moorage line is raised when the coil settles and takes the next window
+            com.cosmicbreach.voice.boss.BossVoices.raiseOpener(this);
+        } else {
+            // its Moorage line, its first word 30 ticks in once the swell has passed, in the swim in before the coil
+            com.cosmicbreach.voice.boss.BossVoices.fireAt(this, "hp_threshold:20", now + 30);
+        }
         CosmicBreach.LOGGER.debug("[cosmicbreach] Thalassine Leviathan swims into Moorage {} at {} health", mooragesStarted,
                 String.format("%.1f", getHealth()));
     }
@@ -1094,6 +1119,10 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
             server.broadcastEntityEvent(this, EVENT_COIL);
         }
         playSoundAt(head, LeviathanRegistry.COIL.get(), 5.0f, 1.0f);
+        if (mooragesStarted == 1) {
+            // the first Moorage line is free, not placed: it waits for the opener to be over and takes a pause of the coil
+            com.cosmicbreach.voice.boss.BossVoices.raiseAt(this, "hp_threshold:50", now);
+        }
         CosmicBreach.LOGGER.debug("[cosmicbreach] Thalassine Leviathan moored: {} coil blocks, {} bridge blocks", coilBlocks.size(), bridgeBlocks.size());
     }
 
@@ -1277,6 +1306,8 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
         setFlags(hasFlag(FLAG_PHASE2) ? FLAG_PHASE2 : 0);
         removeGlands();
         clearMoorageBlocks(server);
+        // its kill line, its first word 20 ticks into the sink (its death sound is pulled down under the line)
+        com.cosmicbreach.voice.boss.BossVoices.fireAt(this, "boss_kill", now + 20);
         double floor = layout.bowlSurface(Math.max(RiftLayout.CORE_RADIUS + 3.0, LeviathanPaths.radius(layout.centre(), head))) + 2.2;
         startSwim(LeviathanPaths.sink(head, facing(), floor), Swim.SINK, LeviathanMoves.SINK_SPEED);
         server.broadcastEntityEvent(this, EVENT_DEATH);
@@ -1371,7 +1402,10 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
     private void songTick(long now) {
         if (now >= nextSong && state == State.FIGHT && action == Attack.NONE) {
             nextSong = now + 110 + random.nextInt(60);
-            playSoundAt(head, LeviathanRegistry.SONG.get(), 4.0f, phase == 2 ? 1.12f : 0.92f);
+            if (!com.cosmicbreach.voice.boss.BossVoices.speaking(this)) {
+                // its idle call is skipped while it speaks; the swell before an attack never is
+                playSoundAt(head, LeviathanRegistry.SONG.get(), 4.0f, phase == 2 ? 1.12f : 0.92f);
+            }
         }
     }
 
@@ -1743,6 +1777,11 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
         return fightStart;
     }
 
+    /** How many times her intro song has played since she woke (server, for tests). */
+    public int introSongs() {
+        return introSongs;
+    }
+
     public int playersAtStart() {
         return playersAtStart;
     }
@@ -1903,5 +1942,100 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    // ------------------------------------------------------------------ the voice (1.1)
+
+    @Override
+    public String voiceBoss() {
+        return "leviathan";
+    }
+
+    @Override
+    public BlockPos voiceHome() {
+        return layout != null ? layout.centreBlock() : blockPosition();
+    }
+
+    @Override
+    public List<ServerPlayer> voiceFighters() {
+        return fightersInside();
+    }
+
+    @Override
+    public int voicePlayers() {
+        return playersAtStart;
+    }
+
+    @Override
+    public double voiceHealth() {
+        return Math.max(0.0, getHealth() / getMaxHealth());
+    }
+
+    @Override
+    public net.minecraft.resources.ResourceLocation voiceKillAdvancement() {
+        return GuardianTypes.LEVIATHAN.advancement();
+    }
+
+    @Override
+    public boolean voiceWokenByEcho() {
+        return wokenByEcho;
+    }
+
+    /** The two Moorages (50 and 20) are its own moments. */
+    @Override
+    public java.util.Set<Integer> voicePhaseThresholds() {
+        return java.util.Set.of(50, 20);
+    }
+
+    /**
+     * Its quiet windows (Voice Script rule 7): the ticks from now with nothing a line must not cover. Between attacks that is
+     * until the next one's swell, which comes when it comes (an attack never waits for a line): 50 ticks after one ends
+     * ({@link LeviathanMoves#GAP}), longer after a Break or a Moorage. None once that swell is due (it may be waiting for a
+     * swim to end or for an attack to be chosen). All through a Break
+     * and its recovery; in the intro until the first attack's swell; in a Moorage's swim in once the swell has passed and then
+     * through the coil until the next ripple's tell; the sink. Never inside an attack, and not while a Moorage or the death is
+     * about to begin.
+     */
+    @Override
+    public int voiceQuietTicks(long now) {
+        long t = now - stateStart();
+        return switch (state) {
+            // until the first attack's swell (its song at 150 is skipped while it speaks)
+            case INTRO -> (int) Math.max(0, LeviathanMoves.INTRO + LeviathanMoves.FIRST_ATTACK - t);
+            case FIGHT -> {
+                if (pendingMoorage || pendingDeath || action != Attack.NONE) {
+                    yield 0;
+                }
+                if (broken(now)) {
+                    yield (int) Math.max(0, breakUntil - now) + LeviathanMoves.GAP;
+                }
+                long startsAt = nextActionAt;
+                if (swim != null) {
+                    startsAt = Math.max(startsAt, now + (long) Math.ceil((swim.length() - swimAt) / Math.max(1e-6, swimSpeed)));
+                }
+                yield (int) Math.max(0, Math.min(Integer.MAX_VALUE / 2, startsAt - now));
+            }
+            case MOORAGE -> switch (moor) {
+                case SWIM_IN -> swim == null ? 0 : Moorage.swimInQuietTicks(t,
+                        (long) Math.ceil((swim.length() - swimAt) / Math.max(1e-6, swimSpeed)));
+                case COILED -> Moorage.coilQuietTicks((int) (now - moorStart));
+                default -> 0;
+            };
+            case DYING -> Integer.MAX_VALUE;
+            default -> 0;
+        };
+    }
+
+    /** Fallen: the rescue lift has caught them (inside the Rift, a long way under the platforms). */
+    @Override
+    public boolean voiceFell(ServerPlayer player) {
+        return com.cosmicbreach.lift.Lifts.riding(player);
+    }
+
+    /** Its target is past the far edge of its dive window: out of reach until it comes round. */
+    @Override
+    public boolean voiceTargetFar() {
+        ServerPlayer p = targetPlayer();
+        return p != null && layout != null && LeviathanPaths.targetAhead(layout.centre(), angle, p.position()) > LeviathanMoves.DIVE_AHEAD_MAX;
     }
 }

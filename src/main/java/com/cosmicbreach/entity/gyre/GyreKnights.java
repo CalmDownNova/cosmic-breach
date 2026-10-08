@@ -45,7 +45,7 @@ import org.jetbrains.annotations.Nullable;
  * Observatory's Knight post), the Gravity Loop (a plain item until the Curios task), its sounds
  * ({@code tools/sound/gyre.py}), 600 Attunement XP a kill, and its natural spawns: rare, in the Drift Belt's air near
  * rock (the biome modifier {@code data/cosmicbreach/neoforge/biome_modifier/gyre_knight_spawns.json} adds it to the
- * biome, {@link #canSpawn} keeps it rare). Debug: {@code /cosmicbreach debug gyre spawn|mode <mode>|hold <ticks>|cooldowns|info}.
+ * biome, {@link #canSpawn} keeps it rare). Debug: {@code /cosmicbreach debug gyre spawn|mode <mode>|hold <ticks>|cooldowns|divenext|info}.
  */
 public final class GyreKnights {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Registries.ENTITY_TYPE, CosmicBreach.MOD_ID);
@@ -78,6 +78,8 @@ public final class GyreKnights {
     public static final DeferredHolder<SoundEvent, SoundEvent> LANCE_HIT = sound("gyre/lance_hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> RECALL_TELL = sound("gyre/recall_tell");
     public static final DeferredHolder<SoundEvent, SoundEvent> RECALL = sound("gyre/recall");
+    /** A dive's tell (1.1): the rings ring up and a bright call cuts in, about a second, ending as it drops. */
+    public static final DeferredHolder<SoundEvent, SoundEvent> DIVE_TELL = sound("gyre/dive_tell");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLADE_BREAK = sound("gyre/blade_break");
     public static final DeferredHolder<SoundEvent, SoundEvent> DEFLECT = sound("gyre/deflect");
     public static final DeferredHolder<SoundEvent, SoundEvent> STUN = sound("gyre/stun");
@@ -159,6 +161,13 @@ public final class GyreKnights {
                                     GyreKnight k = nearest(c.getSource());
                                     if (k != null) {
                                         k.clearCooldowns();
+                                    }
+                                    return k == null ? 0 : 1;
+                                }))
+                                .then(Commands.literal("divenext").executes(c -> {
+                                    GyreKnight k = nearest(c.getSource());
+                                    if (k != null) {
+                                        k.diveNext();
                                     }
                                     return k == null ? 0 : 1;
                                 }))

@@ -1,0 +1,124 @@
+{
+ "text": "Your light is loud the hollow can hear it",
+ "words": [
+  {
+   "text": "Your",
+   "start": 0.26,
+   "end": 0.44,
+   "type": "word",
+   "logprob": -6.23445157543756e-05
+  },
+  {
+   "text": " ",
+   "start": 0.44,
+   "end": 0.52,
+   "type": "spacing",
+   "logprob": -3.766942609217949e-05
+  },
+  {
+   "text": "light",
+   "start": 0.52,
+   "end": 0.72,
+   "type": "word",
+   "logprob": -3.766942609217949e-05
+  },
+  {
+   "text": " ",
+   "start": 0.72,
+   "end": 0.78,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "is",
+   "start": 0.78,
+   "end": 0.92,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 0.92,
+   "end": 1.02,
+   "type": "spacing",
+   "logprob": -2.0265558760002023e-06
+  },
+  {
+   "text": "loud",
+   "start": 1.02,
+   "end": 1.42,
+   "type": "word",
+   "logprob": -2.0265558760002023e-06
+  },
+  {
+   "text": " ",
+   "start": 1.42,
+   "end": 2.04,
+   "type": "spacing",
+   "logprob": -0.7190484404563904
+  },
+  {
+   "text": "the",
+   "start": 2.04,
+   "end": 2.14,
+   "type": "word",
+   "logprob": -0.7190484404563904
+  },
+  {
+   "text": " ",
+   "start": 2.14,
+   "end": 2.2,
+   "type": "spacing",
+   "logprob": -0.04342952370643616
+  },
+  {
+   "text": "hollow",
+   "start": 2.2,
+   "end": 2.52,
+   "type": "word",
+   "logprob": -0.04342952370643616
+  },
+  {
+   "text": " ",
+   "start": 2.52,
+   "end": 2.58,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "can",
+   "start": 2.58,
+   "end": 2.72,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 2.72,
+   "end": 2.78,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "hear",
+   "start": 2.78,
+   "end": 2.98,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 2.98,
+   "end": 3.04,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "it",
+   "start": 3.04,
+   "end": 3.2,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  }
+ ]
+}

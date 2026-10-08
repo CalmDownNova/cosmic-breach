@@ -1,0 +1,38 @@
+{
+  "thief": {
+    "gap": -0.31,
+    "why": "living 123: speaks 3.95 s on the half grid, budget 3.5 s"
+  },
+  "robes": {
+    "gap": -0.31,
+    "why": "living 123: speaks 3.90 s on the half grid, budget 3.0 s"
+  },
+  "so_little_song": {
+    "gap": -0.31,
+    "why": "living 123: speaks 3.65 s on the half grid, budget 3.1 s"
+  },
+  "found_silence": {
+    "gap": -0.31,
+    "why": "living 123: speaks 3.39 s on the half grid, budget 3.0 s"
+  },
+  "open_group": {
+    "gap": -0.31,
+    "why": "living 123: fragments start at 0.00, 1.56, 2.89 s, not on the lifts at 0.00, 1.20, 2.40 s"
+  },
+  "voice_falls": {
+    "gap": -0.31,
+    "why": "living 123: speaks 3.66 s on the half grid, budget 3.1 s"
+  },
+  "finished": {
+    "gap": -0.21000000000000002,
+    "why": "living 123: speaks 2.72 s on the beat grid, budget 2.2 s"
+  },
+  "breathe": {
+    "gap": -0.31,
+    "why": "living 123: speaks 4.27 s on the half grid, budget 3.1 s"
+  },
+  "let_us_rise": {
+    "gap": -0.31,
+    "why": "living 123: speaks 3.29 s on the half grid, budget 3.0 s"
+  }
+}

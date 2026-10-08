@@ -54,8 +54,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
  * The Gyre Knight (GDD 7.1), the Drift Belt's elite: an empty suit of silver-blue armor round a spinning gyroscope core,
  * three blades orbiting it on tilted rings ({@link GyreOrbit}). Health 90, armor 10, poise 50, flies at 0.25 and strafes
  * in 3D, holding 6 to 10 blocks above its target; its orbit modes ({@link GyreModes}) come round on cooldowns, picked by
- * range. A poise break drops it stunned for {@value GyreModes#STUN} ticks with its core exposed (x1.5), as while its
- * blades are out. Drops: Gyre Core, 1 to 2 Nebulite Ingots, a Gyre Blade (50%), a Gravity Loop (8%). 600 Attunement XP.
+ * range. Every two or three Lance Volleys at a player on foot it dives to sword reach (1.1: a telegraphed drop, one parryable
+ * cut, two seconds hanging beside its target with its core open). A poise break sinks it stunned, slowly, to its target's
+ * level for {@value GyreModes#STUN} ticks with its core exposed (x1.5), as while its blades are out. Drops: Gyre Core,
+ * 1 to 2 Nebulite Ingots, a Gyre Blade (50%), a Gravity Loop (8%). 600 Attunement XP.
  */
 public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker, PoiseSource, Staggerable {
     public static final double HEALTH = 90.0;
@@ -126,6 +128,15 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
     private int deflected;
     private int stuns;
     private long holdUntil = Long.MIN_VALUE;
+    // the dive (1.1): a melee commit after every two or three lance volleys at a player on foot
+    private int volleys;
+    private int divesAfter;
+    private int dives;
+    private @Nullable Vec3 diveAnchor;
+    private boolean diveCueGiven;
+    private @Nullable Vec3 diveMark;
+    private long diveMarkTick;
+    private @Nullable Vec3 stunAnchor;
     // client: the last two synced blade points
     private final Vec3[] clientPrev = new Vec3[GyreOrbit.BLADES];
     private final Vec3[] clientCur = new Vec3[GyreOrbit.BLADES];
@@ -135,6 +146,11 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
         super(type, level);
         this.xpReward = EXPERIENCE;
         setNoGravity(true);
+        this.divesAfter = rollDivesAfter();
+    }
+
+    private int rollDivesAfter() {
+        return GyreModes.VOLLEYS_MIN + random.nextInt(GyreModes.VOLLEYS_MAX - GyreModes.VOLLEYS_MIN + 1);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -187,9 +203,9 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
         return position().add(0, CORE_Y, 0);
     }
 
-    /** True while its core is exposed: stunned, or any blade away from its ring. */
+    /** True while its core is exposed: stunned, hanging after a dive's cut, or any blade away from its ring. */
     public boolean coreExposed() {
-        if (mode() == Mode.STUNNED) {
+        if (mode() == Mode.STUNNED || mode() == Mode.DIVE && GyreModes.diveHanging(level().getGameTime() - modeStart(), approachEnd())) {
             return true;
         }
         for (int i = 0; i < GyreOrbit.BLADES; i++) {
@@ -273,6 +289,7 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
             case SWEEP -> sweepTick(server, target, now, t);
             case LANCE -> lanceTick(server, target, now, t);
             case RECALL -> recallTick(server, target, now, t);
+            case DIVE -> diveTick(server, now, t);
             case STUNNED -> {
                 if (t >= GyreModes.STUN) {
                     for (int i = 0; i < GyreOrbit.BLADES; i++) {
@@ -317,13 +334,20 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
         return p.isAlive() && !p.isSpectator() && !p.isCreative() && level().getDifficulty() != Difficulty.PEACEFUL;
     }
 
-    /** Flies: holds above its target, strafing round it; swoops level for a sweep; drops when stunned. */
+    /** Flies: holds above its target, strafing round it; swoops level for a sweep; dives to sword reach; sinks when stunned. */
     private void steer(@Nullable Player target, long now, long t) {
         Vec3 v = getDeltaMovement();
         Vec3 want;
         if (mode == Mode.STUNNED) {
-            want = onGround() ? Vec3.ZERO : new Vec3(0, Math.max(v.y - 0.04, -0.6), 0);
-            setDeltaMovement(want);
+            // it sinks slowly to beside its target at their level, or onto the rock under it, never into the gap (1.1)
+            if (stunAnchor == null) {
+                stunAnchor = GyreModes.stunAnchor(position(), target == null ? null : target.position());
+            }
+            setDeltaMovement(onGround() ? Vec3.ZERO : GyreModes.stunVelocity(position(), stunAnchor));
+            return;
+        }
+        if (mode == Mode.DIVE) {
+            steerDive(target, t);
             return;
         }
         if (target == null) {
@@ -359,6 +383,52 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
         setDeltaMovement(next);
     }
 
+    /**
+     * The dive: still through the tell, then down to where its target stood when the tell ended (beside them, at their level),
+     * then hanging within reach of them wherever they go.
+     */
+    private void steerDive(@Nullable Player target, long t) {
+        if (t < GyreModes.DIVE_TELL || target == null && diveAnchor == null) {
+            setDeltaMovement(getDeltaMovement().scale(0.6));
+            return;
+        }
+        if (diveAnchor == null) {
+            diveAnchor = GyreModes.standOff(target.position(), position());
+        }
+        Vec3 d = diveAnchor.subtract(position());
+        if (approachEnd < 0) {
+            double len = d.length();
+            setDeltaMovement(len > GyreModes.DIVE_SPEED ? d.scale(GyreModes.DIVE_SPEED / len) : d);
+            if (GyreModes.strikeCueDue(len, diveCueGiven)) {
+                // the cut is about to land: a glint on the blades and a rising whine, in time to parry
+                diveCueGiven = true;
+                ((ServerLevel) level()).broadcastEntityEvent(this, EVENT_GLINT);
+                playSound(GyreKnights.WHINE.get(), 1.8f, 1.4f);
+            }
+            // pressed against rock (an overhang, a ledge): it cuts where it is instead of burning the descent's whole cap
+            boolean stuck = false;
+            if (diveMark == null) {
+                diveMark = position();
+                diveMarkTick = t;
+            } else if (t - diveMarkTick >= GyreModes.DIVE_STUCK_TICKS) {
+                stuck = GyreModes.diveStuck(diveMark.distanceTo(position()));
+                diveMark = position();
+                diveMarkTick = t;
+            }
+            if (len < 0.6 || stuck || t >= GyreModes.DIVE_TELL + GyreModes.DIVE_DESCENT_MAX) {
+                approachEnd = (int) t;
+                entityData.set(DATA_APPROACH, approachEnd);
+            }
+        } else {
+            // hanging: it stays beside its target, wherever the cut's knockback or a dodge has put them (1.1)
+            setDeltaMovement(target == null ? d.scale(0.3) : GyreModes.hangVelocity(position(), target.position()));
+        }
+    }
+
+    private static boolean onFoot(Player p) {
+        return !p.isPassenger() && p.onGround();
+    }
+
     private void faceTarget(@Nullable Player target) {
         if (target == null || mode == Mode.STUNNED) {
             return;
@@ -379,6 +449,14 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
                 ready++;
             }
         }
+        // a dive that would press into rock waits (the count is kept, so it is owed again at the next pick)
+        boolean lineClear = volleys < divesAfter || diveLineClear(target);
+        if (ready > 0 && GyreModes.diveDue(volleys, divesAfter, onFoot(target), core().distanceTo(target.getBoundingBox().getCenter()), lineClear)) {
+            volleys = 0;
+            divesAfter = rollDivesAfter();
+            switchMode(Mode.DIVE, now);
+            return;
+        }
         List<AttackPicker.Option<Mode>> options = GyreModes.options(core().distanceTo(target.getBoundingBox().getCenter()),
                 getHealth() / getMaxHealth(), ready);
         Mode next = picker.pick(options, now, random::nextDouble);
@@ -388,9 +466,18 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
         int cooldown = options.stream().filter(o -> o.attack() == next).findFirst().map(AttackPicker.Option::cooldownTicks).orElse(0);
         picker.used(next, cooldown, now);
         switchMode(next, now);
+        if (next == Mode.LANCE) {
+            volleys++;
+        }
         if (next == Mode.RECALL) {
             startRecall(target, now);
         }
+    }
+
+    /** True if nothing solid lies between its core and the spot beside {@code target} where a dive would end. */
+    private boolean diveLineClear(Player target) {
+        Vec3 spot = GyreModes.standOff(target.position(), position()).add(0, CORE_Y, 0);
+        return level().clip(new ClipContext(core(), spot, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this)).getType() == HitResult.Type.MISS;
     }
 
     /** Starts {@code next} now (the debug command's way too; the Recall needs a target). */
@@ -417,9 +504,17 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
         entityData.set(DATA_MODE_START, now);
         entityData.set(DATA_APPROACH, -1);
         entityData.set(DATA_SPIN_BASE, (float) spinBase);
+        diveAnchor = null;
+        diveCueGiven = false;
+        diveMark = null;
+        stunAnchor = null;
         switch (next) {
             case LANCE -> playSound(GyreKnights.LANCE_TELL.get(), 1.4f, 1.0f);
             case RECALL -> playSound(GyreKnights.RECALL_TELL.get(), 1.6f, 1.0f);
+            case DIVE -> {
+                dives++;
+                playSound(GyreKnights.DIVE_TELL.get(), 1.8f, 1.0f);
+            }
             default -> {
             }
         }
@@ -494,6 +589,30 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
             bladesBroken++;
             level().broadcastEntityEvent(this, EVENT_PARRIED);
             playSound(GyreKnights.BLADE_BREAK.get(), 1.8f, 1.0f);
+        }
+    }
+
+    // ------------------------------------------------------------------ Dive (1.1)
+
+    /** The dive's glint near the tell's end, then one cut through everyone within reach of its core as the descent ends. */
+    private void diveTick(ServerLevel server, long now, long t) {
+        if (t == GyreModes.DIVE_TELL - 4) {
+            server.broadcastEntityEvent(this, EVENT_GLINT);
+        }
+        if (approachEnd < 0 || t != approachEnd) {
+            return;
+        }
+        playSound(GyreKnights.SWEEP.get(), 1.8f, 1.2f);
+        currentImpact = GyreModes.DIVE_IMPACT;
+        for (Player p : level().getEntitiesOfClass(Player.class, getBoundingBox().inflate(GyreModes.DIVE_REACH), this::fair)) {
+            if (p.getBoundingBox().getCenter().distanceTo(core()) > GyreModes.DIVE_REACH + 0.6) {
+                continue;
+            }
+            hittingBlade = 0;
+            parryableNow = true;
+            p.hurt(damageSources().mobAttack(this), (float) GyreModes.DIVE_DAMAGE);
+            parryableNow = false;
+            hittingBlade = -1;
         }
     }
 
@@ -683,7 +802,7 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
         return POISE;
     }
 
-    /** Its poise broke: it drops to the nearest surface, stunned, its blades falling with it, its core exposed. */
+    /** Its poise broke: it sinks, stunned, to its target's level (see {@link GyreModes#stunAnchor}), its blades falling, its core exposed. */
     @Override
     public void onStagger(int ticks) {
         if (level().isClientSide() || mode == Mode.STUNNED) {
@@ -800,6 +919,16 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
         return new int[] {bladesBroken, deflected, stuns};
     }
 
+    /** Dives begun (server, for tests). */
+    public int dives() {
+        return dives;
+    }
+
+    /** Debug: its next pick at a player on foot is a dive. */
+    public void diveNext() {
+        volleys = divesAfter;
+    }
+
     /** How many times each mode began (server). */
     public int[] modesSeen() {
         return modesSeen.clone();
@@ -844,7 +973,7 @@ public class GyreKnight extends Monster implements GeoEntity, ParryableAttacker,
     private PlayState animate(AnimationState<GyreKnight> s) {
         RawAnimation anim = switch (mode()) {
             case STUNNED -> STUN_ANIM;
-            case SWEEP -> SWEEP_ANIM;
+            case SWEEP, DIVE -> SWEEP_ANIM;
             case LANCE, RECALL -> LANCE_ANIM;
             case SHIELD -> HOVER_ANIM;
         };

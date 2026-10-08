@@ -1,0 +1,68 @@
+{
+ "text": "Come little one, climb me",
+ "words": [
+  {
+   "text": "Come",
+   "start": 0.28,
+   "end": 0.64,
+   "type": "word",
+   "logprob": -0.00869937613606453
+  },
+  {
+   "text": " ",
+   "start": 0.64,
+   "end": 0.7,
+   "type": "spacing",
+   "logprob": -0.6932382583618164
+  },
+  {
+   "text": "little",
+   "start": 0.7,
+   "end": 0.92,
+   "type": "word",
+   "logprob": -0.6932382583618164
+  },
+  {
+   "text": " ",
+   "start": 0.92,
+   "end": 1.02,
+   "type": "spacing",
+   "logprob": -7.033323527139146e-06
+  },
+  {
+   "text": "one,",
+   "start": 1.02,
+   "end": 1.18,
+   "type": "word",
+   "logprob": -0.0019469066571673466
+  },
+  {
+   "text": " ",
+   "start": 1.18,
+   "end": 1.18,
+   "type": "spacing",
+   "logprob": -4.1483970562694594e-05
+  },
+  {
+   "text": "climb",
+   "start": 1.78,
+   "end": 2.14,
+   "type": "word",
+   "logprob": -4.1483970562694594e-05
+  },
+  {
+   "text": " ",
+   "start": 2.14,
+   "end": 2.2,
+   "type": "spacing",
+   "logprob": -1.311301275563892e-06
+  },
+  {
+   "text": "me",
+   "start": 2.2,
+   "end": 2.36,
+   "type": "word",
+   "logprob": -1.311301275563892e-06
+  }
+ ]
+}

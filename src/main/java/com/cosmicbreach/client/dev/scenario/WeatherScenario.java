@@ -43,6 +43,7 @@ import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
@@ -72,6 +73,10 @@ public final class WeatherScenario implements Scenario {
     public enum Part { FLARE, SHOWER, TIDE, CURRENT, SURGE }
 
     private static final int SETTLE_TICKS = 30;
+    /** The test floor of the Tide part goes no higher than this: Shear band A starts at 300, and a Tide jump rises up to 11 blocks and the drop test starts 22 up. */
+    private static final int TIDE_FLOOR_MAX_Y = 250;
+    /** How high the test column is cleared (the 22 block drop and the jumps stay in open air). */
+    private static final int TIDE_CLEAR_HEIGHT = 28;
     private final EnumSet<Part> parts;
 
     public WeatherScenario() {
@@ -390,17 +395,25 @@ public final class WeatherScenario implements Scenario {
                 .command("cosmicbreach debug goto drift")
                 .waitUntil("standing on an asteroid", 1600, standing(mc, Layer.DRIFT))
                 .log("where", () -> where(mc))
-                .run("a floor to test on: 15 by 15, clear above", () -> server(p -> {
+                .run("a floor to test on: 15 by 15, clear above (and low enough that the jumps stay under Shear band A)", () -> server(p -> {
                     ServerLevel level = p.serverLevel();
                     BlockPos c = p.blockPosition();
+                    if (c.getY() > TIDE_FLOOR_MAX_Y) {
+                        // The debug spot is the nearest flat asteroid top, and the denser belts (1.1) put those right up under Shear band A
+                        // (Y 300): a Tide jump of 6 to 11 blocks, and the 22 block drop below, would reach the band and the player would be
+                        // thrown up to the Reach. The floor is the test's own, so it goes lower, over open sky or rock alike.
+                        c = new BlockPos(c.getX(), TIDE_FLOOR_MAX_Y, c.getZ());
+                        p.teleportTo(level, c.getX() + 0.5, c.getY(), c.getZ() + 0.5, java.util.Set.of(), p.getYRot(), p.getXRot());
+                        p.setDeltaMovement(Vec3.ZERO);
+                    }
                     floor[0] = c.getX();
                     floor[1] = c.getZ();
                     floor[2] = c.getY();
                     for (int dx = -7; dx <= 7; dx++) {
                         for (int dz = -7; dz <= 7; dz++) {
-                            level.setBlockAndUpdate(c.offset(dx, -1, dz), Blocks.SMOOTH_STONE.defaultBlockState());
-                            for (int dy = 0; dy < 6; dy++) {
-                                level.setBlockAndUpdate(c.offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
+                            level.setBlock(c.offset(dx, -1, dz), Blocks.SMOOTH_STONE.defaultBlockState(), Block.UPDATE_CLIENTS);
+                            for (int dy = 0; dy < TIDE_CLEAR_HEIGHT; dy++) {
+                                level.setBlock(c.offset(dx, dy, dz), Blocks.AIR.defaultBlockState(), Block.UPDATE_CLIENTS);
                             }
                         }
                     }

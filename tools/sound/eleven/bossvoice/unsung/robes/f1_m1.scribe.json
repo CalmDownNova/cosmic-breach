@@ -1,0 +1,54 @@
+{
+ "text": "You wear our robes",
+ "words": [
+  {
+   "text": "You",
+   "start": 0.12,
+   "end": 0.2,
+   "type": "word",
+   "logprob": -0.0005539313424378633
+  },
+  {
+   "text": " ",
+   "start": 0.2,
+   "end": 0.32,
+   "type": "spacing",
+   "logprob": -5.960446742392378e-06
+  },
+  {
+   "text": "wear",
+   "start": 0.32,
+   "end": 0.58,
+   "type": "word",
+   "logprob": -5.960446742392378e-06
+  },
+  {
+   "text": " ",
+   "start": 0.58,
+   "end": 0.72,
+   "type": "spacing",
+   "logprob": -3.099436753473128e-06
+  },
+  {
+   "text": "our",
+   "start": 0.72,
+   "end": 0.84,
+   "type": "word",
+   "logprob": -3.099436753473128e-06
+  },
+  {
+   "text": " ",
+   "start": 0.84,
+   "end": 0.92,
+   "type": "spacing",
+   "logprob": -1.537788011773955e-05
+  },
+  {
+   "text": "robes",
+   "start": 0.96,
+   "end": 1.54,
+   "type": "word",
+   "logprob": -1.537788011773955e-05
+  }
+ ]
+}

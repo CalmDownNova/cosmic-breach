@@ -1,0 +1,255 @@
+{
+  "boss": "leviathan",
+  "global_gap_seconds": 15,
+  "wait_seconds": 12,
+  "caption_color": "#9FD8FF",
+  "reference": {
+    "weapon_tier": 2,
+    "armor": 17,
+    "toughness": 6,
+    "resilience": 16,
+    "level_min": 22,
+    "level_max": 26,
+    "typical_hit": 20
+  },
+  "lines": [
+    {
+      "id": "open_solo",
+      "trigger": "fight_start",
+      "condition": "players:solo, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "A small, heavy singer in my sky. Show me how you swim.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_open_solo",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_open_solo",
+          "length_ticks": 135,
+          "speech_start_ticks": 3,
+          "speech_ticks": 99
+        }
+      }
+    },
+    {
+      "id": "open_group",
+      "trigger": "fight_start",
+      "condition": "players:group, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "A chorus! No one has sung with me in an age.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_open_group",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_open_group",
+          "length_ticks": 120,
+          "speech_start_ticks": 3,
+          "speech_ticks": 89
+        }
+      }
+    },
+    {
+      "id": "open_again",
+      "trigger": "fight_start",
+      "condition": "returning",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "Back again? You missed my song.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_open_again",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_open_again",
+          "length_ticks": 116,
+          "speech_start_ticks": 2,
+          "speech_ticks": 71
+        }
+      }
+    },
+    {
+      "id": "moor_first",
+      "trigger": "hp_threshold:50",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "words": "Come, little one. Climb me.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_moor_first",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_moor_first",
+          "length_ticks": 89,
+          "speech_start_ticks": 2,
+          "speech_ticks": 53
+        }
+      }
+    },
+    {
+      "id": "moor_last",
+      "trigger": "hp_threshold:20",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "words": "My song is running out.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_moor_last",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_moor_last",
+          "length_ticks": 79,
+          "speech_start_ticks": 4,
+          "speech_ticks": 44
+        }
+      }
+    },
+    {
+      "id": "player_down",
+      "trigger": "player_death",
+      "condition": "none",
+      "priority": 70,
+      "repeat": "once per fight",
+      "words": "Hush. Sleep in the current.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_player_down",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_player_down",
+          "length_ticks": 73,
+          "speech_start_ticks": 3,
+          "speech_ticks": 38
+        }
+      }
+    },
+    {
+      "id": "fell",
+      "trigger": "player_fell",
+      "condition": "none",
+      "priority": 60,
+      "repeat": "once per fight",
+      "words": "My sky always gives you back.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_fell",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_fell",
+          "length_ticks": 78,
+          "speech_start_ticks": 3,
+          "speech_ticks": 39
+        }
+      }
+    },
+    {
+      "id": "my_pearl",
+      "trigger": "weapon:forge_tier_3",
+      "condition": "also:forge_tier_4",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "My pearl sings in that blade.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_my_pearl",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_my_pearl",
+          "length_ticks": 74,
+          "speech_start_ticks": 3,
+          "speech_ticks": 42
+        }
+      }
+    },
+    {
+      "id": "fork",
+      "trigger": "weapon:trident",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "words": "A fork? I am no fish.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_fork",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_fork",
+          "length_ticks": 76,
+          "speech_start_ticks": 2,
+          "speech_ticks": 41
+        }
+      }
+    },
+    {
+      "id": "crab",
+      "trigger": "armor:none",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "words": "No shell? Brave little crab.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_crab",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_crab",
+          "length_ticks": 79,
+          "speech_start_ticks": 3,
+          "speech_ticks": 43
+        }
+      }
+    },
+    {
+      "id": "too_soon",
+      "trigger": "gear:under",
+      "condition": "none",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "You came too soon, little one.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_too_soon",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_too_soon",
+          "length_ticks": 68,
+          "speech_start_ticks": 3,
+          "speech_ticks": 36
+        }
+      }
+    },
+    {
+      "id": "cousins",
+      "trigger": "taunt",
+      "condition": "while:mounted",
+      "priority": 30,
+      "repeat": "once per fight",
+      "words": "Riding my little cousins? Clever.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_cousins",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_cousins",
+          "length_ticks": 83,
+          "speech_start_ticks": 3,
+          "speech_ticks": 43
+        }
+      }
+    },
+    {
+      "id": "coming_round",
+      "trigger": "attack_gap",
+      "condition": "target_far",
+      "priority": 25,
+      "repeat": "cooldown 120 s",
+      "words": "Wait for me. I am coming round.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_coming_round",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_coming_round",
+          "length_ticks": 82,
+          "speech_start_ticks": 3,
+          "speech_ticks": 41
+        }
+      }
+    },
+    {
+      "id": "kill",
+      "trigger": "boss_kill",
+      "condition": "none",
+      "priority": 100,
+      "repeat": "once per fight",
+      "words": "Carry my song down. They have forgotten theirs.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/leviathan_kill",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_kill",
+          "length_ticks": 111,
+          "speech_start_ticks": 3,
+          "speech_ticks": 78
+        }
+      }
+    }
+  ]
+}

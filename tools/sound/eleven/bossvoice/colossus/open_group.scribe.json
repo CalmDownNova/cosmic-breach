@@ -1,0 +1,54 @@
+{
+ "text": "Many climbers. Good. Come",
+ "words": [
+  {
+   "text": "Many",
+   "start": 0.26,
+   "end": 0.54,
+   "type": "word",
+   "logprob": -0.0010917185572907329
+  },
+  {
+   "text": " ",
+   "start": 0.54,
+   "end": 0.64,
+   "type": "spacing",
+   "logprob": -0.00011467275908216834
+  },
+  {
+   "text": "climbers.",
+   "start": 0.64,
+   "end": 1.24,
+   "type": "word",
+   "logprob": -0.0027268482889566156
+  },
+  {
+   "text": " ",
+   "start": 1.24,
+   "end": 1.24,
+   "type": "spacing",
+   "logprob": -2.3483953555114567e-05
+  },
+  {
+   "text": "Good.",
+   "start": 1.94,
+   "end": 2.2,
+   "type": "word",
+   "logprob": -0.0002416796633042395
+  },
+  {
+   "text": " ",
+   "start": 2.2,
+   "end": 2.2,
+   "type": "spacing",
+   "logprob": -5.352353764465079e-05
+  },
+  {
+   "text": "Come",
+   "start": 2.74,
+   "end": 2.96,
+   "type": "word",
+   "logprob": -5.352353764465079e-05
+  }
+ ]
+}

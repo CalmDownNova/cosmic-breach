@@ -1,0 +1,68 @@
+{
+ "text": "Too strong for this lesson",
+ "words": [
+  {
+   "text": "Too",
+   "start": 0.16,
+   "end": 0.34,
+   "type": "word",
+   "logprob": -0.0006842655711807311
+  },
+  {
+   "text": " ",
+   "start": 0.34,
+   "end": 0.44,
+   "type": "spacing",
+   "logprob": -3.576272320060525e-06
+  },
+  {
+   "text": "strong",
+   "start": 0.44,
+   "end": 1.04,
+   "type": "word",
+   "logprob": -3.576272320060525e-06
+  },
+  {
+   "text": " ",
+   "start": 1.04,
+   "end": 1.04,
+   "type": "spacing",
+   "logprob": -7.629365427419543e-06
+  },
+  {
+   "text": "for",
+   "start": 1.7,
+   "end": 1.8,
+   "type": "word",
+   "logprob": -7.629365427419543e-06
+  },
+  {
+   "text": " ",
+   "start": 1.8,
+   "end": 1.86,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "this",
+   "start": 1.86,
+   "end": 2.02,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 2.02,
+   "end": 2.12,
+   "type": "spacing",
+   "logprob": -9.059865078597795e-06
+  },
+  {
+   "text": "lesson",
+   "start": 2.12,
+   "end": 2.48,
+   "type": "word",
+   "logprob": -9.059865078597795e-06
+  }
+ ]
+}

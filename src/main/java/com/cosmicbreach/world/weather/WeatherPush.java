@@ -19,8 +19,8 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
  * entity by exactly that much each tick, before its own tick, on top of its own movement (walking with a
  * current is faster, against it slower; nothing piles up as speed), and never into a block (it slides along
  * one instead). The client moves its own player (its movement is the client's to send); the server moves
- * mobs, items, experience, falling blocks and TNT. Players that fly or spectate, riders and ridden mounts
- * are left alone.
+ * mobs, items, experience, falling blocks and TNT. Players that fly or spectate, riders, ridden mounts and
+ * tamed mounts are left alone.
  */
 public final class WeatherPush {
     private WeatherPush() {
@@ -57,6 +57,9 @@ public final class WeatherPush {
     private static boolean movable(Entity entity, boolean clientSide) {
         if (entity.isPassenger() || entity.noPhysics || entity.isRemoved()) {
             return false;
+        }
+        if (com.cosmicbreach.mount.MountCare.tamedMount(entity)) {
+            return false; // a parked mount stays where it was left (1.1 design 4); a ridden one is its rider's to move
         }
         if (entity instanceof Player player) {
             // each client moves its own player; the server leaves players to them

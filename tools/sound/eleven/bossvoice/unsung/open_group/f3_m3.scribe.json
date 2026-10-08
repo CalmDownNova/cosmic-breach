@@ -1,0 +1,40 @@
+{
+ "text": "knows the words",
+ "words": [
+  {
+   "text": "knows",
+   "start": 0.24,
+   "end": 0.58,
+   "type": "word",
+   "logprob": -0.28374273777004644
+  },
+  {
+   "text": " ",
+   "start": 0.58,
+   "end": 0.64,
+   "type": "spacing",
+   "logprob": -9.417489309271332e-06
+  },
+  {
+   "text": "the",
+   "start": 0.64,
+   "end": 0.74,
+   "type": "word",
+   "logprob": -9.417489309271332e-06
+  },
+  {
+   "text": " ",
+   "start": 0.74,
+   "end": 0.82,
+   "type": "spacing",
+   "logprob": -1.537788011773955e-05
+  },
+  {
+   "text": "words",
+   "start": 0.82,
+   "end": 1.32,
+   "type": "word",
+   "logprob": -1.537788011773955e-05
+  }
+ ]
+}

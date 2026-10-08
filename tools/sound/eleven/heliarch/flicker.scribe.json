@@ -1,0 +1,82 @@
+{
+ "text": "Flickering. I remember how that feels",
+ "words": [
+  {
+   "text": "Flickering.",
+   "start": 0.36,
+   "end": 0.96,
+   "type": "word",
+   "logprob": -0.0008549597327642418
+  },
+  {
+   "text": " ",
+   "start": 0.96,
+   "end": 0.96,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "I",
+   "start": 1.7,
+   "end": 1.74,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 1.74,
+   "end": 1.78,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "remember",
+   "start": 1.78,
+   "end": 2.18,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": " ",
+   "start": 2.18,
+   "end": 2.24,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "how",
+   "start": 2.24,
+   "end": 2.38,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 2.38,
+   "end": 2.42,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "that",
+   "start": 2.42,
+   "end": 2.6,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 2.6,
+   "end": 2.66,
+   "type": "spacing",
+   "logprob": -1.0728830375228426e-06
+  },
+  {
+   "text": "feels",
+   "start": 2.66,
+   "end": 3.1,
+   "type": "word",
+   "logprob": -1.0728830375228426e-06
+  }
+ ]
+}

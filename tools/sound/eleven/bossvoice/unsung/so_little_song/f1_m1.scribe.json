@@ -1,0 +1,40 @@
+{
+ "text": "All that armor",
+ "words": [
+  {
+   "text": "All",
+   "start": 0.14,
+   "end": 0.34,
+   "type": "word",
+   "logprob": -0.005240275990217924
+  },
+  {
+   "text": " ",
+   "start": 0.34,
+   "end": 0.42,
+   "type": "spacing",
+   "logprob": -2.0265558760002023e-06
+  },
+  {
+   "text": "that",
+   "start": 0.42,
+   "end": 0.64,
+   "type": "word",
+   "logprob": -2.0265558760002023e-06
+  },
+  {
+   "text": " ",
+   "start": 0.64,
+   "end": 0.76,
+   "type": "spacing",
+   "logprob": -0.11329729110002518
+  },
+  {
+   "text": "armor",
+   "start": 0.76,
+   "end": 1.26,
+   "type": "word",
+   "logprob": -0.11329729110002518
+  }
+ ]
+}

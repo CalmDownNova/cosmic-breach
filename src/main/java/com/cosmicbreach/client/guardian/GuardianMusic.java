@@ -66,7 +66,8 @@ public final class GuardianMusic {
                     stop();
                 }
             }
-            volume = fade * duckFactor();
+            // a boss's own line over it pulls it down too (1.1)
+            volume = fade * duckFactor() * com.cosmicbreach.client.voice.BossVoiceClient.duckFactor(getLocation());
         }
 
         @Override

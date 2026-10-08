@@ -3,6 +3,7 @@ package com.cosmicbreach.world;
 import com.cosmicbreach.entity.gyre.GyreKnights;
 import com.cosmicbreach.registry.ModEntities;
 import com.cosmicbreach.entity.stalker.Stalkers;
+import com.cosmicbreach.mount.CelestialMount;
 import com.cosmicbreach.mount.Mounts;
 import java.util.Set;
 import net.minecraft.world.entity.Entity;
@@ -19,7 +20,9 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
  * player, every 2nd tick out to {@value #HALF}, and every 5th beyond. A skipped tick is a whole tick (its AI and its
  * movement): the creature simply holds still that tick, far from anyone who could see it hesitate. Never skipped:
  * anything fighting (a target, or hurt lately), falling, swimming, ridden, leashed, or new to the world, so a fight,
- * a fall and a spawn always run at full rate. Ticks are staggered by entity id so the skipped work spreads evenly.
+ * a fall and a spawn always run at full rate; so does a mount climbing back from the void (1.1), which would otherwise
+ * take five times as long when it is far from its owner, as it is when it has fallen a long way down. Ticks are
+ * staggered by entity id so the skipped work spreads evenly.
  */
 public final class AiLod {
     /** Full rate within this many blocks of a player. */
@@ -84,7 +87,7 @@ public final class AiLod {
     private static boolean busy(Mob mob) {
         return mob.tickCount < SETTLE_TICKS || mob.getTarget() != null || mob.hurtTime > 0 || mob.isVehicle() || mob.isPassenger()
                 || mob.isLeashed() || mob.isInWater() || mob.isInLava() || !mob.isNoGravity() && !mob.onGround() && !flies(mob)
-                || mob.isDeadOrDying();
+                || mob.isDeadOrDying() || mob instanceof CelestialMount mount && mount.isRescuing();
     }
 
     private static boolean flies(Mob mob) {

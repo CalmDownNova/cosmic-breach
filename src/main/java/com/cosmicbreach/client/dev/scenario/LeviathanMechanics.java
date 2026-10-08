@@ -408,6 +408,13 @@ final class LeviathanMechanics {
         heal(steps);
     }
 
+    /**
+     * How close a scale must be before the swing at it: a swing reaches about 3 blocks, and a scale keeps drifting in at 0.16 blocks
+     * a tick, so waiting for it to come inside this (and not for 3.6, as before) makes the swing connect wherever in its orbit the
+     * Leviathan was when it shed.
+     */
+    private static final double SWING_REACH = 2.4;
+
     private void shed(Steps steps, Minecraft mc) {
         int[] from = {0};
         int[] popped = {0};
@@ -420,9 +427,9 @@ final class LeviathanMechanics {
                 .waitUntil("its scales drift in", 60, () -> ServerQuery.ask(p -> !p.serverLevel().getEntitiesOfClass(ShedScale.class,
                         p.getBoundingBox().inflate(80)).isEmpty()))
                 .waitUntil("the first scale is near", 520, () -> ServerQuery.ask(p -> p.serverLevel().getEntitiesOfClass(ShedScale.class,
-                        p.getBoundingBox().inflate(3.6)).size() > 0))
+                        p.getBoundingBox().inflate(SWING_REACH)).size() > 0))
                 .run("face it and swing", () -> {
-                    Vec3 scale = ServerQuery.ask(p -> p.serverLevel().getEntitiesOfClass(ShedScale.class, p.getBoundingBox().inflate(3.6)).get(0)
+                    Vec3 scale = ServerQuery.ask(p -> p.serverLevel().getEntitiesOfClass(ShedScale.class, p.getBoundingBox().inflate(SWING_REACH)).get(0)
                             .getBoundingBox().getCenter());
                     ColossusScenario.lookAt(mc, scale);
                     popped[0] = ServerQuery.ask(p -> p.serverLevel().getEntitiesOfClass(ShedScale.class, p.getBoundingBox().inflate(80)).size());
@@ -527,12 +534,20 @@ final class LeviathanMechanics {
         // to the nearest gland, and hit it
         walk(steps, mc, "to the nearest song gland", () -> nearestGland(mc).subtract(0, 0, 0), 1.3, 120);
         // the second Moorage starts at a fifth of its health: one hit, so it lives through the shudder test
-        for (int k = 0; k < (n == 1 ? 3 : 1); k++) {
-            steps.run("face the gland", () -> ColossusScenario.lookAt(mc, nearestGland(mc)))
-                    .run("swing", () -> click(mc.options.keyAttack))
-                    .waitTicks(2)
-                    .run("", () -> key(mc.options.keyAttack, false))
-                    .waitTicks(30);
+        swingAtGland(steps, mc);
+        if (n == 1) {
+            // The coil holds still for 300 ticks and shudders at 80, 160 and 240, and how long the walk onto its back takes depends on the
+            // Rift's layout (the platform the bridge leaves from). So the shudder away from the glands, which needs no walk and no hits,
+            // comes first, at the first shudder the walk leaves (the first hit is struck while it is awaited), and the second hit and the
+            // hold-on shudder after it, at the one after that
+            shudderThrown(steps, mc, taken);
+            steps.run("back to the nearest song gland", () -> {
+                Vec3 g = nearestGland(mc);
+                Vec3 along = ask(l -> l.point(2).subtract(l.point(1)));
+                Vec3 flat = new Vec3(along.x, 0, along.z).normalize();
+                ColossusScenario.tp(mc, g.x + flat.x, Math.floor(layout().centre().y + LeviathanMoves.COIL_TOP), g.z + flat.z, g.x, g.y, g.z);
+            }).waitTicks(2);
+            swingAtGland(steps, mc);
         }
         steps.log("glands", () -> {
                     String r = String.format(Locale.ROOT, "Moorage %d: %d hits on the glands dealt %.1f (last gland hit %.1f)", n,
@@ -572,33 +587,6 @@ final class LeviathanMechanics {
                             .noneMatch(st -> st.is(LeviathanRegistry.LEVIATHAN_COIL.get()) || st.is(LeviathanRegistry.RIFT_BRIDGE.get()))));
             return;
         }
-        if (n == 1) {
-            // the next one, away from any gland: thrown
-            steps.run("step away from the glands, to the coil's head end", () -> {
-                        Vec3 head = ask(l -> l.point(0));
-                        Vec3 seg = ask(l -> l.point(1));
-                        marks[4] = 0;
-                        Vec3 spot = head.add(seg.subtract(head).scale(0.35));
-                        ColossusScenario.tp(mc, spot.x, Math.floor(layout().centre().y + LeviathanMoves.COIL_TOP), spot.z, head.x, head.y, head.z);
-                    })
-                    .waitUntil("a shudder's ripple", 200, () -> ask(l -> {
-                        long t = l.level().getGameTime() - l.moorStart();
-                        return t % 80 >= 66 && t % 80 < 78;
-                    }))
-                    .run("mark", () -> {
-                        taken[0] = s.playerDamage.size();
-                        marks[3] = mc.player.getY();
-                    })
-                    .waitUntil("the shudder", 20, () -> ask(l -> (l.level().getGameTime() - l.moorStart()) % 80 == 1))
-                    .waitTicks(8)
-                    .log("shudder thrown", () -> {
-                        String r = String.format(Locale.ROOT, "shudder away from the glands: thrown (rose %.2f), took %.1f", mc.player.getY() - marks[3],
-                                takenSince(taken[0]));
-                        s.summary.add(r);
-                        return r;
-                    })
-                    .check("away from the glands: thrown up and hurt", () -> mc.player.getY() - marks[3] > 0.8 && takenSince(taken[0]) > 0f);
-        }
         steps.waitUntil("it tears free and swims back to its orbit", 400, () -> LeviathanScenario.is(ThalassineLeviathan.State.FIGHT))
                 .check("the coil and the bridges are gone", () -> ask(l -> l.coilBlocks().isEmpty() && l.bridgeBlocks().isEmpty())
                         && ServerQuery.ask(p -> p.serverLevel().getBlockStates(p.getBoundingBox().inflate(40))
@@ -606,6 +594,43 @@ final class LeviathanMechanics {
                 .log("torn free", () -> String.format(Locale.ROOT, "Moorage %d over after %d ticks coiled", n, ask(l -> l.level().getGameTime()) - ticks[0]))
                 .waitUntil("landed", 600, () -> mc.player.onGround())
                 .command("effect give @s minecraft:instant_health 1 4 true");
+    }
+
+    /** One swing at the nearest gland, and its 30 ticks (the Maul's recovery, and the hit lands in them). */
+    private void swingAtGland(Steps steps, Minecraft mc) {
+        steps.run("face the gland", () -> ColossusScenario.lookAt(mc, nearestGland(mc)))
+                .run("swing", () -> click(mc.options.keyAttack))
+                .waitTicks(2)
+                .run("", () -> key(mc.options.keyAttack, false))
+                .waitTicks(30);
+    }
+
+    /** A shudder away from the glands, at the coil's head end: the player is thrown up and hurt. */
+    private void shudderThrown(Steps steps, Minecraft mc, int[] taken) {
+        steps.run("step away from the glands, to the coil's head end", () -> {
+                    Vec3 head = ask(l -> l.point(0));
+                    Vec3 seg = ask(l -> l.point(1));
+                    marks[4] = 0;
+                    Vec3 spot = head.add(seg.subtract(head).scale(0.35));
+                    ColossusScenario.tp(mc, spot.x, Math.floor(layout().centre().y + LeviathanMoves.COIL_TOP), spot.z, head.x, head.y, head.z);
+                })
+                .waitUntil("a shudder's ripple", 200, () -> ask(l -> {
+                    long t = l.level().getGameTime() - l.moorStart();
+                    return t % 80 >= 66 && t % 80 < 78;
+                }))
+                .run("mark", () -> {
+                    taken[0] = s.playerDamage.size();
+                    marks[3] = mc.player.getY();
+                })
+                .waitUntil("the shudder", 20, () -> ask(l -> (l.level().getGameTime() - l.moorStart()) % 80 == 1))
+                .waitTicks(8)
+                .log("shudder thrown", () -> {
+                    String r = String.format(Locale.ROOT, "shudder away from the glands: thrown (rose %.2f), took %.1f", mc.player.getY() - marks[3],
+                            takenSince(taken[0]));
+                    s.summary.add(r);
+                    return r;
+                })
+                .check("away from the glands: thrown up and hurt", () -> mc.player.getY() - marks[3] > 0.8 && takenSince(taken[0]) > 0f);
     }
 
     private static Vec3 nearestGland(Minecraft mc) {
@@ -706,15 +731,17 @@ final class LeviathanMechanics {
                 .waitUntil("a Guardian Echo wakes it for an attuned player", 40, () -> !LeviathanScenario.is(ThalassineLeviathan.State.DORMANT))
                 .check("the Echo is spent", () -> count(mc, com.cosmicbreach.guardian.GuardianRegistry.GUARDIAN_ECHO.get()) == 0)
                 .waitUntil("the intro is over", 260, () -> LeviathanScenario.is(ThalassineLeviathan.State.FIGHT))
-                .run("everyone leaves: far out beyond the shell", () -> {
+                // Everyone leaves: out onto the entrance ledge, outside the sphere (the arrival checks as much) and still near enough
+                // that the Rift ticks. It used to be 40 blocks beyond the ledge, in open air, but the Rift only ticks while a player is within
+                // the simulation distance (8 chunks in the test client): how far the ledge is from the axis, and which way it faces, depend
+                // on the Rift's layout, and from there the player was too far for the Rift to tick (so it never reset) and fell out of the
+                // world while waiting
+                .run("everyone leaves: out onto the entrance ledge, outside the sphere", () -> {
                     Vec3 c = layout().centre();
                     Vec3 ledge = layout().ledgeTop();
-                    Vec3 out = new Vec3(ledge.x - c.x, 0, ledge.z - c.z).normalize();
-                    Vec3 at = ledge.add(out.scale(40));
-                    ColossusScenario.tp(mc, at.x, at.y + 2, at.z, c.x, c.y, c.z);
+                    ColossusScenario.tp(mc, ledge.x, ledge.y, ledge.z, c.x, ledge.y + 1.6, c.z);
                 })
-                .command("effect give @s minecraft:slow_falling 100 0 true")
-                .command("effect give @s minecraft:levitation 3 0 true")
+                .check("outside the sphere", () -> ServerQuery.ask(p -> !layout().inside(p.position())))
                 .run("mark", () -> ticks[1] = mc.level.getGameTime())
                 .waitUntil("after 30 s with nobody inside it resets to sleep", 900, () -> LeviathanScenario.is(ThalassineLeviathan.State.DORMANT))
                 .log("reset", () -> {

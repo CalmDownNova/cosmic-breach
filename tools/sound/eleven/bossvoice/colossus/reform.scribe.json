@@ -1,0 +1,26 @@
+{
+ "text": "Together again",
+ "words": [
+  {
+   "text": "Together",
+   "start": 0.22,
+   "end": 0.78,
+   "type": "word",
+   "logprob": -0.026536481454968452
+  },
+  {
+   "text": " ",
+   "start": 0.78,
+   "end": 0.78,
+   "type": "spacing",
+   "logprob": -3.3378044463461265e-05
+  },
+  {
+   "text": "again",
+   "start": 1.46,
+   "end": 1.9,
+   "type": "word",
+   "logprob": -3.3378044463461265e-05
+  }
+ ]
+}

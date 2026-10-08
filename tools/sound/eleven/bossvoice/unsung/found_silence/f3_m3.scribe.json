@@ -1,0 +1,40 @@
+{
+ "text": "We never could.",
+ "words": [
+  {
+   "text": "We",
+   "start": 0.24,
+   "end": 0.32,
+   "type": "word",
+   "logprob": -1.8954096958623268e-05
+  },
+  {
+   "text": " ",
+   "start": 0.32,
+   "end": 0.52,
+   "type": "spacing",
+   "logprob": -1.7881377516459906e-06
+  },
+  {
+   "text": "never",
+   "start": 0.52,
+   "end": 0.82,
+   "type": "word",
+   "logprob": -1.7881377516459906e-06
+  },
+  {
+   "text": " ",
+   "start": 0.82,
+   "end": 0.98,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "could.",
+   "start": 0.98,
+   "end": 1.36,
+   "type": "word",
+   "logprob": -0.05232194066042931
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+{
+ "text": "My pearl sings in that blade",
+ "words": [
+  {
+   "text": "My",
+   "start": 0.12,
+   "end": 0.22,
+   "type": "word",
+   "logprob": -0.00012468514614738524
+  },
+  {
+   "text": " ",
+   "start": 0.22,
+   "end": 0.32,
+   "type": "spacing",
+   "logprob": -0.004220032598823309
+  },
+  {
+   "text": "pearl",
+   "start": 0.36,
+   "end": 0.66,
+   "type": "word",
+   "logprob": -0.004220032598823309
+  },
+  {
+   "text": " ",
+   "start": 0.66,
+   "end": 0.78,
+   "type": "spacing",
+   "logprob": -3.4570634852570947e-06
+  },
+  {
+   "text": "sings",
+   "start": 0.78,
+   "end": 1.14,
+   "type": "word",
+   "logprob": -3.4570634852570947e-06
+  },
+  {
+   "text": " ",
+   "start": 1.14,
+   "end": 1.2,
+   "type": "spacing",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": "in",
+   "start": 1.2,
+   "end": 1.28,
+   "type": "word",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": " ",
+   "start": 1.28,
+   "end": 1.32,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "that",
+   "start": 1.32,
+   "end": 1.48,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 1.48,
+   "end": 1.52,
+   "type": "spacing",
+   "logprob": -3.3378546504536644e-06
+  },
+  {
+   "text": "blade",
+   "start": 1.52,
+   "end": 1.92,
+   "type": "word",
+   "logprob": -3.3378546504536644e-06
+  }
+ ]
+}

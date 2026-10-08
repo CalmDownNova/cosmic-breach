@@ -21,6 +21,7 @@ public final class MountsClient {
         });
         modBus.addListener(RegisterMenuScreensEvent.class, event -> event.<net.minecraft.world.inventory.HorseInventoryMenu, MountScreen>register(
                 Mounts.MENU.get(), MountScreen::new));
+        StableClient.register(modBus);
     }
 
     /** A {@link MountFxPayload} (main thread). */

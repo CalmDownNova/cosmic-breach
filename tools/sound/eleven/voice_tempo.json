@@ -1,0 +1,10 @@
+{
+  "leviathan/crab": {
+    "tempo": 1.05,
+    "why": "its best take speaks 2.05 s at 1.00x against 1.95 s (a quiet window, no slack)"
+  },
+  "leviathan/cousins": {
+    "tempo": 1.11,
+    "why": "its best take speaks 2.15 s at 1.00x against 1.95 s (a quiet window, no slack)"
+  }
+}

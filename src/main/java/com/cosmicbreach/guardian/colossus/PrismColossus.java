@@ -100,7 +100,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
  * their own rewards at their feet ({@link ColossusLoot}). Nobody in the arena for 30 s resets it to dormant.
  */
 public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAttacker, ImpactSink, GuardianPart.Owner,
-        LairGuardian, GuardianFights.Fight {
+        LairGuardian, GuardianFights.Fight, com.cosmicbreach.voice.boss.VoicedBoss {
     public enum State { DORMANT, INTRO, FIGHT, FRACTURE, SHATTERED, REFORMING, DYING }
 
     public enum Action { NONE, SLAM, DOUBLE_SLAM, SWEEP, REFRACTION, BURST }
@@ -221,6 +221,8 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
     // Shatter
     private @Nullable ShatterState shatter;
     private final List<UUID> shards = new ArrayList<>();
+    /** A Guardian Echo woke this fight (its voice greets a returning climber). */
+    private boolean wokenByEcho;
     private int shatters;
     private int breaks;
     private int coreHits;
@@ -364,6 +366,7 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
             return;
         }
         long now = server.getGameTime();
+        wokenByEcho = echo;
         playersAtStart = Math.max(1, fightersInside().size());
         double max = GuardianHealth.scaled(ColossusMoves.BASE_HEALTH, playersAtStart);
         pool.reset(max);
@@ -471,6 +474,11 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         if (t == 90) {
             playSound(GuardianRegistry.COLOSSUS_ROAR.get(), 3.0f, 1.1f);
         }
+        if (t == 120 - com.cosmicbreach.voice.boss.BossVoices.LEAD) {
+            // the opener, its first word on tick 120 after the fifth crown crystal lights (the wake sound is over by 66); its words
+            // end before the fight starts or it is skipped
+            com.cosmicbreach.voice.boss.BossVoices.fire(this, "fight_start", stateStart() + ColossusMoves.INTRO);
+        }
         if (t >= ColossusMoves.INTRO) {
             setState(State.FIGHT, now);
             fightStart = now;
@@ -517,6 +525,12 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         tickFist(server, right, now);
         tickFist(server, left, now);
         long t = now - stateStart();
+        if (t == 12) {
+            // the Fracture line is held like any other: its words wait for the Fracture's sound (over at 42) and then need a lull
+            // that reaches past their end, and none does before the first phase 2 telegraph (tick 76), so it is said in the next
+            // lull within its wait or skipped; no line of the Colossus sounds over a telegraph
+            com.cosmicbreach.voice.boss.BossVoices.raiseAt(this, "hp_threshold:50", now);
+        }
         if (t == 20) {
             for (int k = 0; k < Refraction.CRYSTALS; k++) {
                 crystalLight(k, false);
@@ -1281,6 +1295,7 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         }
         server.broadcastEntityEvent(this, EVENT_FRACTURE);
         playSound(GuardianRegistry.COLOSSUS_FRACTURE.get(), 3.5f, 1.0f);
+        com.cosmicbreach.voice.boss.BossVoices.soundPlayed(this, GuardianRegistry.COLOSSUS_FRACTURE.get());
         CosmicBreach.LOGGER.debug("[cosmicbreach] Prism Colossus Fracture: phase 2");
     }
 
@@ -1313,10 +1328,15 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         }
         server.broadcastEntityEvent(this, EVENT_SHATTER);
         playSound(GuardianRegistry.COLOSSUS_SHATTER.get(), 4.0f, 1.0f);
+        com.cosmicbreach.voice.boss.BossVoices.soundPlayed(this, GuardianRegistry.COLOSSUS_SHATTER.get());
         CosmicBreach.LOGGER.debug("[cosmicbreach] Prism Colossus Shatter #{}: three shards of {} health", shatters, (int) health);
     }
 
     private void shatteredTick(ServerLevel server, long now) {
+        if (shatters == 1 && now - stateStart() == 10 - com.cosmicbreach.voice.boss.BossVoices.LEAD) {
+            // its first word on Shatter tick 10
+            com.cosmicbreach.voice.boss.BossVoices.fire(this, "hp_threshold:0");
+        }
         if (shatter == null) {
             return;
         }
@@ -1352,6 +1372,7 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         shards.clear();
         shatter = null;
         setState(State.REFORMING, now);
+        com.cosmicbreach.voice.boss.BossVoices.event(this, "reform");
         server.broadcastEntityEvent(this, EVENT_REFORM);
         playSound(GuardianRegistry.COLOSSUS_REFORM.get(), 3.0f, 1.0f);
         CosmicBreach.LOGGER.debug("[cosmicbreach] The shards re-merge");
@@ -1376,6 +1397,9 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
 
     private void startDying(ServerLevel server, long now) {
         setState(State.DYING, now);
+        // its first word on death tick 5 (its take starts a little before): the words end before tick 60, when the rewards and
+        // the guide follow
+        com.cosmicbreach.voice.boss.BossVoices.fireAt(this, "boss_kill", now + 5);
         setFlag(FLAG_HIDDEN, true);
         server.broadcastEntityEvent(this, EVENT_DEATH);
         playSound(GuardianRegistry.COLOSSUS_DEATH.get(), 4.0f, 1.0f);
@@ -2039,5 +2063,113 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    // ------------------------------------------------------------------ the voice (1.1)
+
+    @Override
+    public String voiceBoss() {
+        return "colossus";
+    }
+
+    @Override
+    public BlockPos voiceHome() {
+        return arena != null ? arena.centreBlock() : blockPosition();
+    }
+
+    @Override
+    public List<ServerPlayer> voiceFighters() {
+        return fightersInside();
+    }
+
+    @Override
+    public int voicePlayers() {
+        return playersAtStart;
+    }
+
+    @Override
+    public double voiceHealth() {
+        return maxHealth() <= 0 ? 0.0 : Math.max(0.0, getHealth() / maxHealth());
+    }
+
+    @Override
+    public net.minecraft.resources.ResourceLocation voiceKillAdvancement() {
+        return GuardianTypes.COLOSSUS.advancement();
+    }
+
+    @Override
+    public boolean voiceWokenByEcho() {
+        return wokenByEcho;
+    }
+
+    /** The Fracture (50) and the first Shatter (0) are its own moments. */
+    @Override
+    public java.util.Set<Integer> voicePhaseThresholds() {
+        return java.util.Set.of(50, 0);
+    }
+
+    /**
+     * Its lulls (1.1): the ticks from now until the readable part of its next attack's telegraph, from its own attack schedule
+     * (the gap, the cooldowns, the attacks it could choose now), so that a line that ends a short margin before then sounds over no
+     * telegraph. None inside an attack's readable part. A Break is a lull of its length and the gap after it, so are the Fracture
+     * and the re-forming up to the first attack after them, and the Shatter, the death and the sleep have nothing to cover.
+     */
+    @Override
+    public int voiceQuietTicks(long now) {
+        long t = now - stateStart();
+        return switch (state) {
+            case INTRO -> ColossusMoves.idleQuietTicks(nextReadable(now, nextActionAt - now));
+            case FIGHT -> fightQuiet(now);
+            case FRACTURE -> ColossusMoves.idleQuietTicks(nextReadable(now, ColossusMoves.FRACTURE + ColossusMoves.GAP - t));
+            case REFORMING -> ColossusMoves.idleQuietTicks(nextReadable(now, ColossusMoves.REFORM + ColossusMoves.GAP - t));
+            default -> Integer.MAX_VALUE;
+        };
+    }
+
+    @Override
+    public int voiceMarginTicks() {
+        return ColossusMoves.VOICE_MARGIN;
+    }
+
+    private int fightQuiet(long now) {
+        if (pendingShatter || pendingFracture) {
+            return 0;
+        }
+        if (broken(now)) {
+            return ColossusMoves.idleQuietTicks(nextReadable(now, Math.max(0L, breakUntil - now) + ColossusMoves.GAP));
+        }
+        if (action != Action.NONE) {
+            ColossusMoves.Shape shape = switch (action) {
+                case SLAM -> ColossusMoves.SLAM_SHAPE;
+                case DOUBLE_SLAM -> ColossusMoves.DOUBLE_SLAM_SHAPE;
+                case SWEEP -> ColossusMoves.SWEEP_SHAPE;
+                case REFRACTION -> ColossusMoves.REFRACTION_SHAPE;
+                default -> ColossusMoves.BURST_SHAPE;
+            };
+            long untilGap = actionStart + shape.minLength() + ColossusMoves.GAP - now;
+            return ColossusMoves.quietTicks(shape, now - actionStart, nextReadable(now, untilGap));
+        }
+        if (fightersInside().isEmpty()) {
+            return Integer.MAX_VALUE; // nobody to attack: nothing begins until someone is back
+        }
+        return ColossusMoves.idleQuietTicks(nextReadable(now, nextActionAt - now));
+    }
+
+    /**
+     * Ticks until the readable part of the next attack it could choose now ({@link ColossusMoves#nextReadableIn}): the sweep only
+     * while someone stands in its band, the Refraction while its crystals stand, the burst while anyone is near enough to start
+     * hugging it.
+     */
+    private long nextReadable(long now, long untilGap) {
+        Action slam = phase == 2 ? Action.DOUBLE_SLAM : Action.SLAM;
+        return ColossusMoves.nextReadableIn(untilGap, picker.cooldownLeft(slam, now), picker.cooldownLeft(Action.SWEEP, now),
+                anyoneInSweepBand(getYRot()), picker.cooldownLeft(Action.REFRACTION, now), hasCrystals(),
+                picker.cooldownLeft(Action.BURST, now), phase == 2 && !hugTicks.isEmpty());
+    }
+
+    @Override
+    public boolean voiceOwns(net.minecraft.world.entity.Entity hit) {
+        return hit == this || hit instanceof GuardianPart part && part.owner() == this
+                || hit instanceof PrismShard && shards.contains(hit.getUUID());
     }
 }

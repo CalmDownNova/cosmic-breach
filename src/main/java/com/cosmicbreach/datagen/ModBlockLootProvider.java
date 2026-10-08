@@ -1,6 +1,7 @@
 package com.cosmicbreach.datagen;
 
 import com.cosmicbreach.block.StarbloomCropBlock;
+import com.cosmicbreach.provision.ProvisionRegistry;
 import com.cosmicbreach.registry.ModBlocks;
 import com.cosmicbreach.registry.ModBlocks.StoneSet;
 import com.cosmicbreach.registry.ModMaterials;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
@@ -73,14 +75,51 @@ public final class ModBlockLootProvider extends BlockLootSubProvider {
         add(ModBlocks.METEORITE.get(), this::meteorite);
         add(ModBlocks.GLIMMER_GRASS.get(), b -> createSingleItemTableWithSilkTouch(b, ModBlocks.STARFALL_STONE.get()));
 
-        addNetherVinesDropTable(ModBlocks.HALO_MOSS.get(), ModBlocks.HALO_MOSS_PLANT.get());
-        add(ModBlocks.MAGENTA_NEON_LICHEN.get(), b -> createMultifaceBlockDrops(b, HAS_SHEARS));
-        add(ModBlocks.TEAL_NEON_LICHEN.get(), b -> createMultifaceBlockDrops(b, HAS_SHEARS));
+        haloMoss(ModBlocks.HALO_MOSS.get(), ModBlocks.HALO_MOSS_PLANT.get());
+        add(ModBlocks.MAGENTA_NEON_LICHEN.get(), this::neonLichen);
+        add(ModBlocks.TEAL_NEON_LICHEN.get(), this::neonLichen);
         dropPottedContents(ModBlocks.POTTED_STARBLOOM.get());
         add(ModBlocks.STARBLOOM_CROP.get(), createCropDrops(ModBlocks.STARBLOOM_CROP.get(), ModBlocks.STARBLOOM.get().asItem(),
                 ModBlocks.STARBLOOM_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.STARBLOOM_CROP.get())
                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                 .hasProperty(StarbloomCropBlock.AGE, StarbloomCropBlock.MAX_AGE))));
+    }
+
+    /**
+     * Neon Lichen: vanilla's glow lichen (shears take it whole, a piece a face) and, a quarter of the time whatever cuts it
+     * but shears, an Umbral Cap (1.1: the Deep's food in the chunks generated before the world features put caps on its
+     * floors). The cap is exclusive with taking the lichen whole, as vanilla's leaves keep their sticks and apples from
+     * shears: otherwise a lichen placed and cut with shears over and over is food without growth (BonusDropsTest). With that
+     * the loop is closed: the lichen itself comes back only with shears, and shears give no cap.
+     */
+    private LootTable.Builder neonLichen(Block lichen) {
+        return createMultifaceBlockDrops(lichen, HAS_SHEARS)
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(ProvisionRegistry.UMBRAL_CAP_ITEM.get()))
+                        .when(HAS_SHEARS.invert())
+                        .when(LootItemRandomChanceCondition.randomChance(0.25f))
+                        .when(ExplosionCondition.survivesExplosion()));
+    }
+
+    /**
+     * Halo Moss: vanilla's nether vines (itself with shears or silk touch, else a chance Fortune raises) and, a quarter of
+     * the time whatever cut it but shears or silk touch, a Halo Berry (1.1, the Reach's food). The berry is exclusive with
+     * taking the strand whole, for the reason the lichen's cap is ({@link #neonLichen}). The loop is closed except for a tool
+     * with Fortune III: the strand then drops on every cut (the flat chance reaches 1.0), so a placed strand can still be cut for
+     * berries, a quarter of the cuts. That takes the enchantment, and vanilla farms are faster anyway; at Fortune 0 to II the
+     * strand comes back 33, 55 or 77 times in 100 and the loop runs dry (A2 spec review, Minor 3).
+     */
+    private void haloMoss(Block vine, Block plant) {
+        Holder<Enchantment> fortune = registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE);
+        LootTable.Builder table = createSilkTouchOrShearsDispatchTable(vine, LootItem.lootTableItem(vine)
+                        .when(BonusLevelTableCondition.bonusLevelFlatChance(fortune, 0.33f, 0.55f, 0.77f, 1.0f)))
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(ProvisionRegistry.HALO_BERRIES.get()))
+                        .when(HAS_SHEARS.or(hasSilkTouch()).invert())
+                        .when(LootItemRandomChanceCondition.randomChance(0.25f))
+                        .when(ExplosionCondition.survivesExplosion()));
+        add(vine, table);
+        add(plant, table);
     }
 
     private LootTable.Builder meteorite(Block block) {

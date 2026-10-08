@@ -81,6 +81,22 @@ final class MpKit {
         return null;
     }
 
+    /** The groups of every chat line from index {@code from} on that matches {@code pattern}, oldest first. */
+    static List<String[]> allMatches(Pattern pattern, int from) {
+        List<String[]> found = new ArrayList<>();
+        for (int i = Math.max(0, from); i < CHAT.size(); i++) {
+            Matcher m = pattern.matcher(CHAT.get(i));
+            if (m.find()) {
+                String[] groups = new String[m.groupCount()];
+                for (int g = 0; g < groups.length; g++) {
+                    groups[g] = m.group(g + 1);
+                }
+                found.add(groups);
+            }
+        }
+        return found;
+    }
+
     /** True if a chat line from index {@code from} on contains {@code text}. */
     static boolean chatSince(int from, String text) {
         for (int i = Math.max(0, from); i < CHAT.size(); i++) {

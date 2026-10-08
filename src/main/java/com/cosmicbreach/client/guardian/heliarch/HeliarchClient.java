@@ -9,19 +9,11 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
-import com.cosmicbreach.guardian.heliarch.HeliarchLine;
 import com.cosmicbreach.guardian.heliarch.HeliarchRegistry;
 import com.cosmicbreach.guardian.heliarch.HollowHeliarch;
 import com.cosmicbreach.guardian.heliarch.ReliquaryBlockEntity;
-import com.cosmicbreach.mixin.client.GuiSubtitleAccessor;
-import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
-import net.minecraft.client.resources.sounds.SoundInstance;
-import net.minecraft.client.sounds.WeighedSoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
@@ -33,13 +25,9 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * The Heliarch on the client: its renderers, its telegraphs and effects ({@link HeliarchFx}), the sky's eclipse and the
- * seal over the Breach ({@link HeliarchSky}), and its voice: a line is heard at the listener by everyone in the fight
- * (the regent's voice fills the arena), with its words kept up as the subtitle for as long as it lasts.
+ * seal over the Breach ({@link HeliarchSky}). Its voice is the bosses' voice ({@code BossVoiceClient}, 1.1).
  */
 public final class HeliarchClient {
-    private static @Nullable Voice speaking;
-    private static final List<HeliarchLine> SPOKEN = new ArrayList<>();
-
     private HeliarchClient() {
     }
 
@@ -62,21 +50,6 @@ public final class HeliarchClient {
 
     // ------------------------------------------------------------------ messages
 
-    public static void onSpeak(int line) {
-        if (line < 0 || line >= HeliarchLine.values().length) {
-            return;
-        }
-        HeliarchLine l = HeliarchLine.values()[line];
-        Minecraft mc = Minecraft.getInstance();
-        if (speaking != null) {
-            mc.getSoundManager().stop(speaking);
-        }
-        speaking = new Voice(l);
-        mc.getSoundManager().play(speaking);
-        SPOKEN.add(l);
-        keepSubtitle(mc, speaking);
-    }
-
     public static void onRain(List<Vec3> circles, long land) {
         HeliarchFx.rain(circles, land);
     }
@@ -89,73 +62,15 @@ public final class HeliarchClient {
         HeliarchSky.setSealed(sealed, forming);
     }
 
-    // ------------------------------------------------------------------ the voice
+    // ------------------------------------------------------------------ ticking
 
     private static void tick() {
-        Minecraft mc = Minecraft.getInstance();
         HeliarchSky.tick();
-        if (speaking == null) {
-            return;
-        }
-        speaking.age++;
-        if (speaking.age > speaking.line.lengthTicks() || mc.level == null) {
-            speaking = null;
-            return;
-        }
-        keepSubtitle(mc, speaking);
-    }
-
-    /** Refreshes the line's subtitle just ahead of the camera (vanilla drops a subtitle 3 s after its sound starts). */
-    private static void keepSubtitle(Minecraft mc, Voice voice) {
-        if (!mc.options.showSubtitles().get()) {
-            return;
-        }
-        WeighedSoundEvents events = mc.getSoundManager().getSoundEvent(voice.getLocation());
-        if (events == null || events.getSubtitle() == null) {
-            return;
-        }
-        var camera = mc.gameRenderer.getMainCamera();
-        Vec3 at = camera.getPosition().add(new Vec3(camera.getLookVector()).scale(2.0));
-        SoundInstance here = new SimpleSoundInstance(voice.getLocation(), SoundSource.HOSTILE, 1.0f, 1.0f,
-                SoundInstance.createUnseededRandom(), false, 0, SoundInstance.Attenuation.NONE, at.x, at.y, at.z, false);
-        ((GuiSubtitleAccessor) mc.gui).cosmicbreach$subtitleOverlay().onPlaySound(here, events, Float.POSITIVE_INFINITY);
-    }
-
-    /** The line being spoken now, or null (checks). */
-    public static @Nullable HeliarchLine speaking() {
-        return speaking == null ? null : speaking.line;
-    }
-
-    /** Every line heard since the game started (checks). */
-    public static List<HeliarchLine> spoken() {
-        return List.copyOf(SPOKEN);
     }
 
     private static void reset() {
-        if (speaking != null) {
-            Minecraft.getInstance().getSoundManager().stop(speaking);
-            speaking = null;
-        }
         HeliarchFx.clear();
         HeliarchSky.clear();
-    }
-
-    /** A line at the listener: the regent's voice is everywhere in the arena at once. */
-    private static final class Voice extends AbstractTickableSoundInstance {
-        final HeliarchLine line;
-        int age;
-
-        Voice(HeliarchLine line) {
-            super(line.sound(), SoundSource.HOSTILE, SoundInstance.createUnseededRandom());
-            this.line = line;
-            this.attenuation = SoundInstance.Attenuation.NONE;
-            this.relative = true;
-            this.volume = 1.0f;
-        }
-
-        @Override
-        public void tick() {
-        }
     }
 
     // ------------------------------------------------------------------ the screen's edges

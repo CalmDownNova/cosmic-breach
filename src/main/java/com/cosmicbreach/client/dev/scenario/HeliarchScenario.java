@@ -30,11 +30,12 @@ import org.jetbrains.annotations.Nullable;
  *       Collapse, the death, the Reliquaries and the seal over the Breach.</li>
  *   <li>{@code heliarch-regent}, {@code heliarch-hollow}, {@code heliarch-end}: the mechanics with real inputs
  *       ({@link HeliarchMechanics}); {@code heliarch} runs all three.</li>
+ *   <li>{@code heliarch-lines}: every line of the regent's voice met in a held fight and heard to its end (A5.3).</li>
  *   <li>{@code heliarch-fight}: a whole fight played by script ({@link HeliarchFightBot}), timed.</li>
  * </ul>
  */
 public final class HeliarchScenario implements Scenario {
-    public enum Part { LOOKS, REGENT, HOLLOW, END, ALL, FIGHT }
+    public enum Part { LOOKS, REGENT, HOLLOW, END, ALL, FIGHT, LINES }
 
     private final Part part;
     private final List<String> results = new ArrayList<>();
@@ -50,6 +51,7 @@ public final class HeliarchScenario implements Scenario {
             case LOOKS -> 600;
             case FIGHT -> 1100;
             case ALL -> 1000;
+            case LINES -> 900;
             default -> 520;
         };
     }
@@ -63,6 +65,7 @@ public final class HeliarchScenario implements Scenario {
             case FIGHT -> new HeliarchFightBot(this).steps(steps, mc);
             case REGENT -> new HeliarchMechanics(this).regent(steps, mc);
             case HOLLOW -> new HeliarchMechanics(this).hollow(steps, mc);
+            case LINES -> new HeliarchMechanics(this).lines(steps, mc);
             case END -> new HeliarchMechanics(this).end(steps, mc);
             case ALL -> {
                 HeliarchMechanics m = new HeliarchMechanics(this);

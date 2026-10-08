@@ -1,0 +1,68 @@
+{
+ "text": "I cannot finish it alone",
+ "words": [
+  {
+   "text": "I",
+   "start": 0.22,
+   "end": 0.34,
+   "type": "word",
+   "logprob": -0.00020883286197204143
+  },
+  {
+   "text": " ",
+   "start": 0.34,
+   "end": 0.42,
+   "type": "spacing",
+   "logprob": -1.4305104514278355e-06
+  },
+  {
+   "text": "cannot",
+   "start": 0.42,
+   "end": 0.84,
+   "type": "word",
+   "logprob": -1.4305104514278355e-06
+  },
+  {
+   "text": " ",
+   "start": 0.84,
+   "end": 1.32,
+   "type": "spacing",
+   "logprob": -1.1920922133867862e-06
+  },
+  {
+   "text": "finish",
+   "start": 1.32,
+   "end": 1.62,
+   "type": "word",
+   "logprob": -1.1920922133867862e-06
+  },
+  {
+   "text": " ",
+   "start": 1.62,
+   "end": 1.7,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "it",
+   "start": 1.7,
+   "end": 1.86,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 1.86,
+   "end": 2.34,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "alone",
+   "start": 2.34,
+   "end": 2.82,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  }
+ ]
+}

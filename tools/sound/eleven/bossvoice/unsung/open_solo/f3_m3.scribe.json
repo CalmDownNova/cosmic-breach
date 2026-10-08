@@ -1,0 +1,40 @@
+{
+ "text": "Without a song",
+ "words": [
+  {
+   "text": "Without",
+   "start": 0.3,
+   "end": 0.66,
+   "type": "word",
+   "logprob": -0.011167875491082668
+  },
+  {
+   "text": " ",
+   "start": 0.66,
+   "end": 0.72,
+   "type": "spacing",
+   "logprob": -7.390948667307384e-06
+  },
+  {
+   "text": "a",
+   "start": 0.72,
+   "end": 0.82,
+   "type": "word",
+   "logprob": -7.390948667307384e-06
+  },
+  {
+   "text": " ",
+   "start": 0.82,
+   "end": 0.88,
+   "type": "spacing",
+   "logprob": -0.0005706112715415657
+  },
+  {
+   "text": "song",
+   "start": 0.88,
+   "end": 1.24,
+   "type": "word",
+   "logprob": -0.0005706112715415657
+  }
+ ]
+}

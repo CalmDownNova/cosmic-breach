@@ -1,0 +1,40 @@
+{
+ "text": "Between the beats",
+ "words": [
+  {
+   "text": "Between",
+   "start": 0.18,
+   "end": 0.84,
+   "type": "word",
+   "logprob": -0.007347939535975456
+  },
+  {
+   "text": " ",
+   "start": 0.84,
+   "end": 0.9,
+   "type": "spacing",
+   "logprob": -1.156323378381785e-05
+  },
+  {
+   "text": "the",
+   "start": 0.9,
+   "end": 0.96,
+   "type": "word",
+   "logprob": -1.156323378381785e-05
+  },
+  {
+   "text": " ",
+   "start": 0.96,
+   "end": 1.08,
+   "type": "spacing",
+   "logprob": -0.06229238584637642
+  },
+  {
+   "text": "beats",
+   "start": 1.08,
+   "end": 1.58,
+   "type": "word",
+   "logprob": -0.06229238584637642
+  }
+ ]
+}

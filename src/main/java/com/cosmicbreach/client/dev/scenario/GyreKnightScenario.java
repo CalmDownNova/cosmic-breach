@@ -439,7 +439,10 @@ public final class GyreKnightScenario implements Scenario {
                 .waitTicks(5)
                 .run("before", () -> xp[0] = ServerQuery.ask(p -> Attunements.of(p).totalXp()))
                 .command("cosmicbreach debug gyre mode stunned")
-                .waitUntil("it drops to the floor, stunned", 60, () -> ask(k -> k.onGround() && k.mode() == GyreModes.Mode.STUNNED))
+                .waitUntil("it sinks to my level, stunned", 80, () -> ServerQuery.ask(p -> {
+                    GyreKnight k = knight(p);
+                    return k != null && k.mode() == GyreModes.Mode.STUNNED && Math.abs(k.getY() - p.getY()) < 0.3;
+                }))
                 .run("face it", () -> ColossusScenario.lookAt(mc, ask(GyreKnight::core)))
                 .waitTicks(2)
                 .run("clear the chat", () -> mc.gui.getChat().clearMessages(false))

@@ -1,0 +1,26 @@
+{
+ "text": "That astrolabe",
+ "words": [
+  {
+   "text": "That",
+   "start": 0.08,
+   "end": 0.3,
+   "type": "word",
+   "logprob": -8.391981828026474e-05
+  },
+  {
+   "text": " ",
+   "start": 0.3,
+   "end": 0.42,
+   "type": "spacing",
+   "logprob": -0.008113756775856018
+  },
+  {
+   "text": "astrolabe",
+   "start": 0.42,
+   "end": 1.1,
+   "type": "word",
+   "logprob": -0.0027267181239949423
+  }
+ ]
+}

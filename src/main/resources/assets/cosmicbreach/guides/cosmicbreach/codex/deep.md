@@ -18,7 +18,12 @@ back what falls into it.
 as a memory. What light there is comes from the **Neon Lichen**, magenta and teal, and from what you bring.
 
 - **Bring light.** Torches and lanterns make safe ground here. Some things of the Deep will not cross it.
-- **Eclipsium Ore** is the Deep's metal. It needs a diamond pickaxe.
+- **Eclipsium Ore** is the Deep's metal. It needs a diamond pickaxe, or the Drift's Nebulite one.
+- **Umbral Caps** grow on the basalt where it is dark, and spread through the dark: the Deep's food, eaten raw.
+  Right-click one to eat it whenever you are hungry, even with the floor under your cursor; sneak to plant it on
+  basalt instead (you plant it as well when you are not hungry), and it spreads. Cut some **Neon Lichen** by hand or
+  with a tool and one will often turn up. Shears take the lichen whole instead, for torches and fuel: two Starsteel
+  Ingots make a pair.
 - **Rift Scars** are holes in the platforms: mind your step.
 
 At the very middle of the Deep the Breach itself opens, a chasm three hundred blocks across, and something floats

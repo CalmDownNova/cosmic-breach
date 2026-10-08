@@ -1,5 +1,6 @@
 {
   "type": "cosmicbreach:astral_forge",
+  "category": "armor",
   "ingredients": [
     {
       "count": 3,
@@ -11,7 +12,7 @@
     },
     {
       "count": 4,
-      "item": "minecraft:string"
+      "tag": "c:strings"
     }
   ],
   "order": 30,

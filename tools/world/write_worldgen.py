@@ -152,6 +152,16 @@ def scan_up_to_ceiling(steps):
             "max_steps": steps}
 
 
+def scan_down_to_basalt(steps):
+    """Down through air to the air block standing on Umbral Basalt (the Deep's floors)."""
+    return {"type": "minecraft:environment_scan", "direction_of_search": "down",
+            "target_condition": {"type": "minecraft:all_of", "predicates": [
+                {"type": "minecraft:matching_blocks", "blocks": "minecraft:air"},
+                {"type": "minecraft:matching_blocks", "offset": [0, -1, 0], "blocks": f"{NS}:umbral_basalt"}]},
+            "allowed_search_condition": {"type": "minecraft:matching_blocks", "blocks": "minecraft:air"},
+            "max_steps": steps}
+
+
 ONE_DOWN = {"type": "minecraft:random_offset", "xz_spread": 0, "y_spread": -1}
 
 # once per chunk, each drawing its own slice of big things
@@ -198,6 +208,27 @@ starbloom_patch = {
 configured("starbloom_patch", "minecraft:random_patch", starbloom_patch)
 placed("starbloom_patch", f"{NS}:starbloom_patch", [rarity(3), IN_SQUARE, SURFACE, BIOME])
 placed("starbloom_meadow", f"{NS}:starbloom_patch", [count(2), IN_SQUARE, SURFACE, BIOME])
+
+# fallen Driftwood on the Reach's ground (1.1): its first planks, sticks, table and fuel
+configured("fallen_driftwood", f"{NS}:fallen_driftwood")
+placed("fallen_driftwood", f"{NS}:fallen_driftwood", [rarity(2), IN_SQUARE, SURFACE, BIOME])
+placed("fallen_driftwood_sparse", f"{NS}:fallen_driftwood", [rarity(4), IN_SQUARE, SURFACE, BIOME])
+
+# Umbral Caps on the Deep's basalt floors (1.1): the Deep's food
+umbral_cap_patch = {
+    "tries": 16, "xz_spread": 4, "y_spread": 2,
+    "feature": {
+        "feature": {"type": "minecraft:simple_block", "config": {
+            "to_place": {"type": "minecraft:simple_state_provider", "state": state(f"{NS}:umbral_cap")}}},
+        "placement": [{"type": "minecraft:block_predicate_filter", "predicate": {"type": "minecraft:all_of", "predicates": [
+            {"type": "minecraft:matching_blocks", "blocks": "minecraft:air"},
+            {"type": "minecraft:matching_blocks", "offset": [0, -1, 0], "blocks": f"{NS}:umbral_basalt"},
+            {"type": "minecraft:would_survive", "state": state(f"{NS}:umbral_cap")},
+        ]}}],
+    },
+}
+configured("umbral_cap_patch", "minecraft:random_patch", umbral_cap_patch)
+placed("umbral_cap_patch", f"{NS}:umbral_cap_patch", [count(3), IN_SQUARE, height_range(1, 143), scan_down_to_basalt(24), BIOME])
 
 
 def ore(name, host, ore_block, size, air_discard):
@@ -278,7 +309,7 @@ biome("shattered_spires", {
     local_modifications=["spire_field", "quartz_outcrop"],
     underground_ores=["ore_starsteel"],
     underground_decoration=["crystal_stalactite"],
-    vegetal_decoration=["halo_moss", "starbloom_patch"],
+    vegetal_decoration=["halo_moss", "starbloom_patch", "fallen_driftwood_sparse"],
 ), {"monster": [{"type": f"{NS}:shardling", "weight": 5, "minCount": 3, "maxCount": 3}]})
 
 biome("sunfield_terraces", {
@@ -290,7 +321,7 @@ biome("sunfield_terraces", {
     local_modifications=["spire_field", "quartz_outcrop_sparse"],
     underground_ores=["ore_starsteel"],
     underground_decoration=["crystal_stalactite"],
-    vegetal_decoration=["halo_moss", "starbloom_meadow"],
+    vegetal_decoration=["halo_moss", "starbloom_meadow", "fallen_driftwood"],
 ))
 
 biome("drift_belt", {
@@ -307,13 +338,13 @@ biome("drift_belt", {
 biome("rift_abyss", {
     "sky_color": 0x2A1B4A, "fog_color": 0x25123F, "water_color": 0x5A2A7A, "water_fog_color": 0x1E0F33,
     "grass_color": 0x5B3D7A, "foliage_color": 0x4A2F6E,
-    "particle": {"options": {"type": "minecraft:warped_spore"}, "probability": 0.008},
+    "particle": {"options": {"type": f"{NS}:abyss_mote"}, "probability": 0.004},
     "mood_sound": MOOD,
     **audio("deep"),
 }, features(
     underground_ores=["ore_eclipsium"],
     underground_decoration=["crystal_chandelier"],
-    vegetal_decoration=["neon_lichen_magenta", "neon_lichen_teal"],
+    vegetal_decoration=["neon_lichen_magenta", "neon_lichen_teal", "umbral_cap_patch"],
 ))
 
 # ---------------------------------------------------------------- attunement and the Shear
@@ -325,7 +356,13 @@ for layer in ("drift", "deep"):
     })
 
 write(f"{NS}/damage_type/shear.json", {"message_id": "cosmicbreach.shear", "exhaustion": 0.0, "scaling": "never"})
-for tag in ("bypasses_armor", "bypasses_cooldown", "no_knockback"):
-    write(f"minecraft/tags/damage_type/{tag}.json", {"replace": False, "values": [f"{NS}:shear"]})
+# every damage type of the mod in these tags (the guardians' joined after W2: keep each list whole)
+DAMAGE_TAGS = {
+    "bypasses_armor": ["shear", "scorch", "prism_core", "hollow_grasp"],
+    "bypasses_cooldown": ["shear"],
+    "no_knockback": ["shear", "scorch", "meteor", "prism_beam", "prism_core", "chord"],
+}
+for tag, types in DAMAGE_TAGS.items():
+    write(f"minecraft/tags/damage_type/{tag}.json", {"replace": False, "values": [f"{NS}:{t}" for t in types]})
 
 print("worldgen data written")

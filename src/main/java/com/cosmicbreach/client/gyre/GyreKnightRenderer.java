@@ -27,7 +27,7 @@ public class GyreKnightRenderer extends GeoEntityRenderer<GyreKnight> {
 
     private static ResourceLocation bladeTexture(GyreKnight k) {
         return switch (k.mode()) {
-            case SWEEP, LANCE, RECALL -> BLADES;
+            case SWEEP, LANCE, RECALL, DIVE -> BLADES;
             default -> null;
         };
     }
@@ -45,6 +45,13 @@ public class GyreKnightRenderer extends GeoEntityRenderer<GyreKnight> {
                 double u = t - a;
                 double f = u < GyreModes.SWEEP_TELL ? 0.3 + 0.7 * u / GyreModes.SWEEP_TELL
                         : u < GyreModes.SWEEP_TELL + GyreModes.SWEEP_ACTIVE ? 1.0 : 0.0;
+                yield rgb(f, 1.0, 0.8, 0.25);
+            }
+            case DIVE -> {
+                // gold from the tell through the cut: the parry cue, as in a sweep
+                int a = k.approachEnd();
+                double f = t < GyreModes.DIVE_TELL ? 0.3 + 0.7 * t / GyreModes.DIVE_TELL
+                        : a < 0 || t < a + GyreModes.DIVE_STRIKE ? 1.0 : 0.0;
                 yield rgb(f, 1.0, 0.8, 0.25);
             }
             case LANCE, RECALL -> rgb(0.55 + 0.25 * Math.sin(t * 0.8), 1.0, 0.18, 0.12);

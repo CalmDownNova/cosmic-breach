@@ -1,0 +1,26 @@
+{
+ "text": "was ours.",
+ "words": [
+  {
+   "text": "was",
+   "start": 0.22,
+   "end": 0.4,
+   "type": "word",
+   "logprob": -0.3133278787136078
+  },
+  {
+   "text": " ",
+   "start": 0.4,
+   "end": 0.48,
+   "type": "spacing",
+   "logprob": -2.586808113846928e-05
+  },
+  {
+   "text": "ours.",
+   "start": 0.48,
+   "end": 1.02,
+   "type": "word",
+   "logprob": -0.06692236635135487
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_halo_moss": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cosmicbreach:halo_moss"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cosmicbreach:driftwood_planks_from_halo_moss"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_halo_moss"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cosmicbreach:driftwood_planks_from_halo_moss"
+    ]
+  }
+}

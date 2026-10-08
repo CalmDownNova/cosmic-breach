@@ -1,0 +1,40 @@
+{
+ "text": "Breathe. Step back",
+ "words": [
+  {
+   "text": "Breathe.",
+   "start": 0.16,
+   "end": 0.72,
+   "type": "word",
+   "logprob": -0.00019981161244686518
+  },
+  {
+   "text": " ",
+   "start": 0.72,
+   "end": 0.72,
+   "type": "spacing",
+   "logprob": -3.2186455882765586e-06
+  },
+  {
+   "text": "Step",
+   "start": 1.52,
+   "end": 1.76,
+   "type": "word",
+   "logprob": -3.2186455882765586e-06
+  },
+  {
+   "text": " ",
+   "start": 1.76,
+   "end": 1.86,
+   "type": "spacing",
+   "logprob": -1.1920922133867862e-06
+  },
+  {
+   "text": "back",
+   "start": 1.86,
+   "end": 2.22,
+   "type": "word",
+   "logprob": -1.1920922133867862e-06
+  }
+ ]
+}

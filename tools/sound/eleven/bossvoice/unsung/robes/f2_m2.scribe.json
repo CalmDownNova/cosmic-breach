@@ -1,0 +1,54 @@
+{
+ "text": "But you do not",
+ "words": [
+  {
+   "text": "But",
+   "start": 0.04,
+   "end": 0.18,
+   "type": "word",
+   "logprob": -0.038042102009058
+  },
+  {
+   "text": " ",
+   "start": 0.18,
+   "end": 0.24,
+   "type": "spacing",
+   "logprob": -2.7418097943154862e-06
+  },
+  {
+   "text": "you",
+   "start": 0.24,
+   "end": 0.38,
+   "type": "word",
+   "logprob": -2.7418097943154862e-06
+  },
+  {
+   "text": " ",
+   "start": 0.38,
+   "end": 0.42,
+   "type": "spacing",
+   "logprob": -4.768370445162873e-07
+  },
+  {
+   "text": "do",
+   "start": 0.42,
+   "end": 0.56,
+   "type": "word",
+   "logprob": -4.768370445162873e-07
+  },
+  {
+   "text": " ",
+   "start": 0.56,
+   "end": 0.6,
+   "type": "spacing",
+   "logprob": -3.4570634852570947e-06
+  },
+  {
+   "text": "not",
+   "start": 0.6,
+   "end": 0.78,
+   "type": "word",
+   "logprob": -3.4570634852570947e-06
+  }
+ ]
+}

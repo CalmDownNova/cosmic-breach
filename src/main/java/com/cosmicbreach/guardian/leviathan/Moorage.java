@@ -43,6 +43,35 @@ public final class Moorage {
         return into < 0 ? -1 : Math.min(1.0, into / SHUDDER_TELL);
     }
 
+    /** Ticks into the swim in before the swell is over and a line may sound (the swell is the Moorage's own warning). */
+    public static final int SWELL = 30;
+
+    /**
+     * How long it is quiet {@code t} ticks into the swim in with {@code swimLeft} ticks of swimming left: none while the swell
+     * sounds, then the rest of the swim and the coil's first {@value #SHUDDER_EVERY} minus {@value #SHUDDER_TELL} ticks, up to the
+     * first ripple. Her opening line is said here.
+     */
+    public static int swimInQuietTicks(long t, long swimLeft) {
+        if (t < SWELL) {
+            return 0;
+        }
+        return (int) Math.min(Integer.MAX_VALUE / 2, swimLeft + SHUDDER_EVERY - SHUDDER_TELL);
+    }
+
+    /** True if a swim in of {@code swimTicks} ticks leaves room, from the end of the swell, for words that end {@code speechTicks} into a take. */
+    public static boolean swimInFits(int swimTicks, int speechTicks) {
+        return swimInQuietTicks(SWELL, swimTicks - SWELL) >= speechTicks + com.cosmicbreach.voice.boss.VoiceDirector.QUIET_MARGIN;
+    }
+
+    /** How long it is quiet {@code c} ticks into the coil: up to the next ripple's tell, none from it through the shudder. */
+    public static int coilQuietTicks(int c) {
+        int q = 0;
+        while (c + q < COILED && ripple(c + q) < 0) {
+            q++;
+        }
+        return q;
+    }
+
     /** The number of shudders in one Moorage. */
     public static int shudderCount() {
         int n = 0;

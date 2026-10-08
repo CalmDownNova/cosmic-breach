@@ -1,0 +1,255 @@
+{
+  "boss": "colossus",
+  "global_gap_seconds": 25,
+  "wait_seconds": 8,
+  "caption_color": "#7FF0E6",
+  "reference": {
+    "weapon_tier": 1,
+    "armor": 15,
+    "toughness": 4,
+    "resilience": 8,
+    "level_min": 10,
+    "level_max": 14,
+    "typical_hit": 16
+  },
+  "lines": [
+    {
+      "id": "open_solo",
+      "trigger": "fight_start",
+      "condition": "players:solo, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "A climber. ...Come. Learn.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_open_solo",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_open_solo",
+          "length_ticks": 86,
+          "speech_start_ticks": 3,
+          "speech_ticks": 73
+        }
+      }
+    },
+    {
+      "id": "open_group",
+      "trigger": "fight_start",
+      "condition": "players:group, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "Many climbers. ...Good. Come.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_open_group",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_open_group",
+          "length_ticks": 84,
+          "speech_start_ticks": 3,
+          "speech_ticks": 67
+        }
+      }
+    },
+    {
+      "id": "open_again",
+      "trigger": "fight_start",
+      "condition": "returning",
+      "priority": 90,
+      "repeat": "once per fight",
+      "words": "You again. ...Come, then.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_open_again",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_open_again",
+          "length_ticks": 85,
+          "speech_start_ticks": 2,
+          "speech_ticks": 72
+        }
+      }
+    },
+    {
+      "id": "fracture",
+      "trigger": "hp_threshold:50",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "words": "Now... I remember.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_fracture",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_fracture",
+          "length_ticks": 81,
+          "speech_start_ticks": 3,
+          "speech_ticks": 62
+        }
+      }
+    },
+    {
+      "id": "shatter",
+      "trigger": "hp_threshold:0",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "words": "All three... or none.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_shatter",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_shatter",
+          "length_ticks": 64,
+          "speech_start_ticks": 3,
+          "speech_ticks": 51
+        }
+      }
+    },
+    {
+      "id": "reform",
+      "trigger": "taunt",
+      "condition": "on:reform",
+      "priority": 65,
+      "repeat": "once per fight",
+      "words": "Together... again.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_reform",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_reform",
+          "length_ticks": 60,
+          "speech_start_ticks": 3,
+          "speech_ticks": 46
+        }
+      }
+    },
+    {
+      "id": "player_down",
+      "trigger": "player_death",
+      "condition": "none",
+      "priority": 70,
+      "repeat": "once per fight",
+      "words": "Rest. ...Then climb again.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_player_down",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_player_down",
+          "length_ticks": 79,
+          "speech_start_ticks": 3,
+          "speech_ticks": 66
+        }
+      }
+    },
+    {
+      "id": "breathe",
+      "trigger": "player_low_health",
+      "condition": "health<=25%",
+      "priority": 60,
+      "repeat": "once per fight",
+      "words": "Breathe. ...Step back.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_breathe",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_breathe",
+          "length_ticks": 70,
+          "speech_start_ticks": 2,
+          "speech_ticks": 53
+        }
+      }
+    },
+    {
+      "id": "wait",
+      "trigger": "player_left",
+      "condition": "all_gone, away>=5s",
+      "priority": 40,
+      "repeat": "once per fight",
+      "words": "I will wait.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_wait",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_wait",
+          "length_ticks": 51,
+          "speech_start_ticks": 3,
+          "speech_ticks": 39
+        }
+      }
+    },
+    {
+      "id": "my_heart",
+      "trigger": "weapon:forge_tier_2",
+      "condition": "also:forge_tier_3, also:forge_tier_4",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "My heart... in your blade.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_my_heart",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_my_heart",
+          "length_ticks": 79,
+          "speech_start_ticks": 3,
+          "speech_ticks": 66
+        }
+      }
+    },
+    {
+      "id": "fists",
+      "trigger": "weapon:bare_hands",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "words": "Fists? ...Bold.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_fists",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_fists",
+          "length_ticks": 66,
+          "speech_start_ticks": 3,
+          "speech_ticks": 51
+        }
+      }
+    },
+    {
+      "id": "fallen_stars",
+      "trigger": "armor:mod_full_set",
+      "condition": "set:vanguard",
+      "priority": 45,
+      "repeat": "once per fight",
+      "words": "You wear... fallen stars.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_fallen_stars",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_fallen_stars",
+          "length_ticks": 77,
+          "speech_start_ticks": 3,
+          "speech_ticks": 61
+        }
+      }
+    },
+    {
+      "id": "too_strong",
+      "trigger": "gear:over",
+      "condition": "none",
+      "priority": 50,
+      "repeat": "once per fight",
+      "words": "Too strong... for this lesson.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_too_strong",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_too_strong",
+          "length_ticks": 70,
+          "speech_start_ticks": 3,
+          "speech_ticks": 58
+        }
+      }
+    },
+    {
+      "id": "kill",
+      "trigger": "boss_kill",
+      "condition": "none",
+      "priority": 100,
+      "repeat": "once per fight",
+      "words": "Go down... and listen.",
+      "variants": {
+        "all": {
+          "event": "cosmicbreach:bossvoice/colossus_kill",
+          "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_kill",
+          "length_ticks": 69,
+          "speech_start_ticks": 3,
+          "speech_ticks": 56
+        }
+      }
+    }
+  ]
+}

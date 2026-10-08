@@ -1,0 +1,40 @@
+{
+ "text": "You dim me",
+ "words": [
+  {
+   "text": "You",
+   "start": 1.28,
+   "end": 1.44,
+   "type": "word",
+   "logprob": -0.2519342303276062
+  },
+  {
+   "text": " ",
+   "start": 1.44,
+   "end": 1.44,
+   "type": "spacing",
+   "logprob": -9.405170567333698e-05
+  },
+  {
+   "text": "dim",
+   "start": 2.22,
+   "end": 2.42,
+   "type": "word",
+   "logprob": -9.405170567333698e-05
+  },
+  {
+   "text": " ",
+   "start": 2.42,
+   "end": 2.5,
+   "type": "spacing",
+   "logprob": -1.1444026313256472e-05
+  },
+  {
+   "text": "me",
+   "start": 2.5,
+   "end": 2.72,
+   "type": "word",
+   "logprob": -1.1444026313256472e-05
+  }
+ ]
+}

@@ -1,0 +1,96 @@
+{
+ "text": "You came back. They always come back",
+ "words": [
+  {
+   "text": "You",
+   "start": 0.42,
+   "end": 0.48,
+   "type": "word",
+   "logprob": -2.539125671319198e-05
+  },
+  {
+   "text": " ",
+   "start": 0.48,
+   "end": 0.6,
+   "type": "spacing",
+   "logprob": -8.344646857949556e-07
+  },
+  {
+   "text": "came",
+   "start": 0.6,
+   "end": 0.84,
+   "type": "word",
+   "logprob": -8.344646857949556e-07
+  },
+  {
+   "text": " ",
+   "start": 0.84,
+   "end": 0.92,
+   "type": "spacing",
+   "logprob": -4.768370445162873e-07
+  },
+  {
+   "text": "back.",
+   "start": 0.92,
+   "end": 1.28,
+   "type": "word",
+   "logprob": -0.000238920003084786
+  },
+  {
+   "text": " ",
+   "start": 1.28,
+   "end": 1.28,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "They",
+   "start": 2.16,
+   "end": 2.36,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": " ",
+   "start": 2.36,
+   "end": 2.46,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "always",
+   "start": 2.46,
+   "end": 2.92,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": " ",
+   "start": 2.92,
+   "end": 2.98,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "come",
+   "start": 2.98,
+   "end": 3.12,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": " ",
+   "start": 3.12,
+   "end": 3.22,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "back",
+   "start": 3.22,
+   "end": 3.52,
+   "type": "word",
+   "logprob": 0.0
+  }
+ ]
+}

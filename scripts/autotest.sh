@@ -4,14 +4,22 @@
 #
 #   scripts/autotest.sh <scenario> [timeout seconds, default 400]
 #
+# Never start it bare: one hidden test client at a time across every lane, and only with memory free, so every run goes
+# through the gate's wrapper command (scripts/client-gate.sh), which holds the lock for exactly as long as the run:
+#   bash scripts/client-gate.sh run <who> client scripts/autotest.sh <scenario> [timeout seconds]
+#
 # Results: run-test/autotest/<scenario>/ (result.txt, log.txt, screenshots). Next to that
 # folder: <scenario>-gradle.log (full game log) and <scenario>-windows.log (window polls).
-# Exits 0 only when result.txt says PASS and no window incident was logged.
+# Exits 0 only when result.txt says PASS, no window incident was logged and the game then exited: a stop that hangs
+# (the harness's watchdog halts the game, or Gradle returns nonzero) prints "STALL" and exits 1 with the result as FAIL
+# (scripts/autotest-verdict.sh).
 # One run at a time: every run shares run-test/.
 set -u
 scenario="${1:?usage: scripts/autotest.sh <scenario> [timeout seconds]}"
 limit="${2:-400}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
+# shellcheck source=autotest-verdict.sh
+. "$root/scripts/autotest-verdict.sh"
 out="$root/run-test/autotest"
 mkdir -p "$out"
 poll_log="$out/$scenario-windows.log"
@@ -22,6 +30,12 @@ rm -f "$poll_log" "$stop"
 powershell -NoProfile -ExecutionPolicy Bypass -File "$(cygpath -w "$root/scripts/poll-windows.ps1")" \
     -LogFile "$(cygpath -w "$poll_log")" -StopFile "$(cygpath -w "$stop")" -MaxSeconds $((limit + 60)) &
 poller=$!
+# While the game runs, keep the client gate's lock beating (scripts/client-gate.sh pulse): a lane that is cut off is then told
+# from one that is simply waiting on a long run. Nothing happens if no lock is held.
+if [ -f "$root/scripts/client-gate.sh" ]; then
+    bash "$root/scripts/client-gate.sh" pulse $$ > /dev/null 2>&1 &
+    pulser=$!
+fi
 sleep 3 # let the poller start before the game can
 
 started=$(date +%s)
@@ -32,12 +46,23 @@ elapsed=$(( $(date +%s) - started ))
 touch "$stop"
 wait "$poller"
 rm -f "$stop"
+if [ -n "${pulser:-}" ]; then
+    # TERM ends a pulse cleanly: it settles the lock it served, so the release that follows this run is not held off by the run's
+    # own last beat. Wait for it: a pulse still alive after this returns could touch a lock the caller has just released (or
+    # another lane's)
+    kill "$pulser" 2>/dev/null
+    wait "$pulser" 2>/dev/null
+fi
 
-result="$(cat "$out/$scenario/result.txt" 2>/dev/null || echo 'FAIL no result.txt was written')"
+written="$(cat "$out/$scenario/result.txt" 2>/dev/null || echo 'FAIL no result.txt was written')"
+result="$(autotest_verdict "$written" "$gradle_exit" "$gradle_log" "$limit")"
 polls=$(grep -c 'titled java windows' "$poll_log")
 incidents=$(grep -c 'INCIDENT' "$poll_log")
 echo "scenario:  $scenario"
 echo "result:    $result"
+if [ "$result" != "$written" ] || grep -q "the game did not exit" "$gradle_log" 2>/dev/null; then
+  echo "STALL:     the game did not exit cleanly after the scenario's result (it wrote \"$written\"; log $gradle_log)"
+fi
 echo "time:      ${elapsed}s, gradle exit code $gradle_exit (124 = the ${limit}s timeout hit)"
 echo "windows:   $polls polls, $incidents incident(s), log $poll_log"
 grep 'INCIDENT' "$poll_log"

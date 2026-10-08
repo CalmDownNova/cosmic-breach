@@ -1,0 +1,40 @@
+{
+ "text": "And so little",
+ "words": [
+  {
+   "text": "And",
+   "start": 0.06,
+   "end": 0.18,
+   "type": "word",
+   "logprob": -0.2519628703594208
+  },
+  {
+   "text": " ",
+   "start": 0.18,
+   "end": 0.38,
+   "type": "spacing",
+   "logprob": -4.768370445162873e-07
+  },
+  {
+   "text": "so",
+   "start": 0.38,
+   "end": 0.58,
+   "type": "word",
+   "logprob": -4.768370445162873e-07
+  },
+  {
+   "text": " ",
+   "start": 0.58,
+   "end": 0.7,
+   "type": "spacing",
+   "logprob": -5.030505417380482e-05
+  },
+  {
+   "text": "little",
+   "start": 0.7,
+   "end": 0.92,
+   "type": "word",
+   "logprob": -5.030505417380482e-05
+  }
+ ]
+}

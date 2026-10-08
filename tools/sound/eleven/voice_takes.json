@@ -1,0 +1,462 @@
+{
+  "heliarch/open_group": {
+    "take": "heliarch/open_group_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\open_group_take1"
+  },
+  "heliarch/open_again": {
+    "take": "heliarch/open_again_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\open_again_take1"
+  },
+  "heliarch/loud_light": {
+    "take": "heliarch/loud_light_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\loud_light_take1"
+  },
+  "heliarch/nova_again": {
+    "take": "heliarch/nova_again_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\nova_again_take1"
+  },
+  "heliarch/nova_broken": {
+    "take": "heliarch/nova_broken_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\nova_broken_take2"
+  },
+  "heliarch/nova_failed": {
+    "take": "heliarch/nova_failed_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\nova_failed_take1"
+  },
+  "heliarch/not_again": {
+    "take": "heliarch/not_again_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\not_again_take1"
+  },
+  "heliarch/alone_now": {
+    "take": "heliarch/alone_now_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\alone_now_take1"
+  },
+  "heliarch/one_less": {
+    "take": "heliarch/one_less_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\one_less_take1"
+  },
+  "heliarch/flicker": {
+    "take": "heliarch/flicker_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\flicker_take1"
+  },
+  "heliarch/spat_out": {
+    "take": "heliarch/spat_out_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\spat_out_take1"
+  },
+  "heliarch/withdraw": {
+    "take": "heliarch/withdraw_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\withdraw_take1"
+  },
+  "heliarch/came_back": {
+    "take": "heliarch/came_back_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\came_back_take2"
+  },
+  "heliarch/my_light": {
+    "take": "heliarch/my_light_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\my_light_take1"
+  },
+  "heliarch/arrows": {
+    "take": "heliarch/arrows_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\arrows_take1"
+  },
+  "heliarch/fists": {
+    "take": "heliarch/fists_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\fists_take1"
+  },
+  "heliarch/strange_steel": {
+    "take": "heliarch/strange_steel_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\strange_steel_take1"
+  },
+  "heliarch/vestments": {
+    "take": "heliarch/vestments_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\vestments_take1"
+  },
+  "heliarch/no_armor": {
+    "take": "heliarch/no_armor_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\no_armor_take2"
+  },
+  "heliarch/give_it": {
+    "take": "heliarch/give_it_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\give_it_take1"
+  },
+  "heliarch/in_that": {
+    "take": "heliarch/in_that_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\in_that_take1"
+  },
+  "heliarch/too_close": {
+    "take": "heliarch/too_close_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\too_close_take1"
+  },
+  "heliarch/dim_me": {
+    "take": "heliarch/dim_me_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\dim_me_take1"
+  },
+  "heliarch/long_fight": {
+    "take": "heliarch/long_fight_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\heliarch\\long_fight_take1"
+  },
+  "bossvoice/unsung/open_solo/f1_m1": {
+    "take": "bossvoice/unsung/open_solo/f1_m1_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\open_solo\\f1_m1_take2"
+  },
+  "bossvoice/unsung/open_solo/f2_m2": {
+    "take": "bossvoice/unsung/open_solo/f2_m2_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\open_solo\\f2_m2_take1"
+  },
+  "bossvoice/unsung/open_solo/f3_m3": {
+    "take": "bossvoice/unsung/open_solo/f3_m3_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\open_solo\\f3_m3_take1"
+  },
+  "bossvoice/unsung/one_gone/f1_m1": {
+    "take": "bossvoice/unsung/one_gone/f1_m1_take3",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\one_gone\\f1_m1_take3"
+  },
+  "bossvoice/unsung/one_gone/f1_m2": {
+    "take": "bossvoice/unsung/one_gone/f1_m2_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\one_gone\\f1_m2_take1"
+  },
+  "bossvoice/unsung/one_gone/f2_m2": {
+    "take": "bossvoice/unsung/one_gone/f2_m2_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\one_gone\\f2_m2_take2"
+  },
+  "bossvoice/unsung/one_gone/f2_m3": {
+    "take": "bossvoice/unsung/one_gone/f2_m3_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\one_gone\\f2_m3_take1"
+  },
+  "bossvoice/unsung/alone/f1_m1": {
+    "take": "bossvoice/unsung/alone/f1_m1_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\alone\\f1_m1_take2"
+  },
+  "bossvoice/unsung/alone/f1_m2": {
+    "take": "bossvoice/unsung/alone/f1_m2_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\alone\\f1_m2_take2"
+  },
+  "bossvoice/unsung/alone/f1_m3": {
+    "take": "bossvoice/unsung/alone/f1_m3_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\alone\\f1_m3_take1"
+  },
+  "bossvoice/unsung/open_again/f1_m1": {
+    "take": "bossvoice/unsung/open_again/f1_m1_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\open_again\\f1_m1_take1"
+  },
+  "bossvoice/unsung/open_again/f2_m2": {
+    "take": "bossvoice/unsung/open_again/f2_m2_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\open_again\\f2_m2_take2"
+  },
+  "bossvoice/unsung/open_again/f3_m3": {
+    "take": "bossvoice/unsung/open_again/f3_m3_take3",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\open_again\\f3_m3_take3"
+  },
+  "bossvoice/unsung/open_group/f1_m1": {
+    "take": "bossvoice/unsung/open_group/f1_m1_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\open_group\\f1_m1_take2"
+  },
+  "bossvoice/unsung/open_group/f2_m2": {
+    "take": "bossvoice/unsung/open_group/f2_m2_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\open_group\\f2_m2_take2"
+  },
+  "bossvoice/unsung/open_group/f3_m3": {
+    "take": "bossvoice/unsung/open_group/f3_m3_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\open_group\\f3_m3_take1"
+  },
+  "bossvoice/unsung/breathe/f1_m1": {
+    "take": "bossvoice/unsung/breathe/f1_m1_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\breathe\\f1_m1_take2"
+  },
+  "bossvoice/unsung/breathe/f2_m2": {
+    "take": "bossvoice/unsung/breathe/f2_m2_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\breathe\\f2_m2_take2"
+  },
+  "bossvoice/unsung/breathe/f3_m3": {
+    "take": "bossvoice/unsung/breathe/f3_m3_take4",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\breathe\\f3_m3_take4"
+  },
+  "bossvoice/unsung/thief/f1_m1": {
+    "take": "bossvoice/unsung/thief/f1_m1_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\thief\\f1_m1_take1"
+  },
+  "bossvoice/unsung/thief/f2_m2": {
+    "take": "bossvoice/unsung/thief/f2_m2_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\thief\\f2_m2_take2"
+  },
+  "bossvoice/unsung/robes/f1_m1": {
+    "take": "bossvoice/unsung/robes/f1_m1_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\robes\\f1_m1_take2"
+  },
+  "bossvoice/unsung/robes/f2_m2": {
+    "take": "bossvoice/unsung/robes/f2_m2_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\robes\\f2_m2_take2"
+  },
+  "bossvoice/unsung/robes/f3_m3": {
+    "take": "bossvoice/unsung/robes/f3_m3_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\robes\\f3_m3_take1"
+  },
+  "bossvoice/unsung/so_little_song/f1_m1": {
+    "take": "bossvoice/unsung/so_little_song/f1_m1_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\so_little_song\\f1_m1_take2"
+  },
+  "bossvoice/unsung/so_little_song/f2_m2": {
+    "take": "bossvoice/unsung/so_little_song/f2_m2_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\so_little_song\\f2_m2_take2"
+  },
+  "bossvoice/unsung/so_little_song/f3_m3": {
+    "take": "bossvoice/unsung/so_little_song/f3_m3_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\so_little_song\\f3_m3_take1"
+  },
+  "bossvoice/unsung/let_us_rise/f1_m1": {
+    "take": "bossvoice/unsung/let_us_rise/f1_m1_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\let_us_rise\\f1_m1_take2"
+  },
+  "bossvoice/unsung/let_us_rise/f2_m2": {
+    "take": "bossvoice/unsung/let_us_rise/f2_m2_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\let_us_rise\\f2_m2_take2"
+  },
+  "bossvoice/unsung/let_us_rise/f3_m3": {
+    "take": "bossvoice/unsung/let_us_rise/f3_m3_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\let_us_rise\\f3_m3_take2"
+  },
+  "bossvoice/unsung/found_silence/f1_m1": {
+    "take": "bossvoice/unsung/found_silence/f1_m1_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\found_silence\\f1_m1_take1"
+  },
+  "bossvoice/unsung/found_silence/f2_m2": {
+    "take": "bossvoice/unsung/found_silence/f2_m2_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\found_silence\\f2_m2_take2"
+  },
+  "bossvoice/unsung/found_silence/f3_m3": {
+    "take": "bossvoice/unsung/found_silence/f3_m3_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\found_silence\\f3_m3_take1"
+  },
+  "bossvoice/unsung/finished/f1_m1": {
+    "take": "bossvoice/unsung/finished/f1_m1_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\finished\\f1_m1_take2"
+  },
+  "bossvoice/unsung/finished/f2_m2": {
+    "take": "bossvoice/unsung/finished/f2_m2_take5",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\finished\\f2_m2_take5"
+  },
+  "bossvoice/unsung/finished/f3_m3": {
+    "take": "bossvoice/unsung/finished/f3_m3_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\finished\\f3_m3_take1"
+  },
+  "bossvoice/unsung/thief/f3_m3": {
+    "take": "bossvoice/unsung/thief/f3_m3_take6",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\thief\\f3_m3_take6"
+  },
+  "bossvoice/unsung/voice_falls/f1_m1": {
+    "take": "bossvoice/unsung/voice_falls/f1_m1_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\voice_falls\\f1_m1_take1"
+  },
+  "bossvoice/unsung/voice_falls/f2_m2": {
+    "take": "bossvoice/unsung/voice_falls/f2_m2_take11",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\voice_falls\\f2_m2_take11"
+  },
+  "bossvoice/unsung/voice_falls/f3_m3": {
+    "take": "bossvoice/unsung/voice_falls/f3_m3_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\unsung\\voice_falls\\f3_m3_take1"
+  },
+  "bossvoice/colossus/open_solo": {
+    "take": "bossvoice/colossus/open_solo_take3",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\open_solo_take3"
+  },
+  "bossvoice/colossus/open_group": {
+    "take": "bossvoice/colossus/open_group_take3",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\open_group_take3"
+  },
+  "bossvoice/colossus/fracture": {
+    "take": "bossvoice/colossus/fracture_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\fracture_take1"
+  },
+  "bossvoice/colossus/shatter": {
+    "take": "bossvoice/colossus/shatter_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\shatter_take1"
+  },
+  "bossvoice/colossus/reform": {
+    "take": "bossvoice/colossus/reform_take4",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\reform_take4"
+  },
+  "bossvoice/colossus/player_down": {
+    "take": "bossvoice/colossus/player_down_take3",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\player_down_take3"
+  },
+  "bossvoice/colossus/breathe": {
+    "take": "bossvoice/colossus/breathe_take3",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\breathe_take3"
+  },
+  "bossvoice/colossus/wait": {
+    "take": "bossvoice/colossus/wait_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\wait_take2"
+  },
+  "bossvoice/colossus/my_heart": {
+    "take": "bossvoice/colossus/my_heart_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\my_heart_take2"
+  },
+  "bossvoice/colossus/fists": {
+    "take": "bossvoice/colossus/fists_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\fists_take2"
+  },
+  "bossvoice/colossus/fallen_stars": {
+    "take": "bossvoice/colossus/fallen_stars_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\fallen_stars_take2"
+  },
+  "bossvoice/colossus/too_strong": {
+    "take": "bossvoice/colossus/too_strong_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\too_strong_take1"
+  },
+  "bossvoice/colossus/kill": {
+    "take": "bossvoice/colossus/kill_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\kill_take1"
+  },
+  "bossvoice/leviathan/open_solo": {
+    "take": "bossvoice/leviathan/open_solo_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\open_solo_take1"
+  },
+  "bossvoice/leviathan/open_group": {
+    "take": "bossvoice/leviathan/open_group_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\open_group_take1"
+  },
+  "bossvoice/leviathan/open_again": {
+    "take": "bossvoice/leviathan/open_again_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\open_again_take1"
+  },
+  "bossvoice/leviathan/moor_first": {
+    "take": "bossvoice/leviathan/moor_first_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\moor_first_take1"
+  },
+  "bossvoice/leviathan/moor_last": {
+    "take": "bossvoice/leviathan/moor_last_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\moor_last_take1"
+  },
+  "bossvoice/leviathan/player_down": {
+    "take": "bossvoice/leviathan/player_down_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\player_down_take1"
+  },
+  "bossvoice/leviathan/fell": {
+    "take": "bossvoice/leviathan/fell_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\fell_take1"
+  },
+  "bossvoice/leviathan/my_pearl": {
+    "take": "bossvoice/leviathan/my_pearl_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\my_pearl_take1"
+  },
+  "bossvoice/leviathan/fork": {
+    "take": "bossvoice/leviathan/fork_take3",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\fork_take3"
+  },
+  "bossvoice/leviathan/crab": {
+    "take": "bossvoice/leviathan/crab_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\crab_take1"
+  },
+  "bossvoice/leviathan/too_soon": {
+    "take": "bossvoice/leviathan/too_soon_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\too_soon_take1"
+  },
+  "bossvoice/leviathan/cousins": {
+    "take": "bossvoice/leviathan/cousins_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\cousins_take1"
+  },
+  "bossvoice/leviathan/coming_round": {
+    "take": "bossvoice/leviathan/coming_round_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\coming_round_take1"
+  },
+  "bossvoice/leviathan/kill": {
+    "take": "bossvoice/leviathan/kill_take1",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\leviathan\\kill_take1"
+  },
+  "bossvoice/colossus/open_again": {
+    "take": "bossvoice/colossus/open_again_take2",
+    "derived_from": null,
+    "shelved_as": "C:\\Users\\puppy\\Media\\Aetheria\\Voice\\takes\\bossvoice\\colossus\\open_again_take2"
+  }
+}

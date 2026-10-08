@@ -1,0 +1,110 @@
+{
+ "text": "Carry my song down they have forgotten theirs.",
+ "words": [
+  {
+   "text": "Carry",
+   "start": 0.28,
+   "end": 0.62,
+   "type": "word",
+   "logprob": -0.05729435011744499
+  },
+  {
+   "text": " ",
+   "start": 0.62,
+   "end": 0.68,
+   "type": "spacing",
+   "logprob": -1.9073304429184645e-05
+  },
+  {
+   "text": "my",
+   "start": 0.68,
+   "end": 0.88,
+   "type": "word",
+   "logprob": -1.9073304429184645e-05
+  },
+  {
+   "text": " ",
+   "start": 0.88,
+   "end": 0.96,
+   "type": "spacing",
+   "logprob": -2.5629668016335927e-05
+  },
+  {
+   "text": "song",
+   "start": 0.96,
+   "end": 1.26,
+   "type": "word",
+   "logprob": -2.5629668016335927e-05
+  },
+  {
+   "text": " ",
+   "start": 1.26,
+   "end": 1.32,
+   "type": "spacing",
+   "logprob": -1.490105023549404e-05
+  },
+  {
+   "text": "down",
+   "start": 1.32,
+   "end": 1.7,
+   "type": "word",
+   "logprob": -1.490105023549404e-05
+  },
+  {
+   "text": " ",
+   "start": 1.7,
+   "end": 1.7,
+   "type": "spacing",
+   "logprob": -0.00011622230522334576
+  },
+  {
+   "text": "they",
+   "start": 2.46,
+   "end": 2.6,
+   "type": "word",
+   "logprob": -0.00011622230522334576
+  },
+  {
+   "text": " ",
+   "start": 2.6,
+   "end": 2.64,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "have",
+   "start": 2.64,
+   "end": 2.8,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 2.8,
+   "end": 2.86,
+   "type": "spacing",
+   "logprob": -4.172316494077677e-06
+  },
+  {
+   "text": "forgotten",
+   "start": 2.86,
+   "end": 3.36,
+   "type": "word",
+   "logprob": -4.172316494077677e-06
+  },
+  {
+   "text": " ",
+   "start": 3.36,
+   "end": 3.42,
+   "type": "spacing",
+   "logprob": -1.4305104514278355e-06
+  },
+  {
+   "text": "theirs.",
+   "start": 3.42,
+   "end": 3.86,
+   "type": "word",
+   "logprob": -0.00699415856086359
+  }
+ ]
+}

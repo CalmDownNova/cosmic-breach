@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "cosmicbreach:block/shrine_heliarch" },
+    "facing=east": { "model": "cosmicbreach:block/shrine_heliarch" },
+    "facing=south": { "model": "cosmicbreach:block/shrine_heliarch" },
+    "facing=west": { "model": "cosmicbreach:block/shrine_heliarch" }
+  }
+}

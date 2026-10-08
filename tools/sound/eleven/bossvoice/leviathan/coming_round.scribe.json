@@ -1,0 +1,96 @@
+{
+ "text": "Wait for me. I am coming round",
+ "words": [
+  {
+   "text": "Wait",
+   "start": 0.1,
+   "end": 0.24,
+   "type": "word",
+   "logprob": -5.185469490243122e-05
+  },
+  {
+   "text": " ",
+   "start": 0.24,
+   "end": 0.3,
+   "type": "spacing",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": "for",
+   "start": 0.3,
+   "end": 0.4,
+   "type": "word",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": " ",
+   "start": 0.4,
+   "end": 0.44,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "me.",
+   "start": 0.44,
+   "end": 0.6,
+   "type": "word",
+   "logprob": -0.00522416395445191
+  },
+  {
+   "text": " ",
+   "start": 0.6,
+   "end": 1.0,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "I",
+   "start": 1.02,
+   "end": 1.04,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 1.04,
+   "end": 1.06,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "am",
+   "start": 1.06,
+   "end": 1.18,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": " ",
+   "start": 1.18,
+   "end": 1.22,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "coming",
+   "start": 1.22,
+   "end": 1.46,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 1.46,
+   "end": 1.5,
+   "type": "spacing",
+   "logprob": -0.029778072610497475
+  },
+  {
+   "text": "round",
+   "start": 1.5,
+   "end": 1.84,
+   "type": "word",
+   "logprob": -0.029778072610497475
+  }
+ ]
+}

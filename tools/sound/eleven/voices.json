@@ -1,0 +1,57 @@
+{
+  "colossus_a": {
+    "voice_id": "51oDmZyX1MPnIa120oQb",
+    "label": "CB Colossus A",
+    "description": "An ancient, very old man with an extremely deep, resonant bass voice that is rough and gravelly like grinding stone, yet warm and patient. He speaks very slowly, only a few words at a time, with long pauses between phrases, as if every word costs him an age. Wise, calm, grandfatherly authority with a dry, gentle sense of humour. A faint, slow Northern English accent. Low pitch, heavy chest resonance, a little breath on the ends of words. Studio quality recording, close microphone, no background noise, no music."
+  },
+  "colossus_b": {
+    "voice_id": "MupUizTWlcRVYSXngK6P",
+    "label": "CB Colossus B",
+    "description": "An ancient, very old man with an extremely deep, resonant bass voice that is rough and gravelly like grinding stone, yet warm and patient. He speaks very slowly, only a few words at a time, with long pauses between phrases, as if every word costs him an age. Wise, calm, grandfatherly authority with a dry, gentle sense of humour. A faint, slow Northern English accent. Low pitch, heavy chest resonance, a little breath on the ends of words. Studio quality recording, close microphone, no background noise, no music.",
+    "deleted_utc": "2026-10-01T16:46:02Z"
+  },
+  "colossus_c": {
+    "voice_id": "KXZ7ogPTHVevIMyLt8pO",
+    "label": "CB Colossus C",
+    "description": "An ancient, very old man with an extremely deep, resonant bass voice that is rough and gravelly like grinding stone, yet warm and patient. He speaks very slowly, only a few words at a time, with long pauses between phrases, as if every word costs him an age. Wise, calm, grandfatherly authority with a dry, gentle sense of humour. A faint, slow Northern English accent. Low pitch, heavy chest resonance, a little breath on the ends of words. Studio quality recording, close microphone, no background noise, no music.",
+    "deleted_utc": "2026-10-01T16:46:04Z"
+  },
+  "leviathan_a": {
+    "voice_id": "JaC0w3R23BgRfyyiyTqs",
+    "label": "CB Leviathan A",
+    "description": "An enormous, ancient male creature with a deep, smooth, velvety baritone voice, vast and resonant as if he speaks inside a great hollow space. He speaks at a measured, lyrical pace, almost singing his words, drawing out the vowels with a gentle rise and fall like whale song, but always clearly. Intelligent, curious, playful and teasing, with warm amusement and a hint of loneliness. A soft, lilting Nordic accent. Studio quality recording, close microphone, no background noise, no music.",
+    "deleted_utc": "2026-10-01T16:46:06Z"
+  },
+  "leviathan_b": {
+    "voice_id": "wXZiYUweuYh0FnLxw0UB",
+    "label": "CB Leviathan B",
+    "description": "An enormous, ancient male creature with a deep, smooth, velvety baritone voice, vast and resonant as if he speaks inside a great hollow space. He speaks at a measured, lyrical pace, almost singing his words, drawing out the vowels with a gentle rise and fall like whale song, but always clearly. Intelligent, curious, playful and teasing, with warm amusement and a hint of loneliness. A soft, lilting Nordic accent. Studio quality recording, close microphone, no background noise, no music.",
+    "deleted_utc": "2026-10-01T16:46:08Z"
+  },
+  "leviathan2_a": {
+    "voice_id": "ghMF8f8X2LKnSitttxei",
+    "label": "CB Leviathan2 A",
+    "description": "An enormous, ancient male creature with a deep, smooth, velvety baritone voice, vast and resonant as if he speaks inside a great hollow space. He speaks at a measured, lyrical pace, almost singing his words, drawing out the vowels with a gentle rise and fall like whale song, but always clearly. Intelligent, curious, playful and teasing, with warm amusement and a hint of loneliness. A soft, lilting Nordic accent. Studio quality recording, close microphone, no background noise, no music.",
+    "deleted_utc": "2026-10-01T16:46:10Z"
+  },
+  "unsung_m1_a": {
+    "voice_id": "C9c8FAPSj01p4mihtXdf",
+    "label": "CB Boss3 Mask1 A",
+    "description": "A woman in her thirties with a warm, clear, pure alto voice, light and bell-like, a singer of an ancient cathedral choir, speaking softly in a hushed, reverent, slightly breathy voice, as if slowly remembering words long forgotten. Calm, sorrowful and gentle, with a faint old-world formality and a neutral accent. Measured pace. Pure tone. Studio quality recording, close microphone, no background noise, no music."
+  },
+  "unsung_m2_a": {
+    "voice_id": "sWoMfKHJ56JZ45Qd72ae",
+    "label": "CB Boss3 Mask2 A",
+    "description": "A man in his thirties with a light, airy, silvery tenor voice, smooth and gentle, a singer of an ancient cathedral choir, speaking softly in a hushed, reverent, slightly breathy voice, as if slowly remembering words long forgotten. Calm, sorrowful and gentle, with a faint old-world formality and a neutral accent. Measured pace. Pure tone. Studio quality recording, close microphone, no background noise, no music."
+  },
+  "unsung_m3_a": {
+    "voice_id": "u0008AeL0iU5AQpwn8N4",
+    "label": "CB Boss3 Mask3 A",
+    "description": "A man in his fifties with a deep, velvet-soft bass voice, low, rich and dark, a singer of an ancient cathedral choir, speaking softly in a hushed, reverent, slightly breathy voice, as if slowly remembering words long forgotten. Calm, sorrowful and gentle, with a faint old-world formality and a neutral accent. Measured pace. Pure tone. Studio quality recording, close microphone, no background noise, no music."
+  },
+  "leviathan_f2": {
+    "voice_id": "P62zw5Mdsek4tdn9UU3o",
+    "label": "CB Leviathan F 2",
+    "description": "A voice designed with ElevenLabs Voice Design for the Cosmic Breach game."
+  }
+}

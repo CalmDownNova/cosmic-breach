@@ -1,5 +1,6 @@
 {
   "type": "cosmicbreach:astral_forge",
+  "category": "other",
   "tier": 1,
   "order": 70,
   "ingredients": [

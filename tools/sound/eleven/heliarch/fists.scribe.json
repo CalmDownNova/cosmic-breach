@@ -1,0 +1,96 @@
+{
+ "text": "You strike a sun with your hands?",
+ "words": [
+  {
+   "text": "You",
+   "start": 0.26,
+   "end": 0.36,
+   "type": "word",
+   "logprob": -7.188061863416806e-05
+  },
+  {
+   "text": " ",
+   "start": 0.36,
+   "end": 0.46,
+   "type": "spacing",
+   "logprob": -1.7881377516459906e-06
+  },
+  {
+   "text": "strike",
+   "start": 0.46,
+   "end": 0.8,
+   "type": "word",
+   "logprob": -1.7881377516459906e-06
+  },
+  {
+   "text": " ",
+   "start": 0.8,
+   "end": 0.86,
+   "type": "spacing",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": "a",
+   "start": 0.86,
+   "end": 0.88,
+   "type": "word",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": " ",
+   "start": 0.88,
+   "end": 1.08,
+   "type": "spacing",
+   "logprob": -0.05443974956870079
+  },
+  {
+   "text": "sun",
+   "start": 1.16,
+   "end": 1.42,
+   "type": "word",
+   "logprob": -0.05443974956870079
+  },
+  {
+   "text": " ",
+   "start": 1.42,
+   "end": 1.5,
+   "type": "spacing",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": "with",
+   "start": 1.5,
+   "end": 1.62,
+   "type": "word",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": " ",
+   "start": 1.62,
+   "end": 1.66,
+   "type": "spacing",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": "your",
+   "start": 1.66,
+   "end": 1.76,
+   "type": "word",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": " ",
+   "start": 1.76,
+   "end": 1.9,
+   "type": "spacing",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": "hands?",
+   "start": 1.9,
+   "end": 2.38,
+   "type": "word",
+   "logprob": -0.00036941767512625273
+  }
+ ]
+}

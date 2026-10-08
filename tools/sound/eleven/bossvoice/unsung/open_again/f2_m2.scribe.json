@@ -1,0 +1,40 @@
+{
+ "text": "To hear us",
+ "words": [
+  {
+   "text": "To",
+   "start": 0.08,
+   "end": 0.16,
+   "type": "word",
+   "logprob": -0.2519931495189667
+  },
+  {
+   "text": " ",
+   "start": 0.16,
+   "end": 0.28,
+   "type": "spacing",
+   "logprob": -7.772143726469949e-05
+  },
+  {
+   "text": "hear",
+   "start": 0.28,
+   "end": 0.5,
+   "type": "word",
+   "logprob": -7.772143726469949e-05
+  },
+  {
+   "text": " ",
+   "start": 0.5,
+   "end": 0.56,
+   "type": "spacing",
+   "logprob": -0.00011240804451517761
+  },
+  {
+   "text": "us",
+   "start": 0.56,
+   "end": 0.68,
+   "type": "word",
+   "logprob": -0.00011240804451517761
+  }
+ ]
+}

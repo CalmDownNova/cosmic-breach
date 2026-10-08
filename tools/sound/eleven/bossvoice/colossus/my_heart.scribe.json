@@ -1,0 +1,68 @@
+{
+ "text": "My heart in your blade",
+ "words": [
+  {
+   "text": "My",
+   "start": 0.28,
+   "end": 0.48,
+   "type": "word",
+   "logprob": -3.2305197237292305e-05
+  },
+  {
+   "text": " ",
+   "start": 0.48,
+   "end": 0.64,
+   "type": "spacing",
+   "logprob": -2.861018856492592e-06
+  },
+  {
+   "text": "heart",
+   "start": 0.64,
+   "end": 1.14,
+   "type": "word",
+   "logprob": -2.861018856492592e-06
+  },
+  {
+   "text": " ",
+   "start": 1.14,
+   "end": 1.14,
+   "type": "spacing",
+   "logprob": -0.00010096516780322418
+  },
+  {
+   "text": "in",
+   "start": 1.88,
+   "end": 2.0,
+   "type": "word",
+   "logprob": -0.00010096516780322418
+  },
+  {
+   "text": " ",
+   "start": 2.0,
+   "end": 2.06,
+   "type": "spacing",
+   "logprob": -1.4305104514278355e-06
+  },
+  {
+   "text": "your",
+   "start": 2.08,
+   "end": 2.2,
+   "type": "word",
+   "logprob": -1.4305104514278355e-06
+  },
+  {
+   "text": " ",
+   "start": 2.2,
+   "end": 2.36,
+   "type": "spacing",
+   "logprob": -3.325883881188929e-05
+  },
+  {
+   "text": "blade",
+   "start": 2.36,
+   "end": 2.92,
+   "type": "word",
+   "logprob": -3.325883881188929e-05
+  }
+ ]
+}

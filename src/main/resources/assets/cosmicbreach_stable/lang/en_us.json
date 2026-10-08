@@ -1,0 +1,13 @@
+{
+  "item.cosmicbreach.stable_crystal": "Stable Crystal",
+  "item.cosmicbreach.stable_crystal.empty": "Use it on your tamed mount to keep it safe inside.",
+  "item.cosmicbreach.stable_crystal.holds": "Holds %s (%s of %s health)",
+  "item.cosmicbreach.stable_crystal.release": "Use it on the ground to set your mount down beside you.",
+  "cosmicbreach.stable.full": "This crystal already holds a mount.",
+  "cosmicbreach.stable.not_yours": "Only the one it trusts can keep it.",
+  "cosmicbreach.stable.no_room": "There is no room for your mount here.",
+  "cosmicbreach.stable.no_ground": "Your mount needs solid ground to stand on.",
+  "cosmicbreach.stable.unknown": "This crystal holds nothing this world can set down.",
+  "cosmicbreach.stable.already_out": "This mount is already out in the world.",
+  "cosmicbreach.stable.came_back": "The Stable Crystal fell out of the world and found its way back to you."
+}

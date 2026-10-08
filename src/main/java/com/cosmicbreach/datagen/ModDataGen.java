@@ -39,6 +39,7 @@ public final class ModDataGen {
                         new LootTableProvider.SubProviderEntry(CryptData.Loot::new, LootContextParamSets.BLOCK)), lookup));
         generator.addProvider(event.includeServer(), new ModRecipeProvider(output, lookup));
         com.cosmicbreach.gear.datagen.GearDataGen.gather(event);
+        com.cosmicbreach.provision.ProvisionData.gather(event);
 
         // the way in (W4)
         generator.addProvider(event.includeClient(), new OnboardingData.Models(output, files));

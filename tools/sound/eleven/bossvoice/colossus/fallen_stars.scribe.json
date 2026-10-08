@@ -1,0 +1,54 @@
+{
+ "text": "You wear fallen stars",
+ "words": [
+  {
+   "text": "You",
+   "start": 0.32,
+   "end": 0.42,
+   "type": "word",
+   "logprob": -2.5033637939486653e-05
+  },
+  {
+   "text": " ",
+   "start": 0.42,
+   "end": 0.54,
+   "type": "spacing",
+   "logprob": -0.3135136663913727
+  },
+  {
+   "text": "wear",
+   "start": 0.54,
+   "end": 0.84,
+   "type": "word",
+   "logprob": -0.3135136663913727
+  },
+  {
+   "text": " ",
+   "start": 0.84,
+   "end": 0.84,
+   "type": "spacing",
+   "logprob": -7.414542778860778e-05
+  },
+  {
+   "text": "fallen",
+   "start": 1.56,
+   "end": 1.94,
+   "type": "word",
+   "logprob": -7.414542778860778e-05
+  },
+  {
+   "text": " ",
+   "start": 1.94,
+   "end": 2.14,
+   "type": "spacing",
+   "logprob": -7.152555099310121e-07
+  },
+  {
+   "text": "stars",
+   "start": 2.14,
+   "end": 2.72,
+   "type": "word",
+   "logprob": -7.152555099310121e-07
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "text": "Falls silent",
+ "words": [
+  {
+   "text": "Falls",
+   "start": 0.1,
+   "end": 0.52,
+   "type": "word",
+   "logprob": -0.4895778000354767
+  },
+  {
+   "text": " ",
+   "start": 0.52,
+   "end": 0.66,
+   "type": "spacing",
+   "logprob": -0.00023147765023168176
+  },
+  {
+   "text": "silent",
+   "start": 0.66,
+   "end": 1.26,
+   "type": "word",
+   "logprob": -0.00023147765023168176
+  }
+ ]
+}

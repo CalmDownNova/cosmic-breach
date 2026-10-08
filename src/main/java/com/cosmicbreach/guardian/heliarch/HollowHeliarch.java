@@ -104,7 +104,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
  * Never saved: a server stop ends the fight and the arena is put right ({@link HeliarchData}).
  */
 public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAttacker, ImpactSink, GuardianPart.Owner,
-        GuardianFights.Fight {
+        GuardianFights.Fight, com.cosmicbreach.voice.boss.VoicedBoss {
     public enum State { INTRO, REGENT, HOLLOWING, HOLLOW, COLLAPSE, DYING }
 
     public enum Action { NONE, SUNDERFALL, CORONA_SWEEP, SOLAR_LANCE, HALO_SHED, ECLIPSE_BEAM, INVERSION, NOVA, CORONA_FLARE }
@@ -237,7 +237,6 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
     private List<ServerPlayer> fighters = List.of();
     private long lastFighterSeen;
     // (half the least long, so "now minus it" can't overflow into a negative gap)
-    private long lastPlayerDown = Long.MIN_VALUE / 2;
     private long lastClang = Long.MIN_VALUE / 2;
     /** The attack whose strike is landing now (a parry reports back inside it). */
     private Action striking = Action.NONE;
@@ -497,6 +496,9 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
         if (isRemoved()) {
             return;
         }
+        if (state() != State.DYING && now - fightStart() == HeliarchMoves.ENRAGE_AFTER) {
+            com.cosmicbreach.voice.boss.BossVoices.event(this, "soft_enrage");
+        }
         if (state() != State.DYING && now - lastFighterSeen > HeliarchMoves.EMPTY_TICKS) {
             withdraw(server, now);
             return;
@@ -517,8 +519,9 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
 
     private void introTick(ServerLevel server, long now) {
         long t = now - stateStart();
-        if (t == 20) {
-            speak(server, HeliarchLine.INTRO);
+        if (t == 20 - com.cosmicbreach.voice.boss.BossVoices.LEAD) {
+            // the opener, its first word on tick 20
+            com.cosmicbreach.voice.boss.BossVoices.fire(this, "fight_start");
         }
         if (t == 40) {
             server.broadcastEntityEvent(this, EVENT_IGNITE);
@@ -810,6 +813,7 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
     private void flareBurns(ServerLevel server, long now) {
         server.broadcastEntityEvent(this, EVENT_FLARE);
         playAt(core(now), HeliarchRegistry.FLARE.get(), 5.0f, 1.0f);
+        boolean threw = false;
         for (ServerPlayer p : fighters) {
             if (!CoronaFlare.strikes(p.getX(), p.getZ(), p.getY() - HeliarchArena.FLOOR)) {
                 continue;
@@ -820,7 +824,11 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
                 p.knockback(HeliarchMoves.FLARE_KNOCKBACK, -out.x, -out.z);
                 p.hurtMarked = true;
                 tally("corona flare");
+                threw = true;
             }
+        }
+        if (threw) {
+            com.cosmicbreach.voice.boss.BossVoices.event(this, "corona_flare");
         }
     }
 
@@ -893,6 +901,7 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
         setOpen(true, now);
         server.broadcastEntityEvent(this, EVENT_BREAK);
         playAt(core(now), HeliarchRegistry.BREAK.get(), 4.0f, 1.0f);
+        com.cosmicbreach.voice.boss.BossVoices.event(this, "break");
         nextActionAt = now + HeliarchMoves.BREAK_TICKS + 30;
         CosmicBreach.LOGGER.debug("[cosmicbreach] the Hollow Heliarch Breaks (break {} of the fight)", gauge.breaks());
     }
@@ -921,7 +930,7 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
         gauge.endBreak();
         setState(State.HOLLOWING, now);
         removeParts(hands);
-        speak(server, HeliarchLine.HOLLOWING);
+        com.cosmicbreach.voice.boss.BossVoices.fire(this, "hp_threshold:60");
         server.broadcastEntityEvent(this, EVENT_HOLLOWING);
         playAt(core(now), HeliarchRegistry.TEAR.get(), 4.0f, 1.0f);
         CosmicBreach.LOGGER.debug("[cosmicbreach] the Hollowing at {} health", (int) pool.left());
@@ -1355,7 +1364,8 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
     // ------------------------------------------------------------------ Nova
 
     private void startNova(ServerLevel server, long now) {
-        novaAt = novaAt < 0 ? now : novaAt;
+        boolean first = novaAt < 0;
+        novaAt = first ? now : novaAt;
         nova.begin(now, playersAtStart);
         // it gathers its roots: every cut tendril rises again, so its shield can always be struck through them
         for (TendrilRules.Tendril td : tendrils) {
@@ -1365,7 +1375,12 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
         entityData.set(DATA_SHIELD, 1f);
         setAction(Action.NOVA, now);
         cancelLashes();
-        speak(server, HeliarchLine.NOVA);
+        if (first) {
+            com.cosmicbreach.voice.boss.BossVoices.fire(this, "hp_threshold:40");
+        } else {
+            // a return after a detonation: the channel's spoken warning
+            com.cosmicbreach.voice.boss.BossVoices.event(this, "nova_return");
+        }
         shieldBar = new ServerBossEvent(Component.translatable("cosmicbreach.heliarch.shield", HeliarchMoves.NOVA_CHANNEL / 20),
                 BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.NOTCHED_10);
         CosmicBreach.LOGGER.debug("[cosmicbreach] Nova: a Corona Shield of {}", (int) nova.shieldMax());
@@ -1386,6 +1401,7 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
             server.broadcastEntityEvent(this, EVENT_NOVA_BREAK);
             playAt(core(now), HeliarchRegistry.NOVA_BREAK.get(), 6.0f, 1.0f);
             nextBeamAt = Math.max(nextBeamAt, now + HeliarchMoves.NOVA_STUN + 60);
+            com.cosmicbreach.voice.boss.BossVoices.event(this, "nova_broken");
             CosmicBreach.LOGGER.debug("[cosmicbreach] Nova broken: stunned {} ticks, the heart exposed", HeliarchMoves.NOVA_STUN);
         } else if (o == NovaRules.Outcome.DETONATED) {
             entityData.set(DATA_NOVA_START, Long.MIN_VALUE);
@@ -1400,6 +1416,7 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
                 tally(covered ? "nova (covered)" : "nova (open)");
             }
             nextBeamAt = Math.max(nextBeamAt, now + 80);
+            com.cosmicbreach.voice.boss.BossVoices.event(this, "nova_detonated");
             CosmicBreach.LOGGER.debug("[cosmicbreach] Nova detonated; it returns in {} ticks", HeliarchMoves.NOVA_RETURN);
         } else if (shieldBar != null) {
             shieldBar.setProgress((float) nova.shieldFraction());
@@ -1438,7 +1455,7 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
         collapse = new CollapseSchedule(entityData.get(DATA_SIDE));
         bar.setMusic(HeliarchRegistry.MUSIC_COLLAPSE.getId());
         bar.setColor(BossEvent.BossBarColor.RED);
-        speak(server, HeliarchLine.COLLAPSE);
+        com.cosmicbreach.voice.boss.BossVoices.fire(this, "hp_threshold:20");
         server.broadcastEntityEvent(this, EVENT_COLLAPSE);
         playAt(HeliarchArena.CENTRE.add(0, 2, 0), HeliarchRegistry.ECLIPSE_DRONE.get(), 6.0f, 1.0f);
         nextRainAt = now + 60;
@@ -1568,7 +1585,7 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
         removeParts(hands);
         removeParts(plates);
         rainCircles = null;
-        speak(server, HeliarchLine.DEATH);
+        com.cosmicbreach.voice.boss.BossVoices.fire(this, "boss_kill");
         server.broadcastEntityEvent(this, EVENT_DEATH);
         playAt(core(now), HeliarchRegistry.DEATH.get(), 6.0f, 1.0f);
         bar.setMusic(null);
@@ -2118,14 +2135,9 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
         tallies.merge(what, 1, Integer::sum);
     }
 
-    /** A participant fell: the player_down line (not more often than every 20 s). */
+    /** A participant fell (its voice hears deaths through its own listener, {@code BossVoices}). */
     void onPlayerDown(ServerPlayer p) {
-        long now = level().getGameTime();
         playerDowns++;
-        if (now - lastPlayerDown >= HeliarchMoves.PLAYER_DOWN_GAP && level() instanceof ServerLevel server && state() != State.DYING) {
-            lastPlayerDown = now;
-            speak(server, HeliarchLine.PLAYER_DOWN);
-        }
     }
 
     // ------------------------------------------------------------------ the bar
@@ -2161,11 +2173,6 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
     }
 
     // ------------------------------------------------------------------ voice and sound
-
-    private void speak(ServerLevel server, HeliarchLine line) {
-        HeliarchNet.speak(audience(server), line);
-        CosmicBreach.LOGGER.debug("[cosmicbreach] the Heliarch: \"{}\"", line.words());
-    }
 
     private void playAt(Vec3 at, SoundEvent sound, float volume, float pitch) {
         level().playSound(null, at.x, at.y, at.z, sound, SoundSource.HOSTILE, volume, pitch);
@@ -2599,5 +2606,44 @@ public class HollowHeliarch extends Mob implements Enemy, GeoEntity, ParryableAt
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    // ------------------------------------------------------------------ the voice (1.1)
+
+    @Override
+    public String voiceBoss() {
+        return "heliarch";
+    }
+
+    @Override
+    public BlockPos voiceHome() {
+        return BlockPos.containing(HeliarchArena.CENTRE);
+    }
+
+    @Override
+    public List<ServerPlayer> voiceFighters() {
+        return fighters;
+    }
+
+    @Override
+    public int voicePlayers() {
+        return playersAtStart;
+    }
+
+    @Override
+    public double voiceHealth() {
+        return maxHealth() <= 0 ? 0.0 : Math.max(0.0, health() / maxHealth());
+    }
+
+    /** "Breach Sealed": a party with someone who has sealed it before is a returning one. */
+    @Override
+    public net.minecraft.resources.ResourceLocation voiceKillAdvancement() {
+        return com.cosmicbreach.codex.Codices.BREACH_SEALED;
+    }
+
+    /** The Hollowing (60), the first Nova (40) and the Collapse (20) are its own moments; 80 and 10 are plain health. */
+    @Override
+    public java.util.Set<Integer> voicePhaseThresholds() {
+        return java.util.Set.of(60, 40, 20);
     }
 }

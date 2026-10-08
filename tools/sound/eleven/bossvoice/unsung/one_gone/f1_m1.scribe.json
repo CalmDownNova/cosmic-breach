@@ -1,0 +1,40 @@
+{
+ "text": "Who will sing",
+ "words": [
+  {
+   "text": "Who",
+   "start": 0.3,
+   "end": 0.42,
+   "type": "word",
+   "logprob": -0.00023445718397852033
+  },
+  {
+   "text": " ",
+   "start": 0.42,
+   "end": 0.5,
+   "type": "spacing",
+   "logprob": -0.00014029949670657516
+  },
+  {
+   "text": "will",
+   "start": 0.5,
+   "end": 0.66,
+   "type": "word",
+   "logprob": -0.00014029949670657516
+  },
+  {
+   "text": " ",
+   "start": 0.66,
+   "end": 0.76,
+   "type": "spacing",
+   "logprob": -0.004517469089478254
+  },
+  {
+   "text": "sing",
+   "start": 0.76,
+   "end": 0.94,
+   "type": "word",
+   "logprob": -0.004517469089478254
+  }
+ ]
+}

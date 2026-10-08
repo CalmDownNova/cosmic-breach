@@ -1,0 +1,96 @@
+{
+ "text": "Even the Hollow will not have you",
+ "words": [
+  {
+   "text": "Even",
+   "start": 0.28,
+   "end": 0.52,
+   "type": "word",
+   "logprob": -0.00046302087139338255
+  },
+  {
+   "text": " ",
+   "start": 0.52,
+   "end": 0.56,
+   "type": "spacing",
+   "logprob": -0.0031780709978193045
+  },
+  {
+   "text": "the",
+   "start": 0.56,
+   "end": 0.64,
+   "type": "word",
+   "logprob": -0.0031780709978193045
+  },
+  {
+   "text": " ",
+   "start": 0.64,
+   "end": 0.78,
+   "type": "spacing",
+   "logprob": -0.4740845561027527
+  },
+  {
+   "text": "Hollow",
+   "start": 0.78,
+   "end": 1.16,
+   "type": "word",
+   "logprob": -0.4740845561027527
+  },
+  {
+   "text": " ",
+   "start": 1.16,
+   "end": 1.26,
+   "type": "spacing",
+   "logprob": -2.50339189733495e-06
+  },
+  {
+   "text": "will",
+   "start": 1.26,
+   "end": 1.4,
+   "type": "word",
+   "logprob": -2.50339189733495e-06
+  },
+  {
+   "text": " ",
+   "start": 1.4,
+   "end": 1.44,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "not",
+   "start": 1.44,
+   "end": 1.62,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 1.62,
+   "end": 1.7,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "have",
+   "start": 1.7,
+   "end": 1.9,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 1.9,
+   "end": 1.98,
+   "type": "spacing",
+   "logprob": -4.0531076592742465e-06
+  },
+  {
+   "text": "you",
+   "start": 1.98,
+   "end": 2.1,
+   "type": "word",
+   "logprob": -4.0531076592742465e-06
+  }
+ ]
+}

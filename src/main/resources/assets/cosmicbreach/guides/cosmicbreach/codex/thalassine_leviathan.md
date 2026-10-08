@@ -32,6 +32,9 @@ as it passes; its song tells you what it will do.
 - **Moorage.** Wounded, it coils round the great stone at the Rift's heart and holds still for a while. Glowing
   **song glands** open along its back: leap onto it and strike them, for they take twice the harm. It moors more
   than once, but not forever.
+- **Falling.** The Rift does not let you fall for long. Drop below its stones, or jump from the floor far under them,
+  and its air catches you, lifts you and sets you back on the nearest stone; sneak to sink instead. Its two
+  **air vents**, roaring and shining behind two of the stones, carry you up as well.
 
 Its first defeat gives you a **Leviathan Pearl** (which raises the Astral Forge to its third tier), a **Halo of
 Nine**, **Leviathan Scales**, a point to spend, and the song that carries you down into the Deep.

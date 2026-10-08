@@ -39,7 +39,7 @@ public class GyreKnightModel extends DefaultedEntityGeoModel<GyreKnight> {
         // the gimbals: three rings on three axes
         double rate = switch (k.mode()) {
             case STUNNED -> 0.0;
-            case SWEEP -> 0.32;
+            case SWEEP, DIVE -> 0.32;
             case LANCE, RECALL -> 0.22;
             case SHIELD -> 0.12;
         };

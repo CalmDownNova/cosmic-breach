@@ -1,0 +1,138 @@
+{
+ "text": "You again. Was my light not enough the first time?",
+ "words": [
+  {
+   "text": "You",
+   "start": 0.32,
+   "end": 0.48,
+   "type": "word",
+   "logprob": -1.1324817933200393e-05
+  },
+  {
+   "text": " ",
+   "start": 0.48,
+   "end": 0.6,
+   "type": "spacing",
+   "logprob": -3.933898824470816e-06
+  },
+  {
+   "text": "again.",
+   "start": 0.6,
+   "end": 0.98,
+   "type": "word",
+   "logprob": -0.004666365676636512
+  },
+  {
+   "text": " ",
+   "start": 0.98,
+   "end": 0.98,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "Was",
+   "start": 1.68,
+   "end": 1.82,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": " ",
+   "start": 1.82,
+   "end": 1.88,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "my",
+   "start": 1.88,
+   "end": 2.02,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 2.02,
+   "end": 2.14,
+   "type": "spacing",
+   "logprob": -5.3165931603871286e-05
+  },
+  {
+   "text": "light",
+   "start": 2.14,
+   "end": 2.36,
+   "type": "word",
+   "logprob": -5.3165931603871286e-05
+  },
+  {
+   "text": " ",
+   "start": 2.36,
+   "end": 2.4,
+   "type": "spacing",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": "not",
+   "start": 2.4,
+   "end": 2.52,
+   "type": "word",
+   "logprob": -5.960462772236497e-07
+  },
+  {
+   "text": " ",
+   "start": 2.52,
+   "end": 2.58,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "enough",
+   "start": 2.58,
+   "end": 2.9,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 2.9,
+   "end": 2.94,
+   "type": "spacing",
+   "logprob": -8.344646857949556e-07
+  },
+  {
+   "text": "the",
+   "start": 2.94,
+   "end": 3.08,
+   "type": "word",
+   "logprob": -8.344646857949556e-07
+  },
+  {
+   "text": " ",
+   "start": 3.08,
+   "end": 3.16,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "first",
+   "start": 3.16,
+   "end": 3.38,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 3.38,
+   "end": 3.48,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "time?",
+   "start": 3.48,
+   "end": 3.78,
+   "type": "word",
+   "logprob": -0.00011207300703972579
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+{
+ "text": "No shell? Brave little crab",
+ "words": [
+  {
+   "text": "No",
+   "start": 0.12,
+   "end": 0.22,
+   "type": "word",
+   "logprob": -0.0015231685247272253
+  },
+  {
+   "text": " ",
+   "start": 0.22,
+   "end": 0.32,
+   "type": "spacing",
+   "logprob": -0.00035494225448928773
+  },
+  {
+   "text": "shell?",
+   "start": 0.32,
+   "end": 0.62,
+   "type": "word",
+   "logprob": -0.0014563897032833968
+  },
+  {
+   "text": " ",
+   "start": 0.62,
+   "end": 1.02,
+   "type": "spacing",
+   "logprob": -9.298280929215252e-06
+  },
+  {
+   "text": "Brave",
+   "start": 1.02,
+   "end": 1.34,
+   "type": "word",
+   "logprob": -9.298280929215252e-06
+  },
+  {
+   "text": " ",
+   "start": 1.34,
+   "end": 1.38,
+   "type": "spacing",
+   "logprob": -2.861018856492592e-06
+  },
+  {
+   "text": "little",
+   "start": 1.38,
+   "end": 1.6,
+   "type": "word",
+   "logprob": -2.861018856492592e-06
+  },
+  {
+   "text": " ",
+   "start": 1.6,
+   "end": 1.66,
+   "type": "spacing",
+   "logprob": -5.900685573578812e-05
+  },
+  {
+   "text": "crab",
+   "start": 1.66,
+   "end": 2.02,
+   "type": "word",
+   "logprob": -5.900685573578812e-05
+  }
+ ]
+}

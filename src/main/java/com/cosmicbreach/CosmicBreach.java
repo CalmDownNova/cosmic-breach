@@ -63,6 +63,7 @@ public final class CosmicBreach {
         IEventBus game = NeoForge.EVENT_BUS;
         Progression.register(modBus, game);
         Gear.register(modBus, game);
+        com.cosmicbreach.provision.Provisions.register(modBus, game);
         com.cosmicbreach.guardian.Guardians.register(modBus, game);
         com.cosmicbreach.guardian.leviathan.Leviathans.register(modBus, game);
         com.cosmicbreach.entity.gyre.GyreKnights.register(modBus, game);
@@ -71,6 +72,9 @@ public final class CosmicBreach {
         com.cosmicbreach.relic.Relics.register(modBus, game);
         com.cosmicbreach.accessory.Accessories.register(modBus, game);
         com.cosmicbreach.mount.Mounts.register(modBus, game);
+        com.cosmicbreach.mount.MountCare.register(modBus, game);
+        com.cosmicbreach.lift.Lifts.register(modBus, game);
+        com.cosmicbreach.shrine.Shrines.register(modBus, game);
         com.cosmicbreach.familiar.Familiars.register(modBus, game);
         AetheriaWorld.register(modBus, game);
         AetheriaAudio.register(modBus, game);
@@ -81,6 +85,7 @@ public final class CosmicBreach {
         com.cosmicbreach.structure.sanctum.Sanctums.register(modBus, game);
         com.cosmicbreach.guardian.heliarch.Heliarchs.register(modBus, game);
         com.cosmicbreach.voice.Echo.register(modBus, game);
+        com.cosmicbreach.voice.boss.BossVoices.register(modBus, game);
         com.cosmicbreach.codex.Codices.register(modBus, game);
         CombatServerEvents.register(game);
         MaulEffects.register(game);
@@ -96,6 +101,7 @@ public final class CosmicBreach {
         Sandbox.register(game);
         com.cosmicbreach.sandbox.StressScene.register(game);
         com.cosmicbreach.world.AiLod.register(game);
+        com.cosmicbreach.world.VoidSafeDrops.register(game);
         LOGGER.info("[cosmicbreach] loaded");
     }
 

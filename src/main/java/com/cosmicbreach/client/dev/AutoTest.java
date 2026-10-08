@@ -75,8 +75,8 @@ import org.slf4j.Logger;
  * <p>Any exception, a failed check, a blank screenshot, the window ever becoming visible, or
  * going over the time budget ends the run with FAIL. A watchdog thread also covers a hung
  * client thread: it writes FAIL and, if the game still has not exited a minute after the
- * result, halts the JVM. Screenshots come from the main render target, so they work while
- * the window is hidden.
+ * result, rewrites the result as a FAIL ({@link ExitStall}) and halts the JVM, so a hung stop never reads as a PASS.
+ * Screenshots come from the main render target, so they work while the window is hidden.
  */
 public final class AutoTest implements StepContext {
     public static final String PROPERTY = "cosmicbreach.autotest";
@@ -87,12 +87,24 @@ public final class AutoTest implements StepContext {
     private static final int STARTUP_BUDGET_SECONDS = 300;
     /** How long the watchdog lets a hung client thread run over its budget before stepping in. */
     private static final int WATCHDOG_GRACE_SECONDS = 15;
-    /** How long the game may take to exit after the result is written. */
-    private static final int EXIT_GRACE_SECONDS = 60;
+    /**
+     * How long the game may take to exit after the result is written. The environment variable COSMICBREACH_AUTOTEST_EXIT_GRACE
+     * (seconds) overrides it, to see whether a stop that hangs ever drains (give scripts/autotest.sh a longer limit too).
+     */
+    private static final int EXIT_GRACE_SECONDS = envSeconds("COSMICBREACH_AUTOTEST_EXIT_GRACE", 60);
     /** Ticks on some other screen after loading before creating the world anyway. */
     private static final int TITLE_SCREEN_PATIENCE_TICKS = 100;
     private static final long WORLD_SEED = 20260927L;
     private static final Pattern SCENARIO_NAME = Pattern.compile("[a-z0-9_-]+");
+
+    private static int envSeconds(String name, int fallback) {
+        try {
+            int seconds = Integer.parseInt(System.getenv().getOrDefault(name, "").trim());
+            return seconds > 0 ? seconds : fallback;
+        } catch (NumberFormatException e) {
+            return fallback;
+        }
+    }
 
     private enum Phase { WAITING_FOR_TITLE, CREATING_WORLD, WAITING_FOR_PLAYER, RUNNING, FINISHED }
 
@@ -477,6 +489,8 @@ public final class AutoTest implements StepContext {
             if (resultWritten.get()) {
                 if (secondsSince(resultWrittenAt) > EXIT_GRACE_SECONDS) {
                     LOGGER.error("[autotest] the game did not exit {} s after the result; halting", EXIT_GRACE_SECONDS);
+                    // a hung stop is a failed run whatever the scenario said: the result file must say so (see ExitStall)
+                    LOGGER.error("[autotest] {}", ExitStall.mark(outDir.resolve("result.txt"), EXIT_GRACE_SECONDS));
                     Runtime.getRuntime().halt(3);
                 }
                 continue;

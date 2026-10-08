@@ -1,0 +1,2265 @@
+{
+  "version": 1,
+  "source": "Aetheria 1.1 Voice Script v1",
+  "made_utc": "2026-10-02T05:17:04Z",
+  "global_gap_s": {
+    "colossus": 25,
+    "leviathan": 15,
+    "unsung": 20,
+    "heliarch": 12
+  },
+  "bosses": {
+    "colossus": [
+      {
+        "id": "open_solo",
+        "trigger": "fight_start",
+        "condition": "players:solo, first",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "A climber. ...Come. Learn.",
+        "delivery": "Waking after an age: each word set down like a stone, long pauses at the ellipses. Starts at intro tick 120 (after the fifth crown crystal lights) and ends before the fight starts at tick 200. Budget 3.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_open_solo",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_open_solo",
+            "length_ticks": 86,
+            "speech_start_ticks": 3,
+            "speech_ticks": 73,
+            "margin_lu": 6.97,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "open_group",
+        "trigger": "fight_start",
+        "condition": "players:group, first",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "Many climbers. ...Good. Come.",
+        "delivery": "Pleased, unhurried. Intro tick 120. Budget 3.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_open_group",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_open_group",
+            "length_ticks": 84,
+            "speech_start_ticks": 3,
+            "speech_ticks": 67,
+            "margin_lu": 6.48,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "open_again",
+        "trigger": "fight_start",
+        "condition": "returning",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "You again. ...Come, then.",
+        "delivery": "A teacher who knew you would be back. Intro tick 120. Budget 3.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_open_again",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_open_again",
+            "length_ticks": 85,
+            "speech_start_ticks": 2,
+            "speech_ticks": 72,
+            "margin_lu": 7.53,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "fracture",
+        "trigger": "hp_threshold:50",
+        "condition": "none",
+        "priority": 95,
+        "repeat": "once per fight",
+        "words": "Now... I remember.",
+        "delivery": "Old skill waking as it cracks (phase 2 is harder). Starts at Fracture tick 12, after the roar's peak, and should end before the first phase 2 telegraph. Budget 2.9 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_fracture",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_fracture",
+            "length_ticks": 81,
+            "speech_start_ticks": 3,
+            "speech_ticks": 62,
+            "margin_lu": 7.41,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "shatter",
+        "trigger": "hp_threshold:0",
+        "condition": "none",
+        "priority": 95,
+        "repeat": "once per fight",
+        "words": "All three... or none.",
+        "delivery": "The hint, said once, as its body bursts into three shards; processed into three voices. Starts at Shatter tick 10. Budget 2.6 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_shatter",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_shatter",
+            "length_ticks": 64,
+            "speech_start_ticks": 3,
+            "speech_ticks": 51,
+            "margin_lu": 6.92,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "reform",
+        "trigger": "taunt",
+        "condition": "on:reform",
+        "priority": 65,
+        "repeat": "once per fight",
+        "words": "Together... again.",
+        "delivery": "Dry, almost fond: the shards made it home. Plays while they fly back. Budget 2.4 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_reform",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_reform",
+            "length_ticks": 60,
+            "speech_start_ticks": 3,
+            "speech_ticks": 46,
+            "margin_lu": 6.61,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "player_down",
+        "trigger": "player_death",
+        "condition": "none",
+        "priority": 70,
+        "repeat": "once per fight",
+        "words": "Rest. ...Then climb again.",
+        "delivery": "No triumph: a teacher sending a student back up the stair. Budget 3.2 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_player_down",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_player_down",
+            "length_ticks": 79,
+            "speech_start_ticks": 3,
+            "speech_ticks": 66,
+            "margin_lu": 7.16,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "breathe",
+        "trigger": "player_low_health",
+        "condition": "health<=25%",
+        "priority": 60,
+        "repeat": "once per fight",
+        "words": "Breathe. ...Step back.",
+        "delivery": "Advice, not a threat. Budget 2.6 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_breathe",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_breathe",
+            "length_ticks": 70,
+            "speech_start_ticks": 2,
+            "speech_ticks": 53,
+            "margin_lu": 7.03,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "wait",
+        "trigger": "player_left",
+        "condition": "all_gone, away>=5s",
+        "priority": 40,
+        "repeat": "once per fight",
+        "words": "I will wait.",
+        "delivery": "Everyone has left the crown for 5 s (the reset comes 25 s later). Budget 2.2 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_wait",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_wait",
+            "length_ticks": 51,
+            "speech_start_ticks": 3,
+            "speech_ticks": 39,
+            "margin_lu": 6.4,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "my_heart",
+        "trigger": "weapon:forge_tier_2",
+        "condition": "also:forge_tier_3, also:forge_tier_4",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "My heart... in your blade.",
+        "delivery": "Its own Prism Heart raised the forge that made this weapon, so this only happens after an earlier kill. Quiet wonder, no anger. Budget 3.1 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_my_heart",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_my_heart",
+            "length_ticks": 79,
+            "speech_start_ticks": 3,
+            "speech_ticks": 66,
+            "margin_lu": 7.29,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "fists",
+        "trigger": "weapon:bare_hands",
+        "condition": "none",
+        "priority": 45,
+        "repeat": "once per fight",
+        "words": "Fists? ...Bold.",
+        "delivery": "The driest joke it has. Budget 2.4 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_fists",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_fists",
+            "length_ticks": 66,
+            "speech_start_ticks": 3,
+            "speech_ticks": 51,
+            "margin_lu": 7.28,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "fallen_stars",
+        "trigger": "armor:mod_full_set",
+        "condition": "set:vanguard",
+        "priority": 45,
+        "repeat": "once per fight",
+        "words": "You wear... fallen stars.",
+        "delivery": "The Starfall Vanguard is meteor-forged plate. Budget 2.9 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_fallen_stars",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_fallen_stars",
+            "length_ticks": 77,
+            "speech_start_ticks": 3,
+            "speech_ticks": 61,
+            "margin_lu": 6.92,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "too_strong",
+        "trigger": "gear:over",
+        "condition": "none",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "Too strong... for this lesson.",
+        "delivery": "Amused, faintly disappointed. Budget 2.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_too_strong",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_too_strong",
+            "length_ticks": 70,
+            "speech_start_ticks": 3,
+            "speech_ticks": 58,
+            "margin_lu": 6.93,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      },
+      {
+        "id": "kill",
+        "trigger": "boss_kill",
+        "condition": "none",
+        "priority": 100,
+        "repeat": "once per fight",
+        "words": "Go down... and listen.",
+        "delivery": "Gladly let go. Starts at death tick 5 and must end before tick 60, when the rewards and the guide's line follow. Oblique pointer to the level below and its song. Budget 2.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/colossus_kill",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.colossus_kill",
+            "length_ticks": 69,
+            "speech_start_ticks": 3,
+            "speech_ticks": 56,
+            "margin_lu": 6.9,
+            "duck": [
+              "cosmicbreach:music/colossus"
+            ]
+          }
+        }
+      }
+    ],
+    "leviathan": [
+      {
+        "id": "open_solo",
+        "trigger": "fight_start",
+        "condition": "players:solo, first",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "A small, heavy singer in my sky. Show me how you swim.",
+        "delivery": "Delighted by a visitor, lilting. Starts at intro tick 40 and must end before its song at intro tick 150. Budget 5.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_open_solo",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_open_solo",
+            "length_ticks": 135,
+            "speech_start_ticks": 3,
+            "speech_ticks": 99,
+            "margin_lu": 8.13,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": true,
+            "window_ticks": 106,
+            "file_window_ticks": 109
+          }
+        }
+      },
+      {
+        "id": "open_group",
+        "trigger": "fight_start",
+        "condition": "players:group, first",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "A chorus! No one has sung with me in an age.",
+        "delivery": "Joy first, then the loneliness under it. Intro tick 40. Budget 5.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_open_group",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_open_group",
+            "length_ticks": 120,
+            "speech_start_ticks": 3,
+            "speech_ticks": 89,
+            "margin_lu": 8.21,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": true,
+            "window_ticks": 96,
+            "file_window_ticks": 99
+          }
+        }
+      },
+      {
+        "id": "open_again",
+        "trigger": "fight_start",
+        "condition": "returning",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "Back again? You missed my song.",
+        "delivery": "Teasing, pleased. Intro tick 40. Budget 4.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_open_again",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_open_again",
+            "length_ticks": 116,
+            "speech_start_ticks": 2,
+            "speech_ticks": 71,
+            "margin_lu": 7.74,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": true,
+            "window_ticks": 79,
+            "file_window_ticks": 81
+          }
+        }
+      },
+      {
+        "id": "moor_first",
+        "trigger": "hp_threshold:50",
+        "condition": "none",
+        "priority": 95,
+        "repeat": "once per fight",
+        "words": "Come, little one. Climb me.",
+        "delivery": "The first Moorage: an invitation and a hint (leap onto its back). During the swim in or the first 60 coiled ticks, before the first ripple. Budget 3.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_moor_first",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_moor_first",
+            "length_ticks": 89,
+            "speech_start_ticks": 2,
+            "speech_ticks": 53,
+            "margin_lu": 7.63,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": true,
+            "window_ticks": 61,
+            "file_window_ticks": 63
+          }
+        }
+      },
+      {
+        "id": "moor_last",
+        "trigger": "hp_threshold:20",
+        "condition": "none",
+        "priority": 95,
+        "repeat": "once per fight",
+        "words": "My song is running out.",
+        "delivery": "The second Moorage: tired, not afraid. Same window as moor_first. Budget 3.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_moor_last",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_moor_last",
+            "length_ticks": 79,
+            "speech_start_ticks": 4,
+            "speech_ticks": 44,
+            "margin_lu": 7.55,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": false,
+            "window_ticks": 50,
+            "file_window_ticks": 54
+          }
+        }
+      },
+      {
+        "id": "player_down",
+        "trigger": "player_death",
+        "condition": "none",
+        "priority": 70,
+        "repeat": "once per fight",
+        "words": "Hush. Sleep in the current.",
+        "delivery": "Tender, almost a lullaby. Quiet window only. Budget 1.95 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_player_down",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_player_down",
+            "length_ticks": 73,
+            "speech_start_ticks": 3,
+            "speech_ticks": 38,
+            "margin_lu": 6.98,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": false,
+            "window_ticks": 45,
+            "file_window_ticks": 48
+          }
+        }
+      },
+      {
+        "id": "fell",
+        "trigger": "player_fell",
+        "condition": "none",
+        "priority": 60,
+        "repeat": "once per fight",
+        "words": "My sky always gives you back.",
+        "delivery": "When the rising wind catches a falling player: a joke and a hint that the fall is survivable. Quiet window only. Budget 1.95 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_fell",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_fell",
+            "length_ticks": 78,
+            "speech_start_ticks": 3,
+            "speech_ticks": 39,
+            "margin_lu": 7.51,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": false,
+            "window_ticks": 46,
+            "file_window_ticks": 49
+          }
+        }
+      },
+      {
+        "id": "my_pearl",
+        "trigger": "weapon:forge_tier_3",
+        "condition": "also:forge_tier_4",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "My pearl sings in that blade.",
+        "delivery": "Its own Leviathan Pearl raised the forge that made this weapon, so this only happens after an earlier kill. Curious, flattered. Quiet window only. Budget 1.95 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_my_pearl",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_my_pearl",
+            "length_ticks": 74,
+            "speech_start_ticks": 3,
+            "speech_ticks": 42,
+            "margin_lu": 7.59,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": false,
+            "window_ticks": 49,
+            "file_window_ticks": 52
+          }
+        }
+      },
+      {
+        "id": "fork",
+        "trigger": "weapon:trident",
+        "condition": "none",
+        "priority": 45,
+        "repeat": "once per fight",
+        "words": "A fork? I am no fish.",
+        "delivery": "Mock offence. Quiet window only. Budget 1.95 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_fork",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_fork",
+            "length_ticks": 76,
+            "speech_start_ticks": 2,
+            "speech_ticks": 41,
+            "margin_lu": 7.53,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": false,
+            "window_ticks": 49,
+            "file_window_ticks": 51
+          }
+        }
+      },
+      {
+        "id": "crab",
+        "trigger": "armor:none",
+        "condition": "none",
+        "priority": 45,
+        "repeat": "once per fight",
+        "words": "No shell? Brave little crab.",
+        "delivery": "Fond teasing. Quiet window only. Budget 1.95 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_crab",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_crab",
+            "length_ticks": 79,
+            "speech_start_ticks": 3,
+            "speech_ticks": 43,
+            "margin_lu": 6.72,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "tempo": 1.05,
+            "long": false,
+            "window_ticks": 50,
+            "file_window_ticks": 53
+          }
+        }
+      },
+      {
+        "id": "too_soon",
+        "trigger": "gear:under",
+        "condition": "none",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "You came too soon, little one.",
+        "delivery": "Concern, not contempt. Quiet window only. Budget 1.95 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_too_soon",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_too_soon",
+            "length_ticks": 68,
+            "speech_start_ticks": 3,
+            "speech_ticks": 36,
+            "margin_lu": 7.01,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": false,
+            "window_ticks": 43,
+            "file_window_ticks": 46
+          }
+        }
+      },
+      {
+        "id": "cousins",
+        "trigger": "taunt",
+        "condition": "while:mounted",
+        "priority": 30,
+        "repeat": "once per fight",
+        "words": "Riding my little cousins? Clever.",
+        "delivery": "A fighter rides a Drift Manta, the small singers of the Drift. Quiet window only. Budget 1.95 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_cousins",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_cousins",
+            "length_ticks": 83,
+            "speech_start_ticks": 3,
+            "speech_ticks": 43,
+            "margin_lu": 7.23,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "tempo": 1.11,
+            "long": false,
+            "window_ticks": 50,
+            "file_window_ticks": 53
+          }
+        }
+      },
+      {
+        "id": "coming_round",
+        "trigger": "attack_gap",
+        "condition": "target_far",
+        "priority": 25,
+        "repeat": "cooldown 120 s",
+        "words": "Wait for me. I am coming round.",
+        "delivery": "Fills the flyby: its target is out of reach on the far side of the orbit. Quiet window only. Budget 1.95 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_coming_round",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_coming_round",
+            "length_ticks": 82,
+            "speech_start_ticks": 3,
+            "speech_ticks": 41,
+            "margin_lu": 7.86,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": false,
+            "window_ticks": 48,
+            "file_window_ticks": 51
+          }
+        }
+      },
+      {
+        "id": "kill",
+        "trigger": "boss_kill",
+        "condition": "none",
+        "priority": 100,
+        "repeat": "once per fight",
+        "words": "Carry my song down. They have forgotten theirs.",
+        "delivery": "As it sinks, its song fading under the words. Starts at death tick 20. Oblique pointer to the level below. Budget 5.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/leviathan_kill",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.leviathan_kill",
+            "length_ticks": 111,
+            "speech_start_ticks": 3,
+            "speech_ticks": 78,
+            "margin_lu": 7.79,
+            "duck": [
+              "cosmicbreach:music/leviathan"
+            ],
+            "long": true,
+            "window_ticks": 85,
+            "file_window_ticks": 88
+          }
+        }
+      }
+    ],
+    "unsung": [
+      {
+        "id": "open_solo",
+        "trigger": "fight_start",
+        "condition": "players:solo, first",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "Who comes to the choir without a song?",
+        "delivery": "Relayed in the order the masks lift: each fragment starts one beat after its mask's first note, so 2 beats apart. Hushed, curious, cold. Fragment budget 1.1 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_open_solo",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_open_solo",
+            "length_ticks": 110,
+            "speech_start_ticks": 2,
+            "speech_ticks": 73,
+            "margin_lu": 2.29,
+            "duck": [],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 26
+              },
+              {
+                "mask": 3,
+                "start_ticks": 50
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "open_group",
+        "trigger": "fight_start",
+        "condition": "players:group, first",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "So many of you, and not one knows the words.",
+        "delivery": "On the lifts, as open_solo. Wonder turning to sorrow. Fragment budget 1.3 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_open_group",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_open_group",
+            "length_ticks": 108,
+            "speech_start_ticks": 2,
+            "speech_ticks": 77,
+            "margin_lu": 4.11,
+            "duck": [],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 26
+              },
+              {
+                "mask": 3,
+                "start_ticks": 50
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "open_again",
+        "trigger": "fight_start",
+        "condition": "returning",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "You came back to hear us forget again.",
+        "delivery": "On the lifts. Resigned. Fragment budget 1.2 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_open_again",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_open_again",
+            "length_ticks": 115,
+            "speech_start_ticks": 2,
+            "speech_ticks": 75,
+            "margin_lu": 4.22,
+            "duck": [],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 26
+              },
+              {
+                "mask": 3,
+                "start_ticks": 50
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "one_gone",
+        "trigger": "hp_threshold:67",
+        "condition": "none",
+        "priority": 95,
+        "repeat": "once per fight",
+        "words": "Who will sing its part now?",
+        "delivery": "The first mask breaks: the two survivors share the sentence. Three variants, one per surviving pair. Shaken. Starts 1 beat after the crack. Budget 2.4 s.",
+        "variants": {
+          "12": {
+            "event": "cosmicbreach:bossvoice/unsung_one_gone_12",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_one_gone_12",
+            "length_ticks": 99,
+            "speech_start_ticks": 2,
+            "speech_ticks": 50,
+            "margin_lu": 5.0,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 26
+              }
+            ]
+          },
+          "13": {
+            "event": "cosmicbreach:bossvoice/unsung_one_gone_13",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_one_gone_13",
+            "length_ticks": 94,
+            "speech_start_ticks": 2,
+            "speech_ticks": 49,
+            "margin_lu": 3.4,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 3,
+                "start_ticks": 26
+              }
+            ]
+          },
+          "23": {
+            "event": "cosmicbreach:bossvoice/unsung_one_gone_23",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_one_gone_23",
+            "length_ticks": 94,
+            "speech_start_ticks": 2,
+            "speech_ticks": 49,
+            "margin_lu": 3.79,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 2,
+                "start_ticks": 2
+              },
+              {
+                "mask": 3,
+                "start_ticks": 26
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "alone",
+        "trigger": "hp_threshold:33",
+        "condition": "none",
+        "priority": 95,
+        "repeat": "once per fight",
+        "words": "I cannot... finish it... alone.",
+        "delivery": "The second mask breaks: the last mask tries to finish a sentence by itself, the only line in the first person singular. Halting, frightened. Three variants, one per survivor. Starts 1 beat after the crack. Budget 3.2 s.",
+        "variants": {
+          "1": {
+            "event": "cosmicbreach:bossvoice/unsung_alone_1",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_alone_1",
+            "length_ticks": 101,
+            "speech_start_ticks": 2,
+            "speech_ticks": 59,
+            "margin_lu": 5.28,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              }
+            ]
+          },
+          "2": {
+            "event": "cosmicbreach:bossvoice/unsung_alone_2",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_alone_2",
+            "length_ticks": 105,
+            "speech_start_ticks": 2,
+            "speech_ticks": 60,
+            "margin_lu": 6.55,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 2,
+                "start_ticks": 2
+              }
+            ]
+          },
+          "3": {
+            "event": "cosmicbreach:bossvoice/unsung_alone_3",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_alone_3",
+            "length_ticks": 112,
+            "speech_start_ticks": 2,
+            "speech_ticks": 67,
+            "margin_lu": 4.54,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 3,
+                "start_ticks": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "voice_falls",
+        "trigger": "player_death",
+        "condition": "masks:3",
+        "priority": 70,
+        "repeat": "once per fight",
+        "words": "Another voice falls silent in the song.",
+        "delivery": "Mournful, not cruel. Budget 3.1 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_voice_falls",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_voice_falls",
+            "length_ticks": 102,
+            "speech_start_ticks": 2,
+            "speech_ticks": 64,
+            "margin_lu": 3.79,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 20
+              },
+              {
+                "mask": 3,
+                "start_ticks": 44
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "breathe",
+        "trigger": "player_low_health",
+        "condition": "health<=25%, masks:3",
+        "priority": 60,
+        "repeat": "once per fight",
+        "words": "Breathe, little voice, between the beats.",
+        "delivery": "Gentle, and a real hint: everything lands on the beat. Budget 3.1 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_breathe",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_breathe",
+            "length_ticks": 100,
+            "speech_start_ticks": 2,
+            "speech_ticks": 64,
+            "margin_lu": 3.02,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 14
+              },
+              {
+                "mask": 3,
+                "start_ticks": 32
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "thief",
+        "trigger": "weapon:forge_tier_3",
+        "condition": "item:choir_astrolabe, also:forge_tier_4, masks:3",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "Gently, thief, that astrolabe was ours.",
+        "delivery": "The Choir Astrolabe was the Choir's own instrument. Sharp, then grieving. Budget 3.5 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_thief",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_thief",
+            "length_ticks": 110,
+            "speech_start_ticks": 2,
+            "speech_ticks": 70,
+            "margin_lu": 3.1,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 26
+              },
+              {
+                "mask": 3,
+                "start_ticks": 50
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "robes",
+        "trigger": "armor:mod_full_set",
+        "condition": "set:regalia, masks:3",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "You wear our robes, but you do not sing.",
+        "delivery": "The Choir Regalia is the Choir's ceremonial armor. Budget 3.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_robes",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_robes",
+            "length_ticks": 99,
+            "speech_start_ticks": 2,
+            "speech_ticks": 63,
+            "margin_lu": 3.76,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 32
+              },
+              {
+                "mask": 3,
+                "start_ticks": 50
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "so_little_song",
+        "trigger": "gear:over",
+        "condition": "masks:3",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "All that armor, and so little song.",
+        "delivery": "Pity. Budget 3.1 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_so_little_song",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_so_little_song",
+            "length_ticks": 102,
+            "speech_start_ticks": 2,
+            "speech_ticks": 64,
+            "margin_lu": 3.51,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 32
+              },
+              {
+                "mask": 3,
+                "start_ticks": 50
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "let_us_rise",
+        "trigger": "taunt",
+        "condition": "on:break, masks:3",
+        "priority": 60,
+        "repeat": "once per fight",
+        "words": "Let us rise, we have not finished.",
+        "delivery": "Spoken from the floor during a Break (no attacks for 100 ticks). Pleading. Starts 1 beat into the Break. Budget 3.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_let_us_rise",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_let_us_rise",
+            "length_ticks": 102,
+            "speech_start_ticks": 2,
+            "speech_ticks": 63,
+            "margin_lu": 3.47,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 32
+              },
+              {
+                "mask": 3,
+                "start_ticks": 50
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "found_silence",
+        "trigger": "taunt",
+        "condition": "on:harmonize_all_safe, masks:3",
+        "priority": 55,
+        "repeat": "once per fight",
+        "words": "You found the silence we never could.",
+        "delivery": "After a Harmonize that caught nobody. Aching, envious. Starts 2 beats after the downbeat. Budget 3.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_found_silence",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_found_silence",
+            "length_ticks": 99,
+            "speech_start_ticks": 2,
+            "speech_ticks": 59,
+            "margin_lu": 3.3,
+            "duck": [
+              "cosmicbreach:music/unsung/alto_hum_0",
+              "cosmicbreach:music/unsung/alto_hum_1",
+              "cosmicbreach:music/unsung/alto_hum_2",
+              "cosmicbreach:music/unsung/alto_hum_3",
+              "cosmicbreach:music/unsung/alto_rise",
+              "cosmicbreach:music/unsung/alto_sung_0",
+              "cosmicbreach:music/unsung/alto_sung_1",
+              "cosmicbreach:music/unsung/alto_sung_2",
+              "cosmicbreach:music/unsung/alto_sung_3",
+              "cosmicbreach:music/unsung/bass_hum_0",
+              "cosmicbreach:music/unsung/bass_hum_1",
+              "cosmicbreach:music/unsung/bass_hum_2",
+              "cosmicbreach:music/unsung/bass_hum_3",
+              "cosmicbreach:music/unsung/bass_rise",
+              "cosmicbreach:music/unsung/bass_sung_0",
+              "cosmicbreach:music/unsung/bass_sung_1",
+              "cosmicbreach:music/unsung/bass_sung_2",
+              "cosmicbreach:music/unsung/bass_sung_3",
+              "cosmicbreach:music/unsung/tenor_hum_0",
+              "cosmicbreach:music/unsung/tenor_hum_1",
+              "cosmicbreach:music/unsung/tenor_hum_2",
+              "cosmicbreach:music/unsung/tenor_hum_3",
+              "cosmicbreach:music/unsung/tenor_rise",
+              "cosmicbreach:music/unsung/tenor_sung_0",
+              "cosmicbreach:music/unsung/tenor_sung_1",
+              "cosmicbreach:music/unsung/tenor_sung_2",
+              "cosmicbreach:music/unsung/tenor_sung_3"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 14
+              },
+              {
+                "mask": 3,
+                "start_ticks": 32
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "finished",
+        "trigger": "boss_kill",
+        "condition": "none",
+        "priority": 100,
+        "repeat": "once per fight",
+        "words": "The hymn is finished, at last.",
+        "delivery": "All three voices return as ghosts, whispered, after the last soft chord: starts at death tick 36, fragments one beat apart, ends before tick 80 when the guide's line follows. Budget 2.2 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:bossvoice/unsung_finished",
+            "subtitle": "subtitles.cosmicbreach.bossvoice.unsung_finished",
+            "length_ticks": 89,
+            "speech_start_ticks": 1,
+            "speech_ticks": 45,
+            "margin_lu": 3.93,
+            "duck": [
+              "cosmicbreach:unsung/last_chord"
+            ],
+            "fragments": [
+              {
+                "mask": 1,
+                "start_ticks": 2
+              },
+              {
+                "mask": 2,
+                "start_ticks": 14
+              },
+              {
+                "mask": 3,
+                "start_ticks": 26
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "heliarch": [
+      {
+        "id": "intro",
+        "trigger": "fight_start",
+        "condition": "players:solo, first",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "Another singer. I poured a sun into the dark for you. It was not enough.",
+        "delivery": "Shipped take, kept. Intro tick 20.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_intro",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_intro",
+            "length_ticks": 161,
+            "speech_start_ticks": 4,
+            "speech_ticks": 130,
+            "margin_lu": 6.47,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "open_group",
+        "trigger": "fight_start",
+        "condition": "players:group, first",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "A whole choir, in the dark. I poured a sun into it for you. It was not enough.",
+        "delivery": "New, built to sit beside the shipped intro. Intro tick 20. Budget 8.5 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_open_group",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_open_group",
+            "length_ticks": 185,
+            "speech_start_ticks": 6,
+            "speech_ticks": 153,
+            "margin_lu": 6.81,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "open_again",
+        "trigger": "fight_start",
+        "condition": "returning",
+        "priority": 90,
+        "repeat": "once per fight",
+        "words": "You again. Was my light not enough the first time?",
+        "delivery": "Someone in the fight has sealed the Breach before. Intro tick 20. Budget 5.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_open_again",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_open_again",
+            "length_ticks": 108,
+            "speech_start_ticks": 4,
+            "speech_ticks": 80,
+            "margin_lu": 6.36,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "loud_light",
+        "trigger": "hp_threshold:80",
+        "condition": "none",
+        "priority": 75,
+        "repeat": "once per fight",
+        "words": "Your light is loud. The Hollow can hear it.",
+        "delivery": "The Hollow's hunger in his mouth. Budget 4.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_loud_light",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_loud_light",
+            "length_ticks": 96,
+            "speech_start_ticks": 4,
+            "speech_ticks": 66,
+            "margin_lu": 6.93,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "hollowing",
+        "trigger": "hp_threshold:60",
+        "condition": "none",
+        "priority": 95,
+        "repeat": "once per fight",
+        "words": "The Hollow wants the rest of me. Let it have you instead.",
+        "delivery": "Shipped take, kept. At the Hollowing.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_hollowing",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_hollowing",
+            "length_ticks": 124,
+            "speech_start_ticks": 4,
+            "speech_ticks": 94,
+            "margin_lu": 6.52,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "nova",
+        "trigger": "hp_threshold:40",
+        "condition": "none",
+        "priority": 95,
+        "repeat": "once per fight",
+        "words": "Burn with me!",
+        "delivery": "Shipped take, kept. The first Nova channel.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_nova",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_nova",
+            "length_ticks": 60,
+            "speech_start_ticks": 4,
+            "speech_ticks": 30,
+            "margin_lu": 6.8,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "nova_again",
+        "trigger": "taunt",
+        "condition": "on:nova_return",
+        "priority": 95,
+        "repeat": "cooldown 30 s",
+        "words": "Again! Burn!",
+        "delivery": "Each return of the Nova channel after a detonation: the channel's spoken warning, so it plays at once. Budget 1.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_nova_again",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_nova_again",
+            "length_ticks": 74,
+            "speech_start_ticks": 4,
+            "speech_ticks": 40,
+            "margin_lu": 7.2,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "nova_broken",
+        "trigger": "taunt",
+        "condition": "on:nova_broken",
+        "priority": 80,
+        "repeat": "once per fight",
+        "words": "My sun... broken. Again.",
+        "delivery": "The shield broke and he is stunned, heart exposed; remembering the first time. Budget 3.2 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_nova_broken",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_nova_broken",
+            "length_ticks": 104,
+            "speech_start_ticks": 3,
+            "speech_ticks": 69,
+            "margin_lu": 6.66,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "nova_failed",
+        "trigger": "taunt",
+        "condition": "on:nova_detonated",
+        "priority": 80,
+        "repeat": "once per fight",
+        "words": "Too slow. The dark is always faster.",
+        "delivery": "Gloating, after the blast. Budget 3.2 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_nova_failed",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_nova_failed",
+            "length_ticks": 97,
+            "speech_start_ticks": 4,
+            "speech_ticks": 68,
+            "margin_lu": 6.65,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "collapse",
+        "trigger": "hp_threshold:20",
+        "condition": "none",
+        "priority": 95,
+        "repeat": "once per fight",
+        "words": "Everything falls. Everything always falls.",
+        "delivery": "Shipped take, kept.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_collapse",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_collapse",
+            "length_ticks": 98,
+            "speech_start_ticks": 4,
+            "speech_ticks": 70,
+            "margin_lu": 6.76,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "not_again",
+        "trigger": "hp_threshold:10",
+        "condition": "none",
+        "priority": 75,
+        "repeat": "once per fight",
+        "words": "Not again. Not the dark again.",
+        "delivery": "Dread of falling into the dark a second time. Budget 3.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_not_again",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_not_again",
+            "length_ticks": 91,
+            "speech_start_ticks": 4,
+            "speech_ticks": 57,
+            "margin_lu": 6.69,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "death",
+        "trigger": "boss_kill",
+        "condition": "none",
+        "priority": 100,
+        "repeat": "once per fight",
+        "words": "Ah... I can hear them again. Sing.",
+        "delivery": "Shipped take, kept. Death tick 0; the guide speaks at tick 130.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_death",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_death",
+            "length_ticks": 103,
+            "speech_start_ticks": 3,
+            "speech_ticks": 81,
+            "margin_lu": 6.5,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "alone_now",
+        "trigger": "player_death",
+        "condition": "players:group, last_alive",
+        "priority": 75,
+        "repeat": "once per fight",
+        "words": "Alone now. As I was.",
+        "delivery": "A group fight down to its last living fighter. Listed first so it wins over the plain death lines. Budget 2.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_alone_now",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_alone_now",
+            "length_ticks": 84,
+            "speech_start_ticks": 3,
+            "speech_ticks": 55,
+            "margin_lu": 6.92,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "player_down",
+        "trigger": "player_death",
+        "condition": "none",
+        "priority": 70,
+        "repeat": "once per fight",
+        "words": "Silence.",
+        "delivery": "Shipped take, kept (now once per fight; the next row gives a second death a voice).",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_player_down",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_player_down",
+            "length_ticks": 52,
+            "speech_start_ticks": 5,
+            "speech_ticks": 24,
+            "margin_lu": 6.1,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "one_less",
+        "trigger": "player_death",
+        "condition": "none",
+        "priority": 70,
+        "repeat": "once per fight",
+        "words": "One less voice.",
+        "delivery": "Budget 2.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_one_less",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_one_less",
+            "length_ticks": 59,
+            "speech_start_ticks": 3,
+            "speech_ticks": 31,
+            "margin_lu": 6.7,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "flicker",
+        "trigger": "player_low_health",
+        "condition": "health<=25%",
+        "priority": 60,
+        "repeat": "once per fight",
+        "words": "Flickering. I remember how that feels.",
+        "delivery": "Envy and pity at once. Budget 3.2 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_flicker",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_flicker",
+            "length_ticks": 94,
+            "speech_start_ticks": 6,
+            "speech_ticks": 66,
+            "margin_lu": 6.8,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "spat_out",
+        "trigger": "player_fell",
+        "condition": "none",
+        "priority": 60,
+        "repeat": "once per fight",
+        "words": "Even the Hollow will not have you.",
+        "delivery": "When the Breach throws a fallen player back onto the rim. Budget 2.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_spat_out",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_spat_out",
+            "length_ticks": 74,
+            "speech_start_ticks": 4,
+            "speech_ticks": 46,
+            "margin_lu": 6.19,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "withdraw",
+        "trigger": "player_left",
+        "condition": "all_gone, away>=5s",
+        "priority": 40,
+        "repeat": "once per fight",
+        "words": "Go, then. I have waited longer than you have lived.",
+        "delivery": "Nobody left on the floor; he withdraws 5 s later. Budget 4.5 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_withdraw",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_withdraw",
+            "length_ticks": 109,
+            "speech_start_ticks": 4,
+            "speech_ticks": 82,
+            "margin_lu": 6.71,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "came_back",
+        "trigger": "player_returned",
+        "condition": "away>=10s",
+        "priority": 40,
+        "repeat": "once per fight",
+        "words": "You came back. They always come back.",
+        "delivery": "A fighter returns to the floor in the same fight (the opener never replays). Budget 3.4 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_came_back",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_came_back",
+            "length_ticks": 103,
+            "speech_start_ticks": 4,
+            "speech_ticks": 73,
+            "margin_lu": 6.71,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "my_light",
+        "trigger": "weapon:forge_tier_4",
+        "condition": "none",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "That light... was mine.",
+        "delivery": "Forge IV needs his Solar Heart, so this only happens on a later summon. Budget 2.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_my_light",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_my_light",
+            "length_ticks": 75,
+            "speech_start_ticks": 4,
+            "speech_ticks": 46,
+            "margin_lu": 6.6,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "arrows",
+        "trigger": "weapon:bow",
+        "condition": "also:crossbow",
+        "priority": 45,
+        "repeat": "once per fight",
+        "words": "Arrows. My halo has eaten a thousand.",
+        "delivery": "Also a hint: his plates block projectiles. Budget 3.2 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_arrows",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_arrows",
+            "length_ticks": 97,
+            "speech_start_ticks": 4,
+            "speech_ticks": 67,
+            "margin_lu": 6.34,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "fists",
+        "trigger": "weapon:bare_hands",
+        "condition": "none",
+        "priority": 45,
+        "repeat": "once per fight",
+        "words": "You strike a sun with your hands?",
+        "delivery": "Budget 2.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_fists",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_fists",
+            "length_ticks": 89,
+            "speech_start_ticks": 4,
+            "speech_ticks": 52,
+            "margin_lu": 6.86,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "strange_steel",
+        "trigger": "weapon:mod_weapon",
+        "condition": "none",
+        "priority": 45,
+        "repeat": "once per fight",
+        "words": "That steel was not forged under my sun.",
+        "delivery": "A weapon from another mod. Budget 3.2 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_strange_steel",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_strange_steel",
+            "length_ticks": 90,
+            "speech_start_ticks": 4,
+            "speech_ticks": 61,
+            "margin_lu": 6.65,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "vestments",
+        "trigger": "armor:mod_full_set",
+        "condition": "set:regalia",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "You wear my choir's vestments. Take them off.",
+        "delivery": "The Choir Regalia: grief turned to anger. Budget 3.6 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_vestments",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_vestments",
+            "length_ticks": 107,
+            "speech_start_ticks": 4,
+            "speech_ticks": 71,
+            "margin_lu": 6.68,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "no_armor",
+        "trigger": "armor:none",
+        "condition": "none",
+        "priority": 45,
+        "repeat": "once per fight",
+        "words": "No armor at all? You came to burn.",
+        "delivery": "Budget 3.0 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_no_armor",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_no_armor",
+            "length_ticks": 99,
+            "speech_start_ticks": 3,
+            "speech_ticks": 65,
+            "margin_lu": 6.52,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "give_it",
+        "trigger": "gear:over",
+        "condition": "none",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "So much light on one singer. Give it to me.",
+        "delivery": "The Hollow's greed. Budget 3.6 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_give_it",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_give_it",
+            "length_ticks": 98,
+            "speech_start_ticks": 4,
+            "speech_ticks": 69,
+            "margin_lu": 6.43,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "in_that",
+        "trigger": "gear:under",
+        "condition": "none",
+        "priority": 50,
+        "repeat": "once per fight",
+        "words": "You came down here in that?",
+        "delivery": "Budget 2.4 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_in_that",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_in_that",
+            "length_ticks": 73,
+            "speech_start_ticks": 4,
+            "speech_ticks": 43,
+            "margin_lu": 6.69,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "too_close",
+        "trigger": "taunt",
+        "condition": "on:corona_flare",
+        "priority": 60,
+        "repeat": "cooldown 90 s",
+        "words": "Too close to the sun, singer.",
+        "delivery": "As the Corona Flare throws a hugging player out. Budget 2.9 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_too_close",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_too_close",
+            "length_ticks": 96,
+            "speech_start_ticks": 4,
+            "speech_ticks": 63,
+            "margin_lu": 6.55,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "dim_me",
+        "trigger": "taunt",
+        "condition": "on:break",
+        "priority": 60,
+        "repeat": "once per fight",
+        "words": "You... dim me.",
+        "delivery": "A Break: his guard cracked. Budget 2.8 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_dim_me",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_dim_me",
+            "length_ticks": 98,
+            "speech_start_ticks": 3,
+            "speech_ticks": 60,
+            "margin_lu": 7.12,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      },
+      {
+        "id": "long_fight",
+        "trigger": "taunt",
+        "condition": "on:soft_enrage",
+        "priority": 70,
+        "repeat": "once per fight",
+        "words": "The light is leaving us both.",
+        "delivery": "Past 8 minutes, when his damage starts to climb. Budget 3.2 s.",
+        "variants": {
+          "all": {
+            "event": "cosmicbreach:heliarch/voice_long_fight",
+            "subtitle": "subtitles.cosmicbreach.heliarch.voice_long_fight",
+            "length_ticks": 78,
+            "speech_start_ticks": 4,
+            "speech_ticks": 48,
+            "margin_lu": 7.01,
+            "duck": [
+              "cosmicbreach:music/heliarch_regent",
+              "cosmicbreach:music/heliarch_hollow",
+              "cosmicbreach:music/heliarch_collapse"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

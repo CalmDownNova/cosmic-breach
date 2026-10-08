@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_manta_fillet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cosmicbreach:manta_fillet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cosmicbreach:seared_manta_fillet_from_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_manta_fillet"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cosmicbreach:seared_manta_fillet_from_smoking"
+    ]
+  }
+}

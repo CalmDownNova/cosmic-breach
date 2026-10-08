@@ -203,9 +203,6 @@ public final class HeliarchMoves {
     public static final double NO_PLACE_RADIUS = 32.0;
     /** Projectiles fired from farther than this burn up. */
     public static final double PROJECTILE_RANGE = 40.0;
-    /** The player_down line waits at least this long between two falls. */
-    public static final int PLAYER_DOWN_GAP = 400;
-
     /** Every warning's length, for the rule that none is shorter than {@link #MIN_TELL}. */
     public static int[] tells() {
         return new int[] {SUNDER_TELL, SUNDER_GLINT, SWEEP_TELL, FLARE_TELL, LANCE_TRACK + LANCE_LOCK, BEAM_TELL, LASH_TELL, RAIN_TELL,

@@ -1,5 +1,6 @@
 {
   "type": "cosmicbreach:astral_forge",
+  "category": "armor",
   "ingredients": [
     {
       "count": 2,
@@ -7,7 +8,7 @@
     },
     {
       "count": 1,
-      "item": "minecraft:gold_ingot"
+      "tag": "cosmicbreach:gilding"
     },
     {
       "count": 2,

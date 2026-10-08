@@ -1,0 +1,26 @@
+{
+ "text": "Gently, thief",
+ "words": [
+  {
+   "text": "Gently,",
+   "start": 0.16,
+   "end": 0.58,
+   "type": "word",
+   "logprob": -0.004286542274128026
+  },
+  {
+   "text": " ",
+   "start": 0.58,
+   "end": 0.82,
+   "type": "spacing",
+   "logprob": -7.021180499577895e-05
+  },
+  {
+   "text": "thief",
+   "start": 0.82,
+   "end": 1.16,
+   "type": "word",
+   "logprob": -7.021180499577895e-05
+  }
+ ]
+}

@@ -1,0 +1,110 @@
+{
+ "text": "You wear my choir's vestments. Take them off",
+ "words": [
+  {
+   "text": "You",
+   "start": 0.28,
+   "end": 0.36,
+   "type": "word",
+   "logprob": -6.6756979322235566e-06
+  },
+  {
+   "text": " ",
+   "start": 0.36,
+   "end": 0.48,
+   "type": "spacing",
+   "logprob": -2.50339189733495e-06
+  },
+  {
+   "text": "wear",
+   "start": 0.48,
+   "end": 0.68,
+   "type": "word",
+   "logprob": -2.50339189733495e-06
+  },
+  {
+   "text": " ",
+   "start": 0.68,
+   "end": 0.74,
+   "type": "spacing",
+   "logprob": -2.7418097943154862e-06
+  },
+  {
+   "text": "my",
+   "start": 0.74,
+   "end": 0.9,
+   "type": "word",
+   "logprob": -2.7418097943154862e-06
+  },
+  {
+   "text": " ",
+   "start": 0.9,
+   "end": 1.0,
+   "type": "spacing",
+   "logprob": -0.0014810318825766444
+  },
+  {
+   "text": "choir's",
+   "start": 1.0,
+   "end": 1.48,
+   "type": "word",
+   "logprob": -0.0010583567525362777
+  },
+  {
+   "text": " ",
+   "start": 1.48,
+   "end": 1.56,
+   "type": "spacing",
+   "logprob": -1.2397689715726301e-05
+  },
+  {
+   "text": "vestments.",
+   "start": 1.56,
+   "end": 2.2,
+   "type": "word",
+   "logprob": -0.0013097161750920349
+  },
+  {
+   "text": " ",
+   "start": 2.2,
+   "end": 2.2,
+   "type": "spacing",
+   "logprob": -6.318072337307967e-06
+  },
+  {
+   "text": "Take",
+   "start": 2.7,
+   "end": 2.88,
+   "type": "word",
+   "logprob": -6.318072337307967e-06
+  },
+  {
+   "text": " ",
+   "start": 2.88,
+   "end": 2.92,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "them",
+   "start": 2.92,
+   "end": 3.02,
+   "type": "word",
+   "logprob": 0.0
+  },
+  {
+   "text": " ",
+   "start": 3.02,
+   "end": 3.12,
+   "type": "spacing",
+   "logprob": 0.0
+  },
+  {
+   "text": "off",
+   "start": 3.12,
+   "end": 3.36,
+   "type": "word",
+   "logprob": 0.0
+  }
+ ]
+}

@@ -65,7 +65,7 @@ public final class DeeplightScenario implements Scenario {
     private static final int DEEP_PAD_Y_MAX = 140;
     /** Over the Reach's islands (tops 346 to 381). */
     private static final int REACH_PAD_Y = 396;
-    private static final int SEARCH = 64;
+    private static final int SEARCH = 144;
     /** The middle of the frame that is measured (pixels), well inside the patch. */
     private static final int MID_W = 240;
     private static final int MID_H = 140;

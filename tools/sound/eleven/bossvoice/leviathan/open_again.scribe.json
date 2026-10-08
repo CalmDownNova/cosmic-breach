@@ -1,0 +1,82 @@
+{
+ "text": "Back again? You missed my song",
+ "words": [
+  {
+   "text": "Back",
+   "start": 0.28,
+   "end": 0.58,
+   "type": "word",
+   "logprob": -0.061985764652490616
+  },
+  {
+   "text": " ",
+   "start": 0.58,
+   "end": 0.66,
+   "type": "spacing",
+   "logprob": -2.145764938177308e-06
+  },
+  {
+   "text": "again?",
+   "start": 0.66,
+   "end": 1.12,
+   "type": "word",
+   "logprob": -1.0788195671314801e-05
+  },
+  {
+   "text": " ",
+   "start": 1.12,
+   "end": 1.12,
+   "type": "spacing",
+   "logprob": -2.0265558760002023e-06
+  },
+  {
+   "text": "You",
+   "start": 1.82,
+   "end": 1.9,
+   "type": "word",
+   "logprob": -2.0265558760002023e-06
+  },
+  {
+   "text": " ",
+   "start": 1.9,
+   "end": 2.02,
+   "type": "spacing",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": "missed",
+   "start": 2.02,
+   "end": 2.34,
+   "type": "word",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": " ",
+   "start": 2.34,
+   "end": 2.4,
+   "type": "spacing",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": "my",
+   "start": 2.4,
+   "end": 2.56,
+   "type": "word",
+   "logprob": -2.3841855067985307e-07
+  },
+  {
+   "text": " ",
+   "start": 2.56,
+   "end": 2.74,
+   "type": "spacing",
+   "logprob": -9.536738616588991e-07
+  },
+  {
+   "text": "song",
+   "start": 2.74,
+   "end": 3.3,
+   "type": "word",
+   "logprob": -9.536738616588991e-07
+  }
+ ]
+}

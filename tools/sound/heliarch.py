@@ -10,6 +10,10 @@ shaped into one hollow, regal, resonant voice:
     heliarch/voice_death        "Ah... I can hear them again. Sing."
     heliarch/voice_player_down  "Silence."
 
+plus 1.1.0's reactive set (MORE_LINES: every other boss 4 row of the vault's "Aetheria 1.1 Voice Script v1", read from
+eleven/voice_script.json, which voicebatch.py exports), made from the same voice, model and settings and shaped by
+the same chain. The six shipped lines keep their seeds, so they build bit for bit as before.
+
   1. the words: high-passed at 85 Hz, the boxy low mids (380 Hz) pulled down, a little chest (160 Hz) and presence
      (3.2 kHz) so it stays clear under the boss loop; each whispered phrase brought part of the way up (voice.py's
      phrase leveller) and the loudest syllables held by a peak limiter;
@@ -36,8 +40,11 @@ Run:  python tools/sound/build.py heliarch music/heliarch
 """
 from __future__ import annotations
 
+import json
+import zlib
 from fractions import Fraction
 from functools import lru_cache, partial
+from pathlib import Path
 
 import numpy as np
 from scipy import signal
@@ -64,9 +71,40 @@ LINES = {
     "death": "Ah... I can hear them again. Sing.",
     "player_down": "Silence.",
 }
+
+
+def _more_lines() -> dict:
+    """1.1.0's new lines: id to words (the subtitle), from the exported voice script; empty before the export."""
+    path = Path(__file__).resolve().parent / "eleven" / "voice_script.json"
+    if not path.exists():
+        return {}
+    rows = json.loads(path.read_text(encoding="utf-8"))["lines"]
+    return {r["id"]: r["words"] for r in rows if r["boss"] == "heliarch" and not r["shipped"] and r["id"] not in LINES}
+
+
+MORE_LINES = _more_lines()
+ALL_LINES = {**LINES, **MORE_LINES}
+
+
+def _seed(name: str) -> int:
+    """The shipped six keep their seeds; a new line's comes from its own name, so adding one never moves another."""
+    return 2600 + sorted(LINES).index(name) if name in LINES else 2700 + zlib.crc32(name.encode("utf-8")) % 1000
+
+
+def _voiced() -> list:
+    """Every line whose take is kept (the new ones join as voicebatch.py picks them)."""
+    return [n for n in ALL_LINES if (eleven.OUT / "heliarch" / f"{n}.wav").exists()]
+
+
 LEVEL_LUFS = -16.0
 TAIL = 2.6
 PEAK_OVER = 13.0
+# A boss's spoken line holds its peaks this far under the build's -1 dBTP ceiling before it is encoded: Vorbis lifts the
+# loudest peak of a line (0.2 dB at most on the Colossus's and the Leviathan's lines, 0.54 dB on boss 4's nova_broken, which
+# decodes at -1.01 dBTP), and the voice production plan wants every spoken line at or under -1 dBTP once encoded
+# (build.warnings_for says so for any that is not). The Colossus's and the Leviathan's lines (bossvoice) and boss 4's lines
+# new in 1.1.0 keep it; boss 4's six shipped lines do not, so they build bit for bit.
+ENCODER_HEADROOM_DB = 0.5
 
 
 def comb(x: np.ndarray, delay: float, feedback: float) -> np.ndarray:
@@ -83,10 +121,9 @@ def envelope(x: np.ndarray, window: float) -> np.ndarray:
     return np.sqrt(np.convolve(np.square(x), np.ones(w) / w, mode="same"))
 
 
-@lru_cache(maxsize=None)
-def voice_parts(name: str) -> dict:
-    r = rng(2600 + sorted(LINES).index(name))
-    take = eleven.sample(f"heliarch/{name}")
+def clean_words(take: np.ndarray) -> np.ndarray:
+    """A take's words as the voice chain shapes them before placing them (step 1 above): what the build plays and what
+    voicebatch.py's take check measures, so both judge the same span."""
     onset, end = first_onset(take), last_sound(take)
     words = hp(take, 85.0, 2)
     words = eq(words, "peak", 380.0, 1.0, -3.0)
@@ -95,7 +132,13 @@ def voice_parts(name: str) -> dict:
     words = level_phrases(words, share=0.5, most=4.0)
     words, _ = limiter(words, db(integrated(words) + PEAK_OVER), max_reduction_db=8.0)
     words = fade(words[at(max(onset - 0.06, 0.0)):at(end + 0.3)], 0.01, 0.2)
-    words = norm(words)
+    return norm(words)
+
+
+@lru_cache(maxsize=None)
+def voice_parts(name: str) -> dict:
+    r = rng(_seed(name))
+    words = clean_words(eleven.sample(f"heliarch/{name}"))
     lead = 0.15
     length = lead + len(words) / SR + TAIL
     dry = place(silence(length), words, lead)
@@ -125,8 +168,9 @@ def voice(name: str) -> np.ndarray:
 
 
 def _voice_event(name: str) -> Event:
-    return Event(f"heliarch/voice_{name}", f"\"{LINES[name]}\"", [lambda n=name: voice(n)], length=12.0,
-                 level=LEVEL_LUFS + 15.0, fade_out=0.8, speech=True, quality=6)
+    return Event(f"heliarch/voice_{name}", f"\"{ALL_LINES[name]}\"", [lambda n=name: voice(n)], length=12.0,
+                 level=LEVEL_LUFS + 15.0, fade_out=0.8, speech=True, quality=6,
+                 headroom_db=0.0 if name in LINES else ENCODER_HEADROOM_DB)
 
 
 # ---------------------------------------------------------------------------------------------------------- effects
@@ -740,7 +784,7 @@ def collapse_loop():
 
 
 EVENTS = [
-    *[_voice_event(n) for n in LINES],
+    *[_voice_event(n) for n in _voiced()],
     Event("heliarch/assemble", "Debris rises out of the Breach", [assemble], length=4.0, level=0.0, fade_out=0.8),
     Event("heliarch/ignite", "A sun ignites", [ignite], length=2.4, level=2.0, fade_out=0.6),
     Event("heliarch/open", "The halo opens", [halo_open], length=1.0, level=-6.0, fade_out=0.2),
@@ -805,7 +849,7 @@ def report() -> int:
     music = max(integrated(sf.read(str(sounds / "music" / f"heliarch_{m}.ogg"))[0]) for m in ("regent", "hollow", "collapse"))
     print(f"loudest boss loop {music:.1f} LUFS")
     problems = 0
-    for name in LINES:
+    for name in _voiced():
         y, _ = sf.read(str(sounds / "heliarch" / f"voice_{name}.ogg"))
         p = voice_parts(name)
         rest = p["hollow"] + p["hum"] + p["room"]

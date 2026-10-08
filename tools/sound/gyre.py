@@ -149,6 +149,18 @@ def death(seed=3201):
     return reverb(out, r, wet=0.25, t60=1.2)
 
 
+def dive_tell(seed=3231):
+    """The Dive's tell (1.1): a call rising a fifth from 440 Hz over 0.85 s, then a chime as the blades turn gold."""
+    r = rng(seed)
+    out = silence(1.0)
+    t = timeline(0.85)
+    ph = phase_of(440.0 * 1.5 ** np.clip(t / 0.85, 0, 1))
+    x = (np.sin(ph) + 0.35 * np.sin(2 * ph) + 0.15 * np.sin(3 * ph)) * np.clip(t / 0.15, 0, 1) * np.clip((0.85 - t) / 0.05, 0, 1)
+    place(out, norm(x), 0.0, 0.8)
+    place(out, norm(chime(note("E6"), 0.2, ratios=BAR, taus=(0.15, 0.06, 0.03, 0.015))), 0.78, 0.5)
+    return reverb(out, r, wet=0.15, t60=0.8)
+
+
 EVENTS = [
     Event("gyre/hum", "Gyroscope hums", [hum], length=HUM_SECONDS, level=-8.0, loop=True, quality=6),
     Event("gyre/whine", "Gyre Knight's rings whine", [whine], length=1.0, level=-1.0, fade_out=0.1),
@@ -161,6 +173,7 @@ EVENTS = [
     Event("gyre/blade_break", "Gyre blade breaks", [blade_break], length=0.8, level=1.0, fade_out=0.2),
     Event("gyre/deflect", "Blade deflects", [partial(deflect, 3211), partial(deflect, 3212)], length=0.35, level=-2.0, fade_out=0.08),
     Event("gyre/stun", "Gyre Knight drops", [stun], length=1.2, level=0.0, fade_out=0.3),
+    Event("gyre/dive_tell", "Gyre Knight dives", [dive_tell], length=1.0, level=-1.0, fade_out=0.1),
     Event("gyre/hurt", "Gyre Knight hurts", [partial(hurt, 3221, 700.0), partial(hurt, 3222, 820.0), partial(hurt, 3223, 610.0)],
           length=0.4, level=-4.0, fade_out=0.08),
     Event("gyre/death", "Gyre Knight falls apart", [death], length=2.0, level=1.0, fade_out=0.4),

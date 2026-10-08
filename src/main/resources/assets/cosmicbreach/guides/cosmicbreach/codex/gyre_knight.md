@@ -23,8 +23,12 @@ pitch of its hum, and watch how wide they spread.
   lines. While its blades are away, its core lies open.
 - **Recall Crash:** once it is badly hurt, red lines run from each blade back to its core, through where you
   stand. Leave the lines.
+- **Dive:** after two or three volleys at someone standing on rock, its rings swell, its blades glow **gold** and it
+  calls, rising. Then it drops beside you, cuts once (parry it), and hangs there in reach for two seconds, its
+  core open. Make them count.
 
-Break its guard and it drops to the nearest ground, stunned, its core open.
+Break its guard and it sinks, stunned, to your level and no further, its core open. Cut one down over open sky and
+what it carried goes straight into your pack.
 
 It carries a **Gyre Core**, Nebulite, often a **Gyre Blade** (the Binary Edges want two), and rarely a
 **Gravity Loop**.

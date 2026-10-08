@@ -1,0 +1,26 @@
+{
+ "text": "At last",
+ "words": [
+  {
+   "text": "At",
+   "start": 0.4,
+   "end": 0.52,
+   "type": "word",
+   "logprob": -0.00015043080202303827
+  },
+  {
+   "text": " ",
+   "start": 0.52,
+   "end": 0.64,
+   "type": "spacing",
+   "logprob": -0.0002674698771443218
+  },
+  {
+   "text": "last",
+   "start": 0.64,
+   "end": 1.2,
+   "type": "word",
+   "logprob": -0.0002674698771443218
+  }
+ ]
+}

@@ -53,6 +53,10 @@
     "cosmicbreach:sanctum_throne",
     "cosmicbreach:sanctum_vault",
     "cosmicbreach:heliarch_monolith",
-    "cosmicbreach:heliarch_reliquary"
+    "cosmicbreach:heliarch_reliquary",
+    "cosmicbreach:shrine_colossus",
+    "cosmicbreach:shrine_leviathan",
+    "cosmicbreach:shrine_unsung",
+    "cosmicbreach:shrine_heliarch"
   ]
 }

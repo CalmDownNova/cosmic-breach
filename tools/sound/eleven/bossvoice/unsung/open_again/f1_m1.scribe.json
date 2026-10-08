@@ -1,0 +1,40 @@
+{
+ "text": "You came back",
+ "words": [
+  {
+   "text": "You",
+   "start": 0.2,
+   "end": 0.26,
+   "type": "word",
+   "logprob": -1.2755313036905136e-05
+  },
+  {
+   "text": " ",
+   "start": 0.26,
+   "end": 0.36,
+   "type": "spacing",
+   "logprob": -2.9802276912960224e-06
+  },
+  {
+   "text": "came",
+   "start": 0.36,
+   "end": 0.58,
+   "type": "word",
+   "logprob": -2.9802276912960224e-06
+  },
+  {
+   "text": " ",
+   "start": 0.58,
+   "end": 0.68,
+   "type": "spacing",
+   "logprob": -2.622600959512056e-06
+  },
+  {
+   "text": "back",
+   "start": 0.68,
+   "end": 0.92,
+   "type": "word",
+   "logprob": -2.622600959512056e-06
+  }
+ ]
+}

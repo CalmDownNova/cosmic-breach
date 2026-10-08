@@ -1,0 +1,68 @@
+{
+ "text": "My song is running out",
+ "words": [
+  {
+   "text": "My",
+   "start": 0.26,
+   "end": 0.4,
+   "type": "word",
+   "logprob": -1.9192511899746023e-05
+  },
+  {
+   "text": " ",
+   "start": 0.4,
+   "end": 0.52,
+   "type": "spacing",
+   "logprob": -9.179073458653875e-06
+  },
+  {
+   "text": "song",
+   "start": 0.52,
+   "end": 0.9,
+   "type": "word",
+   "logprob": -9.179073458653875e-06
+  },
+  {
+   "text": " ",
+   "start": 0.9,
+   "end": 0.94,
+   "type": "spacing",
+   "logprob": -1.311301275563892e-06
+  },
+  {
+   "text": "is",
+   "start": 0.96,
+   "end": 1.12,
+   "type": "word",
+   "logprob": -1.311301275563892e-06
+  },
+  {
+   "text": " ",
+   "start": 1.12,
+   "end": 1.18,
+   "type": "spacing",
+   "logprob": -7.390948667307384e-06
+  },
+  {
+   "text": "running",
+   "start": 1.18,
+   "end": 1.48,
+   "type": "word",
+   "logprob": -7.390948667307384e-06
+  },
+  {
+   "text": " ",
+   "start": 1.48,
+   "end": 1.58,
+   "type": "spacing",
+   "logprob": -3.576278118089249e-07
+  },
+  {
+   "text": "out",
+   "start": 1.58,
+   "end": 1.92,
+   "type": "word",
+   "logprob": -3.576278118089249e-07
+  }
+ ]
+}

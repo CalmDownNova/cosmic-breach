@@ -24,8 +24,8 @@ dimmed.
 **It grows.** A Forge begins at the first tier. Each guardian's heart raises it one tier, and each tier grows
 another ring orbiting the anvil, so your hall shows how far you have come at a glance:
 
-- **I**, as built: Meridian, the Starfall Vanguard, saddles and barding, the Brazier of Solenne, Reverie Draughts
-  and Guardian Echoes.
+- **I**, as built: Meridian, the Starfall Vanguard, saddles, barding and Stable Crystals, the Brazier of Solenne,
+  Reverie Draughts and Guardian Echoes.
 - **II**, with a **Prism Heart**: the weapons, armor and tack of the Drift.
 - **III**, with a **Leviathan Pearl**: the weapons and armor of the Deep, and one thing more.
 - **IV**, with a **Solar Heart**: the last of the reforges.

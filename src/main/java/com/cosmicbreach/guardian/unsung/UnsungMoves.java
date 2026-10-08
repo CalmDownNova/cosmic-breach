@@ -17,7 +17,7 @@ public final class UnsungMoves {
     /** Harmonize comes every 48 beats; its warning is the cycle's last 8. */
     public static final int CYCLE_BEATS = 48;
     public static final int WARNING_BEATS = 8;
-    /** The masks lift in the last 8 beats before the fight's first turn (the intro takes 8 to 15 beats). */
+    /** The masks lift in the last 8 beats before the fight's first turn (the intro takes 8 to 23 beats: one more turn when the opener's first word would come before the wake sounds are over). */
     public static final int INTRO_BEATS = 8;
     /** The chords of the song, one per turn: D minor, B flat, G minor, A. */
     public static final int CHORDS = 4;

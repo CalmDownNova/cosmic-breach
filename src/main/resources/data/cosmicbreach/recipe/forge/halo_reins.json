@@ -1,5 +1,6 @@
 {
   "type": "cosmicbreach:astral_forge",
+  "category": "mount_gear",
   "ingredients": [
     {
       "count": 4,
@@ -7,11 +8,11 @@
     },
     {
       "count": 2,
-      "item": "minecraft:gold_ingot"
+      "tag": "cosmicbreach:gilding"
     },
     {
       "count": 1,
-      "item": "minecraft:leather"
+      "tag": "c:leathers"
     }
   ],
   "order": 62,

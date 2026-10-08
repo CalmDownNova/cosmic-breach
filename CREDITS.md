@@ -23,11 +23,12 @@ here, covered by ElevenLabs' terms, and excluded from the MIT grant.
 
 | What | ElevenLabs model | Count |
 |---|---|---|
-| Voice lines (text to speech, ElevenLabs premade voices) | ElevenLabs v4 (`eleven_v4`) | 19 lines, 3 voices |
+| Voice lines (text to speech, ElevenLabs premade voices and voices designed with ElevenLabs) | ElevenLabs v4 (`eleven_v4`) | 84 lines (13 of them stitched from 40 fragments), 8 voices |
+| Custom voices for those lines | ElevenLabs Voice Design (`eleven_ttv_v3`) | 5 voices |
 | ElevenLabs sound effects (source takes) | `eleven_text_to_sound_v2` | 8 prompts, 10 takes |
 
-Every take was fetched once and kept as a source file under `tools/sound/eleven/`, then filtered, layered and mastered
-by the mod's own sound build. The build never calls the network.
+Every take that ships was fetched once and kept as a source file under `tools/sound/eleven/`, then filtered, layered
+and mastered by the mod's own sound build. The build never calls the network.
 
 Voices by ElevenLabs (elevenlabs.io).
 

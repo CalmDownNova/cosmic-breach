@@ -1,0 +1,68 @@
+{
+ "text": "Riding my little cousins? Clever",
+ "words": [
+  {
+   "text": "Riding",
+   "start": 0.12,
+   "end": 0.42,
+   "type": "word",
+   "logprob": -0.00012874516141891945
+  },
+  {
+   "text": " ",
+   "start": 0.42,
+   "end": 0.46,
+   "type": "spacing",
+   "logprob": -0.00014029949670657516
+  },
+  {
+   "text": "my",
+   "start": 0.46,
+   "end": 0.56,
+   "type": "word",
+   "logprob": -0.00014029949670657516
+  },
+  {
+   "text": " ",
+   "start": 0.56,
+   "end": 0.6,
+   "type": "spacing",
+   "logprob": -5.602820692729438e-06
+  },
+  {
+   "text": "little",
+   "start": 0.6,
+   "end": 0.78,
+   "type": "word",
+   "logprob": -5.602820692729438e-06
+  },
+  {
+   "text": " ",
+   "start": 0.78,
+   "end": 0.88,
+   "type": "spacing",
+   "logprob": -5.3881147323409095e-05
+  },
+  {
+   "text": "cousins?",
+   "start": 0.88,
+   "end": 1.34,
+   "type": "word",
+   "logprob": -4.741422452525512e-05
+  },
+  {
+   "text": " ",
+   "start": 1.34,
+   "end": 1.64,
+   "type": "spacing",
+   "logprob": -1.2278481335670222e-05
+  },
+  {
+   "text": "Clever",
+   "start": 1.64,
+   "end": 2.08,
+   "type": "word",
+   "logprob": -1.2278481335670222e-05
+  }
+ ]
+}

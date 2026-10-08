@@ -1,0 +1,26 @@
+{
+ "text": "Again! Burn!",
+ "words": [
+  {
+   "text": "Again!",
+   "start": 0.24,
+   "end": 0.86,
+   "type": "word",
+   "logprob": -0.08438517431083407
+  },
+  {
+   "text": " ",
+   "start": 0.86,
+   "end": 0.86,
+   "type": "spacing",
+   "logprob": -2.098061486321967e-05
+  },
+  {
+   "text": "Burn!",
+   "start": 1.4,
+   "end": 1.88,
+   "type": "word",
+   "logprob": -0.00012783286947524176
+  }
+ ]
+}

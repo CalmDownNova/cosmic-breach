@@ -1,0 +1,12 @@
+{
+  "block.cosmicbreach.shrine_colossus": "Prism Shrine",
+  "block.cosmicbreach.shrine_leviathan": "Tide Shrine",
+  "block.cosmicbreach.shrine_unsung": "Choir Shrine",
+  "block.cosmicbreach.shrine_heliarch": "Eclipse Shrine",
+  "cosmicbreach.shrine.saved": "The shrine will keep your place.",
+  "cosmicbreach.shrine.kept": "The shrine kept everything you carried.",
+  "subtitles.cosmicbreach.shrine.save": "A shrine chimes",
+  "subtitles.cosmicbreach.shrine.kept": "A shrine gives back what you carried",
+  "commands.cosmicbreach.debug.shrines.placed": "Placed %s shrine(s)",
+  "commands.cosmicbreach.debug.shrines.none": "No shrine has been placed yet"
+}

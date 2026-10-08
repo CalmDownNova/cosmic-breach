@@ -1,0 +1,26 @@
+{
+ "text": "Who comes?",
+ "words": [
+  {
+   "text": "Who",
+   "start": 0.24,
+   "end": 0.34,
+   "type": "word",
+   "logprob": -0.00029583368450403214
+  },
+  {
+   "text": " ",
+   "start": 0.34,
+   "end": 0.44,
+   "type": "spacing",
+   "logprob": -0.008905337192118168
+  },
+  {
+   "text": "comes?",
+   "start": 0.44,
+   "end": 0.68,
+   "type": "word",
+   "logprob": -0.008191271917894483
+  }
+ ]
+}

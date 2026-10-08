@@ -1,0 +1,96 @@
+{
+ "text": "Too slow. The dark is always faster.",
+ "words": [
+  {
+   "text": "Too",
+   "start": 0.36,
+   "end": 0.52,
+   "type": "word",
+   "logprob": -0.0005435658385977149
+  },
+  {
+   "text": " ",
+   "start": 0.52,
+   "end": 0.68,
+   "type": "spacing",
+   "logprob": -1.7881377516459906e-06
+  },
+  {
+   "text": "slow.",
+   "start": 0.68,
+   "end": 1.02,
+   "type": "word",
+   "logprob": -6.629368745052489e-05
+  },
+  {
+   "text": " ",
+   "start": 1.02,
+   "end": 1.02,
+   "type": "spacing",
+   "logprob": -1.9073468138230965e-06
+  },
+  {
+   "text": "The",
+   "start": 1.62,
+   "end": 1.74,
+   "type": "word",
+   "logprob": -1.9073468138230965e-06
+  },
+  {
+   "text": " ",
+   "start": 1.74,
+   "end": 1.78,
+   "type": "spacing",
+   "logprob": -0.0004314445541240275
+  },
+  {
+   "text": "dark",
+   "start": 1.78,
+   "end": 2.04,
+   "type": "word",
+   "logprob": -0.0004314445541240275
+  },
+  {
+   "text": " ",
+   "start": 2.04,
+   "end": 2.1,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "is",
+   "start": 2.1,
+   "end": 2.26,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 2.26,
+   "end": 2.38,
+   "type": "spacing",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": "always",
+   "start": 2.38,
+   "end": 2.72,
+   "type": "word",
+   "logprob": -1.1920928244535389e-07
+  },
+  {
+   "text": " ",
+   "start": 2.72,
+   "end": 2.84,
+   "type": "spacing",
+   "logprob": -3.814689989667386e-06
+  },
+  {
+   "text": "faster.",
+   "start": 2.84,
+   "end": 3.3,
+   "type": "word",
+   "logprob": -0.06773361988806366
+  }
+ ]
+}

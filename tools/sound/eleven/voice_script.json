@@ -1,0 +1,1267 @@
+{
+  "source": "Aetheria 1.1 Voice Script v1",
+  "exported_utc": "2026-10-02T04:36:07Z",
+  "lines": [
+    {
+      "boss": "colossus",
+      "id": "open_solo",
+      "trigger": "fight_start",
+      "condition": "players:solo, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "[deep] A climber. ...Come. Learn.",
+      "words": "A climber. ...Come. Learn.",
+      "delivery": "Waking after an age: each word set down like a stone, long pauses at the ellipses. Starts at intro tick 120 (after the fifth crown crystal lights) and ends before the fight starts at tick 200. Budget 3.8 s.",
+      "budget": 3.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "open_group",
+      "trigger": "fight_start",
+      "condition": "players:group, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "[deep] Many climbers. ...Good. Come.",
+      "words": "Many climbers. ...Good. Come.",
+      "delivery": "Pleased, unhurried. Intro tick 120. Budget 3.8 s.",
+      "budget": 3.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "open_again",
+      "trigger": "fight_start",
+      "condition": "returning",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "[a low chuckle] You again. ...Come, then.",
+      "words": "You again. ...Come, then.",
+      "delivery": "A teacher who knew you would be back. Intro tick 120. Budget 3.8 s.",
+      "budget": 3.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "fracture",
+      "trigger": "hp_threshold:50",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "text": "[strained, slow] Now... I remember.",
+      "words": "Now... I remember.",
+      "delivery": "Old skill waking as it cracks (phase 2 is harder). Starts at Fracture tick 12, after the roar's peak, and should end before the first phase 2 telegraph. Budget 2.9 s.",
+      "budget": 2.9,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "shatter",
+      "trigger": "hp_threshold:0",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "text": "[low, urgent] All three... or none.",
+      "words": "All three... or none.",
+      "delivery": "The hint, said once, as its body bursts into three shards; processed into three voices. Starts at Shatter tick 10. Budget 2.6 s.",
+      "budget": 2.6,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "reform",
+      "trigger": "taunt",
+      "condition": "on:reform",
+      "priority": 65,
+      "repeat": "once per fight",
+      "text": "[deep, dry] Together... again.",
+      "words": "Together... again.",
+      "delivery": "Dry, almost fond: the shards made it home. Plays while they fly back. Budget 2.4 s.",
+      "budget": 2.4,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "player_down",
+      "trigger": "player_death",
+      "condition": "none",
+      "priority": 70,
+      "repeat": "once per fight",
+      "text": "[gently] Rest. ...Then climb again.",
+      "words": "Rest. ...Then climb again.",
+      "delivery": "No triumph: a teacher sending a student back up the stair. Budget 3.2 s.",
+      "budget": 3.2,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "breathe",
+      "trigger": "player_low_health",
+      "condition": "health<=25%",
+      "priority": 60,
+      "repeat": "once per fight",
+      "text": "[deep, firmly] Breathe. ...Step back.",
+      "words": "Breathe. ...Step back.",
+      "delivery": "Advice, not a threat. Budget 2.6 s.",
+      "budget": 2.6,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "wait",
+      "trigger": "player_left",
+      "condition": "all_gone, away>=5s",
+      "priority": 40,
+      "repeat": "once per fight",
+      "text": "[slowly] I will wait.",
+      "words": "I will wait.",
+      "delivery": "Everyone has left the crown for 5 s (the reset comes 25 s later). Budget 2.2 s.",
+      "budget": 2.2,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "my_heart",
+      "trigger": "weapon:forge_tier_2",
+      "condition": "also:forge_tier_3, also:forge_tier_4",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "[slowly, wondering] My heart... in your blade.",
+      "words": "My heart... in your blade.",
+      "delivery": "Its own Prism Heart raised the forge that made this weapon, so this only happens after an earlier kill. Quiet wonder, no anger. Budget 3.1 s.",
+      "budget": 3.1,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "fists",
+      "trigger": "weapon:bare_hands",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "text": "[dry amusement] Fists? ...Bold.",
+      "words": "Fists? ...Bold.",
+      "delivery": "The driest joke it has. Budget 2.4 s.",
+      "budget": 2.4,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "fallen_stars",
+      "trigger": "armor:mod_full_set",
+      "condition": "set:vanguard",
+      "priority": 45,
+      "repeat": "once per fight",
+      "text": "[low, approving] You wear... fallen stars.",
+      "words": "You wear... fallen stars.",
+      "delivery": "The Starfall Vanguard is meteor-forged plate. Budget 2.9 s.",
+      "budget": 2.9,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "too_strong",
+      "trigger": "gear:over",
+      "condition": "none",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "[dry] Too strong... for this lesson.",
+      "words": "Too strong... for this lesson.",
+      "delivery": "Amused, faintly disappointed. Budget 2.8 s.",
+      "budget": 2.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "colossus",
+      "id": "kill",
+      "trigger": "boss_kill",
+      "condition": "none",
+      "priority": 100,
+      "repeat": "once per fight",
+      "text": "[slowly, softly, at peace] Go down... and listen.",
+      "words": "Go down... and listen.",
+      "delivery": "Gladly let go. Starts at death tick 5 and must end before tick 60, when the rewards and the guide's line follow. Oblique pointer to the level below and its song. Budget 2.8 s.",
+      "budget": 2.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "open_solo",
+      "trigger": "fight_start",
+      "condition": "players:solo, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "[warm, amused] A small, heavy singer in my sky. [curious] Show me how you swim.",
+      "words": "A small, heavy singer in my sky. Show me how you swim.",
+      "delivery": "Delighted by a visitor, lilting. Starts at intro tick 40 and must end before its song at intro tick 150. Budget 5.0 s.",
+      "budget": 5.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "open_group",
+      "trigger": "fight_start",
+      "condition": "players:group, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "[delighted] A chorus! [softly] No one has sung with me in an age.",
+      "words": "A chorus! No one has sung with me in an age.",
+      "delivery": "Joy first, then the loneliness under it. Intro tick 40. Budget 5.0 s.",
+      "budget": 5.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "open_again",
+      "trigger": "fight_start",
+      "condition": "returning",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "[amused] Back again? [singsong] You missed my song.",
+      "words": "Back again? You missed my song.",
+      "delivery": "Teasing, pleased. Intro tick 40. Budget 4.0 s.",
+      "budget": 4.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "moor_first",
+      "trigger": "hp_threshold:50",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "text": "[breathless, amused] Come, little one. Climb me.",
+      "words": "Come, little one. Climb me.",
+      "delivery": "The first Moorage: an invitation and a hint (leap onto its back). During the swim in or the first 60 coiled ticks, before the first ripple. Budget 3.0 s.",
+      "budget": 3.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "moor_last",
+      "trigger": "hp_threshold:20",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "text": "[weary, low] My song is running out.",
+      "words": "My song is running out.",
+      "delivery": "The second Moorage: tired, not afraid. Same window as moor_first. Budget 3.0 s.",
+      "budget": 3.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "player_down",
+      "trigger": "player_death",
+      "condition": "none",
+      "priority": 70,
+      "repeat": "once per fight",
+      "text": "[quickly] Hush. Sleep in the current.",
+      "words": "Hush. Sleep in the current.",
+      "delivery": "Tender, almost a lullaby. Quiet window only. Budget 1.95 s.",
+      "budget": 1.95,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "fell",
+      "trigger": "player_fell",
+      "condition": "none",
+      "priority": 60,
+      "repeat": "once per fight",
+      "text": "[quickly] My sky always gives you back.",
+      "words": "My sky always gives you back.",
+      "delivery": "When the rising wind catches a falling player: a joke and a hint that the fall is survivable. Quiet window only. Budget 1.95 s.",
+      "budget": 1.95,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "my_pearl",
+      "trigger": "weapon:forge_tier_3",
+      "condition": "also:forge_tier_4",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "[quickly] My pearl sings in that blade.",
+      "words": "My pearl sings in that blade.",
+      "delivery": "Its own Leviathan Pearl raised the forge that made this weapon, so this only happens after an earlier kill. Curious, flattered. Quiet window only. Budget 1.95 s.",
+      "budget": 1.95,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "fork",
+      "trigger": "weapon:trident",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "text": "[quickly] A fork? I am no fish.",
+      "words": "A fork? I am no fish.",
+      "delivery": "Mock offence. Quiet window only. Budget 1.95 s.",
+      "budget": 1.95,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "crab",
+      "trigger": "armor:none",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "text": "[quickly] No shell? Brave little crab.",
+      "words": "No shell? Brave little crab.",
+      "delivery": "Fond teasing. Quiet window only. Budget 1.95 s.",
+      "budget": 1.95,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "too_soon",
+      "trigger": "gear:under",
+      "condition": "none",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "[quickly] You came too soon, little one.",
+      "words": "You came too soon, little one.",
+      "delivery": "Concern, not contempt. Quiet window only. Budget 1.95 s.",
+      "budget": 1.95,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "cousins",
+      "trigger": "taunt",
+      "condition": "while:mounted",
+      "priority": 30,
+      "repeat": "once per fight",
+      "text": "[quickly] Riding my little cousins? Clever.",
+      "words": "Riding my little cousins? Clever.",
+      "delivery": "A fighter rides a Drift Manta, the small singers of the Drift. Quiet window only. Budget 1.95 s.",
+      "budget": 1.95,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "coming_round",
+      "trigger": "attack_gap",
+      "condition": "target_far",
+      "priority": 25,
+      "repeat": "cooldown 120 s",
+      "text": "[quickly] Wait for me. I am coming round.",
+      "words": "Wait for me. I am coming round.",
+      "delivery": "Fills the flyby: its target is out of reach on the far side of the orbit. Quiet window only. Budget 1.95 s.",
+      "budget": 1.95,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "leviathan",
+      "id": "kill",
+      "trigger": "boss_kill",
+      "condition": "none",
+      "priority": 100,
+      "repeat": "once per fight",
+      "text": "[fading, tender] Carry my song down. They have forgotten theirs.",
+      "words": "Carry my song down. They have forgotten theirs.",
+      "delivery": "As it sinks, its song fading under the words. Starts at death tick 20. Oblique pointer to the level below. Budget 5.0 s.",
+      "budget": 5.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "unsung",
+      "id": "open_solo",
+      "trigger": "fight_start",
+      "condition": "players:solo, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "Who comes to the choir without a song?",
+      "words": "Who comes to the choir without a song?",
+      "delivery": "Relayed in the order the masks lift: each fragment starts one beat after its mask's first note, so 2 beats apart. Hushed, curious, cold. Fragment budget 1.1 s.",
+      "budget": null,
+      "fragment_budget": 1.1,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "[softly] Who comes"
+          },
+          {
+            "tag": "m2",
+            "text": "[softly] to the choir"
+          },
+          {
+            "tag": "m3",
+            "text": "[low, softly] without a song?"
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "open_group",
+      "trigger": "fight_start",
+      "condition": "players:group, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "So many of you, and not one knows the words.",
+      "words": "So many of you, and not one knows the words.",
+      "delivery": "On the lifts, as open_solo. Wonder turning to sorrow. Fragment budget 1.3 s.",
+      "budget": null,
+      "fragment_budget": 1.3,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "[wondering] So many of you,"
+          },
+          {
+            "tag": "m2",
+            "text": "and not one"
+          },
+          {
+            "tag": "m3",
+            "text": "[sorrowful] knows the words."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "open_again",
+      "trigger": "fight_start",
+      "condition": "returning",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "You came back to hear us forget again.",
+      "words": "You came back to hear us forget again.",
+      "delivery": "On the lifts. Resigned. Fragment budget 1.2 s.",
+      "budget": null,
+      "fragment_budget": 1.2,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "You came back"
+          },
+          {
+            "tag": "m2",
+            "text": "to hear us"
+          },
+          {
+            "tag": "m3",
+            "text": "[sorrowful] forget again."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "one_gone",
+      "trigger": "hp_threshold:67",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "text": "Who will sing its part now?",
+      "words": "Who will sing its part now?",
+      "delivery": "The first mask breaks: the two survivors share the sentence. Three variants, one per surviving pair. Shaken. Starts 1 beat after the crack. Budget 2.4 s.",
+      "budget": 2.4,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": {
+        "kind": "pair",
+        "fragments": [
+          {
+            "tag": "first",
+            "text": "[shaken] Who will sing"
+          },
+          {
+            "tag": "second",
+            "text": "its part now?"
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "alone",
+      "trigger": "hp_threshold:33",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "text": "I cannot... finish it... alone.",
+      "words": "I cannot... finish it... alone.",
+      "delivery": "The second mask breaks: the last mask tries to finish a sentence by itself, the only line in the first person singular. Halting, frightened. Three variants, one per survivor. Starts 1 beat after the crack. Budget 3.2 s.",
+      "budget": 3.2,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": {
+        "kind": "alone",
+        "fragments": [
+          {
+            "tag": "alone",
+            "text": "[halting, frightened] I cannot... finish it... alone."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "voice_falls",
+      "trigger": "player_death",
+      "condition": "masks:3",
+      "priority": 70,
+      "repeat": "once per fight",
+      "text": "Another voice falls silent in the song.",
+      "words": "Another voice falls silent in the song.",
+      "delivery": "Mournful, not cruel. Budget 3.1 s.",
+      "budget": 3.1,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "Another voice"
+          },
+          {
+            "tag": "m2",
+            "text": "falls [softly] silent"
+          },
+          {
+            "tag": "m3",
+            "text": "in the song."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "breathe",
+      "trigger": "player_low_health",
+      "condition": "health<=25%, masks:3",
+      "priority": 60,
+      "repeat": "once per fight",
+      "text": "Breathe, little voice, between the beats.",
+      "words": "Breathe, little voice, between the beats.",
+      "delivery": "Gentle, and a real hint: everything lands on the beat. Budget 3.1 s.",
+      "budget": 3.1,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "[gently] Breathe,"
+          },
+          {
+            "tag": "m2",
+            "text": "little voice,"
+          },
+          {
+            "tag": "m3",
+            "text": "[slowly] between the beats."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "thief",
+      "trigger": "weapon:forge_tier_3",
+      "condition": "item:choir_astrolabe, also:forge_tier_4, masks:3",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "Gently, thief, that astrolabe was ours.",
+      "words": "Gently, thief, that astrolabe was ours.",
+      "delivery": "The Choir Astrolabe was the Choir's own instrument. Sharp, then grieving. Budget 3.5 s.",
+      "budget": 3.5,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "[sharp] Gently, thief,"
+          },
+          {
+            "tag": "m2",
+            "text": "that astrolabe"
+          },
+          {
+            "tag": "m3",
+            "text": "[low, grieving] was ours."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "robes",
+      "trigger": "armor:mod_full_set",
+      "condition": "set:regalia, masks:3",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "You wear our robes, but you do not sing.",
+      "words": "You wear our robes, but you do not sing.",
+      "delivery": "The Choir Regalia is the Choir's ceremonial armor. Budget 3.0 s.",
+      "budget": 3.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "You wear our robes,"
+          },
+          {
+            "tag": "m2",
+            "text": "but you do not"
+          },
+          {
+            "tag": "m3",
+            "text": "sing."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "so_little_song",
+      "trigger": "gear:over",
+      "condition": "masks:3",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "All that armor, and so little song.",
+      "words": "All that armor, and so little song.",
+      "delivery": "Pity. Budget 3.1 s.",
+      "budget": 3.1,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "All that armor,"
+          },
+          {
+            "tag": "m2",
+            "text": "and so little"
+          },
+          {
+            "tag": "m3",
+            "text": "song."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "let_us_rise",
+      "trigger": "taunt",
+      "condition": "on:break, masks:3",
+      "priority": 60,
+      "repeat": "once per fight",
+      "text": "Let us rise, we have not finished.",
+      "words": "Let us rise, we have not finished.",
+      "delivery": "Spoken from the floor during a Break (no attacks for 100 ticks). Pleading. Starts 1 beat into the Break. Budget 3.0 s.",
+      "budget": 3.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "[pleading] Let us rise,"
+          },
+          {
+            "tag": "m2",
+            "text": "we have not"
+          },
+          {
+            "tag": "m3",
+            "text": "finished."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "found_silence",
+      "trigger": "taunt",
+      "condition": "on:harmonize_all_safe, masks:3",
+      "priority": 55,
+      "repeat": "once per fight",
+      "text": "You found the silence we never could.",
+      "words": "You found the silence we never could.",
+      "delivery": "After a Harmonize that caught nobody. Aching, envious. Starts 2 beats after the downbeat. Budget 3.0 s.",
+      "budget": 3.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "You found"
+          },
+          {
+            "tag": "m2",
+            "text": "the silence"
+          },
+          {
+            "tag": "m3",
+            "text": "[aching] we never could."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "unsung",
+      "id": "finished",
+      "trigger": "boss_kill",
+      "condition": "none",
+      "priority": 100,
+      "repeat": "once per fight",
+      "text": "The hymn is finished, at last.",
+      "words": "The hymn is finished, at last.",
+      "delivery": "All three voices return as ghosts, whispered, after the last soft chord: starts at death tick 36, fragments one beat apart, ends before tick 80 when the guide's line follows. Budget 2.2 s.",
+      "budget": 2.2,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": {
+        "kind": "relay",
+        "fragments": [
+          {
+            "tag": "m1",
+            "text": "[whispers] The hymn"
+          },
+          {
+            "tag": "m2",
+            "text": "[whispers, quickly] is finished,"
+          },
+          {
+            "tag": "m3",
+            "text": "[whispers, at peace] at last."
+          }
+        ]
+      }
+    },
+    {
+      "boss": "heliarch",
+      "id": "intro",
+      "trigger": "fight_start",
+      "condition": "players:solo, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "[slowly, hollow] Another singer. [weary] I poured a sun into the dark for you. It was not enough.",
+      "words": "Another singer. I poured a sun into the dark for you. It was not enough.",
+      "delivery": "Shipped take, kept. Intro tick 20.",
+      "budget": null,
+      "fragment_budget": null,
+      "shipped": true,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "open_group",
+      "trigger": "fight_start",
+      "condition": "players:group, first",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "[slowly, hollow] A whole choir, in the dark. [weary] I poured a sun into it for you. It was not enough.",
+      "words": "A whole choir, in the dark. I poured a sun into it for you. It was not enough.",
+      "delivery": "New, built to sit beside the shipped intro. Intro tick 20. Budget 8.5 s.",
+      "budget": 8.5,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "open_again",
+      "trigger": "fight_start",
+      "condition": "returning",
+      "priority": 90,
+      "repeat": "once per fight",
+      "text": "[weary, bitter] You again. Was my light not enough the first time?",
+      "words": "You again. Was my light not enough the first time?",
+      "delivery": "Someone in the fight has sealed the Breach before. Intro tick 20. Budget 5.0 s.",
+      "budget": 5.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "loud_light",
+      "trigger": "hp_threshold:80",
+      "condition": "none",
+      "priority": 75,
+      "repeat": "once per fight",
+      "text": "[cold] Your light is loud. The Hollow can hear it.",
+      "words": "Your light is loud. The Hollow can hear it.",
+      "delivery": "The Hollow's hunger in his mouth. Budget 4.0 s.",
+      "budget": 4.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "hollowing",
+      "trigger": "hp_threshold:60",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "text": "[strained] The Hollow wants the rest of me. [anguished] Let it have you instead.",
+      "words": "The Hollow wants the rest of me. Let it have you instead.",
+      "delivery": "Shipped take, kept. At the Hollowing.",
+      "budget": null,
+      "fragment_budget": null,
+      "shipped": true,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "nova",
+      "trigger": "hp_threshold:40",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "text": "[rising fury] Burn with me!",
+      "words": "Burn with me!",
+      "delivery": "Shipped take, kept. The first Nova channel.",
+      "budget": null,
+      "fragment_budget": null,
+      "shipped": true,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "nova_again",
+      "trigger": "taunt",
+      "condition": "on:nova_return",
+      "priority": 95,
+      "repeat": "cooldown 30 s",
+      "text": "[rising fury] Again! Burn!",
+      "words": "Again! Burn!",
+      "delivery": "Each return of the Nova channel after a detonation: the channel's spoken warning, so it plays at once. Budget 1.8 s.",
+      "budget": 1.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "nova_broken",
+      "trigger": "taunt",
+      "condition": "on:nova_broken",
+      "priority": 80,
+      "repeat": "once per fight",
+      "text": "[stunned] My sun... broken. Again.",
+      "words": "My sun... broken. Again.",
+      "delivery": "The shield broke and he is stunned, heart exposed; remembering the first time. Budget 3.2 s.",
+      "budget": 3.2,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "nova_failed",
+      "trigger": "taunt",
+      "condition": "on:nova_detonated",
+      "priority": 80,
+      "repeat": "once per fight",
+      "text": "[cold] Too slow. The dark is always faster.",
+      "words": "Too slow. The dark is always faster.",
+      "delivery": "Gloating, after the blast. Budget 3.2 s.",
+      "budget": 3.2,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "collapse",
+      "trigger": "hp_threshold:20",
+      "condition": "none",
+      "priority": 95,
+      "repeat": "once per fight",
+      "text": "[desperate] Everything falls. Everything always falls.",
+      "words": "Everything falls. Everything always falls.",
+      "delivery": "Shipped take, kept.",
+      "budget": null,
+      "fragment_budget": null,
+      "shipped": true,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "not_again",
+      "trigger": "hp_threshold:10",
+      "condition": "none",
+      "priority": 75,
+      "repeat": "once per fight",
+      "text": "[desperate] Not again. Not the dark again.",
+      "words": "Not again. Not the dark again.",
+      "delivery": "Dread of falling into the dark a second time. Budget 3.0 s.",
+      "budget": 3.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "death",
+      "trigger": "boss_kill",
+      "condition": "none",
+      "priority": 100,
+      "repeat": "once per fight",
+      "text": "[softly, relieved] Ah... I can hear them again. [whispers] Sing.",
+      "words": "Ah... I can hear them again. Sing.",
+      "delivery": "Shipped take, kept. Death tick 0; the guide speaks at tick 130.",
+      "budget": null,
+      "fragment_budget": null,
+      "shipped": true,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "alone_now",
+      "trigger": "player_death",
+      "condition": "players:group, last_alive",
+      "priority": 75,
+      "repeat": "once per fight",
+      "text": "[softly, cruel] Alone now. As I was.",
+      "words": "Alone now. As I was.",
+      "delivery": "A group fight down to its last living fighter. Listed first so it wins over the plain death lines. Budget 2.8 s.",
+      "budget": 2.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "player_down",
+      "trigger": "player_death",
+      "condition": "none",
+      "priority": 70,
+      "repeat": "once per fight",
+      "text": "[coldly] Silence.",
+      "words": "Silence.",
+      "delivery": "Shipped take, kept (now once per fight; the next row gives a second death a voice).",
+      "budget": null,
+      "fragment_budget": null,
+      "shipped": true,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "one_less",
+      "trigger": "player_death",
+      "condition": "none",
+      "priority": 70,
+      "repeat": "once per fight",
+      "text": "[coldly] One less voice.",
+      "words": "One less voice.",
+      "delivery": "Budget 2.0 s.",
+      "budget": 2.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "flicker",
+      "trigger": "player_low_health",
+      "condition": "health<=25%",
+      "priority": 60,
+      "repeat": "once per fight",
+      "text": "[softly] Flickering. I remember how that feels.",
+      "words": "Flickering. I remember how that feels.",
+      "delivery": "Envy and pity at once. Budget 3.2 s.",
+      "budget": 3.2,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "spat_out",
+      "trigger": "player_fell",
+      "condition": "none",
+      "priority": 60,
+      "repeat": "once per fight",
+      "text": "[dry] Even the Hollow will not have you.",
+      "words": "Even the Hollow will not have you.",
+      "delivery": "When the Breach throws a fallen player back onto the rim. Budget 2.8 s.",
+      "budget": 2.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "withdraw",
+      "trigger": "player_left",
+      "condition": "all_gone, away>=5s",
+      "priority": 40,
+      "repeat": "once per fight",
+      "text": "[weary] Go, then. I have waited longer than you have lived.",
+      "words": "Go, then. I have waited longer than you have lived.",
+      "delivery": "Nobody left on the floor; he withdraws 5 s later. Budget 4.5 s.",
+      "budget": 4.5,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "came_back",
+      "trigger": "player_returned",
+      "condition": "away>=10s",
+      "priority": 40,
+      "repeat": "once per fight",
+      "text": "[weary] You came back. They always come back.",
+      "words": "You came back. They always come back.",
+      "delivery": "A fighter returns to the floor in the same fight (the opener never replays). Budget 3.4 s.",
+      "budget": 3.4,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "my_light",
+      "trigger": "weapon:forge_tier_4",
+      "condition": "none",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "[stunned, quiet] That light... was mine.",
+      "words": "That light... was mine.",
+      "delivery": "Forge IV needs his Solar Heart, so this only happens on a later summon. Budget 2.8 s.",
+      "budget": 2.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "arrows",
+      "trigger": "weapon:bow",
+      "condition": "also:crossbow",
+      "priority": 45,
+      "repeat": "once per fight",
+      "text": "[contempt] Arrows. My halo has eaten a thousand.",
+      "words": "Arrows. My halo has eaten a thousand.",
+      "delivery": "Also a hint: his plates block projectiles. Budget 3.2 s.",
+      "budget": 3.2,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "fists",
+      "trigger": "weapon:bare_hands",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "text": "[disbelief] You strike a sun with your hands?",
+      "words": "You strike a sun with your hands?",
+      "delivery": "Budget 2.8 s.",
+      "budget": 2.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "strange_steel",
+      "trigger": "weapon:mod_weapon",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "text": "[curious, cold] That steel was not forged under my sun.",
+      "words": "That steel was not forged under my sun.",
+      "delivery": "A weapon from another mod. Budget 3.2 s.",
+      "budget": 3.2,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "vestments",
+      "trigger": "armor:mod_full_set",
+      "condition": "set:regalia",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "[pained] You wear my choir's vestments. Take them off.",
+      "words": "You wear my choir's vestments. Take them off.",
+      "delivery": "The Choir Regalia: grief turned to anger. Budget 3.6 s.",
+      "budget": 3.6,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "no_armor",
+      "trigger": "armor:none",
+      "condition": "none",
+      "priority": 45,
+      "repeat": "once per fight",
+      "text": "[incredulous] No armor at all? You came to burn.",
+      "words": "No armor at all? You came to burn.",
+      "delivery": "Budget 3.0 s.",
+      "budget": 3.0,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "give_it",
+      "trigger": "gear:over",
+      "condition": "none",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "[hungry] So much light on one singer. Give it to me.",
+      "words": "So much light on one singer. Give it to me.",
+      "delivery": "The Hollow's greed. Budget 3.6 s.",
+      "budget": 3.6,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "in_that",
+      "trigger": "gear:under",
+      "condition": "none",
+      "priority": 50,
+      "repeat": "once per fight",
+      "text": "[pitying] You came down here in that?",
+      "words": "You came down here in that?",
+      "delivery": "Budget 2.4 s.",
+      "budget": 2.4,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "too_close",
+      "trigger": "taunt",
+      "condition": "on:corona_flare",
+      "priority": 60,
+      "repeat": "cooldown 90 s",
+      "text": "[hissing] Too close to the sun, singer.",
+      "words": "Too close to the sun, singer.",
+      "delivery": "As the Corona Flare throws a hugging player out. Budget 2.9 s.",
+      "budget": 2.9,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "dim_me",
+      "trigger": "taunt",
+      "condition": "on:break",
+      "priority": 60,
+      "repeat": "once per fight",
+      "text": "[gasping] You... dim me.",
+      "words": "You... dim me.",
+      "delivery": "A Break: his guard cracked. Budget 2.8 s.",
+      "budget": 2.8,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    },
+    {
+      "boss": "heliarch",
+      "id": "long_fight",
+      "trigger": "taunt",
+      "condition": "on:soft_enrage",
+      "priority": 70,
+      "repeat": "once per fight",
+      "text": "[weary] The light is leaving us both.",
+      "words": "The light is leaving us both.",
+      "delivery": "Past 8 minutes, when his damage starts to climb. Budget 3.2 s.",
+      "budget": 3.2,
+      "fragment_budget": null,
+      "shipped": false,
+      "split": null
+    }
+  ]
+}

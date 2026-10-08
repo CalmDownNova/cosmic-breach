@@ -1,0 +1,26 @@
+{
+ "text": "Forget again",
+ "words": [
+  {
+   "text": "Forget",
+   "start": 0.26,
+   "end": 0.68,
+   "type": "word",
+   "logprob": -0.0008886678842827678
+  },
+  {
+   "text": " ",
+   "start": 0.68,
+   "end": 0.76,
+   "type": "spacing",
+   "logprob": -0.0004027270770166069
+  },
+  {
+   "text": "again",
+   "start": 0.76,
+   "end": 1.22,
+   "type": "word",
+   "logprob": -0.0004027270770166069
+  }
+ ]
+}

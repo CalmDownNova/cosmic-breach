@@ -1,0 +1,148 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.shrine_heliarch",
+        "texture_width": 128,
+        "texture_height": 128,
+        "visible_bounds_width": 3,
+        "visible_bounds_height": 3.5,
+        "visible_bounds_offset": [
+          0,
+          1.75,
+          0
+        ]
+      },
+      "bones": [
+        {
+          "name": "root",
+          "pivot": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -8.0,
+                0.0,
+                -8.0
+              ],
+              "size": [
+                16.0,
+                2.0,
+                16.0
+              ],
+              "uv": [
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                -6.0,
+                2.0,
+                -6.0
+              ],
+              "size": [
+                12.0,
+                2.0,
+                12.0
+              ],
+              "uv": [
+                68,
+                19
+              ]
+            },
+            {
+              "origin": [
+                -4.0,
+                4.0,
+                -4.0
+              ],
+              "size": [
+                8.0,
+                8.0,
+                8.0
+              ],
+              "uv": [
+                35,
+                19
+              ]
+            },
+            {
+              "origin": [
+                -4.5,
+                12.0,
+                -4.5
+              ],
+              "size": [
+                9.0,
+                2.0,
+                9.0
+              ],
+              "uv": [
+                0,
+                37
+              ]
+            }
+          ]
+        },
+        {
+          "name": "glow",
+          "parent": "root",
+          "pivot": [
+            0.0,
+            33.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -7.0,
+                26.0,
+                -2.0
+              ],
+              "size": [
+                14.0,
+                14.0,
+                4.0
+              ],
+              "uv": [
+                65,
+                0
+              ]
+            },
+            {
+              "origin": [
+                -7.0,
+                26.0,
+                -1.95
+              ],
+              "size": [
+                14.0,
+                14.0,
+                3.9
+              ],
+              "uv": [
+                0,
+                19
+              ],
+              "pivot": [
+                0.0,
+                33.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                45.0
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

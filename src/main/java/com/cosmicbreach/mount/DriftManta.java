@@ -4,6 +4,7 @@ import com.cosmicbreach.structure.choir.ChoirRules;
 import com.cosmicbreach.structure.crypt.CryptConfig;
 import com.cosmicbreach.world.AetheriaWorld;
 import com.cosmicbreach.world.Layer;
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
@@ -44,7 +45,8 @@ import software.bernie.geckolib.animation.RawAnimation;
  * 40. Ridden it truly flies inside the Drift and glides outside it ({@link MantaRules}); the dash key is its Phase
  * Blink. Tamed by call and response with the Resonance Chime ({@link MantaCall}): it sings three notes on Vesper's
  * beat and a player echoes them, each within the Choir Floor's window of its beat; three clean phrases and it is theirs,
- * a miss sends it off for 30 s.
+ * a miss sends it off for 30 s. A wild one comes to the rock's edge, within reach, while a nearby player holds the Chime;
+ * just tamed, it comes to its owner.
  *
  * <p>It never falls: it holds itself up (no gravity) and moves itself: by the rider's client when ridden, by its own
  * swimming otherwise ({@link #travel}).
@@ -113,8 +115,10 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
 
     @Override
     protected void registerGoals() {
+        goalSelector.addGoal(0, new ComeGoal());
         goalSelector.addGoal(1, new ListenGoal());
         goalSelector.addGoal(2, new RetreatGoal());
+        goalSelector.addGoal(3, new LureGoal());
         goalSelector.addGoal(5, new RoamGoal());
     }
 
@@ -138,6 +142,11 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
     @Override
     protected void checkFallDamage(double y, boolean onGround, net.minecraft.world.level.block.state.BlockState state,
                                    net.minecraft.core.BlockPos pos) {
+    }
+
+    @Override
+    protected boolean keepsNoGravity() {
+        return true;
     }
 
     @Override
@@ -338,6 +347,12 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
     @Override
     protected InteractionResult wildInteract(Player player, InteractionHand hand, ItemStack stack) {
         return InteractionResult.PASS; // the Chime does the taming (its own use)
+    }
+
+    @Override
+    public void tameTo(Player player) {
+        super.tameTo(player);
+        comeTicks = MountCareRules.COME_TICKS;
     }
 
     // ------------------------------------------------------------------ Phase Blink
@@ -555,6 +570,12 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
 
     private int fleeTicks;
 
+    /** Ticks left of coming to its owner after taming (1.1 design 4: within reach, not left hanging out of it). */
+    private int comeTicks;
+    /** When the way to a player is blocked it rises this many blocks at a time, up to {@value #RISE_UNTIL} above them. */
+    private static final double RISE = 3.0;
+    private static final double RISE_UNTIL = 12.0;
+
     // ------------------------------------------------------------------ animation
 
     @Override
@@ -586,16 +607,179 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
         return true;
     }
 
+    /** True if the line from here to {@code target} is open air (the test {@link #swimTo} makes). */
+    private boolean openWayTo(Vec3 target) {
+        Vec3 eye = position().add(0, 0.4, 0);
+        return level().clip(new ClipContext(eye, target, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this)).getType()
+                == HitResult.Type.MISS;
+    }
+
     /** Swims to a point in open air (a clear line from here). */
     private boolean swimTo(Vec3 target, double speed) {
-        Vec3 eye = position().add(0, 0.4, 0);
-        if (level().clip(new ClipContext(eye, target, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this)).getType()
-                != HitResult.Type.MISS) {
+        if (!openWayTo(target)) {
             return false;
         }
         swimTarget = target;
         swimSpeed = speed;
         return true;
+    }
+
+    /**
+     * Where to head to reach one of {@code spots} (the best first): the first whose way from here is open; failing that a
+     * point {@value #RISE} blocks above here, to rise over what is in the way, while it is below {@code ceiling} and that
+     * way is open; failing that the best spot after all. Null only with no spots and nothing to rise to.
+     */
+    private @Nullable Vec3 wayTo(List<Vec3> spots, double ceiling) {
+        for (Vec3 spot : spots) {
+            if (openWayTo(spot)) {
+                return spot;
+            }
+        }
+        Vec3 up = position().add(0, RISE, 0);
+        if (getY() < ceiling && openWayTo(up)) {
+            return up;
+        }
+        return spots.isEmpty() ? null : spots.get(0);
+    }
+
+    /**
+     * The free spots for its body about {@value MountCareRules#COME_DISTANCE} blocks from {@code player}, the side this
+     * stingray is on first, then round to the far side, and last the one above them.
+     */
+    private List<Vec3> besidePlayerSpots(Player player) {
+        List<Vec3> spots = new ArrayList<>();
+        Vec3 toMe = position().subtract(player.position());
+        double base = Math.atan2(toMe.z, toMe.x);
+        for (int i = 0; i < MountCareRules.COME_DIRECTIONS; i++) {
+            double a = MountCareRules.comeAngle(base, i);
+            Vec3 spot = player.position().add(Math.cos(a) * MountCareRules.COME_DISTANCE, 0.6, Math.sin(a) * MountCareRules.COME_DISTANCE);
+            if (level().noCollision(this, getBoundingBox().move(spot.subtract(position())))) {
+                spots.add(spot);
+            }
+        }
+        Vec3 above = player.position().add(0, 2.4, 0);
+        if (level().noCollision(this, getBoundingBox().move(above.subtract(position())))) {
+            spots.add(above);
+        }
+        return spots;
+    }
+
+    /** Just tamed: it swims to its owner and waits beside them, well inside their reach. */
+    private final class ComeGoal extends Goal {
+        ComeGoal() {
+            setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        @Override
+        public boolean canUse() {
+            return comeTicks > 0 && isTamed() && !isVehicle() && getOwner() instanceof Player;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return canUse();
+        }
+
+        @Override
+        public void tick() {
+            comeTicks--;
+            if (!(getOwner() instanceof Player owner) || owner.level() != level()) {
+                comeTicks = 0;
+                return;
+            }
+            List<Vec3> spots = besidePlayerSpots(owner);
+            Vec3 way = spots.isEmpty() ? null : wayTo(spots, owner.getY() + RISE_UNTIL);
+            if (way == null) {
+                return;
+            }
+            if (spots.contains(way) && position().distanceTo(way) < 0.5) {
+                comeTicks = 0; // there
+                return;
+            }
+            swimTarget = way;
+            swimSpeed = 0.25;
+            float face = (float) (Mth.atan2(owner.getZ() - getZ(), owner.getX() - getX()) * (180.0 / Math.PI)) - 90.0f;
+            setYRot(Mth.approachDegrees(getYRot(), face, 8.0f));
+            yBodyRot = getYRot();
+            yHeadRot = getYRot();
+        }
+
+        @Override
+        public void stop() {
+            swimTarget = null;
+        }
+    }
+
+    /** The nearest player within {@value MantaLure#RANGE} blocks holding a Resonance Chime, on their own feet, or null. */
+    private @Nullable Player lurer() {
+        Player best = null;
+        double bestD = MantaLure.RANGE * MantaLure.RANGE;
+        for (Player p : level().players()) {
+            boolean chime = p.getMainHandItem().is(Mounts.RESONANCE_CHIME.get()) || p.getOffhandItem().is(Mounts.RESONANCE_CHIME.get());
+            if (!chime || p.isSpectator() || p.isPassenger()) {
+                continue;
+            }
+            double d = p.distanceToSqr(this);
+            if (d < bestD) {
+                bestD = d;
+                best = p;
+            }
+        }
+        return best;
+    }
+
+    /** Wild and calm, it comes to the rock's edge nearest a player holding a Resonance Chime, within their reach. */
+    private final class LureGoal extends Goal {
+        private int retarget;
+
+        LureGoal() {
+            setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        @Override
+        public boolean canUse() {
+            return !isTamed() && !isVehicle() && call.phase() == MantaCall.Phase.IDLE && retreatFrom == null && fleeTicks <= 0
+                    && lurer() != null;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return canUse();
+        }
+
+        @Override
+        public void start() {
+            retarget = 0;
+        }
+
+        @Override
+        public void tick() {
+            Player p = lurer();
+            if (p == null) {
+                return;
+            }
+            if (--retarget <= 0) {
+                retarget = 10;
+                net.minecraft.core.BlockPos feet = p.blockPosition();
+                List<Vec3> spots = MantaLure.edgeSpots((x, y, z) -> {
+                    net.minecraft.core.BlockPos at = new net.minecraft.core.BlockPos(x, y, z);
+                    return !level().getBlockState(at).getCollisionShape(level(), at).isEmpty();
+                }, feet.getX(), feet.getY(), feet.getZ());
+                // the nearest edge whose way is open, so one behind a rock goes round to another (and on the next look,
+                // from there, to the nearest after all); with no edge at all it comes to the player's side
+                swimTarget = wayTo(spots.isEmpty() ? besidePlayerSpots(p) : spots, p.getY() + RISE_UNTIL);
+                swimSpeed = 0.2;
+            }
+            float face = (float) (Mth.atan2(p.getZ() - getZ(), p.getX() - getX()) * (180.0 / Math.PI)) - 90.0f;
+            setYRot(Mth.approachDegrees(getYRot(), face, 6.0f));
+            yBodyRot = getYRot();
+            yHeadRot = getYRot();
+        }
+
+        @Override
+        public void stop() {
+            swimTarget = null;
+        }
     }
 
     /** Calling: it hangs in the air a few blocks from the player answering it, facing them. */

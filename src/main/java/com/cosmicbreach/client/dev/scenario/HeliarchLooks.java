@@ -58,7 +58,7 @@ final class HeliarchLooks {
                 .run("back to the south-east rim", () -> s.camera(mc, HeliarchScenario.at(135, 24, 2.2), core.add(0, 1.5, 0)))
                 .waitUntil("assembled, the bar full", 200, () -> introAt(mc, 185))
                 .screenshot("heliarch_intro_assembled")
-                .log("intro", () -> String.format(Locale.ROOT, "sky eclipse %.2f, lines heard %s", HeliarchSky.eclipse(), HeliarchClient.spoken()))
+                .log("intro", () -> String.format(Locale.ROOT, "sky eclipse %.2f, lines heard %s", HeliarchSky.eclipse(), com.cosmicbreach.client.voice.BossVoiceClient.started()))
                 .waitUntil("phase 1", 200, () -> HeliarchScenario.ask(h -> h.state() == State.REGENT));
         // ---------------------------------------------------------------- phase 1 at rest, three views
         views(steps, mc, "regent_closed", core);

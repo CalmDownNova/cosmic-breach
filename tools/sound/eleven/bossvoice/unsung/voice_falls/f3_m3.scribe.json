@@ -1,0 +1,40 @@
+{
+ "text": "In the song",
+ "words": [
+  {
+   "text": "In",
+   "start": 0.06,
+   "end": 0.16,
+   "type": "word",
+   "logprob": -0.25195202231407166
+  },
+  {
+   "text": " ",
+   "start": 0.16,
+   "end": 0.22,
+   "type": "spacing",
+   "logprob": -0.0017025275155901909
+  },
+  {
+   "text": "the",
+   "start": 0.22,
+   "end": 0.34,
+   "type": "word",
+   "logprob": -0.0017025275155901909
+  },
+  {
+   "text": " ",
+   "start": 0.34,
+   "end": 0.42,
+   "type": "spacing",
+   "logprob": -0.00218593399040401
+  },
+  {
+   "text": "song",
+   "start": 0.42,
+   "end": 0.82,
+   "type": "word",
+   "logprob": -0.00218593399040401
+  }
+ ]
+}

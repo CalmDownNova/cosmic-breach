@@ -76,6 +76,7 @@ public final class Scenarios {
         register("weather-surge", () -> new WeatherScenario(WeatherScenario.Part.SURGE));
         register("forge", ForgeScenario::new);
         register("forge-looks", () -> new ForgeScenario(true));
+        register("forge-screen", com.cosmicbreach.client.dev.scenario.ForgeScreenScenario::new);
         register("onboarding", OnboardingScenario::new);
         register("structures", com.cosmicbreach.client.dev.scenario.StructuresScenario::new);
         register("structures-reliquary", () -> new com.cosmicbreach.client.dev.scenario.StructuresScenario(
@@ -92,6 +93,7 @@ public final class Scenarios {
         register("colossus-fight", () -> new ColossusScenario(ColossusScenario.Part.FIGHT));
         register("colossus-death", () -> new ColossusScenario(ColossusScenario.Part.DEATH));
         register("voice", VoiceScenario::new);
+        register("provisions", com.cosmicbreach.client.dev.scenario.ProvisionsScenario::new);
         register("sets", com.cosmicbreach.client.dev.scenario.SetsScenario::new);
         register("sets-driftweave", () -> new com.cosmicbreach.client.dev.scenario.SetsScenario(
                 com.cosmicbreach.client.dev.scenario.SetsScenario.Part.DRIFTWEAVE));
@@ -118,7 +120,16 @@ public final class Scenarios {
                 com.cosmicbreach.client.dev.scenario.LeviathanScenario.Part.REPEAT));
         register("leviathan-fight", () -> new com.cosmicbreach.client.dev.scenario.LeviathanScenario(
                 com.cosmicbreach.client.dev.scenario.LeviathanScenario.Part.FIGHT));
+        register("rift-lift", com.cosmicbreach.client.dev.scenario.RiftLiftScenario::new);
         register("gyre-knight", com.cosmicbreach.client.dev.scenario.GyreKnightScenario::new);
+        register("boss-voice-colossus", () -> new com.cosmicbreach.client.dev.scenario.BossVoiceScenario(
+                com.cosmicbreach.client.dev.scenario.BossVoiceScenario.Part.COLOSSUS));
+        register("boss-voice-leviathan", () -> new com.cosmicbreach.client.dev.scenario.BossVoiceScenario(
+                com.cosmicbreach.client.dev.scenario.BossVoiceScenario.Part.LEVIATHAN));
+        register("boss-voice-unsung", () -> new com.cosmicbreach.client.dev.scenario.BossVoiceScenario(
+                com.cosmicbreach.client.dev.scenario.BossVoiceScenario.Part.UNSUNG));
+        register("gyre-dive", com.cosmicbreach.client.dev.scenario.GyreDiveScenario::new);
+        register("render-fixes", com.cosmicbreach.client.dev.scenario.RenderFixesScenario::new);
         register("unsung", () -> new com.cosmicbreach.client.dev.scenario.UnsungScenario(com.cosmicbreach.client.dev.scenario.UnsungScenario.Part.MECHANICS));
         register("unsung-looks", () -> new com.cosmicbreach.client.dev.scenario.UnsungScenario(com.cosmicbreach.client.dev.scenario.UnsungScenario.Part.LOOKS));
         register("unsung-fight", () -> new com.cosmicbreach.client.dev.scenario.UnsungScenario(com.cosmicbreach.client.dev.scenario.UnsungScenario.Part.FIGHT));
@@ -128,11 +139,16 @@ public final class Scenarios {
         register("sanctum-wings", () -> new com.cosmicbreach.client.dev.scenario.SanctumScenario(com.cosmicbreach.client.dev.scenario.SanctumScenario.Part.WINGS));
         register("sanctum-arena", () -> new com.cosmicbreach.client.dev.scenario.SanctumScenario(com.cosmicbreach.client.dev.scenario.SanctumScenario.Part.ARENA));
         register("sanctum-world", () -> new com.cosmicbreach.client.dev.scenario.SanctumScenario(com.cosmicbreach.client.dev.scenario.SanctumScenario.Part.WORLD));
+        for (com.cosmicbreach.client.dev.scenario.BossVoiceTakesScenario.Part part : com.cosmicbreach.client.dev.scenario.BossVoiceTakesScenario.Part.values()) {
+            register("boss-voice-takes-" + part.name().toLowerCase(java.util.Locale.ROOT),
+                    () -> new com.cosmicbreach.client.dev.scenario.BossVoiceTakesScenario(part));
+        }
         register("heliarch", () -> new com.cosmicbreach.client.dev.scenario.HeliarchScenario(com.cosmicbreach.client.dev.scenario.HeliarchScenario.Part.ALL));
         register("heliarch-looks", () -> new com.cosmicbreach.client.dev.scenario.HeliarchScenario(com.cosmicbreach.client.dev.scenario.HeliarchScenario.Part.LOOKS));
         register("heliarch-regent", () -> new com.cosmicbreach.client.dev.scenario.HeliarchScenario(com.cosmicbreach.client.dev.scenario.HeliarchScenario.Part.REGENT));
         register("heliarch-hollow", () -> new com.cosmicbreach.client.dev.scenario.HeliarchScenario(com.cosmicbreach.client.dev.scenario.HeliarchScenario.Part.HOLLOW));
         register("heliarch-end", () -> new com.cosmicbreach.client.dev.scenario.HeliarchScenario(com.cosmicbreach.client.dev.scenario.HeliarchScenario.Part.END));
+        register("heliarch-lines", () -> new com.cosmicbreach.client.dev.scenario.HeliarchScenario(com.cosmicbreach.client.dev.scenario.HeliarchScenario.Part.LINES));
         register("heliarch-fight", () -> new com.cosmicbreach.client.dev.scenario.HeliarchScenario(com.cosmicbreach.client.dev.scenario.HeliarchScenario.Part.FIGHT));
         register("lastlight", com.cosmicbreach.client.dev.scenario.LastLightScenario::new);
         register("lastlight-looks", () -> new com.cosmicbreach.client.dev.scenario.LastLightScenario(true));
@@ -140,6 +156,16 @@ public final class Scenarios {
         register("curios", com.cosmicbreach.client.dev.scenario.CuriosScenario::new);
         register("stag", com.cosmicbreach.client.dev.scenario.StagScenario::new);
         register("manta", com.cosmicbreach.client.dev.scenario.MantaScenario::new);
+        register("stable", com.cosmicbreach.client.dev.scenario.StableScenario::new);
+        register("stable-stag", com.cosmicbreach.client.dev.scenario.StableStagScenario::new);
+        register("stable-void", com.cosmicbreach.client.dev.scenario.StableVoidScenario::new);
+        register("shrines", () -> new com.cosmicbreach.client.dev.scenario.ShrineScenario(
+                com.cosmicbreach.client.dev.scenario.ShrineScenario.Part.KEEP));
+        register("shrines-deaths", () -> new com.cosmicbreach.client.dev.scenario.ShrineScenario(
+                com.cosmicbreach.client.dev.scenario.ShrineScenario.Part.DEATHS));
+        register("shrines-sites", () -> new com.cosmicbreach.client.dev.scenario.ShrineScenario(
+                com.cosmicbreach.client.dev.scenario.ShrineScenario.Part.SITES));
+        register("ascent", com.cosmicbreach.client.dev.scenario.AscentScenario::new);
         register("familiars", com.cosmicbreach.client.dev.scenario.FamiliarsScenario::new);
         register("codex", com.cosmicbreach.client.dev.scenario.CodexScenario::new);
         register("config", com.cosmicbreach.client.dev.scenario.ConfigScenario::new);
@@ -148,6 +174,23 @@ public final class Scenarios {
         register("stress", com.cosmicbreach.client.dev.scenario.StressScenario::new);
         register("stress-load", () -> new com.cosmicbreach.client.dev.scenario.StressScenario(
                 com.cosmicbreach.client.dev.scenario.StressScenario.Part.LOAD));
+        // quitting right after a long teleport (a stop that hangs fails the run); settled is the normal-play variant
+        register("quit-teleport", () -> new com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario(20, 1, false, 0));
+        register("quit-teleport-chain", () -> new com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario(20, 3, false, 0));
+        register("quit-teleport-settled", () -> new com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario(1, 1, true, 0));
+        register("quit-teleport-settled-shrunk", () -> new com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario(1, 1, true, 8));
+        // the same quit in a vanilla dimension: whether a stall belongs to Aetheria's terrain or to the game's own stop
+        // a quit three seconds after the teleport, where the first ring of fresh chunks is mid generation (the settled variants quit there
+        // when the client has not yet been sent anything new): the same time in each dimension compares them like for like
+        register("quit-teleport-3s", () -> new com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario(60, 1, false, 0));
+        register("quit-teleport-nether-3s", () -> new com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario(60, 1, false, 0,
+                com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario.Place.NETHER));
+        register("quit-teleport-overworld-3s", () -> new com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario(60, 1, false, 0,
+                com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario.Place.OVERWORLD));
+        register("quit-teleport-nether-settled", () -> new com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario(1, 1, true, 0,
+                com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario.Place.NETHER));
+        register("quit-teleport-overworld-settled", () -> new com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario(1, 1, true, 0,
+                com.cosmicbreach.client.dev.scenario.QuitAfterTeleportScenario.Place.OVERWORLD));
         for (com.cosmicbreach.client.dev.scenario.FamiliarsScenario.Part part : com.cosmicbreach.client.dev.scenario.FamiliarsScenario.Part.values()) {
             register("familiars-" + part.name().toLowerCase(java.util.Locale.ROOT), () -> new com.cosmicbreach.client.dev.scenario.FamiliarsScenario(part));
         }
@@ -156,6 +199,8 @@ public final class Scenarios {
         register("mp-basics", com.cosmicbreach.client.dev.scenario.MpBasicsScenario::new);
         register("mp-travel", com.cosmicbreach.client.dev.scenario.MpTravelScenario::new);
         register("mp-final", com.cosmicbreach.client.dev.scenario.MpFinalScenario::new);
+        register("mp-shrines", com.cosmicbreach.client.dev.scenario.MpShrinesScenario::new);
+        register("mp-existing", com.cosmicbreach.client.dev.scenario.MpExistingScenario::new);
         for (com.cosmicbreach.client.dev.scenario.MpRewardsScenario.Mode mode : com.cosmicbreach.client.dev.scenario.MpRewardsScenario.Mode.values()) {
             String suffix = switch (mode) {
                 case ALIVE -> "";

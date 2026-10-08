@@ -100,7 +100,7 @@ class HeliarchResourcesTest {
             }
         }
         assertTrue(missing.isEmpty(), "missing: " + missing);
-        assertEquals(54, count, "the fight's sounds, its six lines and its three loops");
+        assertEquals(78, count, "the fight's sounds, its thirty lines and its three loops");
     }
 
     @Test

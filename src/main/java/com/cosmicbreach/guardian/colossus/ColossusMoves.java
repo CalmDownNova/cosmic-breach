@@ -236,6 +236,66 @@ public final class ColossusMoves {
         return BURST_TELL + BURST_RECOVER;
     }
 
+    // ------------------------------------------------------------------ when its voice may speak (1.1)
+
+    /** Ticks of quiet a Colossus line keeps before the readable part of the next telegraph (short: the part is already the last of it). */
+    public static final int VOICE_MARGIN = 2;
+
+    /**
+     * One attack as its voice sees it: the ticks from its start to its strike (its telegraph), the tick the player starts reading it
+     * (its last {@value #MIN_TELEGRAPH} ticks, the design's floor for a telegraph: the ring filling and the glint; before it the fist is
+     * only flying out), and the fewest ticks it takes to end (a parried slam is longer). A line never sounds over the readable part. The
+     * Refraction is read from the last of its charge on and all through its fire: its beams are drawn and turned back then.
+     */
+    public record Shape(int telegraph, int minLength, int readableFrom) {}
+
+    public static final Shape SLAM_SHAPE = new Shape(SLAM_TELL, slamLength(false), SLAM_TELL - MIN_TELEGRAPH);
+    public static final Shape DOUBLE_SLAM_SHAPE = new Shape(DOUBLE_SLAM_DELAY + SLAM_TELL, doubleSlamLength(false), SLAM_TELL - MIN_TELEGRAPH);
+    public static final Shape SWEEP_SHAPE = new Shape(SWEEP_TELL, sweepLength(), SWEEP_TELL - MIN_TELEGRAPH);
+    public static final Shape REFRACTION_SHAPE = new Shape(REFRACTION_CHARGE + REFRACTION_FIRE, refractionLength(), REFRACTION_CHARGE - MIN_TELEGRAPH);
+    public static final Shape BURST_SHAPE = new Shape(BURST_TELL, burstLength(), BURST_TELL - MIN_TELEGRAPH);
+
+    /**
+     * Ticks from now until the readable part of the next attack's telegraph begins, at the earliest, from the boss's own schedule:
+     * {@code untilGap} is when the gap after the current attack (or Break) ends; each attack it could choose starts then or when its
+     * cooldown ends, the later, and is read from its own {@code readableFrom} after that. The slam (or the double slam) is always a
+     * candidate; the sweep only while someone stands in its band, the Refraction while its crystals stand, the burst while someone
+     * hugs it (the open flags).
+     */
+    public static long nextReadableIn(long untilGap, long slamLeft, long sweepLeft, boolean sweepOpen, long refractionLeft,
+            boolean refractionOpen, long burstLeft, boolean burstOpen) {
+        long soonest = Math.max(untilGap, slamLeft) + SLAM_SHAPE.readableFrom();
+        if (sweepOpen) {
+            soonest = Math.min(soonest, Math.max(untilGap, sweepLeft) + SWEEP_SHAPE.readableFrom());
+        }
+        if (refractionOpen) {
+            soonest = Math.min(soonest, Math.max(untilGap, refractionLeft) + REFRACTION_SHAPE.readableFrom());
+        }
+        if (burstOpen) {
+            soonest = Math.min(soonest, Math.max(untilGap, burstLeft) + BURST_SHAPE.readableFrom());
+        }
+        return soonest;
+    }
+
+    /**
+     * How long it is quiet, {@code t} ticks into an attack of {@code shape}: until its own readable part begins, none inside it, and
+     * after the strike until the next one ({@code nextIn}, see {@link #nextReadableIn}).
+     */
+    public static int quietTicks(Shape shape, long t, long nextIn) {
+        if (t < shape.readableFrom()) {
+            return (int) (shape.readableFrom() - t);
+        }
+        if (t < shape.telegraph()) {
+            return 0;
+        }
+        return (int) Math.max(0L, nextIn);
+    }
+
+    /** Between attacks: ticks until the next readable part, {@code nextIn}. */
+    public static int idleQuietTicks(long nextIn) {
+        return (int) Math.max(0L, nextIn);
+    }
+
     static double smooth(double u) {
         double x = Math.max(0.0, Math.min(1.0, u));
         return x * x * (3.0 - 2.0 * x);

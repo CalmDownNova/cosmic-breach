@@ -1,0 +1,26 @@
+{
+ "text": "The hymn",
+ "words": [
+  {
+   "text": "The",
+   "start": 0.18,
+   "end": 0.3,
+   "type": "word",
+   "logprob": -0.6861828565597534
+  },
+  {
+   "text": " ",
+   "start": 0.3,
+   "end": 0.4,
+   "type": "spacing",
+   "logprob": -0.1302805095911026
+  },
+  {
+   "text": "hymn",
+   "start": 0.4,
+   "end": 0.6,
+   "type": "word",
+   "logprob": -0.1302805095911026
+  }
+ ]
+}

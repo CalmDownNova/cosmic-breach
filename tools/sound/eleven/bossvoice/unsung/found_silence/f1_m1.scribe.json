@@ -1,0 +1,26 @@
+{
+ "text": "You found",
+ "words": [
+  {
+   "text": "You",
+   "start": 0.18,
+   "end": 0.26,
+   "type": "word",
+   "logprob": -3.1470757676288486e-05
+  },
+  {
+   "text": " ",
+   "start": 0.26,
+   "end": 0.44,
+   "type": "spacing",
+   "logprob": -0.00013910756388213485
+  },
+  {
+   "text": "found",
+   "start": 0.44,
+   "end": 0.68,
+   "type": "word",
+   "logprob": -0.00013910756388213485
+  }
+ ]
+}

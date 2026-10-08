@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cosmicbreach:rimeglass"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "cosmicbreach:rime_thread"
+  }
+}

@@ -25,6 +25,7 @@ STEPS = [
     "gen_blocks_drift",  # textures/block/: the Drift, plus item/driftwood_door.png
     "gen_blocks_deep",   # textures/block/: the Deep
     "gen_materials",     # textures/item/: metals, gems, drops, seeds
+    "gen_provisions",    # textures/item/: the levels' food, Starhide, Rime Thread, two pickaxes; block/umbral_cap (1.1)
     "gen_vanguard",      # the Starfall Vanguard: geo, textures/armor/, icons; the tier trims of every weapon and piece
     "gen_driftweave",    # the Driftweave: geo, textures/armor/, icons and trims (G2b)
     "gen_regalia",       # the Choir Regalia: geo, textures/armor/, icons and trims, the Hymn's ring, the Aligned glyph and icon
@@ -42,6 +43,8 @@ STEPS = [
     "gen_heliarch",      # the Hollow Heliarch (geo, animations, textures, glowmask), its monoliths, the Reliquary, its FX textures (G9a)
     "gen_curios",        # four accessories' icons, the Sunshard Compass's 16 needle frames, the Halo's shard, the Vesper slow icon (G6a)
     "gen_mounts",        # the Lumen Stag and the Drift Manta (geo, animations, textures, glowmasks), their gear's icons, the tack slot (G6b)
+    "gen_stable_crystal",  # the Stable Crystal, empty and full (1.1 task B2.7)
+    "gen_shrines",  # the four boss shrines: geo, idle animation, texture and glowmask (1.1 tasks B4 and B5)
     "gen_familiars",     # the Emberwisp, Gravikin and Prism Moth (geo, animations, textures), the Star Egg, the lantern, the brazier (G10)
     "preview_items",     # previews/items.png, previews/fx.png
     "preview_shardling", # previews/shardling_*.png and the model checks

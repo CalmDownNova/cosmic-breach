@@ -1,0 +1,123 @@
+{
+  "kind": "heliarch",
+  "anim": {
+    "length": 12.0,
+    "bones": {
+      "glow": {
+        "spin_z": 180.0
+      }
+    }
+  },
+  "bones": [
+    {
+      "name": "root",
+      "parent": null,
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [
+        {
+          "origin": [
+            -8,
+            0,
+            -8
+          ],
+          "size": [
+            16,
+            2,
+            16
+          ],
+          "paint": "ivory"
+        },
+        {
+          "origin": [
+            -6,
+            2,
+            -6
+          ],
+          "size": [
+            12,
+            2,
+            12
+          ],
+          "paint": "bronze"
+        },
+        {
+          "origin": [
+            -4,
+            4,
+            -4
+          ],
+          "size": [
+            8,
+            8,
+            8
+          ],
+          "paint": "ivory"
+        },
+        {
+          "origin": [
+            -4.5,
+            12,
+            -4.5
+          ],
+          "size": [
+            9,
+            2,
+            9
+          ],
+          "paint": "gilt"
+        }
+      ]
+    },
+    {
+      "name": "glow",
+      "parent": "root",
+      "pivot": [
+        0,
+        33,
+        0
+      ],
+      "cubes": [
+        {
+          "origin": [
+            -7.0,
+            26.0,
+            -2.0
+          ],
+          "size": [
+            14,
+            14,
+            4.0
+          ],
+          "paint": "sun"
+        },
+        {
+          "origin": [
+            -7.0,
+            26.0,
+            -1.95
+          ],
+          "size": [
+            14,
+            14,
+            3.9
+          ],
+          "paint": "sun",
+          "rotation": [
+            0,
+            0,
+            45.0
+          ],
+          "pivot": [
+            0,
+            33,
+            0.0
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -48,8 +48,14 @@ EVENTS = [e for m in SETS for e in getattr(m, "EVENTS", [])]
 
 REFERENCE_LUFS = -15.0   # loudness of combat/hit; every event's `level` is an offset from this
 CEILING_DBTP = -1.0      # nothing may peak above this (4x oversampled true peak)
-LIMIT_DB = 6.0           # most the transient limiter may take off a peak
+KEEP_HEADROOM_DB = 1.0   # a voice kept at its own level is held this much lower: Vorbis lifted its worst peak 0.9 dB
+LIMIT_DB = 6.0           # most the transient limiter may take off a peak...
+SPEECH_LIMIT_DB = 4.0    # ...but off a spoken line only this much (the decision after the VP2 re-review)
 TRIM_DB = -50.0          # tail below this, relative to the loudest moment, is cut
+# Every spoken line must decode at or under CEILING_DBTP once it is encoded (the voice production plan's rule), except
+# these four lines shipped before 1.1.0, which decode 0.01 to 0.13 dB over it. They are on players' disks and must stay
+# byte for byte, so the build accepts exactly these by name and holds every other spoken line to the ceiling.
+SHIPPED_OVER_CEILING = frozenset({"heliarch/voice_collapse", "heliarch/voice_death", "echo/first_shard", "echo/ring_open"})
 
 
 def master(x: np.ndarray, ev) -> np.ndarray:
@@ -82,19 +88,25 @@ def set_level(x: np.ndarray, ev):
     """Scale to the event's loudness target under the true-peak ceiling.
 
     One-shots go through a lookahead limiter that turns down only the
-    milliseconds around a peak (at most LIMIT_DB), so transient-heavy sounds
+    milliseconds around a peak (at most LIMIT_DB, SPEECH_LIMIT_DB for a spoken line), so transient-heavy sounds
     reach their loudness without being turned down as a whole. Returns
     (signal, deepest limiter reduction in dB, whether the target was missed).
     """
     target = REFERENCE_LUFS + ev.level
-    ceiling = db(CEILING_DBTP)
+    ceiling = db(CEILING_DBTP - ev.headroom_db)
+    cap = SPEECH_LIMIT_DB if ev.speech else LIMIT_DB
+    if ev.keep_level:                    # levelled speaker by speaker already: only its peaks are held, low
+        ceiling *= db(-KEEP_HEADROOM_DB)  # enough that the encoded file stays under CEILING_DBTP too
+        y, reduction = limiter(x, ceiling * db(-0.05), max_reduction_db=cap)
+        tp = true_peak(y)
+        return (y * ceiling / tp, reduction, True) if tp > ceiling else (y, reduction, False)
     if ev.loop:
         y = x * db(target - loudness(x, loop=True))
         tp = true_peak(y, loop=True)
         return (y * ceiling / tp, 0.0, True) if tp > ceiling else (y, 0.0, False)
     gain = db(target - level_of(x, ev))
     for _ in range(5):
-        y, reduction = limiter(x * gain, ceiling * db(-0.05), max_reduction_db=LIMIT_DB)
+        y, reduction = limiter(x * gain, ceiling * db(-0.05), max_reduction_db=cap)
         miss = target - level_of(y, ev)
         if abs(miss) < 0.05:
             break
@@ -143,9 +155,9 @@ def build_event(ev) -> list:
         row = dict(stem=stem, seconds=len(y) / SR, wav_samples=len(x), ogg_samples=len(y),
                    peak=float(to_db(np.max(np.abs(y)))),
                    true_peak=float(to_db(true_peak(y, ev.loop))),
-                   lufs=level_of(y, ev), target=REFERENCE_LUFS + ev.level,
+                   lufs=level_of(y, ev), target=level_of(y, ev) if ev.keep_level else REFERENCE_LUFS + ev.level,
                    limited=limited, reduction=reduction, edges=edge_levels(y), loop=ev.loop,
-                   length=ev.length)
+                   length=ev.length, speech=ev.speech)
         if ev.loop:
             row["seam_wav"] = seam_report(x)
             row["seam_ogg"] = seam_report(y, reference=x if len(x) == len(y) else None)
@@ -161,6 +173,8 @@ def warnings_for(row) -> list:
         w.append("longer than allowed")
     if row["true_peak"] > -0.3:
         w.append(f"true peak {row['true_peak']:+.2f} dBTP")
+    elif row["speech"] and row["true_peak"] > CEILING_DBTP and row["stem"] not in SHIPPED_OVER_CEILING:
+        w.append(f"spoken line decodes at {row['true_peak']:+.2f} dBTP, over the {CEILING_DBTP:.1f} ceiling")
     if row["lufs"] < -60:
         w.append("nearly silent")
     first, onset, last = row["edges"]

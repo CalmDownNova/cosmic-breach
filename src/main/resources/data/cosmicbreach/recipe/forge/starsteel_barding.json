@@ -1,5 +1,6 @@
 {
   "type": "cosmicbreach:astral_forge",
+  "category": "mount_gear",
   "ingredients": [
     {
       "count": 6,
@@ -7,7 +8,7 @@
     },
     {
       "count": 2,
-      "item": "minecraft:leather"
+      "tag": "c:leathers"
     }
   ],
   "order": 61,

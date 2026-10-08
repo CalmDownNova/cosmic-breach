@@ -1,0 +1,26 @@
+{
+ "text": "is finished",
+ "words": [
+  {
+   "text": "is",
+   "start": 0.12,
+   "end": 0.24,
+   "type": "word",
+   "logprob": -0.49080273509025574
+  },
+  {
+   "text": " ",
+   "start": 0.24,
+   "end": 0.34,
+   "type": "spacing",
+   "logprob": -1.311301275563892e-06
+  },
+  {
+   "text": "finished",
+   "start": 0.34,
+   "end": 0.82,
+   "type": "word",
+   "logprob": -1.311301275563892e-06
+  }
+ ]
+}

@@ -34,10 +34,10 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 public class AstralForgeMenu extends AbstractContainerMenu {
     public static final int REFORGE_BUTTON = 1000;
 
-    /** Slot positions in the screen (item corner, GUI pixels). */
-    public static final int REFORGE_X = 12;
+    /** Slot positions in the screen (item corner, GUI pixels from its top left; the tab strip takes the first 24). */
+    public static final int REFORGE_X = 36;
     public static final int REFORGE_Y = 103;
-    public static final int INVENTORY_X = 35;
+    public static final int INVENTORY_X = 71;
     public static final int INVENTORY_Y = 134;
     public static final int HOTBAR_Y = 192;
 

@@ -1,0 +1,26 @@
+{
+ "text": "Another voice",
+ "words": [
+  {
+   "text": "Another",
+   "start": 0.16,
+   "end": 0.52,
+   "type": "word",
+   "logprob": -0.0005694198189303279
+  },
+  {
+   "text": " ",
+   "start": 0.52,
+   "end": 0.62,
+   "type": "spacing",
+   "logprob": -0.0036092158406972885
+  },
+  {
+   "text": "voice",
+   "start": 0.62,
+   "end": 1.0,
+   "type": "word",
+   "logprob": -0.0036092158406972885
+  }
+ ]
+}

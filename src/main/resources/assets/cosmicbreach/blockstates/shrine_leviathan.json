@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "cosmicbreach:block/shrine_leviathan" },
+    "facing=east": { "model": "cosmicbreach:block/shrine_leviathan" },
+    "facing=south": { "model": "cosmicbreach:block/shrine_leviathan" },
+    "facing=west": { "model": "cosmicbreach:block/shrine_leviathan" }
+  }
+}

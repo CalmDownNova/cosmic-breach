@@ -1,0 +1,40 @@
+{
+ "text": "Now I remember",
+ "words": [
+  {
+   "text": "Now",
+   "start": 0.28,
+   "end": 0.66,
+   "type": "word",
+   "logprob": -0.0001656871900195256
+  },
+  {
+   "text": " ",
+   "start": 0.66,
+   "end": 0.66,
+   "type": "spacing",
+   "logprob": -0.006739386357367039
+  },
+  {
+   "text": "I",
+   "start": 1.58,
+   "end": 1.7,
+   "type": "word",
+   "logprob": -0.006739386357367039
+  },
+  {
+   "text": " ",
+   "start": 1.7,
+   "end": 1.86,
+   "type": "spacing",
+   "logprob": -2.622600959512056e-06
+  },
+  {
+   "text": "remember",
+   "start": 1.86,
+   "end": 2.6,
+   "type": "word",
+   "logprob": -2.622600959512056e-06
+  }
+ ]
+}
