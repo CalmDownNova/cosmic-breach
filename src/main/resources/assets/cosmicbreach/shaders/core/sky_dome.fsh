@@ -13,6 +13,7 @@ uniform vec4 ColorModulator;
 uniform mat4 CelestialMat;   // world direction to the rotating celestial frame
 uniform vec4 NebulaParams;   // x: Sampler0 to Sampler1, y: light gain, z: dust gain, w: gain below the horizon
 uniform float NebulaVeil;    // by day the clouds are sunlit veils of their own colour rather than light
+uniform float NebulaClear;   // the Deep's weight: there the nebula clears from a band round the horizon (see below)
 
 in vec3 viewDir;
 
@@ -28,11 +29,15 @@ void main() {
     float gain = NebulaParams.y * mix(1.0, NebulaParams.w, smoothstep(0.02, -0.35, d.y));
     // the nebula thins towards the horizon haze
     gain *= mix(0.35, 1.0, smoothstep(0.0, 0.3, abs(d.y)));
-    sky = sky * (1.0 - neb.a * NebulaParams.z);
+    // in the Deep, far terrain fades into the fog colour, which is the bare gradient: the nebula clears from the band
+    // where terrain can stand against the sky, so a distant mass melts into the air instead of showing as a flat cut-out
+    float keep = 1.0 - NebulaClear * (1.0 - smoothstep(0.08, 0.6, abs(d.y)));
+    gain *= keep;
+    sky = sky * (1.0 - neb.a * NebulaParams.z * keep);
     // by day: pastel veils in the cloud's own hue, as if lit by the sun, over the blue
     float lum = dot(neb.rgb, vec3(0.3, 0.55, 0.15));
     vec3 hue = neb.rgb / max(max(neb.r, max(neb.g, neb.b)), 0.02);
-    float veil = clamp(smoothstep(0.02, 0.5, lum) * NebulaVeil, 0.0, 0.8) * mix(0.35, 1.0, smoothstep(0.0, 0.3, abs(d.y)));
+    float veil = clamp(smoothstep(0.02, 0.5, lum) * NebulaVeil, 0.0, 0.8) * mix(0.35, 1.0, smoothstep(0.0, 0.3, abs(d.y))) * keep;
     sky = mix(sky, mix(vec3(1.0), hue, 0.55) * 0.97, veil);
     sky += neb.rgb * gain;
 

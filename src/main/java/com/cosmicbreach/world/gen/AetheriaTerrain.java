@@ -31,6 +31,7 @@ public final class AetheriaTerrain {
     public final BreachShape breach;
     public final ReachIslands reach;
     public final DriftBelts drift;
+    public final DeepZones zones;
     public final DeepSpans deep;
     public final SpireField spires;
 
@@ -39,7 +40,8 @@ public final class AetheriaTerrain {
         this.breach = new BreachShape(salt);
         this.reach = new ReachIslands(salt, breach);
         this.drift = new DriftBelts(salt);
-        this.deep = new DeepSpans(salt);
+        this.zones = new DeepZones(salt);
+        this.deep = new DeepSpans(salt, zones);
         this.spires = new SpireField(salt, reach);
     }
 

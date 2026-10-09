@@ -25,7 +25,10 @@
       "type": "cosmicbreach:isle_style",
       "seed_noise": "cosmicbreach:terrain_seed"
     },
-    "vegetation": 0,
+    "vegetation": {
+      "type": "cosmicbreach:deep_zone",
+      "seed_noise": "cosmicbreach:terrain_seed"
+    },
     "continents": 0,
     "erosion": 0,
     "depth": 0,
@@ -119,13 +122,147 @@
         }
       },
       {
-        "type": "minecraft:block",
-        "result_state": {
-          "Name": "cosmicbreach:umbral_basalt",
-          "Properties": {
-            "axis": "y"
+        "type": "minecraft:sequence",
+        "sequence": [
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:biome",
+              "biome_is": [
+                "cosmicbreach:lichen_gardens"
+              ]
+            },
+            "then_run": {
+              "type": "minecraft:sequence",
+              "sequence": [
+                {
+                  "type": "minecraft:condition",
+                  "if_true": {
+                    "type": "minecraft:stone_depth",
+                    "offset": 0,
+                    "surface_type": "floor",
+                    "add_surface_depth": false,
+                    "secondary_depth_range": 0
+                  },
+                  "then_run": {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "cosmicbreach:lichen_moss"
+                    }
+                  }
+                },
+                {
+                  "type": "minecraft:block",
+                  "result_state": {
+                    "Name": "cosmicbreach:umbral_basalt",
+                    "Properties": {
+                      "axis": "y"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:biome",
+              "biome_is": [
+                "cosmicbreach:hanging_wood"
+              ]
+            },
+            "then_run": {
+              "type": "minecraft:block",
+              "result_state": {
+                "Name": "cosmicbreach:rootstone"
+              }
+            }
+          },
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:biome",
+              "biome_is": [
+                "cosmicbreach:shattered_field"
+              ]
+            },
+            "then_run": {
+              "type": "minecraft:sequence",
+              "sequence": [
+                {
+                  "type": "minecraft:condition",
+                  "if_true": {
+                    "type": "minecraft:stone_depth",
+                    "offset": 1,
+                    "surface_type": "ceiling",
+                    "add_surface_depth": false,
+                    "secondary_depth_range": 0
+                  },
+                  "then_run": {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "minecraft:noise_threshold",
+                      "noise": "cosmicbreach:glow_patches",
+                      "min_threshold": 0.45,
+                      "max_threshold": 1000000000.0
+                    },
+                    "then_run": {
+                      "type": "minecraft:block",
+                      "result_state": {
+                        "Name": "cosmicbreach:rift_ember"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "minecraft:condition",
+                  "if_true": {
+                    "type": "minecraft:noise_threshold",
+                    "noise": "cosmicbreach:glow_patches",
+                    "min_threshold": -0.035,
+                    "max_threshold": 0.035
+                  },
+                  "then_run": {
+                    "type": "minecraft:block",
+                    "result_state": {
+                      "Name": "cosmicbreach:rift_ember"
+                    }
+                  }
+                },
+                {
+                  "type": "minecraft:block",
+                  "result_state": {
+                    "Name": "cosmicbreach:ember_basalt"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:noise_threshold",
+              "noise": "cosmicbreach:rock_patches",
+              "min_threshold": -0.45,
+              "max_threshold": 1000000000.0
+            },
+            "then_run": {
+              "type": "minecraft:block",
+              "result_state": {
+                "Name": "cosmicbreach:ashen_basalt"
+              }
+            }
+          },
+          {
+            "type": "minecraft:block",
+            "result_state": {
+              "Name": "cosmicbreach:umbral_basalt",
+              "Properties": {
+                "axis": "y"
+              }
+            }
           }
-        }
+        ]
       }
     ]
   }

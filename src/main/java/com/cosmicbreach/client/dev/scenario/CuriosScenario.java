@@ -391,17 +391,17 @@ public final class CuriosScenario implements Scenario {
     // ------------------------------------------------------------------ the slots
 
     private void slots(Steps steps) {
-        steps.waitUntil("two ring slots, a necklace and a charm, nothing else", 40, () -> ServerQuery.ask(p -> {
+        steps.waitUntil("two ring slots, a necklace, a charm and the satchel's back slot, nothing else", 40, () -> ServerQuery.ask(p -> {
             ICuriosItemHandler inv = CuriosApi.getCuriosInventory(p).orElse(null);
             if (inv == null) {
                 return false;
             }
             Map<String, top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler> c = inv.getCurios();
-            boolean ok = c.size() == 3 && c.containsKey("ring") && c.get("ring").getSlots() == 2
+            boolean ok = c.size() == 4 && c.containsKey("back") && c.get("back").getSlots() == 1 && c.containsKey("ring") && c.get("ring").getSlots() == 2
                     && c.containsKey("necklace") && c.get("necklace").getSlots() == 1
                     && c.containsKey("charm") && c.get("charm").getSlots() == 1;
             if (ok) {
-                result("slots: ring x2, necklace x1, charm x1 (" + inv.getSlots() + " in all)");
+                result("slots: ring x2, necklace x1, charm x1, back x1 (" + inv.getSlots() + " in all)");
             }
             return ok;
         }));

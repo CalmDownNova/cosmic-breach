@@ -2,6 +2,9 @@ package com.cosmicbreach.gear.forge;
 
 import com.cosmicbreach.gear.GearRegistry;
 import com.cosmicbreach.item.GearTier;
+import com.cosmicbreach.satchel.SatchelContents;
+import com.cosmicbreach.satchel.SatchelLocator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import net.minecraft.core.BlockPos;
@@ -33,6 +36,8 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
  */
 public class AstralForgeMenu extends AbstractContainerMenu {
     public static final int REFORGE_BUTTON = 1000;
+    /** Button ids from here up load the Satchel's Gear slot (id minus this) into the reforge slot. */
+    public static final int PICK_GEAR = 2000;
 
     /** Slot positions in the screen (item corner, GUI pixels from its top left; the tab strip takes the first 24). */
     public static final int REFORGE_X = 36;
@@ -130,11 +135,56 @@ public class AstralForgeMenu extends AbstractContainerMenu {
         if (id == REFORGE_BUTTON) {
             return reforge(player);
         }
+        if (id >= PICK_GEAR && id < PICK_GEAR + SatchelContents.GEAR_SLOTS) {
+            return pickFromSatchel(player, id - PICK_GEAR);
+        }
         List<RecipeHolder<ForgeRecipe>> recipes = recipes();
         if (id < 0 || id >= recipes.size()) {
             return false;
         }
         return craft(player, recipes.get(id).value());
+    }
+
+    /** The Satchel's Gear slots holding a piece that can be reforged. */
+    public List<Integer> satchelPicks(Player player) {
+        List<Integer> out = new ArrayList<>();
+        SatchelLocator.contentsOf(player).ifPresent(c -> {
+            for (int s = 0; s < SatchelContents.GEAR_SLOTS; s++) {
+                if (isReforgeable(c.gear().get(s))) {
+                    out.add(s);
+                }
+            }
+        });
+        return out;
+    }
+
+    /** Moves a piece from the Satchel's Gear tab into the reforge slot: out of one place and into the other, once. */
+    private boolean pickFromSatchel(Player player, int gearSlot) {
+        if (!piece().isEmpty()) {
+            return false;
+        }
+        ItemStack candidate = SatchelLocator.contentsOf(player).map(c -> c.gear().get(gearSlot)).orElse(ItemStack.EMPTY);
+        if (!isReforgeable(candidate)) {
+            return false;
+        }
+        if (level.isClientSide()) {
+            return true;
+        }
+        ItemStack taken = candidate.copy();
+        boolean[] moved = {false};
+        SatchelLocator.update(player, c -> {
+            if (ItemStack.matches(c.gear().get(gearSlot), taken)) {
+                moved[0] = true;
+                return c.withGear(gearSlot, ItemStack.EMPTY);
+            }
+            return c;
+        });
+        if (!moved[0]) {
+            return false;
+        }
+        piece.setItem(0, taken);
+        broadcastChanges();
+        return true;
     }
 
     private boolean craft(Player player, ForgeRecipe recipe) {

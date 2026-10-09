@@ -1,0 +1,16 @@
+{
+  "entity.cosmicbreach.drift_jelly": "Drift Jelly",
+  "item.cosmicbreach.drift_jelly_spawn_egg": "Drift Jelly Spawn Egg",
+  "item.cosmicbreach.drift_gel": "Drift Gel",
+  "item.cosmicbreach.drift_gel.tooltip": "A cool, faintly lit gel. Eaten raw it feeds a little and gives night vision for 30 seconds.",
+  "item.cosmicbreach.drift_gel.tooltip.source": "Comes from: drift jellies, layer 3",
+  "item.cosmicbreach.drift_gel.tooltip.use": "Cook it on a campfire, in a furnace or in a smoker for candied gel.",
+  "item.cosmicbreach.candied_gel": "Candied Gel",
+  "item.cosmicbreach.candied_gel.tooltip": "Sweet, firm gel. A filling snack with none of the glow.",
+  "item.cosmicbreach.candied_gel.tooltip.source": "Comes from: drift gel, cooked",
+  "item.cosmicbreach.candied_gel.tooltip.use": "Eaten as food.",
+  "effect.cosmicbreach.skim": "Skim",
+  "effect.cosmicbreach.skim.description": "Air movement is 30 percent quicker.",
+  "death.attack.cosmicbreach.drift_sting": "%1$s was stung by %2$s",
+  "death.attack.cosmicbreach.drift_sting.player": "%1$s was stung by %2$s"
+}

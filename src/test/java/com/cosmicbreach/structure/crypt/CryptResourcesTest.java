@@ -96,8 +96,8 @@ class CryptResourcesTest {
             assertTrue(lang.has("death.attack.cosmicbreach." + type), "death message " + type);
         }
         JsonObject set = json("/data/cosmicbreach/worldgen/structure_set/hollow_crypt.json");
-        assertEquals(40, set.getAsJsonObject("placement").get("spacing").getAsInt());
-        assertEquals(14, set.getAsJsonObject("placement").get("separation").getAsInt());
+        assertEquals(38, set.getAsJsonObject("placement").get("spacing").getAsInt());
+        assertEquals(13, set.getAsJsonObject("placement").get("separation").getAsInt());
         assertTrue(exists("/data/cosmicbreach/worldgen/structure/hollow_crypt.json"));
         JsonObject biomes = json("/data/cosmicbreach/tags/worldgen/biome/has_structure/hollow_crypt.json");
         assertEquals("cosmicbreach:rift_abyss", biomes.getAsJsonArray("values").get(0).getAsString());

@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "cosmicbreach:raw_starsteel",
+    "cosmicbreach:starsteel_ingot",
+    "cosmicbreach:starsteel_nugget",
+    "cosmicbreach:heartstone",
+    "cosmicbreach:raw_nebulite",
+    "cosmicbreach:nebulite_ingot",
+    "cosmicbreach:gyre_core",
+    "cosmicbreach:gyre_blade",
+    "cosmicbreach:raw_eclipsium",
+    "cosmicbreach:eclipsium_ingot",
+    "cosmicbreach:eclipsium_nugget",
+    "cosmicbreach:umbral_silk",
+    "cosmicbreach:prism_heart",
+    "cosmicbreach:leviathan_scale",
+    "cosmicbreach:leviathan_pearl",
+    "cosmicbreach:silent_sigil",
+    "cosmicbreach:solar_ember",
+    "cosmicbreach:hymn_crystal",
+    "cosmicbreach:solar_heart",
+    "cosmicbreach:starshard",
+    "cosmicbreach:starhide",
+    "cosmicbreach:rime_thread",
+    "cosmicbreach:starbloom_seeds",
+    "cosmicbreach:starbloom",
+    "cosmicbreach:spire_quartz"
+  ]
+}

@@ -129,6 +129,17 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
         return AetheriaWorld.is(level()) && Layer.at(getY()) == Layer.DRIFT;
     }
 
+    /** The layer of Aetheria it is in, or null elsewhere. */
+    private @Nullable Layer aetheriaLayer() {
+        return AetheriaWorld.is(level()) ? Layer.at(getY()) : null;
+    }
+
+    /** True in a layer where a ridden manta truly flies: the Drift, and the Deep (under its ceiling). */
+    public boolean canFly() {
+        Layer layer = aetheriaLayer();
+        return layer != null && MantaRules.flies(layer);
+    }
+
     @Override
     public boolean isFlying() {
         return !onGround();
@@ -375,7 +386,11 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
         if (!blinkReady()) {
             return null;
         }
-        double[] d = MantaRules.blinkDirection(rider.getYRot(), rider.getXRot(), inDrift());
+        Layer layer = aetheriaLayer();
+        double[] d = MantaRules.blinkDirection(rider.getYRot(), rider.getXRot(), canFly());
+        if (layer != null) {
+            d = MantaRules.clampBlink(d, layer, getY());
+        }
         Vec3 from = position();
         move(MoverType.SELF, new Vec3(d[0], d[1], d[2]).scale(MantaRules.BLINK_DISTANCE));
         entityData.set(DATA_BLINK_AT, level().getGameTime());
@@ -397,15 +412,17 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
         }
         boolean drift = inDrift();
         if (isControlledByLocalInstance() && getControllingPassenger() instanceof Player rider) {
+            Layer layer = aetheriaLayer();
+            boolean flies = layer != null && MantaRules.flies(layer);
             // fly from its own speed of last tick (vanilla scales a ridden mount's speed on the rider's client first)
             Vec3 last = flying ? flightVelocity : getDeltaMovement();
             double[] v = {last.x, last.y, last.z};
             // the rider's movement input: vanilla leaves it at 98% of the key's by the time the vehicle reads it
             double forward = Mth.clamp(rider.zza / 0.98f, -1f, 1f);
             double strafe = Mth.clamp(rider.xxa / 0.98f, -1f, 1f);
-            double[] want = MantaRules.target(forward, strafe, riderJumping(), rider.getYRot(), rider.getXRot(), drift,
-                    onGround(), wears(MountGear.GALE_FINS));
-            v = MantaRules.step(v, want, drift);
+            double[] want = MantaRules.target(forward, strafe, riderJumping(), rider.getYRot(), rider.getXRot(),
+                    layer == null ? Layer.REACH : layer, getY(), onGround(), wears(MountGear.GALE_FINS));
+            v = MantaRules.step(v, want, flies);
             setDeltaMovement(v[0], v[1], v[2]);
             move(MoverType.SELF, getDeltaMovement());
             flightVelocity = getDeltaMovement(); // after collisions
@@ -591,7 +608,7 @@ public class DriftManta extends CelestialMount implements FlyingAnimal {
             return state.setAndContinue(REST);
         }
         double speed = Math.hypot(getX() - xo, getZ() - zo);
-        if (!inDrift() && getY() - yo < -0.02) {
+        if (!canFly() && getY() - yo < -0.02) {
             return state.setAndContinue(GLIDE);
         }
         return state.setAndContinue(speed > 0.05 || Math.abs(getY() - yo) > 0.05 ? SWIM : HOVER);

@@ -2,6 +2,7 @@ package com.cosmicbreach.client.gear;
 
 import com.cosmicbreach.client.fx.FxRenderTypes;
 import com.cosmicbreach.gear.forge.AstralForgeBlockEntity;
+import com.cosmicbreach.gear.forge.ForgeRingGeometry;
 import com.cosmicbreach.item.GearTier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -22,14 +23,6 @@ import org.joml.Vector3f;
  */
 public class AstralForgeRenderer implements BlockEntityRenderer<AstralForgeBlockEntity> {
     private static final int SEGMENTS = 56;
-    private static final float CENTRE_Y = 0.9f;
-    /** Radius, tilt about X, tilt about Z (degrees), turn speed (degrees a tick) and width of each ring, inner first. */
-    private static final float[][] RINGS = {
-            {0.72f, 12f, -8f, 1.6f, 0.04f},
-            {0.90f, -24f, 18f, -1.1f, 0.038f},
-            {1.08f, 38f, 30f, 0.8f, 0.036f},
-            {1.26f, -52f, -34f, -0.6f, 0.036f},
-    };
     private static final int GROW_TICKS = 30;
     private static final int FLASH_TICKS = 16;
 
@@ -48,14 +41,14 @@ public class AstralForgeRenderer implements BlockEntityRenderer<AstralForgeBlock
                 : (float) Math.max(0.0, 1.0 - (now - forge.craftedAt()) / FLASH_TICKS);
         double sinceTierUp = forge.tierUpAt() == Long.MIN_VALUE ? Double.MAX_VALUE : now - forge.tierUpAt();
         Vec3 camera = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
-        Vec3 centre = Vec3.atLowerCornerOf(forge.getBlockPos()).add(0.5, CENTRE_Y, 0.5);
+        Vec3 centre = Vec3.atLowerCornerOf(forge.getBlockPos()).add(0.5, ForgeRingGeometry.CENTRE_Y, 0.5);
         Vector3f toCamera = new Vector3f((float) (camera.x - centre.x), (float) (camera.y - centre.y), (float) (camera.z - centre.z));
         VertexConsumer out = buffers.getBuffer(FxRenderTypes.additive(FxRenderTypes.GLOW));
         pose.pushPose();
-        pose.translate(0.5, CENTRE_Y, 0.5);
+        pose.translate(0.5, 0.0, 0.5);
         Matrix4f m = pose.last().pose();
-        for (int i = 0; i < tier && i < RINGS.length; i++) {
-            float[] ring = RINGS[i];
+        for (int i = 0; i < ForgeRingGeometry.ringsFor(tier); i++) {
+            ForgeRingGeometry.Ring ring = ForgeRingGeometry.ring(i);
             float grow = 1f;
             if (i == tier - 1 && sinceTierUp < GROW_TICKS) {
                 double t = sinceTierUp / GROW_TICKS;
@@ -63,16 +56,16 @@ public class AstralForgeRenderer implements BlockEntityRenderer<AstralForgeBlock
             }
             int color = GearTier.color(i + 1);
             float strength = 0.75f + 0.25f * flash + (grow < 1f ? 0.6f * (1f - grow) : 0f);
-            drawRing(out, m, toCamera, ring[0] * grow, ring[1], ring[2], (float) (now * ring[3]), ring[4] * (1f + flash), color,
+            drawRing(out, m, toCamera, ring, grow, (float) (now * ring.spinPerTick()), (float) ring.width() * (1f + flash), color,
                     Math.min(1f, strength));
         }
         pose.popPose();
     }
 
     /** One ring: a loop of camera-facing quads, and a mote at the leading point. */
-    private static void drawRing(VertexConsumer out, Matrix4f m, Vector3f toCamera, float radius, float tiltX, float tiltZ,
+    private static void drawRing(VertexConsumer out, Matrix4f m, Vector3f toCamera, ForgeRingGeometry.Ring ring, float grow,
                                  float spin, float width, int color, float strength) {
-        if (radius <= 0.01f) {
+        if (ring.radius() * grow <= 0.01f) {
             return;
         }
         float r = ((color >> 16) & 0xFF) / 255f;
@@ -81,7 +74,8 @@ public class AstralForgeRenderer implements BlockEntityRenderer<AstralForgeBlock
         Vector3f[] points = new Vector3f[SEGMENTS + 1];
         for (int s = 0; s <= SEGMENTS; s++) {
             double a = Math.toRadians(spin) + s * Math.PI * 2.0 / SEGMENTS;
-            points[s] = tilt(new Vector3f((float) (Math.cos(a) * radius), 0f, (float) (Math.sin(a) * radius)), tiltX, tiltZ);
+            double[] p = ring.point(a, grow); // the shared geometry: the same points the clearance test walks
+            points[s] = new Vector3f((float) p[0], (float) p[1], (float) p[2]);
         }
         for (int s = 0; s < SEGMENTS; s++) {
             Vector3f p0 = points[s];
@@ -108,10 +102,6 @@ public class AstralForgeRenderer implements BlockEntityRenderer<AstralForgeBlock
         Vector3f up = view.cross(right, new Vector3f()).normalize(width * 4.5f);
         billboard(out, m, head, right, up, Math.min(1f, r * 0.4f + 0.6f), Math.min(1f, g * 0.4f + 0.6f), Math.min(1f, b * 0.4f + 0.6f),
                 strength);
-    }
-
-    private static Vector3f tilt(Vector3f p, float tiltX, float tiltZ) {
-        return p.rotateX((float) Math.toRadians(tiltX)).rotateZ((float) Math.toRadians(tiltZ));
     }
 
     private static void quad(VertexConsumer out, Matrix4f m, Vector3f p0, Vector3f p1, Vector3f side, float r, float g, float b, float a) {

@@ -7,8 +7,6 @@
     "can_place_on_ceiling": true,
     "can_place_on_wall": true,
     "chance_of_spreading": 0.6,
-    "can_be_placed_on": [
-      "cosmicbreach:umbral_basalt"
-    ]
+    "can_be_placed_on": "#cosmicbreach:deep_stone"
   }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "cosmicbreach:block/ashen_basalt_top",
+    "side": "cosmicbreach:block/ashen_basalt"
+  }
+}

@@ -47,8 +47,11 @@
     ],
     [],
     [
+      "cosmicbreach:lichen_carpet_spans",
       "cosmicbreach:neon_lichen_magenta",
       "cosmicbreach:neon_lichen_teal",
+      "cosmicbreach:neon_lichen_magenta_sparse",
+      "cosmicbreach:neon_lichen_teal_sparse",
       "cosmicbreach:umbral_cap_patch"
     ]
   ]

@@ -14,7 +14,8 @@ import net.minecraft.world.level.Level;
 
 /**
  * The Starfall Codex: using it opens the guide ({@link Codex#openFromItem}); used while sneaking in Aetheria it throws
- * a mote of light toward the nearest guardian's lair instead ({@link com.cosmicbreach.codex.LairMote}).
+ * a mote of light toward the nearest guardian's lair instead ({@link com.cosmicbreach.codex.LairMote}); used again while
+ * the mote flies, it turns to the nearest puzzle room and back.
  */
 public class CodexItem extends Item {
     public CodexItem(Properties properties) {
@@ -25,7 +26,7 @@ public class CodexItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (player.isSecondaryUseActive() && com.cosmicbreach.world.AetheriaWorld.is(level)) {
             if (player instanceof ServerPlayer server) {
-                com.cosmicbreach.codex.LairMote.throwFor(server);
+                com.cosmicbreach.codex.LairMote.useFor(server);
             }
             return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide());
         }
@@ -38,5 +39,6 @@ public class CodexItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> lines, TooltipFlag flag) {
         lines.add(Component.translatable("item.cosmicbreach.starfall_codex.tooltip").withStyle(ChatFormatting.GRAY));
+        lines.add(Component.translatable("item.cosmicbreach.starfall_codex.tooltip.switch").withStyle(ChatFormatting.GRAY));
     }
 }

@@ -6,8 +6,8 @@
     "targets": [
       {
         "target": {
-          "predicate_type": "minecraft:block_match",
-          "block": "cosmicbreach:umbral_basalt"
+          "predicate_type": "minecraft:tag_match",
+          "tag": "cosmicbreach:deep_stone"
         },
         "state": {
           "Name": "cosmicbreach:eclipsium_ore"

@@ -118,8 +118,8 @@ class UnsungResourcesTest {
         assertEquals("cosmicbreach:silent_nave", structure.get("type").getAsString());
         assertEquals("cosmicbreach:rift_abyss", structure.getAsJsonArray("biomes").get(0).getAsString());
         JsonObject placement = json("/data/cosmicbreach/worldgen/structure_set/silent_nave.json").getAsJsonObject("placement");
-        assertEquals(48, placement.get("spacing").getAsInt());
-        assertEquals(18, placement.get("separation").getAsInt());
+        assertEquals(30, placement.get("spacing").getAsInt()); // layer 3 zones: fewer starts find a site, so more starts
+        assertEquals(11, placement.get("separation").getAsInt());
         for (String v : lang.keySet()) {
             String text = lang.get(v).getAsString();
             assertTrue(text.indexOf('—') < 0 && text.indexOf('–') < 0, "no dashes: " + v);

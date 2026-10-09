@@ -60,6 +60,7 @@ public final class Scenarios {
         register("dimension-views", () -> new DimensionScenario(DimensionScenario.Part.VIEWS));
         register("dimension-rules", () -> new DimensionScenario(DimensionScenario.Part.RULES));
         register("dimension-timing", () -> new DimensionScenario(DimensionScenario.Part.TIMING));
+        register("zones", com.cosmicbreach.client.dev.scenario.ZonesScenario::new);
         register("maul", MaulScenario::new);
         register("edges", EdgesScenario::new);
         register("edges-mechanics", () -> new EdgesScenario(false));
@@ -104,6 +105,18 @@ public final class Scenarios {
         register("choir", com.cosmicbreach.client.dev.scenario.ChoirScenario::new);
         register("crypt", com.cosmicbreach.client.dev.scenario.CryptScenario::new);
         register("stalker", com.cosmicbreach.client.dev.scenario.StalkerScenario::new);
+        register("jelly", () -> new com.cosmicbreach.client.dev.scenario.JellyScenario(
+                com.cosmicbreach.client.dev.scenario.JellyScenario.Part.MECHANICS));
+        register("jelly-drops", () -> new com.cosmicbreach.client.dev.scenario.JellyScenario(
+                com.cosmicbreach.client.dev.scenario.JellyScenario.Part.DROPS));
+        register("jelly-bloom", () -> new com.cosmicbreach.client.dev.scenario.JellyScenario(
+                com.cosmicbreach.client.dev.scenario.JellyScenario.Part.BLOOM));
+        register("jelly-spawn", () -> new com.cosmicbreach.client.dev.scenario.JellyScenario(
+                com.cosmicbreach.client.dev.scenario.JellyScenario.Part.SPAWNS));
+        register("jelly-looks", () -> new com.cosmicbreach.client.dev.scenario.JellyScenario(
+                com.cosmicbreach.client.dev.scenario.JellyScenario.Part.LOOKS));
+        register("jelly-zones", () -> new com.cosmicbreach.client.dev.scenario.JellyScenario(
+                com.cosmicbreach.client.dev.scenario.JellyScenario.Part.ZONES));
         register("deeplight", com.cosmicbreach.client.dev.scenario.DeeplightScenario::new);
         register("astrolabe", com.cosmicbreach.client.dev.scenario.AstrolabeScenario::new);
         register("crypt-walk", () -> new com.cosmicbreach.client.dev.scenario.CryptScenario(
@@ -170,6 +183,10 @@ public final class Scenarios {
         register("ascent", com.cosmicbreach.client.dev.scenario.AscentScenario::new);
         register("familiars", com.cosmicbreach.client.dev.scenario.FamiliarsScenario::new);
         register("codex", com.cosmicbreach.client.dev.scenario.CodexScenario::new);
+        register("lane-a-charge", com.cosmicbreach.client.dev.scenario.ChargeInputScenario::new);
+        register("lane-a-satchel", com.cosmicbreach.client.dev.scenario.SatchelScenario::new);
+        register("lane-a-manta-deep", com.cosmicbreach.client.dev.scenario.MantaDeepScenario::new);
+        register("lane-a-puzzle-finder", com.cosmicbreach.client.dev.scenario.PuzzleFinderScenario::new);
         register("codex-layers", com.cosmicbreach.client.dev.scenario.CodexLayersScenario::new);
         register("config", com.cosmicbreach.client.dev.scenario.ConfigScenario::new);
         register("compat", com.cosmicbreach.client.dev.scenario.CompatScenario::new);

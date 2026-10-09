@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.2.0
+
+New content and quality of life. Every player and the server need 1.2.0. Worlds from 1.1.x load, but the new layer 3
+terrain only appears in areas not yet explored, so a new world is the best way to see it.
+
+- Layer 3 zones: the layer is now split into four zones, each with its own ground, shapes and colour: the Spans, the
+  Lichen Gardens, the Hanging Wood and the Shattered Field. The air itself takes on the zone's colour, and far terrain
+  fades into it.
+- Drift jelly: a new creature that drifts through every layer 3 zone, with its own drops (drift gel, candied gel).
+- Satchel: a new back-slot bag that picks up materials, with its own screen; the forge can use what it holds.
+- Tooltips: every item now says what it is, where it comes from and what it is used in. Hold Shift to expand.
+- Charge attack: a short hold window now tells a tap (light attack) from a hold (charge attack), so charging never
+  swings first.
+- Codex puzzle finder: use the codex again while its guide is flying to switch from the boss to the nearest puzzle room.
+- The manta can now fly in layer 3, under a soft ceiling.
+- Familiar egg odds in vaults raised: layer 1 40%, layer 2 45%, layer 3 crypt 50%.
+- Forge: the rings no longer dip into the base.
+
 ## 1.1.1
 
 Fixes from the third round of playtesting. Worlds from 1.1.0 load as they are; every player and the server need 1.1.1.

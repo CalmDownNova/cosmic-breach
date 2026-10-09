@@ -46,11 +46,14 @@ public final class CosmicBreachClient {
         com.cosmicbreach.client.leviathan.LeviathanClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.gyre.GyreClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.stalker.StalkerClient.register(modBus, NeoForge.EVENT_BUS);
+        com.cosmicbreach.client.jelly.JellyClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.astrolabe.AstrolabeClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.relic.RelicsClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.accessory.AccessoriesClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.mount.MountsClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.familiar.FamiliarsClient.register(modBus, NeoForge.EVENT_BUS);
+        com.cosmicbreach.client.satchel.SatchelClient.register(modBus, NeoForge.EVENT_BUS);
+        com.cosmicbreach.client.tooltip.TooltipClient.register(NeoForge.EVENT_BUS);
         SkyClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.weather.WeatherClient.register(modBus, NeoForge.EVENT_BUS);
         com.cosmicbreach.client.onboarding.OnboardingClient.register(modBus, NeoForge.EVENT_BUS);

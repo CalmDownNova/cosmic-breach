@@ -101,6 +101,7 @@ class ReachabilityTest {
             new Source(3, Kind.BLOCK, "cosmicbreach:teal_neon_lichen", HAND, false),
             new Source(3, Kind.BLOCK, "cosmicbreach:umbral_cap", HAND, true, "cosmicbreach:umbral_cap_patch"),   // new chunks only
             new Source(3, Kind.MOB, "cosmicbreach:hollow_stalker", HAND, true),
+            new Source(3, Kind.MOB, "cosmicbreach:drift_jelly", HAND, true),
             new Source(3, Kind.VAULT, "cosmicbreach:vaults/crypt", HAND, false),
             // level 4, the Breach Sanctum: its wings' vaults; it stands in the Deep's dark, where the lichen and the Umbral Cap grow
             new Source(4, Kind.VAULT, "cosmicbreach:vaults/sanctum_choir", HAND, false),

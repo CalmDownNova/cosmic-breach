@@ -35,6 +35,11 @@ import net.minecraft.world.phys.Vec3;
  * (the layers stack, so "nearer across" used to send a player in the Deep back up to a lair above them). With
  * nothing left in this layer it points to the earliest guardian still unbeaten, in the order the layers are played.
  * The mote is particles sent from the server along a path, so nothing is saved and nothing can be picked up.
+ *
+ * <p>The book has a second target (playtest 3): using it again while its mote still flies turns it from the boss to
+ * the nearest puzzle room of the player's layer that they have not done ({@link PuzzleRooms}, {@link PuzzleFinder}),
+ * and back. Later throws keep pointing at whichever it was turned to, and the action bar says which. With no puzzle
+ * room left on the layer it says so and points at the boss again.
  */
 public final class LairMote {
     /** How far the mote flies, in blocks, and in how many ticks; it hovers a little after. */
@@ -59,6 +64,10 @@ public final class LairMote {
 
     private static final List<Mote> LIVE = new ArrayList<>();
     private static final Map<UUID, Long> LAST = new HashMap<>();
+    /** Each player's last sneak-use of the book (pressed or held), to tell a fresh press from a held button. */
+    private static final Map<UUID, Long> LAST_USE = new HashMap<>();
+    /** What each player's book points at; the boss until they turn it. */
+    private static final Map<UUID, PuzzleRooms.Target> MODE = new HashMap<>();
     /** What the last mote flew toward (for tests), or null. */
     private static volatile Candidate lastTarget;
 
@@ -136,7 +145,36 @@ public final class LairMote {
         return d.normalize();
     }
 
-    /** Throws the mote for {@code player}, if they are in Aetheria and anything is left to find. True if one flew. */
+    /**
+     * A sneak-use of the Codex by {@code player}: a fresh press throws a mote at the book's target, or, while their
+     * last mote still flies, turns the book to its other target and throws at that ({@link PuzzleRooms#press}). True
+     * if a mote flew.
+     */
+    public static boolean useFor(ServerPlayer player) {
+        if (!(player.level() instanceof ServerLevel level) || !AetheriaWorld.is(level)) {
+            return false;
+        }
+        long now = level.getGameTime();
+        UUID id = player.getUUID();
+        Long lastUse = LAST_USE.put(id, now);
+        Long last = LAST.get(id);
+        PuzzleRooms.Press press = PuzzleRooms.press(now, lastUse == null ? -1L : lastUse, last == null ? -1L : last, flying(id),
+                COOLDOWN_TICKS);
+        if (press == PuzzleRooms.Press.IGNORE) {
+            return false;
+        }
+        if (press == PuzzleRooms.Press.SWITCH) {
+            MODE.put(id, target(id).next());
+            LIVE.removeIf(m -> m.owner().equals(id));
+        }
+        LAST.put(id, now);
+        return aim(player, level, now);
+    }
+
+    /**
+     * Throws the mote for {@code player} at the book's current target, if they are in Aetheria and anything is left to
+     * find. True if one flew.
+     */
     public static boolean throwFor(ServerPlayer player) {
         if (!(player.level() instanceof ServerLevel level) || !AetheriaWorld.is(level)) {
             return false;
@@ -147,6 +185,46 @@ public final class LairMote {
             return false;
         }
         LAST.put(player.getUUID(), now);
+        return aim(player, level, now);
+    }
+
+    /** What {@code player}'s book points at. */
+    public static PuzzleRooms.Target target(UUID player) {
+        return MODE.getOrDefault(player, PuzzleRooms.Target.BOSS);
+    }
+
+    /** Turns {@code player}'s book to {@code target} (for tests and commands). */
+    public static void setTarget(UUID player, PuzzleRooms.Target target) {
+        MODE.put(player, target);
+    }
+
+    private static boolean flying(UUID player) {
+        for (Mote m : LIVE) {
+            if (m.owner().equals(player)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean aim(ServerPlayer player, ServerLevel level, long now) {
+        if (target(player.getUUID()) == PuzzleRooms.Target.PUZZLE) {
+            Optional<PuzzleRooms.Room> room = PuzzleFinder.nearest(level, player);
+            if (room.isPresent()) {
+                PuzzleRooms.Kind kind = room.get().kind();
+                Candidate c = new Candidate("puzzle_" + kind.key(), room.get().at(), kind.layer, -1, true, false);
+                Vec3 dir = fly(player, level, now, c);
+                player.displayClientMessage(Component.translatable("cosmicbreach.codex.track.puzzle",
+                        Component.translatable("cosmicbreach.codex.mote.puzzle." + kind.key(), heading(dir))), true);
+                return true;
+            }
+            MODE.put(player.getUUID(), PuzzleRooms.Target.BOSS);
+            return aimBoss(player, level, now, "cosmicbreach.codex.track.no_puzzle");
+        }
+        return aimBoss(player, level, now, "cosmicbreach.codex.track.boss");
+    }
+
+    private static boolean aimBoss(ServerPlayer player, ServerLevel level, long now, String track) {
         BlockPos from = player.blockPosition();
         List<Candidate> candidates = new ArrayList<>();
         add(candidates, level, player, from, GuardianTypes.COLOSSUS, true);
@@ -159,16 +237,23 @@ public final class LairMote {
         Optional<Candidate> pick = choose(Layer.at(player.getY()), from, candidates);
         if (pick.isEmpty()) {
             lastTarget = null;
-            player.displayClientMessage(Component.translatable("cosmicbreach.codex.mote.none"), true);
+            player.displayClientMessage(Component.translatable(track, Component.translatable("cosmicbreach.codex.mote.none")), true);
             return false;
         }
-        lastTarget = pick.get();
+        Vec3 dir = fly(player, level, now, pick.get());
+        player.displayClientMessage(Component.translatable(track,
+                Component.translatable("cosmicbreach.codex.mote." + pick.get().name(), heading(dir))), true);
+        return true;
+    }
+
+    /** Sends a mote from {@code player}'s book toward {@code target}; returns the way it flies. */
+    private static Vec3 fly(ServerPlayer player, ServerLevel level, long now, Candidate target) {
+        lastTarget = target;
         Vec3 start = player.getEyePosition().add(player.getLookAngle().scale(0.8));
-        Vec3 dir = direction(start, Vec3.atCenterOf(pick.get().centre()));
+        Vec3 dir = direction(start, Vec3.atCenterOf(target.centre()));
         LIVE.add(new Mote(level, player.getUUID(), start, dir, now));
         level.playSound(null, player.getX(), player.getY(), player.getZ(), Astrolabes.STAR_PLACE.get(), SoundSource.PLAYERS, 0.7f, 1.6f);
-        player.displayClientMessage(Component.translatable("cosmicbreach.codex.mote." + pick.get().name(), heading(dir)), true);
-        return true;
+        return dir;
     }
 
     private static void add(List<Candidate> out, ServerLevel level, ServerPlayer player, BlockPos from, GuardianType type,
@@ -232,13 +317,18 @@ public final class LairMote {
 
     public static void forget(UUID player) {
         LAST.remove(player);
+        LAST_USE.remove(player);
+        MODE.remove(player);
         LIVE.removeIf(m -> m.owner().equals(player));
     }
 
     public static void reset() {
         LIVE.clear();
         LAST.clear();
+        LAST_USE.clear();
+        MODE.clear();
         lastTarget = null;
+        PuzzleFinder.reset();
     }
 
     /** What the last mote flew toward, or null (for tests). */

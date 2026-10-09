@@ -42,6 +42,9 @@ public final class AetheriaWorld {
     public static final ResourceKey<Biome> SUNFIELD_TERRACES = biome("sunfield_terraces");
     public static final ResourceKey<Biome> DRIFT_BELT = biome("drift_belt");
     public static final ResourceKey<Biome> RIFT_ABYSS = biome("rift_abyss");
+    public static final ResourceKey<Biome> LICHEN_GARDENS = biome("lichen_gardens");
+    public static final ResourceKey<Biome> HANGING_WOOD = biome("hanging_wood");
+    public static final ResourceKey<Biome> SHATTERED_FIELD = biome("shattered_field");
 
     public static final DeferredRegister<MapCodec<? extends DensityFunction>> DENSITY_FUNCTION_TYPES =
             DeferredRegister.create(Registries.DENSITY_FUNCTION_TYPE, CosmicBreach.MOD_ID);
@@ -52,6 +55,7 @@ public final class AetheriaWorld {
     static {
         DENSITY_FUNCTION_TYPES.register("aetheria_terrain", () -> TerrainDensity.DATA_CODEC);
         DENSITY_FUNCTION_TYPES.register("isle_style", () -> IsleStyleDensity.DATA_CODEC);
+        DENSITY_FUNCTION_TYPES.register("deep_zone", () -> com.cosmicbreach.world.gen.DeepZoneDensity.DATA_CODEC);
         BIOME_SOURCES.register("aetheria_layers", () -> AetheriaBiomeSource.CODEC);
     }
 
@@ -67,6 +71,17 @@ public final class AetheriaWorld {
             FEATURES.register("asteroid_decor", AsteroidDecorFeature::new);
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> CRYSTAL_CHANDELIER =
             FEATURES.register("crystal_chandelier", CrystalChandelierFeature::new);
+    // the layer 3 zones (Aetheria 1.2)
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> GIANT_UMBRAL_CAP =
+            FEATURES.register("giant_umbral_cap", com.cosmicbreach.world.feature.GiantUmbralCapFeature::new);
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> LICHEN_CARPET =
+            FEATURES.register("lichen_carpet", com.cosmicbreach.world.feature.LichenCarpetFeature::new);
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> UNDERSIDE_ORE =
+            FEATURES.register("underside_ore", com.cosmicbreach.world.feature.UndersideOreFeature::new);
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> TEAL_CURTAIN_SHEET =
+            FEATURES.register("teal_curtain_sheet", com.cosmicbreach.world.feature.TealCurtainSheetFeature::new);
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> RIFT_GLASS_SHARDS =
+            FEATURES.register("rift_glass_shards", com.cosmicbreach.world.feature.RiftGlassShardsFeature::new);
 
     private AetheriaWorld() {
     }
@@ -75,6 +90,7 @@ public final class AetheriaWorld {
         DENSITY_FUNCTION_TYPES.register(modBus);
         BIOME_SOURCES.register(modBus);
         FEATURES.register(modBus);
+        com.cosmicbreach.world.feature.ZoneBlocks.register(modBus);
         AetheriaRules.register(modBus, game);
     }
 

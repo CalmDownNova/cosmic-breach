@@ -530,23 +530,36 @@ public class LensCoreBlockEntity extends BlockEntity {
 
     /**
      * Puts a lifted piece where it can be set down at once: in the hand if it is empty, else the first empty hotbar
-     * slot, else anywhere in the inventory (a full hotbar used to send it to the inventory, out of reach of a
-     * hotbar key). False if there is no room at all.
+     * slot, else any free slot of the inventory (a full hotbar used to send it out of reach of a hotbar key). False if
+     * the inventory is full: the piece is then not lifted and stays on its pedestal (a piece is never left loose on the
+     * ground; thrown or dropped ones go back on the grid).
      */
     static boolean carry(ServerPlayer player, ItemStack stack) {
         net.minecraft.world.entity.player.Inventory inv = player.getInventory();
-        int slot = inv.getItem(inv.selected).isEmpty() ? inv.selected : -1;
-        for (int i = 0; slot < 0 && i < net.minecraft.world.entity.player.Inventory.getSelectionSize(); i++) {
-            if (inv.getItem(i).isEmpty()) {
-                slot = i;
+        int slot = carrySlot(inv.selected, net.minecraft.world.entity.player.Inventory.getSelectionSize(), inv.items.size(),
+                i -> inv.items.get(i).isEmpty());
+        if (slot < 0) {
+            return false;
+        }
+        inv.setItem(slot, stack);
+        inv.setChanged();
+        return true;
+    }
+
+    /**
+     * The slot a lifted piece goes to: {@code selected} if empty, else the first empty hotbar slot (below
+     * {@code hotbar}), else the first empty slot of the rest (below {@code size}); -1 if none is empty. Pure.
+     */
+    static int carrySlot(int selected, int hotbar, int size, java.util.function.IntPredicate empty) {
+        if (selected >= 0 && selected < hotbar && empty.test(selected)) {
+            return selected;
+        }
+        for (int i = 0; i < size; i++) {
+            if (empty.test(i)) {
+                return i;
             }
         }
-        if (slot >= 0) {
-            inv.setItem(slot, stack);
-            inv.setChanged();
-            return true;
-        }
-        return inv.add(stack);
+        return -1;
     }
 
     /** Sets the carried piece {@code stack} on the empty pedestal at {@code pos}. */

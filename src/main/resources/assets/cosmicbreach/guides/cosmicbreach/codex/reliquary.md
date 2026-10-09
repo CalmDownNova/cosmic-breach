@@ -17,6 +17,9 @@ past halls that Shardlings have made their dens, to a round room of light near t
 That room holds a **Lens Array**, a puzzle of mirrors and sunlight (the [next page](lens_array.md) teaches it).
 Solve it and the **vault** at its heart unseals.
 
+**Finding one.** Sneak and use the Codex, then use it again while its mote flies: it turns to the nearest puzzle
+room on your layer whose vault you have not opened yet.
+
 **Every vault opens once for each of you.** Two friends who climb a Reliquary together each take their own
 share, and nobody has to fight over it. Finding a structure, solving its puzzle and opening its vault all
 teach you something, and each is worth Attunement.

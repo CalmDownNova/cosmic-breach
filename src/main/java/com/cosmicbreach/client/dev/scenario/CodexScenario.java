@@ -133,6 +133,7 @@ public final class CodexScenario implements Scenario {
                 .command("effect give @s minecraft:resistance 100000 4 true")
                 .command("cosmicbreach debug goto reach")
                 .waitUntil("in Aetheria", 400, () -> AetheriaWorld.is(mc.level))
+                .waitUntil("the level screen is gone", 600, () -> mc.screen == null)
                 .waitTicks(40)
                 .command("clear @s")
                 .command("give @s cosmicbreach:starfall_codex")
@@ -159,7 +160,8 @@ public final class CodexScenario implements Scenario {
                 // the Colossus beaten and the Drift attuned: the Leviathan's lair is next
                 .command("advancement grant @s only cosmicbreach:guardian/refracted")
                 .command("advancement grant @s only cosmicbreach:attunement/drift")
-                .waitTicks(50);
+                .waitUntil("the last mote has faded (a second use while it flies turns the book to the puzzle rooms)", 120, () -> ServerQuery.ask(p -> LairMote.live() == 0))
+                .waitTicks(45);
         sneakUse(steps, mc);
         steps.waitUntil("the next mote flies toward the Leviathan's Rift", 40, () -> ServerQuery.ask(p ->
                         LairMote.lastTarget() != null && LairMote.lastTarget().name().equals("leviathan")))
@@ -167,12 +169,14 @@ public final class CodexScenario implements Scenario {
                 .command("advancement grant @s only cosmicbreach:attunement/deep")
                 .command("advancement grant @s only cosmicbreach:guardian/unsung")
                 .command("advancement grant @s only cosmicbreach:attunement/sanctum")
-                .waitTicks(50);
+                .waitUntil("the last mote has faded (a second use while it flies turns the book to the puzzle rooms)", 120, () -> ServerQuery.ask(p -> LairMote.live() == 0))
+                .waitTicks(45);
         sneakUse(steps, mc);
         steps.waitUntil("with every guardian beaten it points to the Breach", 40, () -> ServerQuery.ask(p ->
                         LairMote.lastTarget() != null && LairMote.lastTarget().name().equals("sanctum")))
                 .command("advancement grant @s only cosmicbreach:guardian/breach_sealed")
-                .waitTicks(50);
+                .waitUntil("the last mote has faded (a second use while it flies turns the book to the puzzle rooms)", 120, () -> ServerQuery.ask(p -> LairMote.live() == 0))
+                .waitTicks(45);
         sneakUse(steps, mc);
         steps.waitTicks(5)
                 .check("and once the Breach is sealed, the book is quiet", () -> ServerQuery.ask(p -> LairMote.lastTarget() == null))

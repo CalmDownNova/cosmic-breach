@@ -17,6 +17,9 @@ basalt of the Deep. The Hollow found them first. Stalkers walk their halls, and 
 Somewhere inside every Crypt waits a **Choir Floor**, the rhythm puzzle ([its page](choir_floor.md)), and beyond
 it the **vault**, where the charms of the Choir were kept.
 
+**Finding one.** Sneak and use the Codex, then use it again while its mote flies: it turns to the nearest puzzle
+room on your layer whose vault you have not opened yet.
+
 **Walk carefully.** The traps of a Crypt answer to how you move. Sneaking or walking shows you their tells a few
 blocks ahead; running and dashing show you nothing. Some traps punish standing still, some punish haste: the
 [next page](traps.md) names them.

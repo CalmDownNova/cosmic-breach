@@ -101,7 +101,8 @@ public final class WorldCommands {
         BlockPos from = searchOrigin(player);
         AetheriaTerrain t = AetheriaSpots.terrain(level);
         for (ResourceKey<Biome> key : List.of(AetheriaWorld.SHATTERED_SPIRES, AetheriaWorld.SUNFIELD_TERRACES,
-                AetheriaWorld.DRIFT_BELT, AetheriaWorld.RIFT_ABYSS)) {
+                AetheriaWorld.DRIFT_BELT, AetheriaWorld.RIFT_ABYSS, AetheriaWorld.LICHEN_GARDENS, AetheriaWorld.HANGING_WOOD,
+                AetheriaWorld.SHATTERED_FIELD)) {
             int y = key == AetheriaWorld.SHATTERED_SPIRES || key == AetheriaWorld.SUNFIELD_TERRACES ? 350
                     : key == AetheriaWorld.DRIFT_BELT ? 230 : 100;
             Pair<BlockPos, Holder<Biome>> found = level.findClosestBiome3d(h -> h.is(key), from.atY(y), 6400, 32, 64);

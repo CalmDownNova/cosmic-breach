@@ -53,11 +53,11 @@ class AccessoryResourcesTest {
     }
 
     @Test
-    void everyPlayerHasTwoRingsANecklaceAndACharm() throws IOException {
+    void everyPlayerHasTwoRingsANecklaceACharmAndABackSlot() throws IOException {
         assertEquals(2, json("/data/cosmicbreach/curios/slots/ring.json").get("size").getAsInt());
         JsonObject player = json("/data/cosmicbreach/curios/entities/player.json");
         assertEquals(Set.of("player"), strings(player.getAsJsonArray("entities")));
-        assertEquals(Set.of("ring", "necklace", "charm"), strings(player.getAsJsonArray("slots")));
+        assertEquals(Set.of("ring", "necklace", "charm", "back"), strings(player.getAsJsonArray("slots")));
     }
 
     @Test

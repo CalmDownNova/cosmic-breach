@@ -84,6 +84,15 @@ public final class PlayerCombat {
         apply(action, context());
     }
 
+    /** Server input: as {@link #apply(CombatAction)}, an attack release carrying the hold count the client reported (-1 for none). */
+    public void apply(CombatAction action, int reportedHeld) {
+        if (action == CombatAction.ATTACK_RELEASE) {
+            machine.releaseAttack(context(), reportedHeld);
+        } else {
+            apply(action, context());
+        }
+    }
+
     /** Feeds one input edge to the machine, with the given body context for presses. */
     public void apply(CombatAction action, Context ctx) {
         switch (action) {

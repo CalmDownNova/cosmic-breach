@@ -1,5 +1,6 @@
 package com.cosmicbreach.gear.forge;
 
+import com.cosmicbreach.satchel.SatchelForge;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -51,10 +52,14 @@ public final class ForgeCrafting {
         return planFor(needs, stacks) != null;
     }
 
-    /** What the player can craft from: the main inventory and the off hand. */
+    /**
+     * What the player can craft from: the main inventory and the off hand, then (as copies) what the Satchel in force
+     * holds: its materials and its Gear tab ({@link SatchelForge}). Loose stacks come first, so they are used up first.
+     */
     public static List<ItemStack> carried(Inventory inventory) {
         List<ItemStack> stacks = new ArrayList<>(inventory.items);
         stacks.addAll(inventory.offhand);
+        stacks.addAll(SatchelForge.view(inventory.player).stacks());
         return stacks;
     }
 
@@ -82,7 +87,11 @@ public final class ForgeCrafting {
 
     /** Takes every need from the player's stacks. False (and nothing taken) if they don't cover them. */
     public static boolean take(Inventory inventory, List<SizedIngredient> needs) {
-        List<ItemStack> stacks = carried(inventory);
+        List<ItemStack> stacks = new ArrayList<>(inventory.items);
+        stacks.addAll(inventory.offhand);
+        int real = stacks.size();
+        SatchelForge.View satchel = SatchelForge.view(inventory.player);
+        stacks.addAll(satchel.stacks());
         int[][] takes = planFor(needs, stacks);
         if (takes == null) {
             return false;
@@ -95,6 +104,9 @@ public final class ForgeCrafting {
             }
         }
         inventory.setChanged();
+        if (stacks.size() > real) {
+            SatchelForge.commit(inventory.player, satchel); // the view's stacks are the same objects, now shrunk
+        }
         return true;
     }
 

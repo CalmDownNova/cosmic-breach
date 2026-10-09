@@ -138,12 +138,24 @@ public class VaultBlockEntity extends BlockEntity {
             level.addFreshEntity(e);
         }
         opened.add(player.getUUID());
+        com.cosmicbreach.codex.PuzzleRoomLog.kindOf(getBlockState())
+                .ifPresent(kind -> com.cosmicbreach.codex.PuzzleRoomLog.get(level).opened(worldPosition, kind, player.getUUID()));
         level.playSound(null, worldPosition, StructureRegistry.VAULT_OPEN.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
         AttunementXp.award(player, XpSource.STRUCTURE_FOUND.at(layer()));
         player.displayClientMessage(Component.translatable("cosmicbreach.vault.opened"), true);
         setChanged();
         level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
         return items;
+    }
+
+    /** Tells the Codex's puzzle-room log this vault exists and who has opened it (also catches vaults opened before it). */
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (level instanceof ServerLevel server) {
+            com.cosmicbreach.codex.PuzzleRoomLog.kindOf(getBlockState())
+                    .ifPresent(kind -> com.cosmicbreach.codex.PuzzleRoomLog.get(server).seen(worldPosition, kind, opened));
+        }
     }
 
     @Override

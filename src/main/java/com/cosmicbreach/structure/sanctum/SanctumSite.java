@@ -2,6 +2,7 @@ package com.cosmicbreach.structure.sanctum;
 
 import com.cosmicbreach.world.gen.AetheriaTerrain;
 import com.cosmicbreach.world.gen.DeepSpans;
+import com.cosmicbreach.world.gen.DeepZones;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -54,7 +55,8 @@ public final class SanctumSite {
         for (int ci = -6; ci <= 5; ci++) {
             for (int cj = -6; cj <= 5; cj++) {
                 DeepSpans.Pillar p = t.deep.pillar(ci, cj);
-                if (!p.exists || p.platformR < MIN_PLATFORM) {
+                // the Spans' platforms only (the zone around the Breach): their shapes are what the causeway is built for
+                if (!p.exists || p.platformR < MIN_PLATFORM || p.zone != DeepZones.SPANS) {
                     continue;
                 }
                 for (int side : new int[] {-1, 1}) {

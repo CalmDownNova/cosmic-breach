@@ -1,7 +1,9 @@
 {
   "type": "cosmicbreach:silent_nave",
   "biomes": [
-    "cosmicbreach:rift_abyss"
+    "cosmicbreach:rift_abyss",
+    "cosmicbreach:hanging_wood",
+    "cosmicbreach:shattered_field"
   ],
   "step": "top_layer_modification",
   "terrain_adaptation": "none",

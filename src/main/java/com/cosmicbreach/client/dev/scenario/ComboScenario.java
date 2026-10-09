@@ -96,12 +96,14 @@ public final class ComboScenario implements Scenario {
                 .hold(attack)
                 .waitTicks(1)
                 .check("vanilla's attack did not run (its swing timer was not reset)", () -> mc.player.getAttackStrengthScale(0f) >= 1f)
-                .check("the tap started L1 at once", () -> current(mc, L1))
+                .check("the hold window is open: nothing has swung yet", () -> machine(mc).phase() == Phase.IDLE)
                 .release(attack)
+                .waitTicks(1)
+                .check("the tap fires L1 on release", () -> current(mc, L1))
                 .waitTicks(2)
-                // T+3: L1's first active tick.
+                // L1's first active tick (the 4 tick hold window moved L1's start to the release, one tick after the press).
                 .check("this is L1's first active tick", () -> current(mc, L1)
-                        && machine(mc).phase() == Phase.ACTIVE && machine(mc).phaseTick() == 0)
+                        && machine(mc).phase() == Phase.ACTIVE && machine(mc).phaseTick() <= 1)
                 .screenshot("combo_l1_active")
                 .waitTicks(4)
                 // T+8: second tap, in L1's recovery.

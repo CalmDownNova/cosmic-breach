@@ -126,12 +126,11 @@ public class SilentNaveStructure extends Structure {
         for (int di = -3; di <= 3; di++) {
             for (int dj = -3; dj <= 3; dj++) {
                 DeepSpans.Pillar q = t.deep.pillar(ci + di, cj + dj);
-                if (!q.exists || (q.ci == home.ci && q.cj == home.cj)) {
-                    continue;
-                }
-                double bound = Math.max(q.platformR, q.shaftR) + 3.0;
-                gap = Math.min(gap, Math.hypot(q.cx - apseX, q.cz - apseZ) - bound - NaveLayout.BUTTRESS_OUT);
-                gap = Math.min(gap, Math.hypot(q.cx - midX, q.cz - midZ) - bound - NaveLayout.PIER_OUT);
+                // every piece of rock of the cell (in the Shattered Field and the Hanging Wood its chunks, roots and
+                // ledges too); the home pillar's own body is the nave's floor
+                boolean self = q.ci == home.ci && q.cj == home.cj;
+                gap = Math.min(gap, q.gapTo(apseX, apseZ, self) - NaveLayout.BUTTRESS_OUT);
+                gap = Math.min(gap, q.gapTo(midX, midZ, self) - NaveLayout.PIER_OUT);
             }
         }
         return gap;

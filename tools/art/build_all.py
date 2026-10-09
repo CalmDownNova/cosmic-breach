@@ -24,6 +24,7 @@ STEPS = [
     "gen_blocks_reach",  # textures/block/: the Upper Reach (W1)
     "gen_blocks_drift",  # textures/block/: the Drift, plus item/driftwood_door.png
     "gen_blocks_deep",   # textures/block/: the Deep
+    "gen_blocks_zones",  # textures/block/: the layer 3 zones' ground, caps, stems, curtains (1.2)
     "gen_materials",     # textures/item/: metals, gems, drops, seeds
     "gen_provisions",    # textures/item/: the levels' food, Starhide, Rime Thread, two pickaxes; block/umbral_cap (1.1)
     "gen_vanguard",      # the Starfall Vanguard: geo, textures/armor/, icons; the tier trims of every weapon and piece
@@ -47,6 +48,8 @@ STEPS = [
     "gen_stable_crystal",  # the Stable Crystal, empty and full (1.1 task B2.7)
     "gen_shrines",  # the four boss shrines: geo, idle animation, texture and glowmask (1.1 tasks B4 and B5)
     "gen_familiars",     # the Emberwisp, Gravikin and Prism Moth (geo, animations, textures), the Star Egg, the lantern, the brazier (G10)
+    "gen_satchel",       # textures/item/satchel.png (1.2)
+    "gen_drift_jelly",   # the drift jelly (geo, animations, textures, glowmask), the two gels and the Skim icon (1.2 Lane C)
     "preview_items",     # previews/items.png, previews/fx.png
     "preview_shardling", # previews/shardling_*.png and the model checks
     "preview_blocks",    # previews/blocks.png, previews/items2.png
@@ -56,6 +59,7 @@ STEPS = [
     "preview_unsung",    # previews/unsung_views.png
     "preview_mounts",    # previews/lumen_stag_*.png, previews/drift_manta_*.png
     "preview_familiars", # previews/familiar_views.png
+    "preview_drift_jelly",  # previews/drift_jelly_views.png, drift_jelly_anim_*.png (python tools/art/preview_drift_jelly.py --media also writes the Media renders)
 ]
 
 

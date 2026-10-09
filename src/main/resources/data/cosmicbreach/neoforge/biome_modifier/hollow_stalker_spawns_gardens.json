@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "cosmicbreach:lichen_gardens",
+  "spawners": {
+    "type": "cosmicbreach:hollow_stalker",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

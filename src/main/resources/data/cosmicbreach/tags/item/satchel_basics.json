@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:cobblestone",
+    "minecraft:cobbled_deepslate",
+    "minecraft:dirt",
+    "minecraft:sand",
+    "minecraft:gravel",
+    "#minecraft:logs",
+    "#minecraft:planks",
+    "minecraft:stick",
+    "minecraft:coal",
+    "minecraft:raw_iron",
+    "minecraft:raw_copper",
+    "minecraft:raw_gold",
+    "minecraft:iron_ingot",
+    "minecraft:copper_ingot",
+    "minecraft:gold_ingot",
+    "minecraft:string",
+    "minecraft:leather",
+    "minecraft:bone",
+    "minecraft:rotten_flesh"
+  ]
+}

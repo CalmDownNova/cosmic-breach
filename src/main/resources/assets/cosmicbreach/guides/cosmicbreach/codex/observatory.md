@@ -23,3 +23,6 @@ The Observatories are guarded:
 
 That chamber holds a **Lens Array** seven pedestals wide, with colored filters: some crystals want gold light, some
 teal, some magenta. Its **vault** holds Drift treasures, and sometimes a ring.
+
+**Finding one.** Sneak and use the Codex, then use it again while its mote flies: it turns to the nearest puzzle
+room on your layer whose vault you have not opened yet.

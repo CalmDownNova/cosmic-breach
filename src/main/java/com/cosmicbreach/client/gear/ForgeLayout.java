@@ -89,6 +89,8 @@ public final class ForgeLayout {
     public static final Rect PREVIEW = new Rect(BODY_X + 116, AstralForgeMenu.REFORGE_Y - 1, 18, 18);
     public static final Rect COST = new Rect(BODY_X + 140, AstralForgeMenu.REFORGE_Y - 1, 18, 18);
     public static final Rect COST_COUNT = new Rect(BODY_X + 160, AstralForgeMenu.REFORGE_Y + 4, 36, 9);
+    /** With the slot empty, up to four reforgeable pieces from the Satchel's Gear tab, to load into it in one click. */
+    public static final Rect SATCHEL_PICKS = new Rect(BODY_X + 116, AstralForgeMenu.REFORGE_Y - 1, 4 * 18, 18);
     public static final Rect REFORGE_BUTTON = new Rect(BODY_X + 200, AstralForgeMenu.REFORGE_Y - 1, 48, 14);
     /** With no piece in the slot there is no preview or cost, so the hint has the row up to the button. */
     public static final Rect REFORGE_HINT = new Rect(BODY_X + 32, 110, REFORGE_BUTTON.x() - 4 - (BODY_X + 32), 9);

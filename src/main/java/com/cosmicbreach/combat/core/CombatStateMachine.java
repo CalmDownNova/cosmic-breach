@@ -101,6 +101,14 @@ public final class CombatStateMachine {
 
     private boolean attackHeld;
     private int attackHeldTicks;
+    /** A light attack waiting out the hold window (see {@link CombatRules#HOLD_WINDOW}); its press context and weapon. */
+    private boolean holdPending;
+    /** Extra ticks before a hold commits to a charge: 0 on the predicting client, {@link CombatRules#HOLD_GRACE} on the server. */
+    private int holdGrace;
+    /** True while the charge in progress began straight from a hold (so a late report of a short hold may still make it a tap). */
+    private boolean chargeFromHold;
+    private @Nullable Context holdCtx;
+    private @Nullable WeaponDef holdWeapon;
     private boolean abilityHeld;
 
     private int dashElapsed = -1;
@@ -370,6 +378,37 @@ public final class CombatStateMachine {
             }
             return;
         }
+        if (phase == Phase.IDLE && waitsForHold(ctx)) {
+            // GDD hold window: the swing waits to see whether this press is a tap or the start of a charge
+            holdPending = true;
+            holdCtx = ctx;
+            holdWeapon = weapon;
+            return;
+        }
+        resolvePress(ctx);
+    }
+
+    /** A press that starts a light attack from idle waits out the hold window when the weapon can charge, on foot and on the ground. */
+    private boolean waitsForHold(Context ctx) {
+        return weapon != null && weapon.charged().isPresent() && !ctx.mounted() && ctx.onGround()
+                && ticksSinceDashEnd >= CombatRules.DASH_ATTACK_WINDOW
+                && (weapon.dashFollow().isEmpty() || ticksSinceDashEnd >= weapon.dashFollow().get().window());
+    }
+
+    /** Still waiting out the window with the same weapon and nothing else having taken over. */
+    private boolean holdLive() {
+        return holdPending && weapon != null && weapon == holdWeapon && phase == Phase.IDLE && staggerLeft <= 0
+                && dashElapsed < 0 && parryElapsed < 0 && parryWhiffLeft <= 0;
+    }
+
+    private void clearHold() {
+        holdPending = false;
+        holdCtx = null;
+        holdWeapon = null;
+    }
+
+    /** What a press does once it is decided to be an attack press (immediately, or on release inside the hold window). */
+    private void resolvePress(Context ctx) {
         switch (phase) {
             case IDLE -> startFromIdle(ctx);
             case RECOVERY -> {
@@ -393,11 +432,46 @@ public final class CombatStateMachine {
         }
     }
 
+    /** How many ticks past the hold window the server holds a decision open. The server sets {@link CombatRules#HOLD_GRACE}; a predicting client 0. */
+    public void setHoldGrace(int ticks) {
+        this.holdGrace = Math.max(0, Math.min(CombatRules.HOLD_GRACE, ticks));
+    }
+
     public void releaseAttack(Context ctx) {
+        releaseAttack(ctx, -1);
+    }
+
+    /**
+     * A release. {@code reportedHeld} is how many ticks the player's own client counted the button down (-1 if it did not
+     * say): the server decides tap or hold by that count, which carries the player's timing without the jitter of when the
+     * packets arrived, and keeps the decision open for {@link CombatRules#HOLD_GRACE} ticks past the window so a late packet
+     * still finds it. A charge it started on its own count is turned back into the tap if the report says it was one.
+     */
+    public void releaseAttack(Context ctx, int reportedHeld) {
         boolean wasHeld = attackHeld;
         int held = attackHeldTicks;
         attackHeld = false;
+        int felt = reportedHeld >= 0 ? reportedHeld : held;
+        if (holdPending) {
+            boolean live = holdLive();
+            clearHold();
+            if (!live || !wasHeld) {
+                return;
+            }
+            if (felt < CombatRules.HOLD_WINDOW) {
+                resolvePress(ctx); // a tap: the light attack fires on release
+                return;
+            }
+            startChargingFromIdle(); // held through the window by the player's count, though not yet by ours
+        }
         if (!wasHeld || phase != Phase.CHARGING || weapon == null) {
+            return;
+        }
+        if (chargeFromHold && reportedHeld >= 0 && reportedHeld < CombatRules.HOLD_WINDOW
+                && held <= CombatRules.HOLD_WINDOW + CombatRules.MAX_LATE_TAP) {
+            events.add(new ChargeCancelled()); // it was a tap that arrived late
+            toIdleWithCombo(chargeFromNext);
+            resolvePress(ctx);
             return;
         }
         ResourceLocation chargedId = weapon.charged().orElse(null);
@@ -635,6 +709,14 @@ public final class CombatStateMachine {
     public List<CombatEvent> tick(Context ctx) {
         if (attackHeld) {
             attackHeldTicks++;
+        }
+        if (holdPending) {
+            if (!holdLive() || !attackHeld) {
+                clearHold();
+            } else if (attackHeldTicks >= CombatRules.HOLD_WINDOW + holdGrace) {
+                clearHold();
+                startChargingFromIdle(); // held through the window: charge directly, no swing
+            }
         }
         if (staggerLeft > 0) {
             staggerLeft--;
@@ -1013,9 +1095,21 @@ public final class CombatStateMachine {
     }
 
     private void startCharging() {
+        chargeFromHold = false;
         ResourceLocation keep = current.def().next().orElse(null);
         endMove(true);
         chargeFromNext = keep;
+        buffered = false;
+        phase = Phase.CHARGING;
+        phaseTick = 0;
+        events.add(new ChargeStarted(weapon.charged().get()));
+    }
+
+    private void startChargingFromIdle() {
+        chargeFromHold = true;
+        chargeFromNext = comboWindowLeft > 0 ? nextCombo : null;
+        nextCombo = null;
+        comboWindowLeft = 0;
         buffered = false;
         phase = Phase.CHARGING;
         phaseTick = 0;

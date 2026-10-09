@@ -37,8 +37,26 @@ public final class SkyState {
         double renderBlocks = mc.options.getEffectiveRenderDistance() * 16.0;
         SkyModel.compute(FRAME, level.getDayTime(), level.getGameTime(), partialTick, weights, renderBlocks,
                 FxClock.now(partialTick) / 20.0, WEATHER);
+        // in the Deep, far terrain fades to one fog colour while it stands against the sky both above and below the
+        // horizon (the layer's masses hang all around the camera): the bands next to the horizon close in on it, so a
+        // distant mass below eye level melts into the air rather than showing as a flat cut-out (the nadir stays dark)
+        flatten(FRAME.low, FRAME.horizon, weights[2]);
+        flatten(FRAME.haze, FRAME.horizon, weights[2] * 0.75);
+        flatten(FRAME.mid, FRAME.horizon, weights[2] * 0.75);
+        // the Deep's zones colour the air: the sky's lower bands fully, the zenith by half (Aetheria 1.2, ZoneFog)
+        ZoneFog.update(level, mc.gameRenderer.getMainCamera().getBlockPosition(), weights[2]);
+        for (float[] band : new float[][] {FRAME.horizon, FRAME.haze, FRAME.mid, FRAME.low, FRAME.nadir}) {
+            ZoneFog.tint(band, weights[2]);
+        }
+        ZoneFog.tint(FRAME.zenith, weights[2] * 0.5);
         frames++;
         return FRAME;
+    }
+
+    private static void flatten(float[] band, float[] toward, double amount) {
+        for (int i = 0; i < 3; i++) {
+            band[i] += (float) ((toward[i] - band[i]) * amount);
+        }
     }
 
     /** This frame's numbers (read only). */

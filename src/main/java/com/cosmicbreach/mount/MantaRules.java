@@ -1,5 +1,8 @@
 package com.cosmicbreach.mount;
 
+import com.cosmicbreach.world.Layer;
+import com.cosmicbreach.world.ShearBand;
+
 /**
  * The Drift Manta's numbers (GDD 8.1), pure.
  *
@@ -8,6 +11,10 @@ package com.cosmicbreach.mount;
  * a glider that can't gain height: it sinks {@value #GLIDE_SINK} a tick at its forward speed and can only dive. The
  * Gale Fins make it {@value #GALE_FINS}x as fast. The body's velocity closes {@value #ACCEL} of the gap to what the
  * rider asks each tick, so it swims into its speed rather than snapping to it ({@link #step}).
+ *
+ * <p><b>The Deep.</b> The Deep (layer 3) allows the same full flight, with a soft ceiling under the lower Shear band: the
+ * climb eases off over the last {@value #CEILING_RAMP} blocks below {@link #DEEP_CEILING} and stops there, so the band
+ * (and layer 2 above it) is never flown into; the way up stays the rising current. Layer 1 stays glide-only.
  *
  * <p><b>Phase Blink</b> (the dash key): {@value #BLINK_DISTANCE} blocks along the rider's look (never upward outside
  * the Drift), {@value #BLINK_SHIELD} ticks when neither rider nor manta can be hurt, then {@value #BLINK_COOLDOWN}
@@ -25,6 +32,10 @@ public final class MantaRules {
     /** Pitch, degrees, that asks for the full climb or dive while moving forward. */
     public static final double FULL_CLIMB_PITCH = 35.0;
     public static final double GLIDE_SINK = 0.06;
+    /** The highest a manta climbs in the Deep: just under the lower Shear band. */
+    public static final double DEEP_CEILING = ShearBand.B.minY - 1;
+    /** Over this many blocks below the ceiling the climb eases to nothing. */
+    public static final double CEILING_RAMP = 6.0;
     /** How hard a parked (tamed, unridden, idle) stingray brakes each tick: it settles within a couple of blocks of where it was left. */
     public static final double PARK_BRAKE = 0.3;
     /** On the ground outside the Drift it can only shuffle, at this share of its speed. */
@@ -43,6 +54,40 @@ public final class MantaRules {
     private MantaRules() {
     }
 
+    /** True in the layers a manta truly flies in: the Drift and the Deep. */
+    public static boolean flies(Layer layer) {
+        return layer == Layer.DRIFT || layer == Layer.DEEP;
+    }
+
+    /** The share of the climb allowed at height {@code y} in {@code layer}: 1 in the Drift, easing to 0 at the Deep's ceiling. */
+    public static double climbScale(Layer layer, double y) {
+        if (layer != Layer.DEEP) {
+            return 1.0;
+        }
+        if (y >= DEEP_CEILING) {
+            return 0.0;
+        }
+        return Math.min(1.0, (DEEP_CEILING - y) / CEILING_RAMP);
+    }
+
+    /** True above the Deep's ceiling (carried into the Shear band by a current, say), where a manta settles back down. */
+    public static boolean aboveCeiling(Layer layer, double y) {
+        return layer == Layer.DEEP && y > DEEP_CEILING;
+    }
+
+    /** A blink's direction with its rise cut so it ends no higher than the Deep's ceiling from height {@code y}. */
+    public static double[] clampBlink(double[] direction, Layer layer, double y) {
+        if (layer != Layer.DEEP) {
+            return direction;
+        }
+        double room = Math.max(0.0, DEEP_CEILING - y);
+        double rise = direction[1] * BLINK_DISTANCE;
+        if (rise <= room) {
+            return direction;
+        }
+        return new double[] {direction[0], room / BLINK_DISTANCE, direction[2]};
+    }
+
     /** How fast the rider may fly: 1, or the Gale Fins' 1.15. */
     public static double speedScale(boolean galeFins) {
         return galeFins ? GALE_FINS : 1.0;
@@ -55,6 +100,17 @@ public final class MantaRules {
      */
     public static double[] target(double forward, double strafe, boolean jump, float yaw, float pitch, boolean inDrift,
                                   boolean onGround, boolean galeFins) {
+        return target(forward, strafe, jump, yaw, pitch, inDrift, 1.0, false, onGround, galeFins);
+    }
+
+    /** As above for a rider in {@code layer} at height {@code y}: the Drift and the Deep fly, the Deep under its ceiling. */
+    public static double[] target(double forward, double strafe, boolean jump, float yaw, float pitch, Layer layer, double y,
+                                  boolean onGround, boolean galeFins) {
+        return target(forward, strafe, jump, yaw, pitch, flies(layer), climbScale(layer, y), aboveCeiling(layer, y), onGround, galeFins);
+    }
+
+    private static double[] target(double forward, double strafe, boolean jump, float yaw, float pitch, boolean inDrift,
+                                   double climbScale, boolean aboveCeiling, boolean onGround, boolean galeFins) {
         double scale = speedScale(galeFins);
         double f = forward < 0 ? forward * BACK_SHARE : forward;
         double s = strafe * STRAFE_SHARE;
@@ -74,7 +130,10 @@ public final class MantaRules {
         }
         double y;
         if (inDrift) {
-            y = climb * VERTICAL * scale;
+            y = (climb > 0 ? climb * climbScale : climb) * VERTICAL * scale;
+            if (aboveCeiling) {
+                y = Math.min(y, -GLIDE_SINK);
+            }
         } else if (onGround) {
             y = 0.0;
         } else {

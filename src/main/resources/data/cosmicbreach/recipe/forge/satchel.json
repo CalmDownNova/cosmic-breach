@@ -1,0 +1,24 @@
+{
+  "type": "cosmicbreach:astral_forge",
+  "category": "other",
+  "ingredients": [
+    {
+      "count": 4,
+      "item": "cosmicbreach:starhide"
+    },
+    {
+      "count": 2,
+      "item": "cosmicbreach:starsteel_ingot"
+    },
+    {
+      "count": 1,
+      "item": "cosmicbreach:starbloom"
+    }
+  ],
+  "order": 70,
+  "result": {
+    "count": 1,
+    "id": "cosmicbreach:satchel"
+  },
+  "tier": 1
+}

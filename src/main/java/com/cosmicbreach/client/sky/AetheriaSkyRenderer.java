@@ -83,6 +83,7 @@ public final class AetheriaSkyRenderer {
         matrix(s, "CelestialMat", rotation(f.skyRot, true));
         vec(s, "NebulaParams", f.nebulaMix, f.nebula[0], f.nebula[1], f.nebula[2]);
         vec(s, "NebulaVeil", f.nebula[3]);
+        vec(s, "NebulaClear", (float) f.layers[2]);
         RenderSystem.setShaderTexture(0, NEBULA[f.nebulaA]);
         RenderSystem.setShaderTexture(1, NEBULA[f.nebulaB]);
         draw(dome, view, projection, s);

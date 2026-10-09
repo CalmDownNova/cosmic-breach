@@ -6,6 +6,7 @@
     "cosmicbreach:meteor",
     "cosmicbreach:prism_beam",
     "cosmicbreach:prism_core",
-    "cosmicbreach:chord"
+    "cosmicbreach:chord",
+    "cosmicbreach:drift_sting"
   ]
 }

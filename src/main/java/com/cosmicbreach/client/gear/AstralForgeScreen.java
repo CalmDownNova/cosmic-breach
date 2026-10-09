@@ -7,6 +7,7 @@ import com.cosmicbreach.gear.forge.ForgeCrafting;
 import com.cosmicbreach.gear.forge.ForgeRecipe;
 import com.cosmicbreach.gear.forge.ForgeTiers;
 import com.cosmicbreach.item.GearTier;
+import com.cosmicbreach.satchel.SatchelLocator;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -471,13 +472,30 @@ public class AstralForgeScreen extends AbstractContainerScreen<AstralForgeMenu> 
                 craftable(recipe, frame.carried()));
     }
 
+    /** Cell {@code i} of the Satchel pick strip, in screen coordinates. */
+    private Rect pickCell(int i) {
+        Rect strip = at(ForgeLayout.SATCHEL_PICKS);
+        return new Rect(strip.x() + i * 18, strip.y(), 18, 18);
+    }
+
     private void drawReforge(GuiGraphics graphics, int mouseX, int mouseY) {
         drawFitted(graphics, Component.translatable("gui.cosmicbreach.forge.reforge_title"), ForgeLayout.REFORGE_TITLE, TEXT, Align.LEFT);
         ItemStack piece = menu.piece();
         int unlock = GearTier.unlockTier(piece, true);
         ForgeTiers.Check check = menu.reforgeCheck(minecraft.player);
         if (piece.isEmpty() || unlock == 0) {
-            drawFitted(graphics, Component.translatable("gui.cosmicbreach.forge.reforge_hint"), ForgeLayout.REFORGE_HINT, DIM, Align.LEFT);
+            List<Integer> picks = piece.isEmpty() ? menu.satchelPicks(minecraft.player) : List.of();
+            drawFitted(graphics, Component.translatable("gui.cosmicbreach.forge.reforge_hint"),
+                    picks.isEmpty() ? ForgeLayout.REFORGE_HINT : ForgeLayout.REFORGE_LINE, DIM, Align.LEFT);
+            List<ItemStack> gear = SatchelLocator.contentsOf(minecraft.player).map(c -> c.gear()).orElse(List.of());
+            for (int i = 0; i < picks.size() && i < 4; i++) {
+                Rect r = pickCell(i);
+                slotFrame(graphics, r.x() + 1, r.y() + 1);
+                graphics.renderItem(gear.get(picks.get(i)), r.x() + 1, r.y() + 1);
+                if (r.contains(mouseX, mouseY)) {
+                    graphics.renderTooltip(font, gear.get(picks.get(i)), mouseX, mouseY);
+                }
+            }
         } else {
             int tier = GearTier.of(piece, unlock);
             Component line;
@@ -588,6 +606,16 @@ public class AstralForgeScreen extends AbstractContainerScreen<AstralForgeMenu> 
             }
             if (at(ForgeLayout.REFORGE_BUTTON).contains(mouseX, mouseY)) {
                 return pressReforge() || true;
+            }
+            if (menu.piece().isEmpty()) {
+                List<Integer> picks = menu.satchelPicks(minecraft.player);
+                for (int i = 0; i < picks.size() && i < 4; i++) {
+                    if (pickCell(i).contains(mouseX, mouseY)) {
+                        minecraft.gameMode.handleInventoryButtonClick(menu.containerId, AstralForgeMenu.PICK_GEAR + picks.get(i));
+                        minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0f));
+                        return true;
+                    }
+                }
             }
             if (at(ForgeLayout.SCROLLBAR).contains(mouseX, mouseY)) {
                 draggingScroll = true;

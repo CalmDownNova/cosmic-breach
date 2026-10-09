@@ -68,6 +68,7 @@ public final class CosmicBreach {
         com.cosmicbreach.guardian.leviathan.Leviathans.register(modBus, game);
         com.cosmicbreach.entity.gyre.GyreKnights.register(modBus, game);
         com.cosmicbreach.entity.stalker.Stalkers.register(modBus, game);
+        com.cosmicbreach.jelly.Jellies.register(modBus, game);
         com.cosmicbreach.astrolabe.Astrolabes.register(modBus, game);
         com.cosmicbreach.relic.Relics.register(modBus, game);
         com.cosmicbreach.accessory.Accessories.register(modBus, game);
@@ -76,6 +77,7 @@ public final class CosmicBreach {
         com.cosmicbreach.lift.Lifts.register(modBus, game);
         com.cosmicbreach.shrine.Shrines.register(modBus, game);
         com.cosmicbreach.familiar.Familiars.register(modBus, game);
+        com.cosmicbreach.satchel.Satchels.register(modBus, game);
         AetheriaWorld.register(modBus, game);
         AetheriaAudio.register(modBus, game);
         com.cosmicbreach.world.weather.CosmicWeather.register(modBus, game, container);

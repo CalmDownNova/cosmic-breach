@@ -1,6 +1,9 @@
 {
   "type": "neoforge:add_spawns",
-  "biomes": "cosmicbreach:rift_abyss",
+  "biomes": [
+    "cosmicbreach:rift_abyss",
+    "cosmicbreach:hanging_wood"
+  ],
   "spawners": {
     "type": "cosmicbreach:hollow_stalker",
     "weight": 20,

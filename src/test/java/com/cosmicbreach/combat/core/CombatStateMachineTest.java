@@ -193,17 +193,176 @@ class CombatStateMachineTest {
     // ------------------------------------------------------------------ charge
 
     @Test
-    void holdingFlowsIntoTheChargeAndReleaseScalesIt() {
+    void holdingGoesStraightIntoTheChargeWithNoSwingAndReleaseScalesIt() {
         sm.pressAttack(G);
         List<List<CombatEvent>> t = run(18);
-        assertTrue(has(t.get(3), ActiveTick.class), "the light swing still lands");
-        assertTrue(has(t.get(5), ChargeStarted.class));
+        long swings = t.stream().flatMap(List::stream).filter(e -> e instanceof MoveStarted).count();
+        assertEquals(0, swings, "a hold never swings the light attack");
+        assertTrue(has(t.get(CombatRules.HOLD_WINDOW - 1), ChargeStarted.class), "the charge starts when the hold window ends");
         assertTrue(has(t.get(11), ChargeReady.class));
         assertEquals(Phase.CHARGING, sm.phase());
         assertEquals(0.4f, sm.movementMultiplier());
         sm.releaseAttack(G);
         assertEquals(LINE, sm.current().id());
         assertEquals(2.6, sm.current().mv(), 1e-9);
+    }
+
+    @Test
+    void tapInsideTheWindowFiresExactlyOneLightAttackOnRelease() {
+        sm.pressAttack(G);
+        List<List<CombatEvent>> before = run(CombatRules.HOLD_WINDOW - 1);
+        assertEquals(0, before.stream().flatMap(List::stream).filter(e -> e instanceof MoveStarted).count(), "nothing swings while the window is open");
+        assertEquals(Phase.IDLE, sm.phase());
+        sm.releaseAttack(G);
+        assertEquals(L1, sm.current().id());
+        List<List<CombatEvent>> after = run(30);
+        assertEquals(1, after.stream().flatMap(List::stream).filter(e -> e instanceof MoveStarted).count());
+        assertEquals(0, after.stream().flatMap(List::stream).filter(e -> e instanceof ChargeStarted).count());
+    }
+
+    @Test
+    void releaseOnTheVeryFirstTickOfTheWindowStillTaps() {
+        sm.pressAttack(G);
+        sm.releaseAttack(G);
+        assertEquals(L1, sm.current().id());
+        assertEquals(0, run(1).stream().flatMap(List::stream).filter(e -> e instanceof ChargeStarted).count());
+    }
+
+    @Test
+    void releaseAfterTheWindowIsAChargeNotATap() {
+        sm.pressAttack(G);
+        run(CombatRules.HOLD_WINDOW);
+        assertEquals(Phase.CHARGING, sm.phase());
+        sm.releaseAttack(G);
+        assertEquals(Phase.IDLE, sm.phase(), "released before the charge minimum: cancelled, no swing");
+        assertNull(sm.current());
+    }
+
+    private long count(List<List<CombatEvent>> ticks, Class<?> type) {
+        return ticks.stream().flatMap(List::stream).filter(type::isInstance).count();
+    }
+
+    // ---- the server decides tap or hold by the hold count the player's client reports, not by when packets arrived
+
+    @Test
+    void aLateReleaseOfATapStillFindsTheServersDecisionOpen() {
+        sm.setHoldGrace(CombatRules.HOLD_GRACE);
+        sm.pressAttack(G);
+        List<List<CombatEvent>> before = run(5); // the release packet is 5 ticks on its way
+        assertEquals(0, count(before, ChargeStarted.class), "the server has not committed to a charge yet");
+        sm.releaseAttack(G, 2); // the player held it 2 ticks
+        assertEquals(L1, sm.current().id());
+        List<List<CombatEvent>> after = run(30);
+        assertEquals(1, count(after, MoveStarted.class));
+        assertEquals(0, count(after, ChargeStarted.class));
+    }
+
+    @Test
+    void aTapThatArrivesAfterTheServerCommittedBecomesTheTapItWas() {
+        sm.setHoldGrace(CombatRules.HOLD_GRACE);
+        sm.pressAttack(G);
+        List<List<CombatEvent>> before = run(8); // far later than the window and the grace: the server is charging
+        assertEquals(1, count(before, ChargeStarted.class));
+        assertEquals(Phase.CHARGING, sm.phase());
+        sm.releaseAttack(G, 3); // but the player held it 3 ticks
+        assertEquals(L1, sm.current().id(), "the late tap fires its light attack");
+        assertTrue(has(run(1).get(0), ChargeCancelled.class) || sm.phase() != Phase.CHARGING);
+    }
+
+    @Test
+    void aRealHoldStillChargesWithTheGraceAndAHonestReport() {
+        sm.setHoldGrace(CombatRules.HOLD_GRACE);
+        sm.pressAttack(G);
+        List<List<CombatEvent>> t = run(20);
+        assertEquals(0, count(t, MoveStarted.class), "no swing");
+        assertEquals(1, count(t, ChargeStarted.class));
+        sm.releaseAttack(G, 20);
+        assertEquals(LINE, sm.current().id());
+    }
+
+    @Test
+    void aReportOfALongHoldDecidesAHoldEvenIfTheServerStillWaits() {
+        sm.setHoldGrace(CombatRules.HOLD_GRACE);
+        sm.pressAttack(G);
+        run(CombatRules.HOLD_WINDOW); // inside the grace
+        sm.releaseAttack(G, 9);       // the player held it 9 ticks: a hold, released before the charge minimum
+        assertEquals(0, sm.current() == null ? 0 : 1, "no light attack");
+        assertEquals(Phase.IDLE, sm.phase());
+    }
+
+    @Test
+    void theClientPredictsWithNoGraceAndTheServerKeepsItsOwnDecision() {
+        // the client machine (no grace) charges at the window; the server's (grace) a little later: both resolve a tap alike
+        CombatStateMachine client = new CombatStateMachine(MOVES::get);
+        client.setWeapon(MERIDIAN);
+        client.pressAttack(G);
+        long clientCharge = 0;
+        for (int i = 0; i < CombatRules.HOLD_WINDOW; i++) {
+            clientCharge += client.tick(G).stream().filter(e -> e instanceof ChargeStarted).count();
+        }
+        assertEquals(1, clientCharge);
+        sm.setHoldGrace(CombatRules.HOLD_GRACE);
+        sm.pressAttack(G);
+        assertEquals(0, count(run(CombatRules.HOLD_WINDOW), ChargeStarted.class));
+    }
+
+    @Test
+    void theServersMachineChainsThreeTapsWithItsGraceAndReports() {
+        sm.setHoldGrace(CombatRules.HOLD_GRACE);
+        List<net.minecraft.resources.ResourceLocation> started = new ArrayList<>();
+        java.util.function.Consumer<List<CombatEvent>> note = evs -> evs.forEach(e -> {
+            if (e instanceof MoveStarted m) {
+                started.add(m.move().id());
+            }
+        });
+        sm.pressAttack(G);
+        note.accept(sm.tick(G));
+        sm.releaseAttack(G, 1);
+        for (int i = 0; i < 7; i++) {
+            note.accept(sm.tick(G));
+        }
+        sm.pressAttack(G);
+        note.accept(sm.tick(G));
+        sm.releaseAttack(G, 1);
+        for (int i = 0; i < 8; i++) {
+            note.accept(sm.tick(G));
+        }
+        sm.pressAttack(G);
+        note.accept(sm.tick(G));
+        sm.releaseAttack(G, 1);
+        for (int i = 0; i < 30; i++) {
+            note.accept(sm.tick(G));
+        }
+        assertEquals(List.of(L1, L2, L3), started);
+    }
+
+    @Test
+    void chainsStillChainWithTheWindow() {
+        tap();
+        run(10);
+        tap();
+        assertEquals(L2, sm.current().id());
+        run(11);
+        tap();
+        assertEquals(L3, sm.current().id());
+    }
+
+    @Test
+    void aDashCancelsAPendingHold() {
+        sm.pressAttack(G);
+        run(1);
+        sm.pressDash(G);
+        run(CombatRules.HOLD_WINDOW + 2);
+        assertFalse(sm.phase() == Phase.CHARGING, "the dash took over: no charge from the old press");
+    }
+
+    @Test
+    void weaponsWithoutAChargeSwingAtOnce() {
+        WeaponDef plain = new WeaponDef(5.0, Map.of(Stat.POWER, Grade.B), 3.5, List.of(L1, L2, L3),
+                Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), 1);
+        sm.setWeapon(plain);
+        sm.pressAttack(G);
+        assertEquals(L1, sm.current().id(), "no charge to wait for: the press swings now");
     }
 
     @Test
@@ -216,14 +375,14 @@ class CombatStateMachineTest {
     }
 
     @Test
-    void earlyReleaseCancelsTheChargeAndKeepsTheChain() {
+    void earlyReleaseCancelsTheChargeWithNoChainProgress() {
         sm.pressAttack(G);
         run(8);
         sm.releaseAttack(G);
         assertEquals(Phase.IDLE, sm.phase());
         assertTrue(has(run(1).get(0), ChargeCancelled.class));
         tap();
-        assertEquals(L2, sm.current().id());
+        assertEquals(L1, sm.current().id(), "the hold never swung, so the chain starts over");
     }
 
     // ------------------------------------------------------------------ plunge

@@ -83,7 +83,7 @@ import org.jetbrains.annotations.Nullable;
  * an egg dropped with Q, attacks, parries and dashes), every rule measured on the server; dodges and parries timed on
  * the server tick (the attacker strikes on the first server tick that finds the window open):
  * <ul>
- *   <li>hatch: Star Eggs in 4000 rolls of each vault table (20, 25, 30%, each vault's kind); an egg set in a Brazier of
+ *   <li>hatch: Star Eggs in 4000 rolls of each vault table (40, 45, 50%, each vault's kind); an egg set in a Brazier of
  *       Solenne hatches after the debug time of loaded ticks, and its lantern is taken out by hand;</li>
  *   <li>controls: the key held summons (health 20 and damage 4 at Resilience and Arcane 20), taps cycle Guard, Passive,
  *       Attack, Guard; held again dismisses; the lantern used summons and dismisses; one out at a time; beyond 16 blocks
@@ -498,9 +498,9 @@ public final class FamiliarsScenario implements Scenario {
     // ------------------------------------------------------------------ hatching
 
     private void hatch(Steps steps) {
-        steps.check("Star Eggs in the vaults: Reliquary 20%, Observatory 25%, Crypt 30%, each vault's kind", () -> server(p -> {
+        steps.check("Star Eggs in the vaults: Reliquary 40%, Observatory 45%, Crypt 50%, each vault's kind", () -> server(p -> {
             String[] tables = {"reliquary", "observatory", "crypt"};
-            double[] want = {0.20, 0.25, 0.30};
+            double[] want = {0.40, 0.45, 0.50};
             FamiliarKind[] kinds = {FamiliarKind.EMBERWISP, FamiliarKind.GRAVIKIN, FamiliarKind.PRISM_MOTH};
             boolean ok = true;
             StringBuilder line = new StringBuilder("vault eggs in 4000 rolls:");

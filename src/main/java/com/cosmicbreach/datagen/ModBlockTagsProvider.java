@@ -106,5 +106,7 @@ public final class ModBlockTagsProvider extends BlockTagsProvider {
         tag(Tags.Blocks.ORES).add(ModBlocks.STARSTEEL_ORE.get(), ModBlocks.NEBULITE_ORE.get(), ModBlocks.ECLIPSIUM_ORE.get());
         tag(Tags.Blocks.STORAGE_BLOCKS).add(ModBlocks.STARSTEEL_BLOCK.get(), ModBlocks.NEBULITE_BLOCK.get(),
                 ModBlocks.ECLIPSIUM_BLOCK.get());
+        // the layer 3 zones' stones and stems (Aetheria 1.2)
+        com.cosmicbreach.world.feature.ZoneBlocks.blockTags((key, blocks) -> tag(key).add(blocks));
     }
 }

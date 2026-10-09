@@ -1,0 +1,68 @@
+{
+  "has_precipitation": false,
+  "temperature": 0.8,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 2759498,
+    "fog_color": 6952016,
+    "water_color": 8006250,
+    "water_fog_color": 2756390,
+    "grass_color": 8011114,
+    "foliage_color": 7221088,
+    "particle": {
+      "options": {
+        "type": "minecraft:dust_color_transition",
+        "from_color": [
+          1.0,
+          0.55,
+          0.25
+        ],
+        "to_color": [
+          0.95,
+          0.2,
+          0.6
+        ],
+        "scale": 1.0
+      },
+      "probability": 0.02
+    },
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    },
+    "ambient_sound": "cosmicbreach:ambient/deep",
+    "music": {
+      "sound": "cosmicbreach:music/deep",
+      "min_delay": 2400,
+      "max_delay": 6000,
+      "replace_current_music": false
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "cosmicbreach:ore_eclipsium",
+      "cosmicbreach:underside_ore"
+    ],
+    [
+      "cosmicbreach:crystal_chandelier"
+    ],
+    [],
+    [
+      "cosmicbreach:rift_glass_shards",
+      "cosmicbreach:neon_lichen_magenta_dense",
+      "cosmicbreach:neon_lichen_teal_sparse",
+      "cosmicbreach:umbral_cap_patch"
+    ]
+  ]
+}

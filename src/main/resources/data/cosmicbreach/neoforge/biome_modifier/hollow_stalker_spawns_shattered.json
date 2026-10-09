@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "cosmicbreach:shattered_field",
+  "spawners": {
+    "type": "cosmicbreach:hollow_stalker",
+    "weight": 12,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

@@ -27,13 +27,13 @@
                 "blocks": "minecraft:air"
               },
               {
-                "type": "minecraft:matching_blocks",
+                "type": "minecraft:matching_block_tag",
                 "offset": [
                   0,
                   -1,
                   0
                 ],
-                "blocks": "cosmicbreach:umbral_basalt"
+                "tag": "cosmicbreach:deep_stone"
               },
               {
                 "type": "minecraft:would_survive",

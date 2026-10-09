@@ -40,6 +40,7 @@ public final class ModDataGen {
         generator.addProvider(event.includeServer(), new ModRecipeProvider(output, lookup));
         com.cosmicbreach.gear.datagen.GearDataGen.gather(event);
         com.cosmicbreach.provision.ProvisionData.gather(event);
+        com.cosmicbreach.jelly.JellyData.gather(event);
 
         // the way in (W4)
         generator.addProvider(event.includeClient(), new OnboardingData.Models(output, files));

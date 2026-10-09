@@ -358,10 +358,22 @@ public final class SkyScenario implements Scenario {
                 .check("after 3.5 s the Drift is all there is", () -> SkyState.frame().layers[1] > 0.999)
                 .check("Drift fog: #A8D8E8 from 45%", () -> near(SkyState.frame().horizon, 0xA8D8E8, 0.01f)
                         && Math.abs(SkyState.frame().fogStart - 0.45f) < 0.001f)
-                .command("execute in " + AetheriaWorld.LEVEL.location() + " run tp @s " + VIEW_X + " 100 " + VIEW_Z)
+                // the Deep's own fog is read in the Spans (the zone round the Breach, out to 300 blocks), whose air the
+                // zones' tint leaves exactly as it was; elsewhere the camera's zone colours the sky (1.2)
+                .command("execute in " + AetheriaWorld.LEVEL.location() + " run tp @s 200 100 -120")
                 .waitTicks(80)
+                .log("Spans air", () -> String.format(Locale.ROOT, "at 200, -120 the camera's biome is %s, the horizon %s, fog %.3f to %.3f, layers %.2f/%.2f/%.2f, tint %s",
+                        zoneBiome(mc), hex(SkyState.frame().horizon), SkyState.frame().fogStart, SkyState.frame().fogEnd,
+                        SkyState.frame().layers[0], SkyState.frame().layers[1], SkyState.frame().layers[2],
+                        java.util.Arrays.toString(com.cosmicbreach.client.sky.ZoneFog.tint())))
                 .check("Deep fog: #25123F from 25% to 80%", () -> near(SkyState.frame().horizon, 0x25123F, 0.01f)
                         && Math.abs(SkyState.frame().fogStart - 0.25f) < 0.001f && Math.abs(SkyState.frame().fogEnd - 0.8f) < 0.001f)
+                .command("execute in " + AetheriaWorld.LEVEL.location() + " run tp @s " + VIEW_X + " 100 " + VIEW_Z)
+                .waitTicks(80)
+                .log("zone air", () -> String.format(Locale.ROOT, "at %d, %d the camera's biome is %s, the horizon %s", VIEW_X, VIEW_Z,
+                        zoneBiome(mc), hex(SkyState.frame().horizon)))
+                .check("a zone's air carries its colour, the Spans' does not", () -> zoneBiome(mc).endsWith("rift_abyss")
+                        == near(SkyState.frame().horizon, 0x25123F, 0.01f))
 
                 // leaving and coming back does not replay the Arrival cue
                 .command("execute in minecraft:overworld run tp @s 0 100 0")
@@ -410,8 +422,14 @@ public final class SkyScenario implements Scenario {
                 .check("our sky is back", () -> AetheriaSkyRenderer.frames() > before[0]);
     }
 
+    private static String zoneBiome(Minecraft mc) {
+        return mc.level.getBiome(mc.gameRenderer.getMainCamera().getBlockPosition()).unwrapKey()
+                .map(k -> k.location().toString()).orElse("?");
+    }
+
     private static boolean soundsWired(Minecraft mc) {
-        String[][] expect = {{"shattered_spires", "reach"}, {"sunfield_terraces", "reach"}, {"drift_belt", "drift"}, {"rift_abyss", "deep"}};
+        String[][] expect = {{"shattered_spires", "reach"}, {"sunfield_terraces", "reach"}, {"drift_belt", "drift"}, {"rift_abyss", "deep"},
+                {"lichen_gardens", "deep"}, {"hanging_wood", "deep"}, {"shattered_field", "deep"}};
         var biomes = mc.level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.BIOME);
         for (String[] e : expect) {
             Biome biome = biomes.get(com.cosmicbreach.CosmicBreach.id(e[0]));

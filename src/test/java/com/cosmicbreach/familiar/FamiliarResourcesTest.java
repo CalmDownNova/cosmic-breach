@@ -20,8 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * G10's files are all there: each familiar's model, animations (with every one the server triggers), texture and
  * glowmask; the egg's and the lantern's models and looks; the brazier's state, models, loot and Forge I recipe; the
- * statuses' icons; the sounds with files and translated subtitles; the names; the Star Eggs in the three vaults at 20,
- * 25 and 30%; the damage type; and no dashes in the words.
+ * statuses' icons; the sounds with files and translated subtitles; the names; the Star Eggs in the three vaults at 40,
+ * 45 and 50%; the damage type; and no dashes in the words.
  */
 class FamiliarResourcesTest {
     private static final String A = "/assets/cosmicbreach/";
@@ -102,8 +102,8 @@ class FamiliarResourcesTest {
     }
 
     @Test
-    void starEggsAreInTheThreeVaultsAtTwentyTwentyFiveAndThirtyPercent() throws IOException {
-        Object[][] vaults = {{"reliquary", 0.20, "emberwisp"}, {"observatory", 0.25, "gravikin"}, {"crypt", 0.30, "prism_moth"}};
+    void starEggsAreInTheThreeVaultsAtFortyFortyFiveAndFiftyPercent() throws IOException {
+        Object[][] vaults = {{"reliquary", 0.40, "emberwisp"}, {"observatory", 0.45, "gravikin"}, {"crypt", 0.50, "prism_moth"}};
         for (Object[] v : vaults) {
             JsonArray pools = json(D + "loot_table/vaults/" + v[0] + ".json").getAsJsonArray("pools");
             JsonObject egg = null;

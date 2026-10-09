@@ -6,8 +6,19 @@
   "biome.cosmicbreach.sunfield_terraces": "Sunfield Terraces",
   "biome.cosmicbreach.drift_belt": "Drift Belt",
   "biome.cosmicbreach.rift_abyss": "Rift Abyss",
+  "biome.cosmicbreach.lichen_gardens": "Lichen Gardens",
+  "biome.cosmicbreach.hanging_wood": "Hanging Wood",
+  "biome.cosmicbreach.shattered_field": "Shattered Field",
   "commands.cosmicbreach.debug.goto": "Sent to %s ground at %s, %s, %s",
   "commands.cosmicbreach.debug.goto.none": "Found no %s ground within 3000 blocks",
   "commands.cosmicbreach.debug.locate.biome": "Nearest %s: %s",
-  "commands.cosmicbreach.debug.locate.ground": "Nearest safe %s ground: %s"
+  "commands.cosmicbreach.debug.locate.ground": "Nearest safe %s ground: %s",
+  "block.cosmicbreach.giant_umbral_cap": "Giant Umbral Cap",
+  "block.cosmicbreach.umbral_stem": "Umbral Stem",
+  "block.cosmicbreach.lichen_moss": "Lichen Moss",
+  "block.cosmicbreach.rootstone": "Rootstone",
+  "block.cosmicbreach.ember_basalt": "Ember Basalt",
+  "block.cosmicbreach.ashen_basalt": "Ashen Basalt",
+  "block.cosmicbreach.teal_curtain": "Teal Curtain",
+  "block.cosmicbreach.rift_ember": "Rift Ember"
 }

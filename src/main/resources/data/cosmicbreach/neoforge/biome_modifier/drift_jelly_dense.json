@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#cosmicbreach:drift_jelly_dense",
+  "spawners": {
+    "type": "cosmicbreach:drift_jelly",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

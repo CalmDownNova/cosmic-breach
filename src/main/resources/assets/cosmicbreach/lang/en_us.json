@@ -115,5 +115,16 @@
   "commands.cosmicbreach.debug.xp": "Gave %s %s Attunement XP.",
   "commands.cosmicbreach.debug.level": "Set the Attunement level of %s.",
   "commands.cosmicbreach.debug.stats": "Set the stats of %s.",
-  "commands.cosmicbreach.debug.attunement_state": "Level %s, XP %s/%s, %s points to spend; Power %s, Agility %s, Arcane %s, Resilience %s"
+  "commands.cosmicbreach.debug.attunement_state": "Level %s, XP %s/%s, %s points to spend; Power %s, Agility %s, Arcane %s, Resilience %s",
+  "item.cosmicbreach.satchel": "Satchel",
+  "item.cosmicbreach.satchel.holds": "Holds %s kinds of material and %s pieces of gear",
+  "key.cosmicbreach.satchel": "Open Satchel",
+  "gui.cosmicbreach.satchel": "Satchel",
+  "gui.cosmicbreach.satchel.tab.materials": "Materials",
+  "gui.cosmicbreach.satchel.tab.gear": "Gear",
+  "gui.cosmicbreach.satchel.empty": "Nothing collected yet",
+  "gui.cosmicbreach.satchel.holds": "%s held",
+  "gui.cosmicbreach.satchel.pickup_on": "Pickup on",
+  "gui.cosmicbreach.satchel.pickup_off": "Pickup off",
+  "gui.cosmicbreach.satchel.hint": "Click: take a stack. Shift click: take all. Right click: switch pickup."
 }

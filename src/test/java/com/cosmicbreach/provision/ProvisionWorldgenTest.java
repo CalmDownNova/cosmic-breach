@@ -56,7 +56,8 @@ class ProvisionWorldgenTest {
 
     /** The biomes of each level (level 4, the Sanctum, stands in the Deep) and the layer whose height band they fill. */
     private static final Map<Integer, List<String>> BIOMES = Map.of(1, List.of("shattered_spires", "sunfield_terraces"),
-            2, List.of("drift_belt"), 3, List.of("rift_abyss"), 4, List.of("rift_abyss"));
+            2, List.of("drift_belt"), 3, List.of("rift_abyss", "lichen_gardens", "hanging_wood", "shattered_field"),
+            4, List.of("rift_abyss", "lichen_gardens", "hanging_wood", "shattered_field"));
     private static final Map<Integer, Layer> LAYERS = Map.of(1, Layer.REACH, 2, Layer.DRIFT, 3, Layer.DEEP, 4, Layer.DEEP);
 
     /** What only the 1.1 world features provide, as the model must declare it: "level:source" to the feature. */
@@ -213,7 +214,10 @@ class ProvisionWorldgenTest {
                 .get("Name").getAsString());
         Set<String> named = new TreeSet<>();
         collect(patch, named);
-        assertTrue(named.contains("cosmicbreach:umbral_basalt"), "the caps are placed on the Deep's basalt: " + named);
+        // on the Deep's basalt: the block itself, or the tag of every zone's stone (layer 3 zones), which holds it
+        boolean onBasalt = named.contains("cosmicbreach:umbral_basalt") || (named.contains("cosmicbreach:deep_stone")
+                && readTag("deep_stone").contains("cosmicbreach:umbral_basalt"));
+        assertTrue(onBasalt, "the caps are placed on the Deep's basalt: " + named);
     }
 
     // ------------------------------------------------------------------ the data
@@ -229,12 +233,21 @@ class ProvisionWorldgenTest {
         }
     }
 
-    /** A block, an item or a feature of the mod, or one of its worldgen files. */
+    private static String readTag(String name) {
+        try {
+            return Files.readString(projectFile().resolve("main/resources/data/cosmicbreach/tags/block/" + name + ".json"));
+        } catch (java.io.IOException e) {
+            return "";
+        }
+    }
+
+    /** A block, an item or a feature of the mod, one of its worldgen files, or one of its block tags. */
     private static boolean known(String id) {
         ResourceLocation rl = ResourceLocation.parse(id);
         return BuiltInRegistries.BLOCK.containsKey(rl) || BuiltInRegistries.ITEM.containsKey(rl) || BuiltInRegistries.FEATURE.containsKey(rl)
                 || Files.exists(projectFile().resolve(WORLDGEN + "configured_feature/" + rl.getPath() + ".json"))
-                || Files.exists(projectFile().resolve(WORLDGEN + "placed_feature/" + rl.getPath() + ".json"));
+                || Files.exists(projectFile().resolve(WORLDGEN + "placed_feature/" + rl.getPath() + ".json"))
+                || Files.exists(projectFile().resolve("main/resources/data/cosmicbreach/tags/block/" + rl.getPath() + ".json"));
     }
 
     /**
@@ -322,7 +335,9 @@ class ProvisionWorldgenTest {
         return entity.equals(spawner.get("type").getAsString()) && spawner.get("weight").getAsInt() >= 1 && spawner.get("maxCount").getAsInt() >= 1;
     }
 
-    /** Whether a biome modifier's {@code biomes} names {@code biome}: an id or a list of ids (a tag cannot be resolved here). */
+    private static final String BIOME_TAGS = "main/resources/data/cosmicbreach/tags/worldgen/biome/";
+
+    /** Whether a biome modifier's {@code biomes} names {@code biome}: an id, a list of ids, or a tag of the mod's own (read from its file). */
     private static boolean selects(Path file, JsonElement biomes, String biome) {
         List<String> named = new ArrayList<>();
         if (biomes.isJsonArray()) {
@@ -330,12 +345,27 @@ class ProvisionWorldgenTest {
         } else {
             named.add(biomes.getAsString());
         }
+        List<String> ids = new ArrayList<>();
         for (String n : named) {
-            if (n.startsWith("#")) {
-                fail(file.getFileName() + " selects biomes by the tag " + n + " (this test reads biome ids; teach it to resolve tags)");
-            }
+            resolve(file, n, ids, 0);
         }
-        return named.contains(biome);
+        return ids.contains(biome);
+    }
+
+    /** Adds the biome ids {@code name} stands for to {@code out}: itself, or, for a tag in the mod's namespace, its values (tags in tags too). */
+    private static void resolve(Path file, String name, List<String> out, int depth) {
+        if (!name.startsWith("#")) {
+            out.add(name);
+            return;
+        }
+        if (depth > 8 || !name.startsWith("#cosmicbreach:")) {
+            fail(file.getFileName() + " selects biomes by the tag " + name + " (this test reads the mod's own biome tags, to a depth of eight)");
+        }
+        Path tag = projectFile().resolve(BIOME_TAGS + name.substring("#cosmicbreach:".length()) + ".json");
+        assertTrue(Files.exists(tag), file.getFileName() + " names the tag " + name + " but " + tag + " is not there");
+        for (JsonElement v : readFile(tag).getAsJsonArray("values")) {
+            resolve(file, v.getAsString(), out, depth + 1);
+        }
     }
 
     private static JsonObject placed(String id) {

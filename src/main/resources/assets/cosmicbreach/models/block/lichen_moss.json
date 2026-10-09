@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "cosmicbreach:block/lichen_moss",
+    "side": "cosmicbreach:block/lichen_moss_side",
+    "bottom": "cosmicbreach:block/umbral_basalt_top"
+  }
+}

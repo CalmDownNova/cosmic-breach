@@ -102,7 +102,8 @@ final class CombatInput {
     /** Same as the server's input handler: the weapon from the hand, then the input. */
     private static void send(PlayerCombat combat, CombatAction action) {
         combat.syncWeapon();
+        int held = combat.machine().attackHeldTicks(); // the count as the player felt it, before the machine applies the release
         combat.apply(action);
-        PacketDistributor.sendToServer(CombatInputPayload.of(action));
+        PacketDistributor.sendToServer(action == CombatAction.ATTACK_RELEASE ? CombatInputPayload.release(held) : CombatInputPayload.of(action));
     }
 }

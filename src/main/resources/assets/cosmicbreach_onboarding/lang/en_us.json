@@ -5,6 +5,7 @@
   "item.cosmicbreach.starfall_shard.tooltip": "Use it on a frame of a Breach Ring.",
   "item.cosmicbreach.starfall_codex": "Starfall Codex",
   "item.cosmicbreach.starfall_codex.tooltip": "A guide that fell with the stars. In Aetheria, use it while sneaking to find a guardian.",
+  "item.cosmicbreach.starfall_codex.tooltip.switch": "Use it again while the mote flies to switch to the nearest puzzle room, and back.",
   "item.cosmicbreach.torn_codex_page": "Torn Codex Page",
   "item.cosmicbreach.torn_codex_page.tooltip": "Use it to read it.",
   "cosmicbreach.codex.given": "A book of starlight settles into your pack: the Starfall Codex.",

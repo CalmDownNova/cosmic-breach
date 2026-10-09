@@ -70,11 +70,29 @@ public final class CombatServerEvents {
 
     // ------------------------------------------------------------------ input
 
+    /**
+     * Dev tests only: attack releases are applied this many server ticks after they arrive, to stand in for a laggy link
+     * (a press that arrives on time and its release late). 0 in play.
+     */
+    public static volatile int debugReleaseDelayTicks;
+    private record Late(java.util.UUID player, CombatInputPayload payload, long due) {
+    }
+
+    private static final List<Late> LATE = new java.util.concurrent.CopyOnWriteArrayList<>();
+
     /** A {@link CombatInputPayload} from a client (main thread). */
     public static void onInput(CombatInputPayload payload, IPayloadContext context) {
         if (!(context.player() instanceof ServerPlayer player) || player.isSpectator() || !player.isAlive()) {
             return;
         }
+        if (debugReleaseDelayTicks > 0 && payload.decoded() == CombatAction.ATTACK_RELEASE) {
+            LATE.add(new Late(player.getUUID(), payload, player.level().getGameTime() + debugReleaseDelayTicks));
+            return;
+        }
+        apply(player, payload);
+    }
+
+    private static void apply(ServerPlayer player, CombatInputPayload payload) {
         CombatAction action = payload.decoded();
         if (action == null) {
             return;
@@ -87,7 +105,7 @@ public final class CombatServerEvents {
             return;
         }
         combat.syncWeapon();
-        combat.apply(action);
+        combat.apply(action, payload.held());
     }
 
     // ------------------------------------------------------------------ tick
@@ -99,10 +117,20 @@ public final class CombatServerEvents {
     }
 
     private static void tickPlayer(ServerPlayer player, PlayerCombat combat) {
+        if (!LATE.isEmpty()) {
+            long game = player.level().getGameTime();
+            for (Late late : LATE) {
+                if (late.player().equals(player.getUUID()) && game >= late.due()) {
+                    LATE.remove(late);
+                    apply(player, late.payload());
+                }
+            }
+        }
         PlayerCombat.ServerState server = combat.server();
         server.inputs().nextTick();
         CombatStateMachine machine = combat.machine();
         machine.setLatencyGrace(latencyGraceTicks(player));
+        machine.setHoldGrace(com.cosmicbreach.combat.core.CombatRules.HOLD_GRACE);
         long now = player.level().getGameTime();
         boolean canHit = player.isAlive() && !player.isSpectator();
 

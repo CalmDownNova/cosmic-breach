@@ -599,6 +599,35 @@ public final class StructuresScenario implements Scenario {
         steps.command("gamemode survival")
                 .waitTicks(4)
                 .check("on foot, not flying", () -> !mc.player.getAbilities().flying)
+                // the hotbar clear but for the Maul (slot 1): loot from an earlier vault and drops picked up on the way
+                // could fill every slot, and a lifted piece then goes into the inventory, out of the bot's reach
+                .run("clear the hotbar but for the Maul", () -> s.results.add(server(srv -> {
+                    net.minecraft.world.entity.player.Inventory inv = player(srv).getInventory();
+                    int moved = 0;
+                    int dropped = 0;
+                    for (int i = 1; i < 9; i++) {
+                        ItemStack st = inv.items.get(i);
+                        if (st.isEmpty()) {
+                            continue;
+                        }
+                        int to = -1;
+                        for (int j = 9; j < inv.items.size() && to < 0; j++) {
+                            if (inv.items.get(j).isEmpty()) {
+                                to = j;
+                            }
+                        }
+                        if (to >= 0) {
+                            inv.items.set(to, st);
+                            moved++;
+                        } else {
+                            dropped++;
+                        }
+                        inv.items.set(i, ItemStack.EMPTY);
+                    }
+                    inv.setChanged();
+                    return label + ": hotbar cleared for the puzzle (" + moved + " stacks moved to the inventory, " + dropped + " removed)";
+                })))
+                .waitTicks(4)
                 .run("mark", () -> {
                     s.xpBefore = server(srv -> Attunements.of(player(srv)).totalXp());
                     s.solveStart = mc.level.getGameTime();
