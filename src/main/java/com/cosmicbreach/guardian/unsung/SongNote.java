@@ -193,7 +193,7 @@ public class SongNote extends LivingEntity {
             }
         }
         level.broadcastEntityEvent(this, EVENT_BURST);
-        level.playSound(null, c.x, c.y, c.z, UnsungRegistry.NOTE_BURST.get(), SoundSource.HOSTILE, 1.2f, 1.0f);
+        level.playSound(null, c.x, c.y, c.z, UnsungRegistry.NOTE_BURST.get(), SoundSource.MUSIC, 1.2f, 1.0f);
         discard();
     }
 
@@ -217,7 +217,7 @@ public class SongNote extends LivingEntity {
         }
         Vec3 c = centre();
         level().broadcastEntityEvent(this, EVENT_BREAK);
-        level().playSound(null, c.x, c.y, c.z, UnsungRegistry.NOTE_BREAK.get(), SoundSource.HOSTILE, 1.0f, 1.0f);
+        level().playSound(null, c.x, c.y, c.z, UnsungRegistry.NOTE_BREAK.get(), SoundSource.MUSIC, 1.0f, 1.0f);
         owner.noteBroken();
         discard();
         return true;

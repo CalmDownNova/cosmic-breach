@@ -51,7 +51,15 @@ public final class LeviathanPaths {
         List<Vec3> c = new ArrayList<>();
         c.add(orbit(centre, startAngle - 0.18, wave));
         c.add(start);
-        c.add(polar(centre, (startAngle + aT) / 2.0, (LeviathanMoves.ORBIT_RADIUS + rT) / 2.0, start.y + (yT - start.y) * 0.55));
+        // out to the target along the ring, a control point every 30 degrees at most: the spline never cuts a chord across
+        // the core, however far round the target stands
+        double span = aT - startAngle;
+        int legs = Math.max(2, (int) Math.ceil(span / Math.toRadians(30.0)));
+        for (int k = 1; k < legs; k++) {
+            double f = (double) k / legs;
+            double rr = LeviathanMoves.ORBIT_RADIUS + (rT - LeviathanMoves.ORBIT_RADIUS) * f;
+            c.add(polar(centre, startAngle + span * f, rr, start.y + (yT - start.y) * Math.min(1.0, f * 1.1)));
+        }
         c.add(polar(centre, aT, rT, yT));
         c.add(polar(centre, aT + 0.1, (rT + rOut) / 2.0, yT + 0.3));
         c.add(polar(centre, aT + 0.2, rOut, yT));

@@ -11,10 +11,13 @@ import net.minecraft.world.phys.Vec3;
 
 /**
  * A Refraction's beams for the clients that see the Colossus (S2C): {@link #CHARGING} while the red lines trace the
- * paths (resent at once whenever a crystal turns), {@link #FIRING} while the beams burn, {@link #OFF} after. Each
- * path is its points in order (the eye, then each node) and whether it ends at the core.
+ * paths (resent at once whenever a crystal turns, or as the Colossus turns to face its crystals), {@link #FIRING} while
+ * the beams burn, {@link #OFF} after. Each path is its points in order (the eye, then each bounce on a crystal's face,
+ * then the body if it was turned back), its nodes (crystal indices, {@link Refraction#CORE} last if turned back) and
+ * whether it ends at the core.
  */
-public record RefractionPayload(int colossus, byte mode, long start, List<List<Vec3>> paths, List<Boolean> core)
+public record RefractionPayload(int colossus, byte mode, long start, List<List<Vec3>> paths, List<List<Integer>> nodes,
+                                List<Boolean> core)
         implements CustomPacketPayload {
     public static final byte OFF = 0;
     public static final byte CHARGING = 1;
@@ -37,6 +40,11 @@ public record RefractionPayload(int colossus, byte mode, long start, List<List<V
                 buf.writeDouble(v.y);
                 buf.writeDouble(v.z);
             }
+            List<Integer> nodes = i < p.nodes().size() ? p.nodes().get(i) : List.of();
+            ByteBufCodecs.VAR_INT.encode(buf, nodes.size());
+            for (int n : nodes) {
+                ByteBufCodecs.VAR_INT.encode(buf, n);
+            }
             buf.writeBoolean(i < p.core().size() && p.core().get(i));
         }
     }
@@ -47,6 +55,7 @@ public record RefractionPayload(int colossus, byte mode, long start, List<List<V
         long start = buf.readLong();
         int n = Math.min(ByteBufCodecs.VAR_INT.decode(buf), 8);
         List<List<Vec3>> paths = new ArrayList<>(n);
+        List<List<Integer>> nodes = new ArrayList<>(n);
         List<Boolean> core = new ArrayList<>(n);
         for (int i = 0; i < n; i++) {
             int m = Math.min(ByteBufCodecs.VAR_INT.decode(buf), 8);
@@ -55,9 +64,15 @@ public record RefractionPayload(int colossus, byte mode, long start, List<List<V
                 path.add(new Vec3(buf.readDouble(), buf.readDouble(), buf.readDouble()));
             }
             paths.add(path);
+            int k = Math.min(ByteBufCodecs.VAR_INT.decode(buf), 8);
+            List<Integer> ns = new ArrayList<>(k);
+            for (int j = 0; j < k; j++) {
+                ns.add(ByteBufCodecs.VAR_INT.decode(buf));
+            }
+            nodes.add(ns);
             core.add(buf.readBoolean());
         }
-        return new RefractionPayload(colossus, mode, start, paths, core);
+        return new RefractionPayload(colossus, mode, start, paths, nodes, core);
     }
 
     @Override

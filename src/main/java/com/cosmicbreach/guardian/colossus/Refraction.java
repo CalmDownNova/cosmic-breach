@@ -5,25 +5,31 @@ import java.util.function.IntUnaryOperator;
 import java.util.function.ToIntFunction;
 
 /**
- * Refraction's rules (Prism Colossus design v1, "Refraction, the signature"), pure.
+ * Refraction's rules (Prism Colossus design v1, "Refraction, the signature"; reworked in 1.2.1), pure.
  *
  * <p>Six crown crystals stand round the arena, numbered clockwise as seen from above (crystal {@code i + 1}
- * is the next one clockwise). Each points at one target: one of the five other crystals, or the Colossus's
- * core ({@link #CORE}). Turning a crystal moves its target one step clockwise through the cycle
- * {@code i+1, i+2, i+3, i+4, i+5, core} and round again, so {@link #stepsToCore} hits bring it to the core.
+ * is the next one clockwise). The Colossus's body stands in the middle: a vertical cylinder of
+ * {@link CrownArena#BODY_RADIUS} round the centre. A beam leg that would pass through the body ends there instead:
+ * the beam is turned back into the Colossus ({@link #CORE}). Only a leg to the opposite crystal crosses the body (the
+ * others pass at least 7 blocks clear of it), so the direction toward the opposite crystal <em>is</em> the core: a
+ * crystal points at one of four other crystals ({@code i+1, i+2, i+4, i+5}) or at the core.
+ *
+ * <p>Turning a crystal moves its target one step clockwise through {@link #cycle}: {@code i+1, i+2, core, i+4, i+5}
+ * and round again (its pointer sweeps one way), so {@link #stepsToCore} hits bring it to the core.
  *
  * <p>The beam leaves the eye, strikes the lit crystal and bounces on along the targets: the lit crystal, its
  * target, that crystal's target, and there it dies out ({@link #PATH_CRYSTALS} crystals at most). A target that
- * is the core ends the path there: the beam turned back into the Colossus.
+ * is the core (or a leg through the body) ends the path there: the beam turned back into the Colossus.
  *
- * <p>The Colossus aims a lit crystal at one of the three crystals that leave the core 1 to 3 steps away
+ * <p>At rest every crystal points two steps round ({@link #resting}), so no resting leg crosses the body. The
+ * Colossus aims a lit crystal at one of the three targets that leave the core 1 to 3 turns away
  * ({@link #aimCandidates}), whichever sends the beam across the most players, and never along a path that ends
- * at its own core. Players turn lit crystals during the charge; after the beam, crystals left pointing at the
- * core settle back to the opposite crystal ({@link #settle}), so the next Refraction starts from a clean ring.
+ * at its own body. Players turn lit crystals during the charge; after the beam every crystal settles back to rest
+ * ({@link #settle}), so the next Refraction starts from a clean ring.
  */
 public final class Refraction {
     public static final int CRYSTALS = 6;
-    /** The target index that means the Colossus's core. */
+    /** The target index that means the Colossus's core (its body). */
     public static final int CORE = CRYSTALS;
     /** A beam visits at most this many crystals. */
     public static final int PATH_CRYSTALS = 3;
@@ -31,52 +37,125 @@ public final class Refraction {
     public static final int MIN_CORE_STEPS = 1;
     /** ...and at most this many. */
     public static final int MAX_CORE_STEPS = 3;
+    /** A resting crystal points this many crystals round, clockwise. */
+    public static final int REST_STEPS = 2;
 
     private Refraction() {
     }
 
-    /** True for a target crystal {@code crystal} may point at: another crystal, or the core. */
-    public static boolean validTarget(int crystal, int target) {
-        return target == CORE || (target >= 0 && target < CRYSTALS && target != crystal);
+    // ------------------------------------------------------------------ the body
+
+    /** Crystal {@code k}'s ideal spot, {x, z} from the centre (+X east, +Z south; clockwise from east seen from above). */
+    static double[] ringPoint(int k) {
+        double a = Math.toRadians(60.0 * Math.floorMod(k, CRYSTALS));
+        return new double[] {CrownArena.CRYSTAL_RADIUS * Math.cos(a), CrownArena.CRYSTAL_RADIUS * Math.sin(a)};
     }
 
-    /** The crystal opposite {@code crystal} across the arena: every crystal's resting target. */
+    /** True if the flat segment from {@code (ax, az)} to {@code (bx, bz)} passes within {@code radius} of the origin. */
+    public static boolean segmentNearCentre(double ax, double az, double bx, double bz, double radius) {
+        double dx = bx - ax;
+        double dz = bz - az;
+        double len2 = dx * dx + dz * dz;
+        double u = len2 < 1e-12 ? 0.0 : Math.max(0.0, Math.min(1.0, -(ax * dx + az * dz) / len2));
+        double px = ax + dx * u;
+        double pz = az + dz * u;
+        return px * px + pz * pz < radius * radius;
+    }
+
+    /** True if a beam from crystal {@code a} to crystal {@code b} would pass through the Colossus's body. */
+    public static boolean crossesBody(int a, int b) {
+        double[] pa = ringPoint(a);
+        double[] pb = ringPoint(b);
+        return segmentNearCentre(pa[0], pa[1], pb[0], pb[1], CrownArena.BODY_RADIUS);
+    }
+
+    // ------------------------------------------------------------------ targets and turning
+
+    /** True for a target crystal {@code crystal} may point at: another crystal clear of the body, or the core. */
+    public static boolean validTarget(int crystal, int target) {
+        return target == CORE || (target >= 0 && target < CRYSTALS && target != crystal && !crossesBody(crystal, target));
+    }
+
+    /** The crystal opposite {@code crystal} across the arena (behind the Colossus's body from it). */
     public static int opposite(int crystal) {
         return (crystal + CRYSTALS / 2) % CRYSTALS;
     }
 
-    /** The target after one clockwise turn of {@code crystal}, pointing at {@code target} now. */
-    public static int turn(int crystal, int target) {
-        if (target == CORE) {
-            return (crystal + 1) % CRYSTALS;
+    /** Where {@code crystal} points at rest: two crystals round, clockwise. */
+    public static int resting(int crystal) {
+        return (crystal + REST_STEPS) % CRYSTALS;
+    }
+
+    /**
+     * {@code crystal}'s targets in turning order, starting just clockwise of it: each other crystal in ring order, the one
+     * behind the body replaced by the core ({@code i+1, i+2, core, i+4, i+5}).
+     */
+    public static int[] cycle(int crystal) {
+        int[] out = new int[CRYSTALS - 1];
+        int n = 0;
+        boolean core = false;
+        for (int k = 1; k < CRYSTALS; k++) {
+            int t = (crystal + k) % CRYSTALS;
+            if (crossesBody(crystal, t)) {
+                if (!core) {
+                    out[n++] = CORE;
+                    core = true;
+                }
+            } else {
+                out[n++] = t;
+            }
         }
-        int next = (target + 1) % CRYSTALS;
-        return next == crystal ? CORE : next;
+        return n == out.length ? out : Arrays.copyOf(out, n);
+    }
+
+    private static int indexIn(int[] cycle, int target) {
+        for (int i = 0; i < cycle.length; i++) {
+            if (cycle[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /** The target after one clockwise turn of {@code crystal}, pointing at {@code target} now (an invalid one turns to rest). */
+    public static int turn(int crystal, int target) {
+        int[] c = cycle(crystal);
+        int i = indexIn(c, target);
+        return i < 0 ? resting(crystal) : c[(i + 1) % c.length];
     }
 
     /** How many clockwise turns bring {@code crystal}'s beam from {@code target} to the core (0 if it is there). */
     public static int stepsToCore(int crystal, int target) {
-        if (target == CORE) {
-            return 0;
-        }
-        return Math.floorMod(crystal - target, CRYSTALS);
+        int[] c = cycle(crystal);
+        int i = indexIn(c, target);
+        int core = indexIn(c, CORE);
+        return i < 0 ? c.length : Math.floorMod(core - i, c.length);
     }
 
     /**
      * The targets the Colossus may give a lit crystal: those with the core 1 to 3 turns away, nearest first
-     * (the crystal just counter-clockwise, then two, then the opposite one).
+     * (two round, then the next crystal clockwise, then the next counter-clockwise).
      */
     public static int[] aimCandidates(int crystal) {
+        int[] c = cycle(crystal);
         int[] out = new int[MAX_CORE_STEPS - MIN_CORE_STEPS + 1];
+        int n = 0;
         for (int steps = MIN_CORE_STEPS; steps <= MAX_CORE_STEPS; steps++) {
-            out[steps - MIN_CORE_STEPS] = Math.floorMod(crystal - steps, CRYSTALS);
+            for (int t : c) {
+                if (t != CORE && stepsToCore(crystal, t) == steps) {
+                    out[n++] = t;
+                }
+            }
         }
-        return out;
+        return n == out.length ? out : Arrays.copyOf(out, n);
     }
+
+    // ------------------------------------------------------------------ the beam's path
 
     /**
      * The nodes the beam visits from lit crystal {@code lit}: crystal indices in order, ending with {@link #CORE}
-     * if it reaches the core. Always starts with {@code lit}; at most {@link #PATH_CRYSTALS} crystals.
+     * if it is turned back into the body (a target on the core, or a leg that would cross the body). Always starts with
+     * {@code lit}; at most {@link #PATH_CRYSTALS} crystals.
      */
     public static int[] path(int lit, int[] targets) {
         int[] out = new int[PATH_CRYSTALS];
@@ -85,6 +164,12 @@ public final class Refraction {
         out[n++] = at;
         while (n < PATH_CRYSTALS) {
             int next = targets[at];
+            if (next != CORE && next >= 0 && next < CRYSTALS && next != at && crossesBody(at, next)) {
+                next = CORE; // the leg would pass through the body: it ends there
+            }
+            if (next != CORE && (next < 0 || next >= CRYSTALS || next == at)) {
+                break; // no target (never set up): the beam dies out here
+            }
             out[n++] = next;
             if (next == CORE) {
                 break;
@@ -94,10 +179,12 @@ public final class Refraction {
         return n == out.length ? out : Arrays.copyOf(out, n);
     }
 
-    /** True if the path ends at the core. */
+    /** True if the path ends at the core (turned back into the body). */
     public static boolean endsAtCore(int[] path) {
         return path.length > 0 && path[path.length - 1] == CORE;
     }
+
+    // ------------------------------------------------------------------ the Colossus's aim
 
     /**
      * The target the Colossus gives lit crystal {@code lit}: among {@link #aimCandidates}, the one whose path
@@ -135,11 +222,12 @@ public final class Refraction {
 
     /**
      * Picks {@code count} distinct crystals to light and aims each ({@link #chooseTarget}), writing their targets
-     * into {@code targets}. Crystals whose best path crosses the most players win; ties go to {@code pick}.
-     * Returns the lit crystals, best first.
+     * into {@code targets}. Crystals whose best path crosses the most players win; ties go to {@code pick}. A crystal
+     * opposite one already lit is never lit with it (the Colossus faces between its lit crystals, so neither beam leaves
+     * its eye backwards). Returns the lit crystals, best first.
      */
     public static int[] light(int count, int[] targets, ToIntFunction<int[]> crossed, IntUnaryOperator pick) {
-        int n = Math.max(1, Math.min(count, CRYSTALS));
+        int n = Math.max(1, Math.min(count, CRYSTALS / 2));
         int[] lit = new int[n];
         boolean[] used = new boolean[CRYSTALS];
         for (int k = 0; k < n; k++) {
@@ -166,30 +254,24 @@ public final class Refraction {
             }
             int chosen = tied[Math.floorMod(pick.applyAsInt(ties), ties)];
             used[chosen] = true;
+            used[opposite(chosen)] = true;
             targets[chosen] = aims[chosen];
             lit[k] = chosen;
         }
         return lit;
     }
 
-    /** After a Refraction: every crystal left pointing at the core turns back to the opposite crystal. */
+    /** After a Refraction (and before one): every crystal turns back to rest, two round. */
     public static void settle(int[] targets) {
         for (int i = 0; i < targets.length; i++) {
-            if (targets[i] == CORE || !validTarget(i, targets[i])) {
-                targets[i] = opposite(i);
-            }
+            targets[i] = resting(i);
         }
     }
 
-    /** Every crystal at rest: pointing at the opposite one. */
+    /** Every crystal at rest: pointing two crystals round, clockwise. */
     public static int[] restingTargets() {
         int[] out = new int[CRYSTALS];
-        settle(fill(out));
+        settle(out);
         return out;
-    }
-
-    private static int[] fill(int[] targets) {
-        Arrays.fill(targets, CORE);
-        return targets;
     }
 }

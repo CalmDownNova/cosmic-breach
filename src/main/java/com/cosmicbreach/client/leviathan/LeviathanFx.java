@@ -122,18 +122,26 @@ public final class LeviathanFx implements LeviathanEffects.Handler {
         return v.lengthSqr() < 1e-8 ? new Vec3(0, 1, 0) : v.normalize();
     }
 
-    /** How far along its dive path the head is (blocks), and how far the wake reaches, at {@code time}; null when no dive shows. */
+    /**
+     * The dive's wake at {@code time}: {from, to, alpha}, the whole path while it shows (the start of the tell, fading out
+     * by {@link LeviathanMoves#wakeAlpha}); null when no dive shows or the wake has vanished.
+     */
     static double[] wake(ThalassineLeviathan l, double time) {
         DivePath d = DIVES.get(l.getId());
         if (d == null || l.action() != LeviathanTactics.Attack.DIVE) {
             return null;
         }
-        double front = (time - d.start()) * d.speed();
-        double head = (time - d.start() - LeviathanMoves.DIVE_TELL) * d.speed();
-        if (head > d.path().length()) {
+        float alpha = LeviathanMoves.wakeAlpha(time - d.start());
+        if (alpha <= 0.0f) {
             return null;
         }
-        return new double[] {Math.max(0.0, head), Math.min(d.path().length(), front)};
+        return new double[] {0.0, d.path().length(), alpha};
+    }
+
+    /** How strongly the dive's wake shows now (0 when it is not drawn at all). */
+    static float wakeStrength(ThalassineLeviathan l, double time) {
+        double[] w = wake(l, time);
+        return w == null ? 0.0f : (float) w[2];
     }
 
     /** The spine {@code s} blocks of body behind the head's middle (render time), from the synced body points. */
@@ -184,7 +192,7 @@ public final class LeviathanFx implements LeviathanEffects.Handler {
         double[] w = wake(l, now);
         DivePath d = DIVES.get(l.getId());
         if (w != null && d != null && w[1] > w[0]) {
-            for (int k = 0; k < 9; k++) {
+            for (int k = 0; k < Math.round(9 * w[2]); k++) {
                 double s = w[0] + random.nextDouble() * (w[1] - w[0]);
                 Vec3 at = d.path().at(s).add(randomUnit().scale(1.2));
                 if (FxBudget.count(1, at, false) > 0) {
@@ -467,7 +475,7 @@ public final class LeviathanFx implements LeviathanEffects.Handler {
                 if (a.length() < 1.5 || b.length() < 1.5) {
                     continue; // never across the eye of a player standing in it
                 }
-                segs.add(new Seg(a, b, (float) (0.95 * Math.min(1.0, (w[1] - s) / 3.0))));
+                segs.add(new Seg(a, b, (float) (0.95 * w[2])));
             }
             outlined(camera, segs, WAKE_DARK, WAKE, 8.0, 14.0, 2.6, 0.45f, 0.3);
             // chevrons flowing along it toward where it lands
@@ -483,28 +491,22 @@ public final class LeviathanFx implements LeviathanEffects.Handler {
                 Vec3 side = dir.cross(rel);
                 side = side.lengthSqr() < 1e-8 ? new Vec3(0, 1, 0) : side.normalize();
                 Vec3 tip = rel.add(dir.scale(0.6));
-                chevrons.add(new Seg(rel.subtract(dir.scale(0.5)).add(side.scale(0.75)), tip, 1f));
-                chevrons.add(new Seg(rel.subtract(dir.scale(0.5)).subtract(side.scale(0.75)), tip, 1f));
+                chevrons.add(new Seg(rel.subtract(dir.scale(0.5)).add(side.scale(0.75)), tip, (float) w[2]));
+                chevrons.add(new Seg(rel.subtract(dir.scale(0.5)).subtract(side.scale(0.75)), tip, (float) w[2]));
             }
             outlined(camera, chevrons, WAKE_DARK, WAKE_HOT, 5.0, 9.0, 0.0, 0f, 0.12);
-            // a bright point at its front
-            Vec3 front = path.at(w[1]).subtract(cam);
-            if (front.length() > 2.0) {
-                TelegraphDraw.glow(BUFFERS.getBuffer(FxRenderTypes.additive(ShardDraw.GLOW)), camera, front, 1.3f, ShardDraw.rgb(WAKE), 0.8f);
-                TelegraphDraw.glow(BUFFERS.getBuffer(FxRenderTypes.additive(ShardDraw.GLOW)), camera, front, 0.55f, ShardDraw.rgb(WAKE_HOT), 0.95f);
-            }
         }
-        // where it lands: a ring on the ground round the target's feet until the head is past
-        if (w[0] < d.landing() + 3.0) {
-            float pulse = 0.75f + 0.25f * (float) Math.sin(time * 1.1);
+        // where it lands: a ring on the ground round the target's feet, vanishing with the wake
+        {
+            float pulse = (0.75f + 0.25f * (float) Math.sin(time * 1.1)) * (float) w[2];
             Vec3 c = d.target().add(0, 0.06, 0).subtract(cam);
             double r = LeviathanMoves.DIVE_REACH + 0.5;
             float[] dark = ShardDraw.rgb(WAKE_DARK);
             float[] core = ShardDraw.rgb(WAKE);
             float[] hot = ShardDraw.rgb(WAKE_HOT);
             ShardDraw.disc(BUFFERS.getBuffer(ShardDraw.solid()), IDENTITY, c, r, 40, core[0], core[1], core[2], 0.14f * pulse);
-            ShardDraw.band(BUFFERS.getBuffer(ShardDraw.solid()), IDENTITY, c, r - 0.42, r + 0.42, 48, dark[0], dark[1], dark[2], 0.75f);
-            ShardDraw.band(BUFFERS.getBuffer(ShardDraw.solid()), IDENTITY, c.add(0, 0.01, 0), r - 0.24, r + 0.24, 48, core[0], core[1], core[2], 0.95f);
+            ShardDraw.band(BUFFERS.getBuffer(ShardDraw.solid()), IDENTITY, c, r - 0.42, r + 0.42, 48, dark[0], dark[1], dark[2], 0.75f * (float) w[2]);
+            ShardDraw.band(BUFFERS.getBuffer(ShardDraw.solid()), IDENTITY, c.add(0, 0.01, 0), r - 0.24, r + 0.24, 48, core[0], core[1], core[2], 0.95f * (float) w[2]);
             ShardDraw.band(BUFFERS.getBuffer(ShardDraw.solid()), IDENTITY, c.add(0, 0.02, 0), r - 0.08, r + 0.08, 48, hot[0], hot[1], hot[2], 0.9f * pulse);
             TelegraphDraw.curtain(BUFFERS.getBuffer(FxRenderTypes.additive(ShardDraw.GLOW)), c, r, 0f, 0.0, 360.0, 48, 1.4, core, 0.55f * pulse);
         }

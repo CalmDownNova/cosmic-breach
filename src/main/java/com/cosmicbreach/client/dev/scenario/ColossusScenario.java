@@ -27,10 +27,16 @@ import org.jetbrains.annotations.Nullable;
  *       back (dormant and awake, in daylight), and every telegraph: the slam's gold ring and glint, the Facet
  *       Sweep's white band, Refraction's red lines and beam, a Break, the Fracture, the Prism Burst's white glow,
  *       the double slam, the Shatter and the shards.</li>
+ *   <li>{@code colossus-refraction} (1.2.1): arrows from a real bow turn the gold-lit crystal until its beam is turned back;
+ *       the beam deals exactly 50 and Breaks it with an empty gauge (no parry first); the one-time hint shows on the first
+ *       Refraction and not on the second.</li>
+ *   <li>{@code colossus-rest} (1.2.1): every crystal rests two round and no resting path reaches the body, in the world's own
+ *       geometry; eight forced Refractions (six in phase 1 from players round the ring, two in phase 2) never aim a path at the
+ *       body, keep the core 1 to 3 turns away, never light opposite crystals together, and settle back to rest.</li>
  * </ul>
  */
 public final class ColossusScenario implements Scenario {
-    public enum Part { LOOKS, MECHANICS, SHATTER, WORLD, FIGHT, DEATH }
+    public enum Part { LOOKS, MECHANICS, SHATTER, WORLD, FIGHT, DEATH, REFRACTION, REST }
 
     private final Part part;
     private @Nullable DevCamera camera;
@@ -67,6 +73,8 @@ public final class ColossusScenario implements Scenario {
             case SHATTER -> shatter(steps, mc);
             case FIGHT -> new ColossusFightBot(this, summary).steps(steps, mc);
             case DEATH -> death(steps, mc);
+            case REFRACTION -> refraction(steps, mc);
+            case REST -> rest(steps, mc);
             case WORLD -> {
             }
         }
@@ -230,7 +238,7 @@ public final class ColossusScenario implements Scenario {
                 .run("note it", () -> summary.add("Facet Sweep dashed through: no damage, " + perfectDodges.get() + " perfect dodge(s)"))
                 .waitUntil("the fists are home", 80, () -> ask(mc, this::fistsHome))
                 .waitTicks(20);
-        // the Refraction: parry first (60 in the gauge), then turn the lit crystal back into the core
+        // the Refraction: parry first (60 in the gauge), then turn the lit crystal back into the core (it Breaks either way since 1.2.1)
         standInFront(steps, mc, 8.0);
         parry(steps, mc, null);
         steps.waitUntil("the fists are home", 120, () -> ask(mc, this::fistsHome))
@@ -262,15 +270,18 @@ public final class ColossusScenario implements Scenario {
                     Vec3 k = arena().crystalPoint((int) marks[0]);
                     lookAt(mc, new Vec3(k.x, arena().floorY() + 1.6, k.z));
                 });
-        swingUntil(steps, mc, "the beam's path ends at the core", 36, () -> ask(mc, c -> !c.refractionPaths().isEmpty()
+        swingUntil(steps, mc, "the beam's path ends at the core", 70, () -> ask(mc, c -> !c.refractionPaths().isEmpty()
                 && com.cosmicbreach.guardian.colossus.Refraction.endsAtCore(c.refractionPaths().get(0))));
-        steps.run("health before the beam", () -> measured[1] = health(mc))
-                .waitUntil("the beam fires", 50, () -> ask(mc, c -> c.isBroken() || c.level().getGameTime() - c.actionStart() >= 41))
-                .waitTicks(2)
+        steps.run("health before the beam", () -> {
+                    measured[1] = health(mc);
+                    marks[3] = ServerQuery.ask(p -> (long) colossusOf(p).coreHits());
+                })
+                .waitUntil("the beam fires and its light reaches the body", ColossusMoves.REFRACTION_CHARGE + 20,
+                        () -> ask(mc, c -> c.coreHits() > marks[3]))
                 .run("the beam's hit", () -> measured[2] = measured[1] - health(mc))
                 .log("core hit", () -> String.format(Locale.ROOT, "the beam turned back into the core dealt %.2f", measured[2]))
-                .check("exactly 40", () -> Math.abs(measured[2] - 40.0) < 0.01)
-                .check("and Broke it (the parry's 60 and the beam's 100)", () -> ask(mc, PrismColossus::isBroken))
+                .check("exactly 50", () -> Math.abs(measured[2] - ColossusMoves.CORE_HIT_DAMAGE) < 0.01)
+                .waitUntil("and it Breaks", ColossusMoves.CORE_HIT_BREAK_DELAY + 5, () -> ask(mc, PrismColossus::isBroken))
                 .run("note it", () -> summary.add(String.format(Locale.ROOT, "Refraction sent back into the core: %.1f damage, Break", measured[2])))
                 .run("camera: the Break", () -> place(mc, side(12, 3.0)))
                 .waitTicks(3)
@@ -317,7 +328,7 @@ public final class ColossusScenario implements Scenario {
                 .run("camera: two beams", () -> place(mc, above(14)))
                 .waitTicks(1)
                 .screenshot("two_beams_lines")
-                .waitUntil("they fire", 50, () -> actionTick(mc) >= 42)
+                .waitUntil("they fire", ColossusMoves.REFRACTION_CHARGE + 10, () -> actionTick(mc) >= ColossusMoves.REFRACTION_CHARGE + 8)
                 .screenshot("two_beams_firing")
                 .run("back to the player's eyes", this::dropCamera)
                 .run("note it", () -> summary.add("phase 2: a double slam (only the second glints) and two beams"));
@@ -938,6 +949,311 @@ public final class ColossusScenario implements Scenario {
         return true;
     }
 
+    // ------------------------------------------------------------------ Refraction (1.2.1): turned back by arrows, and the ring at rest
+
+    /** Wakes the Colossus with the player standing on the crown in survival, then holds its own attacks. */
+    private void wakeAndHold(Steps steps, Minecraft mc) {
+        steps.run("on the crown, 10 south of the centre", () -> {
+                    CrownArena a = arena();
+                    tp(mc, a.x() + 0.5, a.floorY(), a.z() + 10.5, a.x(), a.floorY() + 3, a.z());
+                })
+                .waitUntil("the view is drawn", 900, settled(mc, 800))
+                .command("cosmicbreach debug colossus awaken")
+                .waitUntil("the intro is over", 320, () -> ask(mc, c -> c.state() == PrismColossus.State.FIGHT))
+                .command("cosmicbreach debug colossus hold 1000000")
+                .command("effect give @s minecraft:resistance 100000 4 true")
+                .command("effect give @s minecraft:regeneration 100000 4 true")
+                .waitTicks(20);
+    }
+
+    private static final String HINT = "Strike the lit crystal";
+
+    /** The action bar's text now (the Gui keeps it in a private field), or "". */
+    private static String actionBar(Minecraft mc) {
+        try {
+            java.lang.reflect.Field text = net.minecraft.client.gui.Gui.class.getDeclaredField("overlayMessageString");
+            java.lang.reflect.Field time = net.minecraft.client.gui.Gui.class.getDeclaredField("overlayMessageTime");
+            text.setAccessible(true);
+            time.setAccessible(true);
+            Object c = text.get(mc.gui);
+            return c instanceof net.minecraft.network.chat.Component comp && time.getInt(mc.gui) > 0 ? comp.getString() : "";
+        } catch (ReflectiveOperationException e) {
+            throw new Steps.Failure("cannot read the action bar: " + e);
+        }
+    }
+
+    private static void clearActionBar(Minecraft mc) {
+        try {
+            java.lang.reflect.Field time = net.minecraft.client.gui.Gui.class.getDeclaredField("overlayMessageTime");
+            time.setAccessible(true);
+            time.setInt(mc.gui, 0);
+        } catch (ReflectiveOperationException e) {
+            throw new Steps.Failure("cannot clear the action bar: " + e);
+        }
+    }
+
+    /** True if every leg after the eye's stays clear of the body (a leg into the body may only end on it, and only last). */
+    private static boolean legsClear(List<Vec3> pts, boolean turnedBack) {
+        CrownArena a = arena();
+        int legs = pts.size() - 1;
+        for (int i = 1; i < legs; i++) {
+            Vec3 p = pts.get(i);
+            Vec3 q = pts.get(i + 1);
+            boolean last = i == legs - 1;
+            if (last && turnedBack) {
+                if (Math.abs(a.distance(q.x, q.z) - CrownArena.BODY_RADIUS) > 0.05) {
+                    return false; // a turned-back leg ends on the body's skin
+                }
+                continue;
+            }
+            if (com.cosmicbreach.guardian.colossus.Refraction.segmentNearCentre(p.x - a.x(), p.z - a.z(), q.x - a.x(), q.z - a.z(),
+                    CrownArena.BODY_RADIUS)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * {@code colossus-refraction}: the first Refraction shows the hint; a real bow's arrows turn the gold-lit crystal until its beam
+     * is turned back; the beam deals exactly 50 when its light reaches the body and Breaks it from an empty gauge. A second
+     * Refraction shows no hint.
+     */
+    private void refraction(Steps steps, Minecraft mc) {
+        equip(steps, mc);
+        steps.command("give @s minecraft:bow")
+                .command("give @s minecraft:arrow 64")
+                .waitUntil("a bow in the hotbar", 40, () -> hotbarHas(mc, net.minecraft.world.item.Items.BOW));
+        wakeAndHold(steps, mc);
+        steps.run("forget the action bar", () -> clearActionBar(mc))
+                .check("the gauge is empty (no parry, no hits)", () -> ask(mc, c -> c.gaugeFraction() < 0.01))
+                .command("cosmicbreach debug colossus attack refraction")
+                .waitUntil("a crown crystal is lit", 20, () -> ask(mc, c -> c.litCrystals().length == 1))
+                .waitUntil("the hint is on the action bar", 20, () -> actionBar(mc).contains(HINT))
+                .log("hint", () -> "action bar: " + actionBar(mc))
+                .log("refraction", () -> ServerQuery.ask(p -> {
+                    PrismColossus c = colossusOf(p);
+                    int k = c.litCrystals()[0];
+                    marks[0] = k;
+                    marks[1] = crystalTarget(p, k);
+                    marks[2] = com.cosmicbreach.guardian.colossus.Refraction.stepsToCore(k, (int) marks[1]);
+                    StringBuilder ring = new StringBuilder();
+                    for (int i = 0; i < 6; i++) {
+                        ring.append(i).append("->").append(crystalTarget(p, i)).append(' ');
+                    }
+                    return String.format(Locale.ROOT, "crystal %d lit, aimed at %d: the core is %d turn(s) away; path %s; ring %s", k, marks[1],
+                            marks[2], java.util.Arrays.toString(c.refractionPaths().get(0)), ring.toString().trim());
+                }))
+                .check("the core is 1 to 3 turns away", () -> marks[2] >= 1 && marks[2] <= 3)
+                .check("every other crystal rests two round", () -> ServerQuery.ask(p -> {
+                    for (int i = 0; i < 6; i++) {
+                        if (i != marks[0] && crystalTarget(p, i) != com.cosmicbreach.guardian.colossus.Refraction.resting(i)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }))
+                .run("stand 9 out, a quarter turn off the lit crystal, bow in hand", () -> {
+                    CrownArena a = arena();
+                    Vec3 k = a.crystalPoint((int) marks[0]);
+                    double ang = Math.atan2(k.z - a.z(), k.x - a.x()) + Math.toRadians(25);
+                    Vec3 stand = new Vec3(a.x() + 9 * Math.cos(ang), a.floorY(), a.z() + 9 * Math.sin(ang));
+                    tp(mc, stand.x, stand.y, stand.z, k.x, a.floorY() + 2.0, k.z);
+                    selectHotbar(mc, net.minecraft.world.item.Items.BOW);
+                })
+                .waitTicks(3)
+                .run("look at the lit crystal", () -> {
+                    Vec3 k = arena().crystalPoint((int) marks[0]);
+                    lookAt(mc, new Vec3(k.x, arena().floorY() + 2.1, k.z));
+                })
+                .run("camera: the gold crystal and the red lines", () -> place(mc, overShoulder(mc)))
+                .waitTicks(1)
+                .screenshot("refraction_gold_marker")
+                .run("back to the player's eyes", this::dropCamera)
+                .run("turns so far", () -> marks[4] = ServerQuery.ask(p -> (long) colossusOf(p).crystalTurns()));
+        shootUntil(steps, mc, "the beam's path ends at the core (shooting)", ColossusMoves.REFRACTION_CHARGE,
+                () -> ask(mc, c -> !c.refractionPaths().isEmpty() && com.cosmicbreach.guardian.colossus.Refraction.endsAtCore(c.refractionPaths().get(0))));
+        steps.log("turns", () -> ServerQuery.ask(p -> String.format(Locale.ROOT, "arrows turned the crystal %d time(s) (needed %d), %d ticks into the charge",
+                        colossusOf(p).crystalTurns() - marks[4], marks[2], p.level().getGameTime() - colossusOf(p).actionStart())))
+                .check("the arrows turned it exactly as often as it needed", () -> ServerQuery.ask(p -> colossusOf(p).crystalTurns() - marks[4] == marks[2]))
+                .check("the red lines end on the body (the client's copy)", () -> {
+                    com.cosmicbreach.client.guardian.RefractionView.Beams b = com.cosmicbreach.client.guardian.RefractionView.of(colossus(mc).getId());
+                    return b != null && b.core().get(0) && legsClear(b.paths().get(0), true);
+                })
+                .run("camera: the lines turned back", () -> place(mc, overShoulder(mc)))
+                .waitTicks(1)
+                .screenshot("refraction_turned_lines")
+                .run("back to the player's eyes", this::dropCamera)
+                .run("health before the beam", () -> {
+                    measured[1] = health(mc);
+                    marks[3] = ServerQuery.ask(p -> (long) colossusOf(p).coreHits());
+                })
+                .waitUntil("the beam fires and its light reaches the body", ColossusMoves.REFRACTION_CHARGE + 20, () -> ask(mc, c -> c.coreHits() > marks[3]))
+                .run("the beam's hit", () -> measured[2] = measured[1] - health(mc))
+                .log("core hit", () -> String.format(Locale.ROOT, "the beam turned back into the body dealt %.2f; broken now: %s", measured[2],
+                        ask(mc, PrismColossus::isBroken)))
+                .check("exactly 50", () -> Math.abs(measured[2] - ColossusMoves.CORE_HIT_DAMAGE) < 0.01)
+                .check("not Broken yet: the beam is seen burning in first", () -> !ask(mc, PrismColossus::isBroken))
+                .run("camera: the impact", () -> place(mc, side(13, 4.0)))
+                .waitTicks(3)
+                .screenshot("refraction_turned_impact")
+                .waitUntil("it Breaks with an empty gauge", ColossusMoves.CORE_HIT_BREAK_DELAY + 5, () -> ask(mc, PrismColossus::isBroken))
+                .waitTicks(3)
+                .screenshot("refraction_turned_break")
+                .run("back to the player's eyes", this::dropCamera)
+                .run("note it", () -> summary.add(String.format(Locale.ROOT, "Refraction turned back by %d arrow(s): %.1f damage, Break without a parry",
+                        marks[2], measured[2])))
+                .waitUntil("the Break is over", 140, () -> ask(mc, c -> !c.isBroken()))
+                .waitTicks(30)
+                .run("forget the action bar", () -> clearActionBar(mc))
+                .command("cosmicbreach debug colossus attack refraction")
+                .waitUntil("a second Refraction", 20, () -> ask(mc, c -> c.litCrystals().length == 1))
+                .waitTicks(15)
+                .check("no hint the second time", () -> !actionBar(mc).contains(HINT))
+                .waitUntil("it is over", ColossusMoves.refractionLength() + 20, () -> ask(mc, c -> c.action() != PrismColossus.Action.REFRACTION))
+                .run("note the hint", () -> summary.add("the hint showed on the first Refraction only"));
+    }
+
+    /** Draws and looses the bow (12 ticks drawn, a shot every 20, checked 8 ticks after each lands) until {@code done}, at most {@code timeout} ticks. */
+    private void shootUntil(Steps steps, Minecraft mc, String what, int timeout, BooleanSupplier done) {
+        int[] tick = {0};
+        net.minecraft.client.KeyMapping key = mc.options.keyUse;
+        steps.waitUntil(what, timeout, () -> {
+            int t = tick[0]++;
+            if (t % 20 == 0 && done.getAsBoolean()) {
+                net.minecraft.client.KeyMapping.set(key.getKey(), false);
+                return true;
+            }
+            if (t % 20 == 0) {
+                Vec3 k = arena().crystalPoint((int) marks[0]);
+                lookAt(mc, new Vec3(k.x, arena().floorY() + 2.1, k.z));
+                net.minecraft.client.KeyMapping.set(key.getKey(), true);
+                net.minecraft.client.KeyMapping.click(key.getKey());
+            } else if (t % 20 == 12) {
+                net.minecraft.client.KeyMapping.set(key.getKey(), false);
+            }
+            return false;
+        });
+    }
+
+    /**
+     * {@code colossus-rest}: the ring at rest in the world, then eight forced Refractions (players round the ring in phase 1, then
+     * phase 2's pairs): no aimed path reaches the body, every lit crystal leaves the core 1 to 3 turns away, phase 2 never lights
+     * opposite crystals, and after each beam every crystal is back at rest.
+     */
+    private void rest(Steps steps, Minecraft mc) {
+        equip(steps, mc);
+        wakeAndHold(steps, mc);
+        steps.log("ring", () -> ServerQuery.ask(p -> {
+                    StringBuilder ring = new StringBuilder();
+                    for (int i = 0; i < 6; i++) {
+                        ring.append(i).append("->").append(crystalTarget(p, i)).append(' ');
+                    }
+                    return "the ring at rest: " + ring.toString().trim();
+                }))
+                .check("every crystal rests two round", () -> ServerQuery.ask(p -> {
+                    for (int i = 0; i < 6; i++) {
+                        if (crystalTarget(p, i) != com.cosmicbreach.guardian.colossus.Refraction.resting(i)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }))
+                .check("no resting path reaches the body, in the world's geometry", () -> ServerQuery.ask(p -> {
+                    CrownArena a = arena();
+                    int[] t = new int[6];
+                    for (int i = 0; i < 6; i++) {
+                        t[i] = crystalTarget(p, i);
+                    }
+                    for (int i = 0; i < 6; i++) {
+                        int[] path = com.cosmicbreach.guardian.colossus.Refraction.path(i, t);
+                        if (com.cosmicbreach.guardian.colossus.Refraction.endsAtCore(path)
+                                || !legsClear(a.beamPoints(path, a.eye(0f), a.core(0f, false)), false)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }));
+        for (int n = 0; n < 8; n++) {
+            int round = n;
+            if (n == 6) {
+                steps.command("cosmicbreach debug colossus phase2")
+                        .waitUntil("phase 2", 120, () -> ask(mc, c -> c.state() == PrismColossus.State.FIGHT && c.phase() == 2))
+                        .command("cosmicbreach debug colossus hold 1000000")
+                        .waitTicks(10);
+            }
+            steps.run("stand round the ring (" + n + ")", () -> {
+                        CrownArena a = arena();
+                        double ang = Math.toRadians(30 + 60 * round + 17 * (round / 6));
+                        tp(mc, a.x() + 10 * Math.cos(ang), a.floorY(), a.z() + 10 * Math.sin(ang), a.x(), a.floorY() + 3, a.z());
+                    })
+                    .waitTicks(5)
+                    .command("cosmicbreach debug colossus attack refraction")
+                    .waitUntil("lit", 20, () -> ask(mc, c -> c.litCrystals().length == (round >= 6 ? 2 : 1)))
+                    .log("refraction " + n, () -> ServerQuery.ask(p -> {
+                        PrismColossus c = colossusOf(p);
+                        List<String> out = new ArrayList<>();
+                        for (int[] path : c.refractionPaths()) {
+                            out.add(java.util.Arrays.toString(path));
+                        }
+                        return "lit " + java.util.Arrays.toString(c.litCrystals()) + ", paths " + out;
+                    }))
+                    .check("no aimed path reaches the body; the core 1 to 3 turns away; never opposite", () -> ServerQuery.ask(p -> {
+                        PrismColossus c = colossusOf(p);
+                        int[] lit = c.litCrystals();
+                        if (lit.length == 2 && lit[1] == com.cosmicbreach.guardian.colossus.Refraction.opposite(lit[0])) {
+                            return false;
+                        }
+                        for (int k : lit) {
+                            int s = com.cosmicbreach.guardian.colossus.Refraction.stepsToCore(k, crystalTarget(p, k));
+                            if (s < 1 || s > 3) {
+                                return false;
+                            }
+                        }
+                        for (int[] path : c.refractionPaths()) {
+                            if (com.cosmicbreach.guardian.colossus.Refraction.endsAtCore(path)) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }))
+                    .waitUntil("the Colossus faces its crystals and the client has the lines", 40, () -> {
+                        com.cosmicbreach.client.guardian.RefractionView.Beams b = com.cosmicbreach.client.guardian.RefractionView.of(colossus(mc).getId());
+                        return b != null && b.paths().size() == (round >= 6 ? 2 : 1);
+                    })
+                    .check("every drawn leg stays clear of the body", () -> {
+                        com.cosmicbreach.client.guardian.RefractionView.Beams b = com.cosmicbreach.client.guardian.RefractionView.of(colossus(mc).getId());
+                        for (List<Vec3> pts : b.paths()) {
+                            if (!legsClear(pts, false)) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    });
+            if (n == 0 || n == 6) {
+                String tag = n == 0 ? "rest_lines_above" : "rest_two_lines_above";
+                steps.waitTicks(30)
+                        .run("camera: from above", () -> place(mc, above(16)))
+                        .waitTicks(1)
+                        .screenshot(tag)
+                        .waitUntil("it fires", ColossusMoves.REFRACTION_CHARGE + 10, () -> actionTick(mc) >= ColossusMoves.REFRACTION_CHARGE + 10)
+                        .screenshot(n == 0 ? "rest_beam_above" : "rest_two_beams_above")
+                        .run("back to the player's eyes", this::dropCamera);
+            }
+            steps.waitUntil("the Refraction ends", ColossusMoves.refractionLength() + 20, () -> ask(mc, c -> c.action() != PrismColossus.Action.REFRACTION))
+                    .check("the ring is back at rest", () -> ServerQuery.ask(p -> {
+                        for (int i = 0; i < 6; i++) {
+                            if (crystalTarget(p, i) != com.cosmicbreach.guardian.colossus.Refraction.resting(i)) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }))
+                    .waitTicks(10);
+        }
+        steps.run("note it", () -> summary.add("the ring rests clear of the body; 8 Refractions (2 in phase 2) never aimed into it"));
+    }
+
     // ------------------------------------------------------------------ looks
 
     private void looks(Steps steps, Minecraft mc) {
@@ -1016,7 +1332,7 @@ public final class ColossusScenario implements Scenario {
         steps.waitTicks(40);
         telegraph(steps, mc, "sweep", 20, "sweep_band_eye", 0, null, () -> eyeLevel(mc));
         steps.waitTicks(40);
-        telegraph(steps, mc, "refraction", 25, "refraction_lines", 25, "refraction_beam", () -> overShoulder(mc));
+        telegraph(steps, mc, "refraction", ColossusMoves.REFRACTION_CHARGE - 15, "refraction_lines", 25, "refraction_beam", () -> overShoulder(mc));
         steps.waitTicks(60)
                 .command("cosmicbreach debug colossus break")
                 .waitTicks(20)

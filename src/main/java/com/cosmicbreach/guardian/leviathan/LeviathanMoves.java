@@ -66,6 +66,11 @@ public final class LeviathanMoves {
     public static final int RESET_ABSENT = 600;
     /** Ticks between the end of one attack and the choice of the next (it swims its orbit meanwhile). */
     public static final int GAP = 50;
+    /**
+     * Ticks between the end of a Breach Dive and the choice of the next attack: short, because the dive's loop leaves the
+     * target nearly a lap ahead again, so its next dive is a long one (about 160 ticks with the tell).
+     */
+    public static final int DIVE_GAP = 15;
     public static final int FIRST_ATTACK = 60;
     /** Her song in the intro starts this many ticks in, and plays in full whatever else is said (it is her identity). */
     public static final int INTRO_SONG = 150;
@@ -77,16 +82,34 @@ public final class LeviathanMoves {
 
     // ------------------------------------------------------------------ Breach Dive
     public static final int DIVE_TELL = 30;
-    public static final double DIVE_SPEED = 0.8;
+    /**
+     * The dive's dust wake shows its whole path for this many ticks from the start of the tell (the engine's minimum
+     * telegraph), then fades over {@value #WAKE_FADE} ticks and is gone for the rest of the tell and the dive: the player
+     * must remember the line. The song's swell runs the whole tell as the audio cue.
+     */
+    public static final int WAKE_SHOW = MIN_TELEGRAPH;
+    public static final int WAKE_FADE = 6;
+    public static final double DIVE_SPEED = 1.3;
     public static final double DIVE_DAMAGE = 20.0;
     public static final double DIVE_IMPACT = 40.0;
-    public static final int DIVE_COOLDOWN = 240;
-    public static final int DIVE_COOLDOWN_TWO = 200;
+    public static final int DIVE_COOLDOWN = 140;
+    public static final int DIVE_COOLDOWN_TWO = 120;
     /** Phase 2: the chance a dive is chained straight into a second. */
     public static final double DIVE_CHAIN = 0.4;
-    /** It dives at a target this far ahead along its orbit (radians), so the dive never cuts across the core. */
+    /**
+     * It dives at a target this far ahead along its orbit (radians). The path keeps to the ring between the core and the
+     * platforms however far round the target is ({@link LeviathanPaths#dive}), so the dive never cuts across the core. Up to
+     * 330 degrees: a ledge farmer who has just been passed gets a dive that loops almost a lap to reach them (it was 150, so
+     * a dive came about once a lap).
+     */
     public static final double DIVE_AHEAD_MIN = Math.toRadians(35.0);
-    public static final double DIVE_AHEAD_MAX = Math.toRadians(150.0);
+    public static final double DIVE_AHEAD_MAX = Math.toRadians(330.0);
+    /** Its voice calls a target "out of reach" past this far ahead (the old edge of the dive window). */
+    public static final double VOICE_FAR_AHEAD = Math.toRadians(150.0);
+    /** Dives in a row it may make (the third attack must be another one, when another is ready). */
+    public static final int DIVE_RUN = 2;
+    /** Weight of a dive past that run: only when nothing else is ready. */
+    public static final double DIVE_FALLBACK_WEIGHT = 0.05;
     /** A player this close to the head's (or the first segment's) middle during a dive is struck. */
     public static final double DIVE_REACH = 2.7;
 
@@ -163,7 +186,15 @@ public final class LeviathanMoves {
         return phaseTwo ? SPEED_TWO : SPEED;
     }
 
-    /** The dive's cooldown in a phase (every 12 s, every 10 s in phase 2). */
+    /** How strongly the dive's wake shows {@code sinceStart} ticks into the tell (0 to 1): full, then fading, then gone. */
+    public static float wakeAlpha(double sinceStart) {
+        if (sinceStart < 0 || sinceStart >= WAKE_SHOW + WAKE_FADE) {
+            return 0.0f;
+        }
+        return sinceStart <= WAKE_SHOW ? 1.0f : (float) (1.0 - (sinceStart - WAKE_SHOW) / WAKE_FADE);
+    }
+
+    /** The dive's cooldown in a phase (every 7 s, every 6 s in phase 2). */
     public static int diveCooldown(boolean phaseTwo) {
         return phaseTwo ? DIVE_COOLDOWN_TWO : DIVE_COOLDOWN;
     }

@@ -257,7 +257,7 @@ public class UnsungMask extends LivingEntity implements GeoEntity, ParryableAtta
             lastTink = now;
             level().broadcastEntityEvent(this, EVENT_TINK);
             level().playSound(null, getX(), getY() + UnsungMoves.FACE_UP, getZ(), UnsungRegistry.TINK.get(),
-                    net.minecraft.sounds.SoundSource.HOSTILE, 1.0f, 0.9f + 0.2f * random.nextFloat());
+                    net.minecraft.sounds.SoundSource.MUSIC, 1.0f, 0.9f + 0.2f * random.nextFloat());
         }
     }
 

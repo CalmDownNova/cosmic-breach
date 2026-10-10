@@ -1,5 +1,6 @@
 package com.cosmicbreach.structure.crypt;
 
+import com.cosmicbreach.structure.sanctum.SanctumSite;
 import com.cosmicbreach.world.gen.AetheriaTerrain;
 import com.cosmicbreach.world.gen.DeepSpans;
 import com.mojang.serialization.MapCodec;
@@ -47,7 +48,7 @@ public class HollowCryptStructure extends Structure {
         for (int di = -1; di <= 1; di++) {
             for (int dj = -1; dj <= 1; dj++) {
                 DeepSpans.Pillar p = t.deep.pillar(ci + di, cj + dj);
-                if (!p.exists || p.platformR < MIN_PLATFORM || p.top < MIN_TOP || p.top > MAX_TOP) {
+                if (!p.exists || p.platformR < MIN_PLATFORM || p.top < MIN_TOP || p.top > MAX_TOP || SanctumSite.occupies(t, p)) {
                     continue;
                 }
                 double d = Math.hypot(p.cx - x, p.cz - z);

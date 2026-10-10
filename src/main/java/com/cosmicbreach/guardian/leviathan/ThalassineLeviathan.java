@@ -189,7 +189,10 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
     private double sleepAngle;
     private Vec3 head = Vec3.ZERO;
     private Vec3 lastHead = Vec3.ZERO;
-    private final PathTrail trail = new PathTrail(480, 0.25);
+    private static final double TRAIL_STEP = 0.25;
+    private final PathTrail trail = new PathTrail(480, TRAIL_STEP);
+    /** The first segment's middle at the last dive tick (a dive hit sweeps from it). */
+    private Vec3 diveSegmentPrev = Vec3.ZERO;
     private @Nullable Polyline swim;
     private double swimAt;
     private double swimSpeed;
@@ -197,6 +200,8 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
     private Swim swimKind = Swim.NONE;
     private final BreakGauge gauge = new BreakGauge(LeviathanMoves.BREAK_POISE, LeviathanMoves.BREAK_WINDOW);
     private final BossTargeting targeting = new BossTargeting();
+    /** Who hits it from one spot: the dive prefers them (the ledge farmer). */
+    private final LedgeFarming farming = new LedgeFarming();
     private final AttackPicker<Attack> picker = new AttackPicker<>();
     private final Participants participants = new Participants();
     private @Nullable UUID target;
@@ -227,6 +232,8 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
     // what tests and commands read
     private int breaks;
     private int dives;
+    /** Breach Dives made in a row (the tactics cap the run). */
+    private int diveRun;
     private int songs;
     private int bites;
     private int flicks;
@@ -394,6 +401,8 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
         breaks = dives = songs = bites = flicks = flicksParried = sheds = shudders = glandHits = moorages = 0;
         gauge.clear();
         targeting.clear();
+        farming.clear();
+        diveRun = 0;
         picker.clear();
         participants.clear();
         lastHitBy.clear();
@@ -472,7 +481,12 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
     /** Swims along the current path, or its orbit; records the head for the body to follow. */
     private void swimTick(long now, double orbitSpeed) {
         if (swim != null) {
+            double from = swimAt;
             swimAt = Math.min(swim.length(), swimAt + swimSpeed);
+            // a fast swim records its way, so the body follows the curve and not the chord between two ticks
+            for (double s = from + TRAIL_STEP; s < swimAt; s += TRAIL_STEP) {
+                trail.record(swim.at(s));
+            }
             head = swim.at(swimAt);
             if (swimAt >= swim.length() - 1e-9) {
                 Swim done = swimKind;
@@ -660,6 +674,18 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
             candidates.add(new BossTargeting.Candidate(p.getUUID(), p.distanceToSqr(this)));
         }
         target = targeting.choose(candidates, now).orElse(null);
+        // a player who farms it from one spot comes first: the dive goes for them
+        Map<UUID, Vec3> spots = new HashMap<>();
+        for (ServerPlayer p : fightersInside()) {
+            spots.put(p.getUUID(), p.position());
+        }
+        UUID farmer = farming.farmer(spots.keySet(), now, spots::get);
+        if (farmer != null) {
+            if (!farmer.equals(target)) {
+                CosmicBreach.LOGGER.debug("[cosmicbreach] Thalassine Leviathan turns on a player farming it from one spot");
+            }
+            target = farmer;
+        }
         if (target != null) {
             participants.targeted(target);
         }
@@ -686,7 +712,7 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
                 break;
             }
         }
-        return new LeviathanTactics.Situation(phase == 2, ahead, front, tailNear);
+        return new LeviathanTactics.Situation(phase == 2, ahead, front, tailNear, diveRun);
     }
 
     private void startNextAction(ServerLevel server, long now) {
@@ -711,6 +737,7 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
         entityData.set(DATA_ACTION, (byte) chosen.ordinal());
         entityData.set(DATA_ACTION_START, now);
         struck.clear();
+        diveRun = chosen == Attack.DIVE ? diveRun + 1 : 0;
         float pitch = phase == 2 ? 1.2f : 1.0f;
         switch (chosen) {
             case DIVE -> {
@@ -762,11 +789,12 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
 
     private void endAction(long now) {
         liftTarget = 0.0;
+        int gap = action == Attack.DIVE ? LeviathanMoves.DIVE_GAP : LeviathanMoves.GAP;
         action = Attack.NONE;
         entityData.set(DATA_ACTION, (byte) 0);
         parryableNow = false;
         setFlag(FLAG_DROOP, false);
-        scheduleNext(now);
+        nextActionAt = Math.max(now + gap, holdUntil);
     }
 
     // Breach Dive
@@ -786,15 +814,21 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
             return;
         }
         currentImpact = LeviathanMoves.DIVE_IMPACT;
+        // swept over this tick's step: the head from where it was to where it is, and the first segment likewise
+        Vec3 seg = trail.behind(head, LeviathanMoves.FOLLOW[0]);
+        Vec3 headFrom = t == LeviathanMoves.DIVE_TELL ? head : lastHead;
+        Vec3 segFrom = t == LeviathanMoves.DIVE_TELL ? seg : diveSegmentPrev;
+        diveSegmentPrev = seg;
         for (ServerPlayer p : fightersInside()) {
             if (struck.contains(p.getUUID())) {
                 continue;
             }
             AABB box = p.getBoundingBox();
-            if (near(box, points[0], LeviathanMoves.DIVE_REACH) || near(box, points[1], LeviathanMoves.DIVE_REACH - 0.2)) {
+            if (DiveSweep.reaches(box, headFrom, head, LeviathanMoves.DIVE_REACH)
+                    || DiveSweep.reaches(box, segFrom, seg, LeviathanMoves.DIVE_REACH - 0.2)) {
                 struck.add(p.getUUID());
                 if (p.hurt(damageSources().mobAttack(this), (float) LeviathanMoves.DIVE_DAMAGE)) {
-                    Vec3 away = p.position().subtract(points[0]);
+                    Vec3 away = p.position().subtract(head);
                     Vec3 flat = new Vec3(away.x, 0, away.z);
                     flat = flat.lengthSqr() < 1e-6 ? facing() : flat.normalize();
                     p.setDeltaMovement(p.getDeltaMovement().add(flat.scale(0.9)).add(0, 0.45, 0));
@@ -1527,6 +1561,7 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
         if (hurt && player != null) {
             participants.dealtDamage(player.getUUID(), layout != null && layout.inside(player.position()));
             targeting.recordDamage(player.getUUID(), dealt, level().getGameTime());
+            farming.hit(player.getUUID(), level().getGameTime(), player.position());
         }
         return hurt;
     }
@@ -2036,6 +2071,6 @@ public class ThalassineLeviathan extends Mob implements Enemy, GeoEntity, Parrya
     @Override
     public boolean voiceTargetFar() {
         ServerPlayer p = targetPlayer();
-        return p != null && layout != null && LeviathanPaths.targetAhead(layout.centre(), angle, p.position()) > LeviathanMoves.DIVE_AHEAD_MAX;
+        return p != null && layout != null && LeviathanPaths.targetAhead(layout.centre(), angle, p.position()) > LeviathanMoves.VOICE_FAR_AHEAD;
     }
 }

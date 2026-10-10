@@ -81,18 +81,18 @@ public final class UnsungCommands {
 
     // ------------------------------------------------------------------ building a lair
 
-    private static int buildLair(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        CommandSourceStack source = context.getSource();
-        ServerPlayer player = source.getPlayerOrException();
-        ServerLevel level = player.serverLevel();
-        NaveLayout layout = debugLayout(level, player);
+    /**
+     * Builds the Nave into the world (chunks loaded first), with its altar and sleeping choir; {@code crypts} are the
+     * Hollow Crypts sharing its pillar, which it leaves whole and cuts a way into.
+     */
+    public static void build(ServerLevel level, NaveLayout layout, java.util.List<com.cosmicbreach.structure.crypt.CryptNaveLink> crypts) {
         int[] b = layout.bounds();
         for (int cx = b[0] >> 4; cx <= b[3] >> 4; cx++) {
             for (int cz = b[2] >> 4; cz <= b[5] >> 4; cz++) {
                 level.getChunk(cx, cz);
             }
         }
-        NaveBuilder.build(level, layout, new BoundingBox(b[0], b[1], b[2], b[3], b[4], b[5]));
+        NaveBuilder.build(level, layout, new BoundingBox(b[0], b[1], b[2], b[3], b[4], b[5]), crypts);
         int[] a = layout.altar();
         BlockPos altarPos = new BlockPos(a[0], a[1], a[2]);
         BlockPos centre = layout.arena().centreBlock();
@@ -103,7 +103,16 @@ public final class UnsungCommands {
                 altar.spawnGuardian(level);
             }
         }
+    }
+
+    private static int buildLair(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        CommandSourceStack source = context.getSource();
+        ServerPlayer player = source.getPlayerOrException();
+        ServerLevel level = player.serverLevel();
+        NaveLayout layout = debugLayout(level, player);
+        build(level, layout, java.util.List.of());
         lastBuilt = layout;
+        BlockPos centre = layout.arena().centreBlock();
         int[] door = layout.world(NaveLayout.DOOR_WALL + 1.5, 0.0);
         source.sendSuccess(() -> Component.translatable("commands.cosmicbreach.debug.lair", "unsung",
                 centre.getX(), centre.getY(), centre.getZ(), door[0], layout.floorY(), door[1]), true);
@@ -111,7 +120,7 @@ public final class UnsungCommands {
     }
 
     /** A place near the player: a pillar of the Rift Abyss in Aetheria, else 40 blocks ahead, floating. */
-    static NaveLayout debugLayout(ServerLevel level, ServerPlayer player) {
+    public static NaveLayout debugLayout(ServerLevel level, ServerPlayer player) {
         if (AetheriaWorld.is(level)) {
             AetheriaTerrain terrain = AetheriaTerrain.of(level.getChunkSource().randomState());
             ChunkPos here = new ChunkPos(player.blockPosition());

@@ -28,36 +28,113 @@ class LeviathanRulesTest {
     void itDivesOnlyAtATargetAheadSingsOnlyAtOneInFrontAndFlicksAtATailHugger() {
         assertEquals(List.of(Attack.DIVE), kinds(new Situation(false, Math.toRadians(80), false, false)));
         assertEquals(List.of(), kinds(new Situation(false, Math.toRadians(10), false, false)), "not a target just behind the head");
-        assertEquals(List.of(Attack.SONG), kinds(new Situation(false, Math.toRadians(250), true, false)));
+        assertEquals(List.of(Attack.SONG), kinds(new Situation(false, Math.toRadians(340), true, false)));
         assertEquals(List.of(Attack.FLICK), kinds(new Situation(false, Double.NaN, false, true)));
         assertEquals(List.of(Attack.SHED), kinds(new Situation(true, Double.NaN, false, false)), "Scale Shed joins in phase 2");
         AttackPicker<Attack> picker = new AttackPicker<>();
         Attack first = picker.pick(LeviathanTactics.options(new Situation(false, Math.toRadians(80), true, true)), 0, () -> 0.5);
-        assertEquals(Attack.FLICK, first, "the flick answers a player at the tail first");
-        assertEquals(240, LeviathanTactics.cooldown(Attack.DIVE, false));
-        assertEquals(200, LeviathanTactics.cooldown(Attack.DIVE, true), "every 10 s in phase 2");
+        assertEquals(Attack.DIVE, first, "the dive goes first, so a farmer's tail flick does not crowd it out every pass");
+        Attack run = new AttackPicker<Attack>().pick(LeviathanTactics.options(new Situation(false, Math.toRadians(80), true, true, LeviathanMoves.DIVE_RUN)),
+                0, () -> 0.5);
+        assertEquals(Attack.FLICK, run, "after two dives in a row the flick answers a player at the tail");
+        assertEquals(Attack.SONG, new AttackPicker<Attack>().pick(LeviathanTactics.options(new Situation(false, Math.toRadians(80), true, false,
+                LeviathanMoves.DIVE_RUN)), 0, () -> 0.5), "or the song");
+        assertEquals(Attack.DIVE, new AttackPicker<Attack>().pick(LeviathanTactics.options(new Situation(false, Math.toRadians(80), false, false,
+                LeviathanMoves.DIVE_RUN)), 0, () -> 0.5), "but a dive goes on alone when nothing else is ready");
+        assertEquals(140, LeviathanTactics.cooldown(Attack.DIVE, false));
+        assertEquals(120, LeviathanTactics.cooldown(Attack.DIVE, true), "every 6 s in phase 2");
         assertEquals(320, LeviathanTactics.cooldown(Attack.SONG, false));
         assertEquals(120, LeviathanTactics.cooldown(Attack.FLICK, false));
     }
 
     @Test
-    void neverTheSameAttackTwiceInARow() {
+    void theWakeShowsTwelveTicksFadesOverSixAndIsGoneForTheRestOfTheTell() {
+        assertEquals(LeviathanMoves.MIN_TELEGRAPH, LeviathanMoves.WAKE_SHOW, "the engine's minimum telegraph");
+        assertEquals(0.0f, LeviathanMoves.wakeAlpha(-1));
+        for (int t = 0; t <= 12; t++) {
+            assertEquals(1.0f, LeviathanMoves.wakeAlpha(t), "full at " + t);
+        }
+        float last = 1.0f;
+        for (int t = 13; t < 18; t++) {
+            float a = LeviathanMoves.wakeAlpha(t);
+            assertTrue(a > 0.0f && a < last, "fading at " + t);
+            last = a;
+        }
+        for (int t = 18; t <= LeviathanMoves.DIVE_TELL + 200; t++) {
+            assertEquals(0.0f, LeviathanMoves.wakeAlpha(t), "gone at " + t);
+        }
+        assertTrue(LeviathanMoves.WAKE_SHOW + LeviathanMoves.WAKE_FADE < LeviathanMoves.DIVE_TELL, "gone before the head enters the path");
+    }
+
+    @Test
+    void theDiveIsFasterAndMoreFrequent() {
+        assertEquals(1.3, LeviathanMoves.DIVE_SPEED, 1e-9);
+        assertEquals(140, LeviathanMoves.diveCooldown(false));
+        assertEquals(120, LeviathanMoves.diveCooldown(true));
+    }
+
+    @Test
+    void theFasterDiveStillInterleavesWithTheOtherAttacks() {
+        for (boolean phaseTwo : new boolean[] {false, true}) {
+            AttackPicker<Attack> picker = new AttackPicker<>();
+            java.util.Map<Attack, Integer> count = new java.util.EnumMap<>(Attack.class);
+            Attack last = null;
+            int run = 0;
+            long now = LeviathanMoves.FIRST_ATTACK;
+            while (now < 20_000) {
+                // a target ahead of the head and in front of it, a tail hugger now and then
+                Situation s = new Situation(phaseTwo, Math.toRadians(80), true, now % 700 < 60, run);
+                Attack a = picker.pick(LeviathanTactics.options(s), now, () -> 0.3);
+                if (a == null) {
+                    now++;
+                    continue;
+                }
+                if (a != Attack.DIVE) {
+                    assertNotEquals(last, a, "only the dive repeats, at " + now);
+                }
+                run = a == Attack.DIVE ? run + 1 : 0;
+                picker.used(a, LeviathanTactics.cooldown(a, phaseTwo), now);
+                count.merge(a, 1, Integer::sum);
+                last = a;
+                now += LeviathanMoves.GAP + switch (a) {
+                    case DIVE -> LeviathanMoves.DIVE_TELL + 80;
+                    case SONG -> LeviathanMoves.SONG_TELL + LeviathanMoves.SONG_PULL;
+                    case FLICK -> LeviathanMoves.FLICK_TELL + 20;
+                    case SHED -> LeviathanMoves.SHED_TELL + 20;
+                    case NONE -> 0;
+                };
+            }
+            int dives = count.getOrDefault(Attack.DIVE, 0);
+            int others = count.values().stream().mapToInt(Integer::intValue).sum() - dives;
+            assertTrue(dives > 0 && others * 3 >= dives, "dives " + dives + " with " + others + " others, phase two " + phaseTwo);
+        }
+    }
+
+    @Test
+    void onlyTheDiveRepeatsAndOnlyTwiceInARow() {
         AttackPicker<Attack> picker = new AttackPicker<>();
         Random r = new Random(5);
         Attack last = null;
         int picked = 0;
+        int run = 0;
+        int longest = 0;
         for (long now = 0; now < 20_000; now += 60) {
-            Situation s = new Situation(now > 10_000, Math.toRadians(r.nextInt(360)), r.nextBoolean(), r.nextInt(4) == 0);
+            Situation s = new Situation(now > 10_000, Math.toRadians(r.nextInt(360)), r.nextBoolean(), r.nextInt(4) == 0, run);
             List<AttackPicker.Option<Attack>> options = LeviathanTactics.options(s);
             Attack a = picker.pick(options, now, r::nextDouble);
             if (a == null) {
                 continue;
             }
-            assertNotEquals(last, a, "at " + now);
+            if (a != Attack.DIVE) {
+                assertNotEquals(last, a, "at " + now);
+            }
+            run = a == Attack.DIVE ? run + 1 : 0;
+            longest = Math.max(longest, run);
             picker.used(a, LeviathanTactics.cooldown(a, s.phaseTwo()), now);
             last = a;
             picked++;
         }
+        assertTrue(longest >= 2, "it does repeat");
         assertTrue(picked > 100, "picked " + picked);
     }
 

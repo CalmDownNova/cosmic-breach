@@ -2,6 +2,8 @@ package com.cosmicbreach.guardian.unsung;
 
 import com.cosmicbreach.guardian.GuardianAltarBlockEntity;
 import com.cosmicbreach.registry.ModBlocks;
+import com.cosmicbreach.structure.crypt.CryptNaveLink;
+import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
@@ -28,6 +30,14 @@ public final class NaveBuilder {
 
     /** Builds the part of {@code layout} inside {@code clip}. Flags 2: no neighbour updates, clients told. */
     public static void build(WorldGenLevel level, NaveLayout layout, BoundingBox clip) {
+        build(level, layout, clip, List.of());
+    }
+
+    /**
+     * Builds the part of {@code layout} inside {@code clip}, leaving what each {@link CryptNaveLink} spares (a crypt
+     * sharing the platform keeps its rooms and its way in) and laying the floor of any lane past the crypt's roof.
+     */
+    public static void build(WorldGenLevel level, NaveLayout layout, BoundingBox clip, List<CryptNaveLink> crypts) {
         int[] b = layout.bounds();
         int x0 = Math.max(b[0], clip.minX());
         int x1 = Math.min(b[3], clip.maxX());
@@ -41,10 +51,20 @@ public final class NaveBuilder {
             for (int z = z0; z <= z1; z++) {
                 for (int y = y0; y <= y1; y++) {
                     NaveLayout.Kind kind = layout.kind(x, y, z);
-                    if (kind == NaveLayout.Kind.KEEP) {
+                    if (spared(crypts, x, y, z)) {
                         continue;
                     }
                     pos.set(x, y, z);
+                    if (carved(crypts, x, y, z)) {
+                        // a crypt's lane: air
+                        if (!level.getBlockState(pos).isAir()) {
+                            level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_CLIENTS);
+                        }
+                        continue;
+                    }
+                    if (kind == NaveLayout.Kind.KEEP) {
+                        continue;
+                    }
                     if (kind == NaveLayout.Kind.AIR && level.getBlockState(pos).isAir()) {
                         continue;
                     }
@@ -60,7 +80,7 @@ public final class NaveBuilder {
                 continue;
             }
             pos.set(l.x(), l.y(), l.z());
-            if (!level.getBlockState(pos).isAir()) {
+            if (!level.getBlockState(pos).isAir() || spared(crypts, l.x(), l.y(), l.z()) || carved(crypts, l.x(), l.y(), l.z())) {
                 continue;
             }
             Direction side = switch (l.side()) {
@@ -71,6 +91,65 @@ public final class NaveBuilder {
             };
             Block lichen = l.magenta() ? ModBlocks.MAGENTA_NEON_LICHEN.get() : ModBlocks.TEAL_NEON_LICHEN.get();
             level.setBlock(pos, lichen.defaultBlockState().setValue(MultifaceBlock.getFaceProperty(side), true), Block.UPDATE_CLIENTS);
+        }
+        clearCryptWays(level, layout, crypts, clip);
+    }
+
+    private static void clearBlock(WorldGenLevel level, BlockPos pos) {
+        if (!level.getBlockState(pos).isAir()) {
+            level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_CLIENTS);
+        }
+    }
+
+    private static boolean carved(List<CryptNaveLink> crypts, int x, int y, int z) {
+        for (CryptNaveLink c : crypts) {
+            if (c.carves(x, y, z)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean spared(List<CryptNaveLink> crypts, int x, int y, int z) {
+        for (CryptNaveLink c : crypts) {
+            if (c.spares(x, y, z)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * For each crypt sharing the platform, wherever it lies (also past the nave's own bounds): clears the room its
+     * gatehouse would have stood in, where the nave has built nothing, and its lane, and lays the lane's floor where it
+     * runs past the crypt's roof over open air.
+     */
+    private static void clearCryptWays(WorldGenLevel level, NaveLayout layout, List<CryptNaveLink> crypts, BoundingBox clip) {
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+        for (CryptNaveLink c : crypts) {
+            int[] g = c.gatehouseBox();
+            for (int x = Math.max(g[0], clip.minX()); x <= Math.min(g[3], clip.maxX()); x++) {
+                for (int z = Math.max(g[2], clip.minZ()); z <= Math.min(g[5], clip.maxZ()); z++) {
+                    for (int y = Math.max(g[1], clip.minY()); y <= Math.min(g[4], clip.maxY()); y++) {
+                        if (layout.kind(x, y, z) == NaveLayout.Kind.KEEP || c.carves(x, y, z)) {
+                            clearBlock(level, pos.set(x, y, z));
+                        }
+                    }
+                }
+            }
+            for (int[] col : c.laneColumns()) {
+                for (int y = c.roofY() + 1; y <= c.roofY() + CryptNaveLink.HEAD; y++) {
+                    if (clip.isInside(col[0], y, col[1])) {
+                        clearBlock(level, pos.set(col[0], y, col[1]));
+                    }
+                }
+            }
+            for (int[] col : c.laneColumns()) {
+                if (clip.isInside(col[0], c.roofY(), col[1]) && c.laneFloor(col[0], col[1])
+                        && level.getBlockState(pos.set(col[0], c.roofY(), col[1])).isAir()) {
+                    level.setBlock(pos, ModBlocks.POLISHED_UMBRAL_BASALT.get().defaultBlockState(), Block.UPDATE_CLIENTS);
+                }
+            }
         }
     }
 

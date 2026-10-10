@@ -1,5 +1,6 @@
 package com.cosmicbreach.guardian.unsung;
 
+import com.cosmicbreach.structure.sanctum.SanctumSite;
 import com.cosmicbreach.world.gen.AetheriaTerrain;
 import com.cosmicbreach.world.gen.BreachShape;
 import com.cosmicbreach.world.gen.DeepSpans;
@@ -70,7 +71,7 @@ public class SilentNaveStructure extends Structure {
         }
         near.sort(Comparator.comparingDouble(p -> Math.hypot(p.cx - x, p.cz - z)));
         for (DeepSpans.Pillar p : near) {
-            if (p.platformR < MIN_PLATFORM || Math.hypot(p.cx - x, p.cz - z) > 80.0) {
+            if (p.platformR < MIN_PLATFORM || Math.hypot(p.cx - x, p.cz - z) > 80.0 || SanctumSite.occupies(t, p)) {
                 continue;
             }
             int gx = (int) Math.floor(p.cx);

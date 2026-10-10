@@ -37,6 +37,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
+import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
+import net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -98,6 +101,8 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
     public static final byte EVENT_DEATH = 108;
     public static final byte EVENT_CHORD = 109;
 
+    /** The vanilla sound slider her whole fight plays on, by its translation key ("Music"). */
+    public static final String VOLUME_SLIDER_KEY = "soundCategory." + SoundSource.MUSIC.getName();
     private static final int FLAG_BREAK = 1;
     private static final int FLAG_WARNING = 2;
     private static final int BLEND = BEAT;
@@ -142,6 +147,8 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
     private long breakUntil = Long.MIN_VALUE;
     private final BossTargeting targeting = new BossTargeting();
     private final Participants participants = new Participants();
+    /** Players already told, this fight, to turn the Music volume up (the fight is played by ear). */
+    private final Set<UUID> volumeReminded = new HashSet<>();
     private @Nullable UUID target;
     private int playersAtStart = 1;
     private long lastPlayerOnFloor;
@@ -331,6 +338,26 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
         return onFloor;
     }
 
+    /**
+     * Tells {@code player}, once a fight, to turn up the Music volume: the whole fight, her song and her cues, plays on
+     * that slider and is played by ear. On the action bar, or as a subtitle (the shrine's first use).
+     */
+    public void remindVolume(ServerPlayer player, boolean subtitle) {
+        if (!volumeReminded.add(player.getUUID())) {
+            return;
+        }
+        Component text = Component.translatable("message.cosmicbreach.unsung.volume", Component.translatable(VOLUME_SLIDER_KEY));
+        if (subtitle) {
+            player.connection.send(new ClientboundSetTitlesAnimationPacket(10, 70, 20));
+            player.connection.send(new ClientboundSetTitleTextPacket(Component.empty()));
+            player.connection.send(new ClientboundSetSubtitleTextPacket(text));
+        } else {
+            player.displayClientMessage(text, true);
+        }
+        CosmicBreach.LOGGER.debug("[cosmicbreach] Reminded {} to turn up the Music volume ({})", player.getGameProfile().getName(),
+                subtitle ? "subtitle" : "action bar");
+    }
+
     /** True while the fight is on (the intro, the fight, the death). */
     public boolean fighting() {
         return state != State.DORMANT;
@@ -379,6 +406,7 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
         gauge.clear();
         targeting.clear();
         participants.clear();
+        volumeReminded.clear();
         schedule.clear();
         cancelAttacks();
         singer = null;
@@ -447,6 +475,11 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
         crumbleTick(server, now);
         if (state == State.INTRO || state == State.FIGHT) {
             presenceTick(server, now);
+            if (Math.floorMod(now + getId(), 10L) == 0) {
+                for (ServerPlayer p : fightersOnFloor()) {
+                    remindVolume(p, false);
+                }
+            }
         }
         barTick(server, now);
     }
@@ -1716,8 +1749,9 @@ public class Unsung extends Entity implements LairGuardian, GuardianFights.Fight
 
     // ------------------------------------------------------------------ plumbing
 
+    /** Every sound of her fight (the song, her cues, the tells) plays on the Music slider, so one slider carries it. */
     private void playAt(Vec3 at, SoundEvent sound, float volume, float pitch) {
-        playAt(at, sound, volume, pitch, SoundSource.HOSTILE);
+        playAt(at, sound, volume, pitch, SoundSource.MUSIC);
     }
 
     private void playAt(Vec3 at, SoundEvent sound, float volume, float pitch, SoundSource source) {

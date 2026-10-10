@@ -33,6 +33,13 @@ public record CrownArena(int x, int floorY, int z) {
     /** Where the core sits while the Colossus is Broken (slumped forward): low and in front. */
     public static final double BROKEN_CORE_HEIGHT = 2.2;
     public static final double BROKEN_CORE_AHEAD = 3.0;
+    /**
+     * The Colossus's body as the beams see it: a vertical cylinder this wide round the centre (the model's torso reaches
+     * about 2.2 from the axis, its shoulders and hanging fists about 3.3). A beam leg that would cross it ends on it.
+     */
+    public static final double BODY_RADIUS = 2.5;
+    /** Half a crown crystal's width: its faces stand this far from its axis. */
+    public static final double CRYSTAL_HALF = 1.0;
 
     public static CrownArena at(BlockPos centre) {
         return new CrownArena(centre.getX(), centre.getY(), centre.getZ());
@@ -107,6 +114,80 @@ public record CrownArena(int x, int floorY, int z) {
     /** The point of a beam node: a crystal, or the core. */
     public Vec3 node(int node, float yawDeg, boolean broken) {
         return node == Refraction.CORE ? core(yawDeg, broken) : crystalPoint(node);
+    }
+
+    /**
+     * Where a beam from {@code from} toward {@code core} first meets the body ({@link #BODY_RADIUS} round the centre):
+     * the point on the cylinder's side it enters through. If it starts inside the cylinder or never enters it before
+     * reaching {@code core}, {@code core} itself.
+     */
+    public Vec3 bodyHit(Vec3 from, Vec3 core) {
+        double ax = from.x - x;
+        double az = from.z - z;
+        double dx = core.x - from.x;
+        double dz = core.z - from.z;
+        double a = dx * dx + dz * dz;
+        double b = 2.0 * (ax * dx + az * dz);
+        double c = ax * ax + az * az - BODY_RADIUS * BODY_RADIUS;
+        if (c <= 0.0 || a < 1e-12) {
+            return core;
+        }
+        double disc = b * b - 4.0 * a * c;
+        if (disc < 0.0) {
+            return core;
+        }
+        double u = (-b - Math.sqrt(disc)) / (2.0 * a);
+        if (u < 0.0 || u > 1.0) {
+            return core;
+        }
+        return from.add(core.subtract(from).scale(u));
+    }
+
+    /**
+     * The point on crystal {@code k}'s face where a beam arriving from {@code in} bounces off toward {@code out} (null:
+     * it dies out there), at {@link #BEAM_HEIGHT}: like a mirror, the face it strikes is the one that looks halfway between
+     * where the light comes from and where it goes, so both legs meet on the crystal's skin, never at its middle.
+     */
+    public Vec3 bounce(int k, Vec3 in, @org.jetbrains.annotations.Nullable Vec3 out) {
+        Vec3 axis = crystalPoint(k);
+        Vec3 dir = flatUnit(in.subtract(axis));
+        if (out != null) {
+            Vec3 sum = dir.add(flatUnit(out.subtract(axis)));
+            if (sum.lengthSqr() > 1e-6) {
+                dir = sum.normalize();
+            }
+        }
+        if (dir.lengthSqr() < 1e-6) {
+            return axis;
+        }
+        double reach = CRYSTAL_HALF / Math.max(Math.abs(dir.x), Math.abs(dir.z));
+        return new Vec3(axis.x + dir.x * reach, axis.y, axis.z + dir.z * reach);
+    }
+
+    private static Vec3 flatUnit(Vec3 v) {
+        Vec3 flat = new Vec3(v.x, 0.0, v.z);
+        return flat.lengthSqr() < 1e-12 ? Vec3.ZERO : flat.normalize();
+    }
+
+    /**
+     * A beam's points for a node path ({@link Refraction#path}): the eye, then each crystal's bounce point on its face,
+     * then (if it was turned back) where it meets the body on its way to the core.
+     */
+    public java.util.List<Vec3> beamPoints(int[] path, Vec3 eye, Vec3 core) {
+        java.util.List<Vec3> out = new java.util.ArrayList<>(path.length + 1);
+        out.add(eye);
+        for (int j = 0; j < path.length; j++) {
+            int node = path[j];
+            Vec3 prev = out.get(out.size() - 1);
+            if (node == Refraction.CORE) {
+                out.add(bodyHit(prev, core));
+                break;
+            }
+            Vec3 next = j + 1 < path.length ? (path[j + 1] == Refraction.CORE ? core : crystalPoint(path[j + 1])) : null;
+            Vec3 from = j == 0 ? eye : crystalPoint(path[j - 1]);
+            out.add(bounce(node, from, next));
+        }
+        return out;
     }
 
     /** Horizontal distance from the centre. */

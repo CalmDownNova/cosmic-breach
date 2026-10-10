@@ -93,9 +93,12 @@ public class HymnalAltarBlock extends GuardianAltarBlock {
         if (g == null || !g.dormant()) {
             return false;
         }
-        level.playSound(null, altar.getBlockPos(), UnsungRegistry.HYMNAL.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
+        level.playSound(null, altar.getBlockPos(), UnsungRegistry.HYMNAL.get(), SoundSource.MUSIC, 1.0f, 1.0f);
         player.displayClientMessage(Component.translatable("message.cosmicbreach.hymnal.opened"), true);
         g.awaken(player, false);
+        if (g instanceof Unsung unsung) {
+            unsung.remindVolume(player, true);
+        }
         return true;
     }
 }

@@ -538,7 +538,7 @@ public class CryptPiece extends StructurePiece {
     }
 
     /** Across and along coordinates of the strip beside the wall of {@code side}: {lx, lz} of strip block {@code along}. */
-    private static int[] strip(int side, int along) {
+    static int[] strip(int side, int along) {
         return switch (side) {
             case 0 -> new int[] {8, along};
             case 1 -> new int[] {along, 8};

@@ -88,9 +88,9 @@ import software.bernie.geckolib.util.GeckoLibUtil;
  *       the floor for 30 ticks and 60 goes into the Break gauge. Phase 2 slams twice; only the second glints.</li>
  *   <li><b>Facet Sweep</b>: a white band glows on the floor from radius 3 to 9 across 200 degrees for 30 ticks,
  *       then a fist sweeps it: 12 damage, knockback 1. Dash through it.</li>
- *   <li><b>Refraction</b>: the eye charges for 40 ticks while one crown crystal lights (two in phase 2) and red
+ *   <li><b>Refraction</b>: the eye charges for 80 ticks while one crown crystal lights (two in phase 2) and red
  *       lines trace the beam's path; hits on a lit crystal turn it ({@link Refraction}). The beam then burns for 40
- *       ticks: 6 damage every 10 in it; ending in the core it deals the Colossus 40 and 100 to its Break gauge.</li>
+ *       ticks: 6 damage every 10 in it; turned back into its body it deals the Colossus 50 and Breaks it.</li>
  *   <li><b>Prism Burst</b> (phase 2): anyone hugging it for 3 s makes its body glow white for 16 ticks, then burst:
  *       8 damage, knockback 1.5.</li>
  * </ul>
@@ -136,7 +136,9 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
     public static final byte EVENT_SWEEP = 113;
 
     public static final ResourceKey<DamageType> PRISM_BEAM = ResourceKey.create(Registries.DAMAGE_TYPE, CosmicBreach.id("prism_beam"));
-    /** The beam turned back into its core: 40, through its armor. */
+    /** The beam turned back into its core: 50, through its armor. */
+    /** The action bar line a player sees on their first Refraction of a fight. */
+    public static final String REFRACTION_HINT_KEY = "message.cosmicbreach.colossus.refraction_hint";
     public static final ResourceKey<DamageType> PRISM_CORE = ResourceKey.create(Registries.DAMAGE_TYPE, CosmicBreach.id("prism_core"));
 
     private static final int FLAG_PHASE2 = 1;
@@ -215,9 +217,15 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
     // Refraction
     private int[] lit = new int[0];
     private List<int[]> paths = List.of();
+    /** The beams' points while they fire (the Colossus holds still then). */
+    private List<List<Vec3>> firePoints = List.of();
     private boolean pathsDirty;
     private boolean beamFiring;
+    /** A beam turned back struck the body: it Breaks on this tick (none: {@link Long#MIN_VALUE}). */
+    private long coreBreakAt = Long.MIN_VALUE;
     private final Map<UUID, Long> lastPulse = new HashMap<>();
+    /** Players told how to turn the beam this fight (once each, on their first Refraction). */
+    private final Set<UUID> refractionHinted = new java.util.HashSet<>();
     // Shatter
     private @Nullable ShatterState shatter;
     private final List<UUID> shards = new ArrayList<>();
@@ -379,6 +387,7 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         targeting.clear();
         picker.clear();
         participants.clear();
+        refractionHinted.clear();
         lastHitBy.clear();
         hugTicks.clear();
         target = null;
@@ -1011,7 +1020,7 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         int[] t = new int[Refraction.CRYSTALS];
         for (int k = 0; k < Refraction.CRYSTALS; k++) {
             CrownCrystalBlockEntity c = crystal(k);
-            t[k] = c == null ? Refraction.opposite(k) : c.target();
+            t[k] = c == null ? Refraction.resting(k) : c.target();
         }
         return t;
     }
@@ -1022,14 +1031,20 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         }
     }
 
-    /** The points a node path runs through: the eye, then each node. */
+    /** The points a node path runs through: the eye, then each crystal's bounce point on its face, then the body if it ends there. */
     private List<Vec3> points(int[] path) {
-        List<Vec3> out = new ArrayList<>(path.length + 1);
-        out.add(arena.eye(getYRot()));
-        for (int node : path) {
-            out.add(arena.node(node, getYRot(), broken(level().getGameTime())));
+        return arena.beamPoints(path, arena.eye(getYRot()), arena.core(getYRot(), broken(level().getGameTime())));
+    }
+
+    /** The yaw that faces between the lit crystals (each beam then leaves its eye forward, not back through its head). */
+    private float refractionYaw() {
+        Vec3 sum = Vec3.ZERO;
+        Vec3 centre = arena.centre();
+        for (int k : lit) {
+            Vec3 c = arena.crystalPoint(k);
+            sum = sum.add(new Vec3(c.x - centre.x, 0, c.z - centre.z).normalize());
         }
-        return out;
+        return sum.lengthSqr() < 1e-6 ? getYRot() : CrownArena.yawToward(0, 0, sum.x, sum.z);
     }
 
     private int playersCrossed(int[] path) {
@@ -1081,7 +1096,13 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         lastPulse.clear();
         recomputePaths();
         sendRefraction(RefractionPayload.CHARGING, now);
-        playSound(GuardianRegistry.COLOSSUS_CHARGE.get(), 3.0f, 1.0f);
+        playSound(GuardianRegistry.COLOSSUS_CHARGE.get(), 3.0f, 0.84f);
+        // once a fight, each player is told in plain words what the gold crystal is for
+        for (ServerPlayer p : fightersInside()) {
+            if (refractionHinted.add(p.getUUID())) {
+                p.displayClientMessage(Component.translatable(REFRACTION_HINT_KEY), true);
+            }
+        }
     }
 
     private void recomputePaths() {
@@ -1094,19 +1115,37 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         pathsDirty = false;
     }
 
-    /** A lit crystal was turned by a hit: the red lines redraw at once. */
+    /** A lit crystal was turned by a hit: the red lines redraw at once (this tick, not the next). */
     public void onCrystalTurned(int k) {
         crystalTurns++;
-        if (action == Action.REFRACTION && !beamFiring) {
-            pathsDirty = true;
+        if (action == Action.REFRACTION && !beamFiring && arena != null) {
+            recomputePaths();
+            sendRefraction(RefractionPayload.CHARGING, actionStart);
+            CosmicBreach.LOGGER.debug("[cosmicbreach] Crown crystal {} turned: paths {}", k,
+                    paths.stream().map(java.util.Arrays::toString).toList());
         }
     }
 
     private void refractionTick(ServerLevel server, long now, long t) {
         if (t < ColossusMoves.REFRACTION_CHARGE) {
+            // it turns to face its lit crystals, so the beam leaves its eye forward
+            float want = refractionYaw();
+            float before = getYRot();
+            if (Math.abs(Mth.wrapDegrees(want - before)) > 0.01f) {
+                face(Mth.approachDegrees(before, want, ColossusMoves.REFRACTION_TURN_SPEED));
+                pathsDirty = true;
+                if (now - lastGrind > 18) {
+                    lastGrind = now;
+                    playSound(GuardianRegistry.COLOSSUS_GRIND.get(), 1.4f, 0.9f + random.nextFloat() * 0.15f);
+                }
+            }
             if (pathsDirty) {
                 recomputePaths();
                 sendRefraction(RefractionPayload.CHARGING, actionStart);
+            }
+            if (t == ColossusMoves.REFRACTION_CHARGE / 2) {
+                // the charge's rising tone again, higher: the second half of the longer charge
+                playSound(GuardianRegistry.COLOSSUS_CHARGE.get(), 3.0f, 1.12f);
             }
             return;
         }
@@ -1119,16 +1158,35 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
             }
             recomputePaths();
             beamFiring = true;
+            List<List<Vec3>> pts = new ArrayList<>();
+            for (int[] path : paths) {
+                pts.add(points(path));
+            }
+            firePoints = pts;
             sendRefraction(RefractionPayload.FIRING, now);
             playSound(GuardianRegistry.COLOSSUS_BEAM.get(), 3.0f, 1.0f);
-            for (int[] path : paths) {
-                if (Refraction.endsAtCore(path)) {
-                    coreHit(server);
-                }
-            }
         }
         if (t < ColossusMoves.REFRACTION_CHARGE + ColossusMoves.REFRACTION_FIRE) {
-            beamPulses(now);
+            long fire = t - ColossusMoves.REFRACTION_CHARGE;
+            if (coreBreakAt != Long.MIN_VALUE && now >= coreBreakAt) {
+                coreBreakAt = Long.MIN_VALUE;
+                takeImpact(ColossusMoves.CORE_HIT_GAUGE); // the Break ends the Refraction
+                if (action != Action.REFRACTION) {
+                    return;
+                }
+            }
+            // a beam turned back hits the body as its light arrives there
+            List<int[]> firing = paths;
+            List<List<Vec3>> pts = firePoints;
+            for (int i = 0; i < firing.size() && i < pts.size(); i++) {
+                List<Vec3> p = pts.get(i);
+                if (Refraction.endsAtCore(firing.get(i)) && fire == ColossusMoves.beamArrival(ColossusMoves.along(p, p.size() - 1))) {
+                    coreHit(server, p.get(p.size() - 1));
+                }
+            }
+            if (action == Action.REFRACTION) {
+                beamPulses(now, fire);
+            }
             return;
         }
         if (t == ColossusMoves.REFRACTION_CHARGE + ColossusMoves.REFRACTION_FIRE) {
@@ -1139,14 +1197,23 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         }
     }
 
-    private void beamPulses(long now) {
+    private void beamPulses(long now, long fire) {
         DamageSource beam = beamSource();
-        for (int[] path : paths) {
-            List<Vec3> pts = points(path);
+        double reach = ColossusMoves.beamReach(fire);
+        for (List<Vec3> pts : firePoints) {
             for (ServerPlayer p : fightersInside()) {
+                double walked = 0.0;
                 for (int i = 0; i + 1 < pts.size(); i++) {
                     Vec3 a = pts.get(i);
                     Vec3 b = pts.get(i + 1);
+                    double len = a.distanceTo(b);
+                    if (reach <= walked) {
+                        break; // the light has not got this far yet
+                    }
+                    if (reach < walked + len) {
+                        b = a.add(b.subtract(a).scale((reach - walked) / len));
+                    }
+                    walked += len;
                     if (!Telegraphs.onLine(p.getBoundingBox(), a, b, ColossusMoves.BEAM_RADIUS)) {
                         continue;
                     }
@@ -1166,14 +1233,19 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         }
     }
 
-    private void coreHit(ServerLevel server) {
+    private void coreHit(ServerLevel server, Vec3 at) {
         coreHits++;
         server.broadcastEntityEvent(this, EVENT_CORE_HIT);
         playSound(GuardianRegistry.COLOSSUS_CORE_HIT.get(), 3.0f, 1.0f);
+        // heavy glass where the light strikes the body
+        server.playSound(null, at.x, at.y, at.z, net.minecraft.sounds.SoundEvents.GLASS_BREAK, SoundSource.HOSTILE, 3.0f, 0.5f);
+        server.playSound(null, at.x, at.y, at.z, net.minecraft.sounds.SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.HOSTILE, 3.0f, 0.6f);
         invulnerableTime = 0;
         Holder<DamageType> type = level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(PRISM_CORE);
         hurt(new DamageSource(type, this), (float) ColossusMoves.CORE_HIT_DAMAGE);
-        takeImpact(ColossusMoves.CORE_HIT_GAUGE);
+        if (coreBreakAt == Long.MIN_VALUE) {
+            coreBreakAt = level().getGameTime() + ColossusMoves.CORE_HIT_BREAK_DELAY;
+        }
         CosmicBreach.LOGGER.debug("[cosmicbreach] Refraction turned back into the core: {} health left", String.format("%.1f", getHealth()));
     }
 
@@ -1195,6 +1267,8 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
         }
         lit = new int[0];
         paths = List.of();
+        firePoints = List.of();
+        coreBreakAt = Long.MIN_VALUE;
         beamFiring = false;
         sendRefraction(RefractionPayload.OFF, now);
     }
@@ -1206,12 +1280,14 @@ public class PrismColossus extends Mob implements Enemy, GeoEntity, ParryableAtt
 
     private void sendRefraction(byte mode, long start) {
         List<List<Vec3>> pts = new ArrayList<>();
+        List<List<Integer>> nodes = new ArrayList<>();
         List<Boolean> core = new ArrayList<>();
         for (int[] path : paths) {
             pts.add(points(path));
+            nodes.add(java.util.Arrays.stream(path).boxed().toList());
             core.add(Refraction.endsAtCore(path));
         }
-        com.cosmicbreach.net.ModNetworking.sendToTrackers(this, new RefractionPayload(getId(), mode, start, pts, core));
+        com.cosmicbreach.net.ModNetworking.sendToTrackers(this, new RefractionPayload(getId(), mode, start, pts, nodes, core));
     }
 
     /** The lit crystals (server), for tests. */

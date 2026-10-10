@@ -11,9 +11,10 @@ import net.minecraft.world.phys.Vec3;
 
 /**
  * A Breach Dive's path, sent to the players near a Leviathan when it chooses the dive (S2C): its points, the tick the
- * dust wake starts drawing it ({@code start}; the head follows {@value LeviathanMoves#DIVE_TELL} ticks later), the
- * speed both travel along it, and where it lands (its target's feet, where the client rings the ground). The client draws
- * the wake from the head to 30 ticks ahead of it.
+ * dust wake starts ({@code start}; the head follows {@value LeviathanMoves#DIVE_TELL} ticks later), the dive's speed, and
+ * where it lands (its target's feet, where the client rings the ground). The client draws the whole path for
+ * {@value LeviathanMoves#WAKE_SHOW} ticks from {@code start}, fades it over {@value LeviathanMoves#WAKE_FADE} more
+ * ({@link LeviathanMoves#wakeAlpha}) and then shows nothing.
  */
 public record LeviathanPathPayload(int entity, long start, float speed, Vec3 target, List<Vec3> points) implements CustomPacketPayload {
     public static final Type<LeviathanPathPayload> TYPE = new Type<>(CosmicBreach.id("leviathan_path"));

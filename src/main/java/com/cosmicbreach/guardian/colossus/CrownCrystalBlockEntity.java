@@ -57,7 +57,7 @@ public class CrownCrystalBlockEntity extends BlockEntity {
     /** Set by the structure that places it. */
     public void setup(int index, int target, BlockPos arenaCentre) {
         this.index = index;
-        this.target = Refraction.validTarget(index, target) ? target : Refraction.opposite(index);
+        this.target = Refraction.validTarget(index, target) ? target : Refraction.resting(index);
         this.arenaCentre = arenaCentre.immutable();
         changed();
     }
@@ -117,8 +117,8 @@ public class CrownCrystalBlockEntity extends BlockEntity {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         index = Math.floorMod(tag.getInt("Index"), Refraction.CRYSTALS);
-        int t = tag.contains("Target") ? tag.getInt("Target") : Refraction.opposite(index);
-        target = Refraction.validTarget(index, t) ? t : Refraction.opposite(index);
+        int t = tag.contains("Target") ? tag.getInt("Target") : Refraction.resting(index);
+        target = Refraction.validTarget(index, t) ? t : Refraction.resting(index);
         arenaCentre = NbtUtils.readBlockPos(tag, "Arena").orElse(BlockPos.ZERO);
     }
 

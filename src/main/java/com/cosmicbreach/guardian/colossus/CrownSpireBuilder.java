@@ -58,7 +58,7 @@ public final class CrownSpireBuilder {
         for (int k = 0; k < Refraction.CRYSTALS; k++) {
             BlockPos base = arena.crystalBase(k);
             if (clip.isInside(base) && level.getBlockEntity(base) instanceof CrownCrystalBlockEntity crystal) {
-                crystal.setup(k, Refraction.opposite(k), arena.centreBlock());
+                crystal.setup(k, Refraction.resting(k), arena.centreBlock());
             }
         }
     }

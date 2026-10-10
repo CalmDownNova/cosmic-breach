@@ -11,6 +11,7 @@ import com.cosmicbreach.guardian.colossus.ColossusMoves;
 import com.cosmicbreach.guardian.colossus.CrownArena;
 import com.cosmicbreach.guardian.colossus.PrismColossus;
 import com.cosmicbreach.guardian.colossus.PrismShard;
+import com.cosmicbreach.guardian.colossus.Refraction;
 import com.cosmicbreach.guardian.colossus.RefractionPayload;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.ByteBufferBuilder;
@@ -106,6 +107,39 @@ final class ColossusFx implements ColossusEffects.Handler {
                         .size(0.14f, 0.04f).life(8).color(random.nextBoolean() ? PALE_GOLD : WHITE));
             }
         }
+        // the fired beam: a flash and a burst of sparks at each bounce the moment the light lands, then a steady spit of sparks
+        // off every face it strikes and of glass off the body where a turned-back beam burns in
+        RefractionView.Beams beams = RefractionView.of(c.getId());
+        if (beams != null && beams.mode() == RefractionPayload.FIRING) {
+            long ft = now - beams.start();
+            double reach = ColossusMoves.beamReach(ft);
+            for (int i = 0; i < beams.paths().size(); i++) {
+                List<Vec3> pts = beams.paths().get(i);
+                boolean core = i < beams.core().size() && beams.core().get(i);
+                for (int j = 1; j < pts.size(); j++) {
+                    double at = ColossusMoves.along(pts, j);
+                    if (reach < at) {
+                        break;
+                    }
+                    Vec3 p = pts.get(j);
+                    boolean body = core && j == pts.size() - 1;
+                    if (ft == ColossusMoves.beamArrival(at)) {
+                        if (!body) {
+                            WorldFx.add(new TelegraphDraw.Flash(p, ShardDraw.GLOW, false, true, 0.5f, 3.2f, WHITE, 1.0f, 8));
+                            sparks(p, 14, PALE_GOLD);
+                            sparks(p, 8, WHITE);
+                            level().playLocalSound(p.x, p.y, p.z, net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_HIT,
+                                    net.minecraft.sounds.SoundSource.HOSTILE, 1.6f, 1.4f + 0.15f * j, false);
+                        }
+                    } else if (ft % 2 == 0) {
+                        sparks(p, body ? 5 : 2, random.nextBoolean() ? PALE_GOLD : WHITE);
+                        if (body) {
+                            shards(p, 2, 0.22, 0.1f, WHITE, TURQ);
+                        }
+                    }
+                }
+            }
+        }
         // a broken core sparks
         if (c.isBroken() && now % 3 == 0) {
             Vec3 core = point(c, "chest_core", c.arena().core(c.getYRot(), true));
@@ -173,11 +207,26 @@ final class ColossusFx implements ColossusEffects.Handler {
                 shake(core, 0.4);
             }
             case PrismColossus.EVENT_CORE_HIT -> {
+                // the beam turned back strikes the body: where its light meets the skin (the chest core if the beam is gone)
                 Vec3 core = point(c, "chest_core", arena.core(c.getYRot(), false));
-                WorldFx.add(new TelegraphDraw.Flash(core, ShardDraw.GLOW, false, true, 1.2f, 5.0f, PALE_GOLD, 1.0f, 14));
-                WorldFx.add(new TelegraphDraw.Glint(() -> core, WHITE, 2.4f, 12, 0.1f));
-                shards(core, 24, 0.35, 0.14f, WHITE, PALE_GOLD);
-                shake(core, 0.5);
+                RefractionView.Beams beams = RefractionView.of(c.getId());
+                if (beams != null) {
+                    for (int i = 0; i < beams.paths().size(); i++) {
+                        if (i < beams.core().size() && beams.core().get(i) && !beams.paths().get(i).isEmpty()) {
+                            List<Vec3> pts = beams.paths().get(i);
+                            core = pts.get(pts.size() - 1);
+                            break;
+                        }
+                    }
+                }
+                Vec3 at = core;
+                WorldFx.add(new TelegraphDraw.Flash(at, ShardDraw.GLOW, false, true, 1.5f, 7.0f, PALE_GOLD, 1.0f, 16));
+                WorldFx.add(new TelegraphDraw.Flash(at, ShardDraw.GLOW, false, true, 0.8f, 3.5f, WHITE, 1.0f, 10));
+                WorldFx.add(new TelegraphDraw.Glint(() -> at, WHITE, 3.0f, 14, 0.1f));
+                shards(at, 30, 0.42, 0.16f, WHITE, PALE_GOLD);
+                shards(at, 16, 0.32, 0.14f, TURQ, WHITE);
+                sparks(at, 20, PALE_GOLD);
+                shake(at, 0.6);
             }
             case PrismColossus.EVENT_FRACTURE -> {
                 Vec3 chest = arena.centre().add(0, 4.5, 0);
@@ -462,58 +511,26 @@ final class ColossusFx implements ColossusEffects.Handler {
                         ColossusMoves.SWEEP_OUTER, yaw, Math.max(-half, now - 50.0), now, 24, ShardDraw.rgb(WHITE), 0.95f * fade);
             }
         }
-        // Refraction: red lines while it charges, then the beam
+        // Refraction: red lines while it charges (the lit crystal marked gold: hit it), then the beam racing along them
         RefractionView.Beams beams = RefractionView.of(c.getId());
         if (beams != null) {
             boolean firing = beams.mode() == RefractionPayload.FIRING;
             double t = time - beams.start();
             for (int i = 0; i < beams.paths().size(); i++) {
                 List<Vec3> pts = beams.paths().get(i);
-                for (int j = 0; j + 1 < pts.size(); j++) {
-                    Vec3 a = pts.get(j).subtract(cam);
-                    Vec3 b = pts.get(j + 1).subtract(cam);
-                    if (!firing) {
-                        // a solid saturated line about four pixels thick at any distance over a soft red halo, pulsing
-                        // faster toward the moment it fires (one pulse every 12 ticks at first, every 3 at the end), a
-                        // white-hot thread in it at the last
-                        double charge = ColossusMoves.REFRACTION_CHARGE;
-                        double u = Math.max(0.0, Math.min(1.0, t / charge));
-                        double phase = 2.0 * Math.PI * (t / 12.0 + (1.0 / 3.0 - 1.0 / 12.0) * t * t / (2.0 * charge));
-                        float p = 0.5f + 0.5f * (float) Math.cos(phase);
-                        double wa = TelegraphDraw.screenWidth(a, 4.0, 0.1);
-                        double wb = TelegraphDraw.screenWidth(b, 4.0, 0.1);
-                        float[] red = ShardDraw.rgb(RED_LINE);
-                        double halo = 3.0 + 1.5 * u;
-                        TelegraphDraw.taper(BUFFERS.getBuffer(ShardDraw.translucent(FxRenderTypes.BEAM, true)), camera, a, b, wa * halo, wb * halo, red,
-                                0.2f + 0.4f * p * (float) (0.5 + 0.5 * u));
-                        double core = 1.0 + 0.35 * p * u;
-                        TelegraphDraw.line(BUFFERS.getBuffer(ShardDraw.solid()), camera, a, b, wa * core, wb * core, red, 0.92f + 0.08f * p);
-                        if (u > 0.75) {
-                            float hot = (float) ((u - 0.75) / 0.25) * p;
-                            TelegraphDraw.line(BUFFERS.getBuffer(ShardDraw.solid()), camera, a, b, wa * 0.4, wb * 0.4, ShardDraw.rgb(0xFFE6D8), hot);
-                        }
-                    } else {
-                        // the red telegraph stays under it; a pale gold body; a rainbow fringe split out to each side
-                        // like light through a prism (red outermost); a white-hot core
-                        float flick = 0.88f + 0.12f * (float) Math.sin(t * 3.1 + j);
-                        double w = BEAM_WIDTH * (0.94 + 0.06 * Math.sin(t * 2.3 + j * 1.7));
-                        VertexConsumer solid = BUFFERS.getBuffer(ShardDraw.solid());
-                        TelegraphDraw.ribbon(solid, camera, a, b, w * 1.25, 0.0, ShardDraw.rgb(RED), 0.55f);
-                        TelegraphDraw.ribbon(solid, camera, a, b, w, 0.0, ShardDraw.rgb(PALE_GOLD), 0.8f * flick);
-                        for (int side = -1; side <= 1; side += 2) {
-                            for (int f = 0; f < FRINGE.length; f++) {
-                                double off = side * (w * 0.5 + FRINGE_W * (FRINGE.length - f - 0.5));
-                                TelegraphDraw.ribbon(solid, camera, a, b, FRINGE_W, off, ShardDraw.rgb(FRINGE[f]), 0.85f * flick);
-                            }
-                        }
-                        TelegraphDraw.ribbon(solid, camera, a, b, w * 0.45, 0.0, ShardDraw.rgb(WHITE), 1.0f);
-                        TelegraphDraw.ribbon(BUFFERS.getBuffer(FxRenderTypes.additive(FxRenderTypes.BEAM)), camera, a, b, w * 1.6, 0.0,
-                                ShardDraw.rgb(PALE_GOLD), 0.6f * flick);
-                    }
+                boolean core = i < beams.core().size() && beams.core().get(i);
+                if (firing) {
+                    drawBeam(arena, pts, i < beams.nodes().size() ? beams.nodes().get(i) : List.of(), core, t, camera, cam);
+                } else {
+                    drawLines(pts, core, t, camera, cam);
                 }
-                for (int j = 1; j < pts.size(); j++) {
-                    Vec3 node = pts.get(j).subtract(cam);
-                    TelegraphDraw.glow(BUFFERS, camera, node, firing ? 1.2f : 0.6f, firing ? PALE_GOLD : RED_LINE, 0.8f);
+            }
+            if (!firing) {
+                for (int i = 0; i < beams.paths().size(); i++) {
+                    int k = beams.lit(i);
+                    if (k >= 0 && k < Refraction.CRYSTALS) {
+                        litMarker(arena, k, t, beams.turnedAt() == Long.MIN_VALUE ? 1e9 : time - beams.turnedAt(), camera, cam);
+                    }
                 }
             }
             Vec3 eye = ColossusRenderer.point(c, "eye");
@@ -553,6 +570,147 @@ final class ColossusFx implements ColossusEffects.Handler {
             }
             float pulse = 0.75f + 0.25f * (float) Math.sin(time * 0.5);
             TelegraphDraw.glow(BUFFERS, camera, core.subtract(cam), 1.5f * pulse, GOLD, 0.8f);
+        }
+    }
+
+    // ------------------------------------------------------------------ Refraction, every frame
+
+    /**
+     * The charge's red lines: a solid saturated line about four pixels thick at any distance over a soft red halo, pulsing
+     * faster toward the moment it fires (one pulse every 12 ticks at first, every 3 at the end), a white-hot thread in it at
+     * the last. They run between the same points the beam will: each crystal's face, and the body's skin if turned back,
+     * where a heavier red mark shows the beam will strike the Colossus.
+     */
+    private static void drawLines(List<Vec3> pts, boolean core, double t, Camera camera, Vec3 cam) {
+        double charge = ColossusMoves.REFRACTION_CHARGE;
+        double u = Math.max(0.0, Math.min(1.0, t / charge));
+        double phase = 2.0 * Math.PI * (t / 12.0 + (1.0 / 3.0 - 1.0 / 12.0) * t * t / (2.0 * charge));
+        float p = 0.5f + 0.5f * (float) Math.cos(phase);
+        float[] red = ShardDraw.rgb(RED_LINE);
+        for (int j = 0; j + 1 < pts.size(); j++) {
+            Vec3 a = pts.get(j).subtract(cam);
+            Vec3 b = pts.get(j + 1).subtract(cam);
+            double wa = TelegraphDraw.screenWidth(a, 4.0, 0.1);
+            double wb = TelegraphDraw.screenWidth(b, 4.0, 0.1);
+            double halo = 3.0 + 1.5 * u;
+            TelegraphDraw.taper(BUFFERS.getBuffer(ShardDraw.translucent(FxRenderTypes.BEAM, true)), camera, a, b, wa * halo, wb * halo, red,
+                    0.2f + 0.4f * p * (float) (0.5 + 0.5 * u));
+            double w = 1.0 + 0.35 * p * u;
+            TelegraphDraw.line(BUFFERS.getBuffer(ShardDraw.solid()), camera, a, b, wa * w, wb * w, red, 0.92f + 0.08f * p);
+            if (u > 0.75) {
+                float hot = (float) ((u - 0.75) / 0.25) * p;
+                TelegraphDraw.line(BUFFERS.getBuffer(ShardDraw.solid()), camera, a, b, wa * 0.4, wb * 0.4, ShardDraw.rgb(0xFFE6D8), hot);
+            }
+        }
+        for (int j = 1; j < pts.size(); j++) {
+            Vec3 node = pts.get(j).subtract(cam);
+            boolean body = core && j == pts.size() - 1;
+            TelegraphDraw.glow(BUFFERS, camera, node, body ? 1.1f + 0.3f * p : 0.55f, RED_LINE, body ? 0.95f : 0.8f);
+            if (body) {
+                TelegraphDraw.glow(BUFFERS, camera, node, 0.45f, 0xFFE6D8, 0.6f + 0.4f * p);
+            }
+        }
+    }
+
+    /**
+     * The beam: light racing from the eye along the lines at {@link ColossusMoves#BEAM_SPEED} (the same reach the server
+     * hurts with), bouncing off each crystal's face. The red telegraph stays under it; a pale gold body; a rainbow fringe
+     * split out to each side like light through a prism (red outermost); a white-hot core. Every bounce flares (brighter
+     * as the light arrives), each crystal it strikes glows while it carries the beam, the front of the light is a bright
+     * point, and a beam turned back burns into the Colossus's body with a big glow where it strikes.
+     */
+    private static void drawBeam(CrownArena arena, List<Vec3> pts, List<Integer> nodes, boolean core, double t, Camera camera, Vec3 cam) {
+        double reach = ColossusMoves.beamReach(t);
+        double walked = 0.0;
+        for (int j = 0; j + 1 < pts.size(); j++) {
+            if (reach <= walked) {
+                break;
+            }
+            Vec3 a = pts.get(j);
+            Vec3 b = pts.get(j + 1);
+            double len = a.distanceTo(b);
+            boolean whole = reach >= walked + len;
+            Vec3 end = whole ? b : a.add(b.subtract(a).scale((reach - walked) / len));
+            Vec3 ra = a.subtract(cam);
+            Vec3 rb = end.subtract(cam);
+            float flick = 0.88f + 0.12f * (float) Math.sin(t * 3.1 + j);
+            double w = BEAM_WIDTH * (0.94 + 0.06 * Math.sin(t * 2.3 + j * 1.7));
+            // one buffer at a time: a glow drawn between legs ends the solid batch, so fetch it again for every leg
+            VertexConsumer solid = BUFFERS.getBuffer(ShardDraw.solid());
+            TelegraphDraw.ribbon(solid, camera, ra, rb, w * 1.25, 0.0, ShardDraw.rgb(RED), 0.55f);
+            TelegraphDraw.ribbon(solid, camera, ra, rb, w, 0.0, ShardDraw.rgb(PALE_GOLD), 0.8f * flick);
+            for (int side = -1; side <= 1; side += 2) {
+                for (int f = 0; f < FRINGE.length; f++) {
+                    double off = side * (w * 0.5 + FRINGE_W * (FRINGE.length - f - 0.5));
+                    TelegraphDraw.ribbon(solid, camera, ra, rb, FRINGE_W, off, ShardDraw.rgb(FRINGE[f]), 0.85f * flick);
+                }
+            }
+            TelegraphDraw.ribbon(solid, camera, ra, rb, w * 0.45, 0.0, ShardDraw.rgb(WHITE), 1.0f);
+            TelegraphDraw.ribbon(BUFFERS.getBuffer(FxRenderTypes.additive(FxRenderTypes.BEAM)), camera, ra, rb, w * 1.6, 0.0,
+                    ShardDraw.rgb(PALE_GOLD), 0.6f * flick);
+            walked += len;
+            if (!whole) {
+                // the front of the light
+                TelegraphDraw.glow(BUFFERS, camera, rb, 0.9f, WHITE, 1.0f);
+                TelegraphDraw.glow(BUFFERS, camera, rb, 1.8f, PALE_GOLD, 0.6f);
+                break;
+            }
+            // it has arrived at point j + 1: a flare, brightest the moment the light lands
+            double since = (reach - walked) / ColossusMoves.BEAM_SPEED;
+            float burst = (float) Math.max(0.0, 1.0 - since / 5.0);
+            float pulse = 0.85f + 0.15f * (float) Math.sin(t * 2.7 + j * 2.1);
+            boolean body = core && j + 1 == pts.size() - 1;
+            if (body) {
+                TelegraphDraw.glow(BUFFERS, camera, rb, (2.2f + 3.0f * burst) * pulse, PALE_GOLD, 0.85f);
+                TelegraphDraw.glow(BUFFERS, camera, rb, (1.0f + 1.5f * burst) * pulse, WHITE, 1.0f);
+            } else {
+                TelegraphDraw.glow(BUFFERS, camera, rb, (1.3f + 2.2f * burst) * pulse, PALE_GOLD, 0.7f + 0.3f * burst);
+                TelegraphDraw.glow(BUFFERS, camera, rb, (0.55f + 0.9f * burst) * pulse, WHITE, 1.0f);
+                int k = j < nodes.size() ? nodes.get(j) : -1;
+                if (k >= 0 && k < Refraction.CRYSTALS) {
+                    crystalGlow(arena, k, pulse, burst, camera, cam);
+                }
+            }
+        }
+    }
+
+    /** A crown crystal carrying the beam glows from within: a soft turquoise-white light over its whole height. */
+    private static void crystalGlow(CrownArena arena, int k, float pulse, float burst, Camera camera, Vec3 cam) {
+        Vec3 axis = arena.crystalPoint(k);
+        Vec3 mid = new Vec3(axis.x, arena.floorY() + CrownArena.CRYSTAL_HEIGHT * 0.5, axis.z).subtract(cam);
+        TelegraphDraw.glow(BUFFERS, camera, mid, (2.6f + 1.2f * burst) * pulse, 0xBFF8F0, 0.45f + 0.3f * burst);
+        Vec3 foot = new Vec3(axis.x, arena.floorY() + 0.02, axis.z).subtract(cam);
+        TelegraphDraw.curtain(BUFFERS.getBuffer(FxRenderTypes.additive(ShardDraw.GLOW)), foot, CrownArena.CRYSTAL_HALF * 1.45, 0f, -180.0, 180.0, 24,
+                CrownArena.CRYSTAL_HEIGHT + 0.2, ShardDraw.rgb(0xBFF8F0), 0.3f + 0.25f * burst);
+    }
+
+    /**
+     * The lit crystal while the beam charges, in gold (the telegraph language's "hit this"): a gold ring on the floor round
+     * it with a ripple running out of it, a column of gold light up its sides, both pulsing, a gold spark over its tip, and a
+     * white flash the moment a hit turns it.
+     */
+    private static void litMarker(CrownArena arena, int k, double t, double sinceTurn, Camera camera, Vec3 cam) {
+        Vec3 axis = arena.crystalPoint(k);
+        Vec3 foot = new Vec3(axis.x, arena.floorY() + 0.045, axis.z).subtract(cam);
+        float pulse = 0.5f + 0.5f * (float) Math.sin(t * 0.45);
+        float[] gold = ShardDraw.rgb(GOLD);
+        double r = CrownArena.CRYSTAL_HALF * 1.9;
+        ShardDraw.disc(BUFFERS.getBuffer(ShardDraw.solid()), IDENTITY, foot, r, 32, gold[0], gold[1], gold[2], 0.25f + 0.15f * pulse);
+        ShardDraw.band(BUFFERS.getBuffer(ShardDraw.solid()), IDENTITY, foot.add(0, 0.004, 0), r - 0.26, r, 40, gold[0], gold[1], gold[2], 1.0f);
+        double grow = (t * 0.06) % 1.0;
+        double ripple = r + 0.4 + 0.9 * grow;
+        ShardDraw.band(BUFFERS.getBuffer(ShardDraw.solid()), IDENTITY, foot.add(0, 0.006, 0), ripple - 0.12, ripple, 40, gold[0], gold[1], gold[2],
+                0.8f * (float) (1.0 - grow));
+        TelegraphDraw.curtain(BUFFERS.getBuffer(FxRenderTypes.additive(ShardDraw.GLOW)), foot, CrownArena.CRYSTAL_HALF * 1.5, 0f, -180.0, 180.0, 24,
+                CrownArena.CRYSTAL_HEIGHT + 0.6, gold, 0.3f + 0.3f * pulse);
+        Vec3 tip = new Vec3(axis.x, arena.floorY() + CrownArena.CRYSTAL_HEIGHT + 0.9, axis.z).subtract(cam);
+        TelegraphDraw.glow(BUFFERS, camera, tip, 0.7f + 0.35f * pulse, GOLD, 0.9f);
+        TelegraphDraw.glow(BUFFERS, camera, tip, 0.3f, WHITE, 0.9f);
+        if (sinceTurn >= 0 && sinceTurn < 8) {
+            float f = (float) (1.0 - sinceTurn / 8.0);
+            Vec3 mid = new Vec3(axis.x, arena.floorY() + CrownArena.CRYSTAL_HEIGHT * 0.5, axis.z).subtract(cam);
+            TelegraphDraw.glow(BUFFERS, camera, mid, 1.5f + 2.5f * (1f - f), WHITE, 0.9f * f);
+            TelegraphDraw.glow(BUFFERS, camera, mid, 3.0f, GOLD, 0.6f * f);
         }
     }
 }

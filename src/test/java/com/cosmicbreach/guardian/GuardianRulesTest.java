@@ -145,13 +145,21 @@ class GuardianRulesTest {
     }
 
     @Test
+    void aBeamTurnedBackIntoTheCoreAlwaysBreaksIt() {
+        BreakGauge g = new BreakGauge(ColossusMoves.BREAK_POISE);
+        assertTrue(g.add(0, ColossusMoves.CORE_HIT_GAUGE), "on an empty gauge");
+        assertEquals(50.0, ColossusMoves.CORE_HIT_DAMAGE, 1e-9);
+        assertTrue(ColossusMoves.CORE_HIT_BREAK_DELAY < ColossusMoves.REFRACTION_FIRE - 10, "it Breaks while the beam still burns");
+    }
+
+    @Test
     void theGaugeForgetsImpactAfterFiveSeconds() {
         BreakGauge g = new BreakGauge(150);
         g.add(0, 60);
         g.add(50, 26);
         assertEquals(86, g.total(99), 1e-9);
         assertEquals(26, g.total(100), 1e-9, "the parry's 60 ages out after 100 ticks");
-        assertFalse(g.add(100, ColossusMoves.CORE_HIT_GAUGE), "26 + 100 is not yet a Break");
+        assertFalse(g.add(100, 100), "26 + 100 is not yet a Break");
         assertTrue(g.add(110, 26), "one more combo is");
     }
 

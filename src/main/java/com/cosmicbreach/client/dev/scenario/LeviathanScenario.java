@@ -33,11 +33,12 @@ import org.jetbrains.annotations.Nullable;
  *       holding on through a shudder), the kill, each reward, the Deep's attunement and the Starfall's line.</li>
  *   <li>{@code leviathan-repeat}: the bell for an attuned player and an unattuned one, a Guardian Echo after the
  *       cooldown, a repeat kill's rewards, and the reset when everyone leaves.</li>
+ *   <li>{@code leviathan-stand}: a bot that stands on one spot of a ledge and hits what it can reach, for phase 1; the dive's spacing against it is measured.</li>
  *   <li>{@code leviathan-fight}: a whole fight played by a scripted bot, timed ({@link LeviathanFightBot}).</li>
  * </ul>
  */
 public final class LeviathanScenario implements Scenario {
-    public enum Part { LOOKS, MECHANICS, MOORAGE, REPEAT, FIGHT }
+    public enum Part { LOOKS, MECHANICS, MOORAGE, REPEAT, FIGHT, STAND }
 
     private final Part part;
     final List<String> summary = new ArrayList<>();
@@ -52,7 +53,7 @@ public final class LeviathanScenario implements Scenario {
 
     @Override
     public int timeBudgetSeconds() {
-        return part == Part.FIGHT ? 900 : 700;
+        return part == Part.FIGHT || part == Part.STAND ? 900 : 700;
     }
 
     @Override
@@ -67,6 +68,7 @@ public final class LeviathanScenario implements Scenario {
             case MOORAGE -> new LeviathanMechanics(this).moorage(steps, mc);
             case REPEAT -> new LeviathanMechanics(this).repeat(steps, mc);
             case FIGHT -> new LeviathanFightBot(this).steps(steps, mc);
+            case STAND -> new LeviathanFightBot(this, true).steps(steps, mc);
         }
         steps.log("summary", () -> "SUMMARY\n  " + String.join("\n  ", summary));
     }
@@ -324,6 +326,14 @@ public final class LeviathanScenario implements Scenario {
                 .waitTicks(10);
     }
 
+    /** The Breach Dive's wake as drawn on this client now (0 to 1). */
+    private static float wake(Minecraft mc) {
+        for (ThalassineLeviathan l : mc.level.getEntitiesOfClass(ThalassineLeviathan.class, mc.player.getBoundingBox().inflate(120.0))) {
+            return com.cosmicbreach.client.leviathan.LeviathanClient.wakeStrength(l, mc.level.getGameTime());
+        }
+        return -1f;
+    }
+
     private void telegraphs(Steps steps, Minecraft mc, RiftLayout[] l) {
         long[] at = {0};
         // the Breach Dive's dust wake
@@ -331,8 +341,9 @@ public final class LeviathanScenario implements Scenario {
                 .waitTicks(10)
                 .command("cosmicbreach debug leviathan attack dive")
                 .waitUntil("it dives", 40, () -> ask(le -> le.action() == LeviathanTactics.Attack.DIVE))
-                .waitUntil("the wake is drawn all the way to where it lands, just before the head enters it", 40, () -> ask(le ->
-                        le.level().getGameTime() - le.actionStart() >= LeviathanMoves.DIVE_TELL - 2))
+                .waitUntil("the wake is drawn all the way to where it lands (it shows for the first 12 ticks of the tell)", 40, () -> ask(le ->
+                        le.level().getGameTime() - le.actionStart() >= 3))
+                .check("the whole wake is drawn on this client", () -> wake(mc) > 0.99f)
                 .run("high over the wake's middle, off to its side (clear of the platform's boulders)", () -> {
                     com.cosmicbreach.guardian.leviathan.Polyline path = ask(ThalassineLeviathan::divePath);
                     Vec3 me = mc.player.position();
@@ -362,6 +373,12 @@ public final class LeviathanScenario implements Scenario {
                 .run("clear the chat", () -> mc.gui.getChat().clearMessages(false))
                 .screenshot("telegraph_dive_wake")
                 .run("stand on platform 2", () -> standOn(mc, l[0].platform(2)))
+                .waitUntil("the wake has faded (tick 18 of the 30 tick tell)", 40, () -> ask(le ->
+                        le.level().getGameTime() - le.actionStart() >= LeviathanMoves.WAKE_SHOW + LeviathanMoves.WAKE_FADE + 1))
+                .check("still telling, and the wake is gone", () -> ask(le -> le.action() == LeviathanTactics.Attack.DIVE
+                        && le.level().getGameTime() - le.actionStart() < LeviathanMoves.DIVE_TELL) && wake(mc) == 0f)
+                .waitUntil("the head is on its way", 40, () -> ask(le -> le.level().getGameTime() - le.actionStart() >= LeviathanMoves.DIVE_TELL + 10))
+                .check("no wake while it dives", () -> wake(mc) == 0f)
                 .waitUntil("the dive is over", 300, () -> ask(le -> le.action() == LeviathanTactics.Attack.NONE))
                 .waitTicks(20);
         // the Song of Pulling's rings

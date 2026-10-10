@@ -109,7 +109,7 @@ class LeviathanPathTest {
         }
         assertTrue(path.length() > 50 && path.length() < 160, "a dive of " + path.length());
         assertTrue(LeviathanPaths.diveWindow(Math.toRadians(75)));
-        assertTrue(!LeviathanPaths.diveWindow(Math.toRadians(10)) && !LeviathanPaths.diveWindow(Math.toRadians(200)));
+        assertTrue(!LeviathanPaths.diveWindow(Math.toRadians(10)) && LeviathanPaths.diveWindow(Math.toRadians(200)) && !LeviathanPaths.diveWindow(Math.toRadians(340)));
     }
 
     @Test
@@ -192,5 +192,22 @@ class LeviathanPathTest {
             ys.add(droop.path().at(s).y);
         }
         assertTrue(ys.get(ys.size() - 1) < ys.get(0), "nose-down");
+    }
+
+    @Test
+    void aDiveAtATargetFarRoundTheOrbitKeepsToTheRingAndNeverCutsAcrossTheCore() {
+        for (int ahead = 35; ahead <= 330; ahead += 5) {
+            double startAngle = 0.4;
+            Vec3 target = LeviathanPaths.polar(C, startAngle + Math.toRadians(ahead), 30.0, C.y - 2);
+            LeviathanPaths.Swim s = LeviathanPaths.dive(C, 0.7, startAngle, target, 38.0);
+            double min = Double.MAX_VALUE;
+            for (double at = 0; at <= s.path().length(); at += 0.5) {
+                min = Math.min(min, radius(s.path().at(at)));
+            }
+            assertTrue(min > 19.0, "ahead " + ahead + " passes " + min + " blocks from the axis");
+            assertTrue(s.path().length() < 330, "ahead " + ahead + " is " + s.path().length() + " long");
+            double ticks = s.path().length() / LeviathanMoves.DIVE_SPEED;
+            assertTrue(ticks + LeviathanMoves.DIVE_TELL < 300, "ahead " + ahead + " takes " + ticks);
+        }
     }
 }

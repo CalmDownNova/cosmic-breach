@@ -28,8 +28,9 @@ A crystal giant, half fused to the crown of its spire, the keeper of the Reach.
 - **Prism Slam.** A hand rises and a **gold** ring spreads under you before it falls. Gold means you may parry it.
   Or simply be elsewhere.
 - **Refraction.** It fires a beam into the crystals round its crown, and the light bounces from crystal to
-  crystal along thin **red** lines. Red cannot be parried: step off the line. Each crystal you strike turns a
-  step, and a crystal turned the right way sends the beam back into the Colossus's own core.
+  crystal along thin **red** lines. Red cannot be parried: step off the line. The crystal marked in **gold** turns a
+  step each time you strike it (a blade or an arrow), and turned the right way it sends the beam back into the
+  Colossus's own body: a heavy blow that Breaks it.
 - **Shatter.** When its body breaks it splits into three **Prism Shards**. They must all die within twenty
   seconds of each other, or the survivors come back together.
 

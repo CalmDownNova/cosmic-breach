@@ -8,6 +8,7 @@
   "item.cosmicbreach.choir_pendant": "Choir Pendant",
   "effect.cosmicbreach.silenced": "Silenced",
   "message.cosmicbreach.hymnal.opened": "The hymnal's blank pages begin to sing.",
+  "message.cosmicbreach.unsung.volume": "Turn up %s volume: this fight is played by ear.",
   "commands.cosmicbreach.debug.unsung.none": "No Unsung within 160 blocks",
   "death.attack.cosmicbreach.unsung_note": "%1$s was struck by a sung note",
   "death.attack.cosmicbreach.unsung_note.player": "%1$s was struck by a sung note while fighting %2$s",

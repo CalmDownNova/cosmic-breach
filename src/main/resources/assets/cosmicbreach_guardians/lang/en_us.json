@@ -17,6 +17,7 @@
   "message.cosmicbreach.altar.resting": "The altar is dim. It wakes again in %s min.",
   "message.cosmicbreach.altar.awake": "The guardian is already awake.",
   "message.cosmicbreach.altar.armed": "The altar hums, waiting.",
+  "message.cosmicbreach.colossus.refraction_hint": "Strike the lit crystal to turn the beam back at the Colossus",
   "commands.cosmicbreach.debug.lair": "Built a %s lair: arena centre %s %s %s, lift door at %s %s %s",
   "commands.cosmicbreach.debug.colossus.none": "No Prism Colossus within 128 blocks",
   "commands.cosmicbreach.debug.colossus.cooldown": "Cleared the cooldown of %s lair(s)",

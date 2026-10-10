@@ -93,6 +93,8 @@ public final class Scenarios {
         register("colossus-world", () -> new ColossusScenario(ColossusScenario.Part.WORLD));
         register("colossus-fight", () -> new ColossusScenario(ColossusScenario.Part.FIGHT));
         register("colossus-death", () -> new ColossusScenario(ColossusScenario.Part.DEATH));
+        register("colossus-refraction", () -> new ColossusScenario(ColossusScenario.Part.REFRACTION));
+        register("colossus-rest", () -> new ColossusScenario(ColossusScenario.Part.REST));
         register("voice", VoiceScenario::new);
         register("provisions", com.cosmicbreach.client.dev.scenario.ProvisionsScenario::new);
         register("sets", com.cosmicbreach.client.dev.scenario.SetsScenario::new);
@@ -121,6 +123,7 @@ public final class Scenarios {
         register("astrolabe", com.cosmicbreach.client.dev.scenario.AstrolabeScenario::new);
         register("crypt-walk", () -> new com.cosmicbreach.client.dev.scenario.CryptScenario(
                 com.cosmicbreach.client.dev.scenario.CryptScenario.Part.WALK));
+        register("crypt-under-nave", com.cosmicbreach.client.dev.scenario.CryptUnderNaveScenario::new);
         register("crypt-traps", () -> new com.cosmicbreach.client.dev.scenario.CryptScenario(
                 com.cosmicbreach.client.dev.scenario.CryptScenario.Part.TRAPS));
         register("leviathan-looks", () -> new com.cosmicbreach.client.dev.scenario.LeviathanScenario(
@@ -131,6 +134,8 @@ public final class Scenarios {
                 com.cosmicbreach.client.dev.scenario.LeviathanScenario.Part.MOORAGE));
         register("leviathan-repeat", () -> new com.cosmicbreach.client.dev.scenario.LeviathanScenario(
                 com.cosmicbreach.client.dev.scenario.LeviathanScenario.Part.REPEAT));
+        register("leviathan-stand", () -> new com.cosmicbreach.client.dev.scenario.LeviathanScenario(
+                com.cosmicbreach.client.dev.scenario.LeviathanScenario.Part.STAND));
         register("leviathan-fight", () -> new com.cosmicbreach.client.dev.scenario.LeviathanScenario(
                 com.cosmicbreach.client.dev.scenario.LeviathanScenario.Part.FIGHT));
         register("rift-lift", com.cosmicbreach.client.dev.scenario.RiftLiftScenario::new);

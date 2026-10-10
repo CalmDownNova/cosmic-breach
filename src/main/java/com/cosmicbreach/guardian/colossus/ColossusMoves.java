@@ -59,17 +59,29 @@ public final class ColossusMoves {
     public static final double SWEEP_IMPACT = 15.0;
 
     // ------------------------------------------------------------------ Refraction
-    public static final int REFRACTION_CHARGE = 40;
+    /** 4 s (2 s before 1.2.1): time to reach a lit crystal at the rim and turn it 1 to 3 times. */
+    public static final int REFRACTION_CHARGE = 80;
     public static final int REFRACTION_FIRE = 40;
     public static final int REFRACTION_RECOVER = 10;
+    /** Degrees a tick it turns during a charge to face its lit crystals (half a turn in under a second). */
+    public static final float REFRACTION_TURN_SPEED = 9.0f;
+    /**
+     * The fired beam races along its path at this many blocks a tick, so the light is seen leaving the eye and bouncing
+     * from crystal to crystal (a full three-crystal path, about 60 blocks, takes 7 ticks). Players are hurt only where it
+     * has reached; a beam turned back hits the body when it arrives.
+     */
+    public static final double BEAM_SPEED = 9.0;
     /** A player in the beam takes a pulse at most this often. */
     public static final int BEAM_PULSE = 10;
     public static final double BEAM_DAMAGE = 6.0;
     public static final double BEAM_KNOCKBACK = 0.6;
     public static final double BEAM_RADIUS = 0.45;
-    /** A beam turned back into the core. */
-    public static final double CORE_HIT_DAMAGE = 40.0;
-    public static final double CORE_HIT_GAUGE = 100.0;
+    /** A beam turned back into the core: 50 (40 before 1.2.1)... */
+    public static final double CORE_HIT_DAMAGE = 50.0;
+    /** ...and a whole Break gauge, always a Break... */
+    public static final double CORE_HIT_GAUGE = ColossusMoves.BREAK_POISE;
+    /** ...once the beam has burned into the body this long (so it is seen striking before the Colossus slumps). */
+    public static final int CORE_HIT_BREAK_DELAY = 10;
 
     // ------------------------------------------------------------------ Prism Burst (phase 2)
     public static final int BURST_TELL = 16;
@@ -226,6 +238,25 @@ public final class ColossusMoves {
 
     public static int sweepLength() {
         return SWEEP_TELL + SWEEP_SWING + SWEEP_RECOVER;
+    }
+
+    /** How far along its path the beam reaches {@code t} ticks (fractional on the client) into its fire. */
+    public static double beamReach(double t) {
+        return (Math.max(0.0, t) + 1.0) * BEAM_SPEED;
+    }
+
+    /** The tick of the fire on which the beam first reaches {@code length} along its path. */
+    public static int beamArrival(double length) {
+        return Math.max(0, (int) Math.ceil(length / BEAM_SPEED) - 1);
+    }
+
+    /** The distance along a beam's points to point {@code i} (0 for the first). */
+    public static double along(java.util.List<Vec3> pts, int i) {
+        double d = 0.0;
+        for (int j = 1; j <= i && j < pts.size(); j++) {
+            d += pts.get(j).distanceTo(pts.get(j - 1));
+        }
+        return d;
     }
 
     public static int refractionLength() {

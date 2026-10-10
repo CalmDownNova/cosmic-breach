@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.1
+
+Fixes and rebalancing after the fourth round of playtesting. Worlds from 1.2.0 load as they are; every player and the server need 1.2.1.
+
+- The Colossus's beam fight is reworked: crystals bounce the beam off their faces with a flare at every bounce, the beam charges for longer, a crystal you turn glows and shows a gold marker, and arrows and thrown spears turn it too. A beam sent back into the Colossus deals real damage and breaks it.
+- The whale dives faster and more often. Its dive path flashes briefly before it goes, then fades. The air current is unchanged.
+- Drift gel and candied gel have new, clean icons.
+- The crypt now has a way in from under the Nave, even when the two generate together.
+- A reminder before the Unsung fight: keep the Music slider up, her music is part of the fight.
+
 ## 1.2.0
 
 New content and quality of life. Every player and the server need 1.2.0. Worlds from 1.1.x load, but the new layer 3

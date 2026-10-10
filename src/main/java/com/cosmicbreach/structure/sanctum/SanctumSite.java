@@ -44,6 +44,15 @@ public final class SanctumSite {
         return CACHE.computeIfAbsent(t.salt, s -> choose(t));
     }
 
+    /**
+     * True if the Breach Sanctum's causeway ends on pillar {@code p}'s platform. Other Deep structures stay off that
+     * platform, so none can bury the causeway's end (and its way in) or be buried by it.
+     */
+    public static boolean occupies(AetheriaTerrain t, DeepSpans.Pillar p) {
+        SanctumSite s = of(t);
+        return Math.hypot(s.endX + 0.5 - p.cx, s.endZ + 0.5 - p.cz) <= p.platformR + 2.0;
+    }
+
     /** The layout this site builds, its puzzles drawn from {@code seed}. */
     public SanctumLayout layout(long seed) {
         return new SanctumLayout(side, endX, endY, endZ, seed);

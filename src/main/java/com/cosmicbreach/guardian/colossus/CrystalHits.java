@@ -27,8 +27,9 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Hits on crown crystals (Refraction: "any hit on a lit crystal turns it one step clockwise"). A weapon's swing
  * turns every lit crystal its hitbox reaches (a combat hook sees each active tick; one swing turns a crystal
- * once), a plain punch or tool on the crystal turns it, and so does a projectile, unless it was fired from
- * farther than the arena allows. The crystal only turns while its Refraction charges.
+ * once), a plain punch or tool on the crystal turns it, and so does any projectile a player fired or threw (an arrow, a
+ * thrown weapon), unless it was fired from farther than the arena allows. The crystal only turns while its Refraction
+ * charges; each turn grinds and the red lines redraw at once.
  */
 public final class CrystalHits {
     private CrystalHits() {
@@ -88,7 +89,10 @@ public final class CrystalHits {
             return;
         }
         Entity owner = projectile.getOwner();
-        turn(level, base, owner == null ? null : owner.getUUID(), -1);
+        if (!(owner instanceof net.minecraft.world.entity.player.Player)) {
+            return; // only a player's shots turn it
+        }
+        turn(level, base, owner.getUUID(), -1);
     }
 
     /** A hit on the crystal whose controller is at {@code base}. True if it turned. */
@@ -101,6 +105,7 @@ public final class CrystalHits {
         }
         Vec3 at = Vec3.atCenterOf(base).add(0.5, 1.5, 0.5);
         level.playSound(null, at.x, at.y, at.z, GuardianRegistry.COLOSSUS_CRYSTAL_TURN.get(), SoundSource.HOSTILE, 1.5f, 1.0f);
+        level.playSound(null, at.x, at.y, at.z, GuardianRegistry.COLOSSUS_GRIND.get(), SoundSource.HOSTILE, 1.2f, 1.25f);
         if (crystal.owner() != null && level.getEntity(crystal.owner()) instanceof PrismColossus colossus) {
             colossus.onCrystalTurned(crystal.index());
         }

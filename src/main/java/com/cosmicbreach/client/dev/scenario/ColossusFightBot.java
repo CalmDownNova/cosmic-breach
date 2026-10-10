@@ -467,11 +467,9 @@ final class ColossusFightBot {
             for (int i = 0; i < paths.size() && i < lit.length; i++) {
                 int[] path = paths.get(i);
                 toCore[i] = Refraction.endsAtCore(path);
-                Vec3 prev = a.eye(c.getYRot());
-                for (int node : path) {
-                    Vec3 next = a.node(node, c.getYRot(), c.isBroken());
-                    segments.add(new Vec3[] {prev, next});
-                    prev = next;
+                List<Vec3> pts = a.beamPoints(path, a.eye(c.getYRot()), a.core(c.getYRot(), c.isBroken()));
+                for (int j = 0; j + 1 < pts.size(); j++) {
+                    segments.add(new Vec3[] {pts.get(j), pts.get(j + 1)});
                 }
             }
             int[] steps = new int[lit.length];

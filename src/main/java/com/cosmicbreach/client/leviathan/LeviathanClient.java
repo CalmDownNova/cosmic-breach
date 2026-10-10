@@ -53,6 +53,11 @@ public final class LeviathanClient {
         LeviathanFx.path(payload);
     }
 
+    /** How strongly the Breach Dive's wake is drawn for {@code l} at {@code time} (0 to 1; scenarios read it). */
+    public static float wakeStrength(ThalassineLeviathan l, double time) {
+        return LeviathanFx.wakeStrength(l, time);
+    }
+
     private static void onEntityTick(EntityTickEvent.Pre event) {
         if (!(event.getEntity() instanceof LocalPlayer player) || !player.level().isClientSide() || player.isSpectator()
                 || player.getAbilities().flying) {

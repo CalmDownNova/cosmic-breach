@@ -509,12 +509,13 @@ def gel_icon(candied):
                 k = 0.5 * (x + 0.5) / 16 + 0.7 * (y + 0.5) / 16
                 col = deep if k > 0.9 else (body if k > 0.55 else light)
                 put(img, x, y, col, 235 if not candied else 255)
-    # outline in the darkest tone
+    # outline in the darkest tone, read from a snapshot of the body so it is one pixel wide and cannot spread
+    body_alpha = img[..., 3].copy()
     for y in range(16):
         for x in range(16):
-            if img[y, x, 3] == 0:
+            if body_alpha[y, x] == 0:
                 for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                    if 0 <= nx < 16 and 0 <= ny < 16 and img[ny, nx, 3] > 0 and img[ny, nx, :3].tolist() != [22, 14, 62]:
+                    if 0 <= nx < 16 and 0 <= ny < 16 and body_alpha[ny, nx] > 0:
                         put(img, x, y, (46, 28, 104))
                         break
     # a bright glint, and the lit specks

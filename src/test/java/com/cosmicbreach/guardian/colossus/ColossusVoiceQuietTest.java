@@ -17,7 +17,7 @@ class ColossusVoiceQuietTest {
         assertEquals(new ColossusMoves.Shape(24, 44, 12), ColossusMoves.SLAM_SHAPE, "the ring is read for the last 12 of its 24 ticks");
         assertEquals(new ColossusMoves.Shape(36, 56, 12), ColossusMoves.DOUBLE_SLAM_SHAPE, "its second ring tells until 12 + 24");
         assertEquals(new ColossusMoves.Shape(30, 50, 18), ColossusMoves.SWEEP_SHAPE);
-        assertEquals(new ColossusMoves.Shape(80, 90, 28), ColossusMoves.REFRACTION_SHAPE, "the beams are read from the last 12 ticks of the charge and all through the fire");
+        assertEquals(new ColossusMoves.Shape(120, 130, 68), ColossusMoves.REFRACTION_SHAPE, "the beams are read from the last 12 ticks of the charge and all through the fire");
         assertEquals(new ColossusMoves.Shape(16, 28, 4), ColossusMoves.BURST_SHAPE);
     }
 
@@ -29,7 +29,7 @@ class ColossusVoiceQuietTest {
         for (int t = 12; t < 36; t++) {
             assertEquals(0, ColossusMoves.quietTicks(ColossusMoves.DOUBLE_SLAM_SHAPE, t, 99), "double slam tick " + t);
         }
-        for (int t = 28; t < 80; t++) {
+        for (int t = 68; t < 120; t++) {
             assertEquals(0, ColossusMoves.quietTicks(ColossusMoves.REFRACTION_SHAPE, t, 99), "refraction tick " + t);
         }
     }
@@ -62,7 +62,7 @@ class ColossusVoiceQuietTest {
         assertEquals(30 + 12, ColossusMoves.nextReadableIn(30, 0, 0, false, 0, false, 0, false), "the gap ends in 30, then 12 more");
         assertEquals(50 + 12, ColossusMoves.nextReadableIn(30, 50, 0, false, 0, false, 0, false), "a slam on cooldown for 50");
         assertEquals(30 + 18, ColossusMoves.nextReadableIn(30, 99, 0, true, 0, false, 0, false), "the sweep is open and ready: 18 after it starts");
-        assertEquals(30 + 28, ColossusMoves.nextReadableIn(30, 99, 99, false, 0, true, 0, false), "the Refraction is read from the last 12 ticks of its charge");
+        assertEquals(30 + 68, ColossusMoves.nextReadableIn(30, 99, 99, false, 0, true, 0, false), "the Refraction is read from the last 12 ticks of its charge");
         assertEquals(30 + 4, ColossusMoves.nextReadableIn(30, 99, 99, false, 99, false, 0, true), "the burst from its fifth tick");
         assertEquals(99 + 12, ColossusMoves.nextReadableIn(30, 99, 0, false, 5, false, 5, false), "attacks it cannot choose do not count");
     }

@@ -63,7 +63,13 @@ final class LeviathanFightBot {
     private final Deque<Vec3> route = new ArrayDeque<>();
     private int routeTo = -1;
     private long diveKey = Long.MIN_VALUE;
+    private long measuredDive = Long.MIN_VALUE;
+    /** When each dive began (game time). */
+    private final List<Long> diveStarts = new ArrayList<>();
     private @Nullable Vec3 dodge;
+    /** Where the bot stood when the dive began, and how far along the dive's path that is. */
+    private @Nullable Vec3 diveHome;
+    private double diveAt;
     private long parryKey = Long.MIN_VALUE;
     private int pressedDashAt = -100;
     private int bridge = -1;
@@ -95,8 +101,19 @@ final class LeviathanFightBot {
     private double maxGauge;
     private final List<String> homes = new ArrayList<>();
 
+    /**
+     * A ledge farmer: it stands on one spot of its platform's inner edge, never moves for a dive, and hits the body whenever
+     * a part is in reach, for the first phase only (resistance keeps it alive). It measures how often it is dived at.
+     */
+    private final boolean standing;
+
     LeviathanFightBot(LeviathanScenario scenario) {
+        this(scenario, false);
+    }
+
+    LeviathanFightBot(LeviathanScenario scenario, boolean standing) {
         this.scenario = scenario;
+        this.standing = standing;
     }
 
     /** One part of the body as the server has it: 0 the head, 1 to 4 the segments, 5 the tail, 6 to 9 the glands. */
@@ -124,6 +141,7 @@ final class LeviathanFightBot {
     void steps(Steps steps, Minecraft mc) {
         scenario.equip(steps, mc);
         steps.command("gamerule naturalRegeneration true")
+                .command(standing ? "effect give @s minecraft:resistance 99999 4 true" : "gamerule naturalRegeneration true")
                 .run("onto the ledge outside the entrance", () -> {
                     Vec3 ledge = layout().ledgeTop();
                     Vec3 c = layout().centre();
@@ -141,8 +159,35 @@ final class LeviathanFightBot {
                 .log("platforms", () -> String.join("; ", homes))
                 .log("fight", this::report)
                 .run("note it", () -> scenario.summary.add(report()))
-                .check("the Leviathan fell", () -> killAt > 0)
-                .check("even near-perfect play needs at least about a minute and a half", () -> killAt - fightStart >= 1700);
+                .log("dive spacing", () -> "dive starts " + diveStarts + ", phase 1 ends at " + moorIn[0] + ", gaps " + phaseOneGaps())
+                .check("the Leviathan fell, or the farmer's phase is over", () -> standing ? tick > 0 : killAt > 0)
+                .check("phase 1 dives are at least the dive cooldown apart (" + LeviathanMoves.DIVE_COOLDOWN + " ticks)",
+                        () -> phaseOneGaps().stream().allMatch(g -> g >= LeviathanMoves.DIVE_COOLDOWN))
+                .check("a farmer standing on one spot is dived at often: the median gap is at most 200 ticks (5 gaps measured)", () -> {
+                    if (!standing) {
+                        return true;
+                    }
+                    List<Long> gaps = new ArrayList<>(phaseOneGaps());
+                    java.util.Collections.sort(gaps);
+                    return gaps.size() >= 5 && gaps.get(gaps.size() / 2) <= 200;
+                })
+                .check("even near-perfect play needs at least about a minute and a half", () -> standing || killAt - fightStart >= 1700);
+    }
+
+    /** Ticks between consecutive dive starts in phase 1. */
+    private List<Long> phaseOneGaps() {
+        List<Long> gaps = new ArrayList<>();
+        long last = Long.MIN_VALUE;
+        for (long start : diveStarts) {
+            if (moorIn[0] > 0 && start >= moorIn[0]) {
+                break;
+            }
+            if (last != Long.MIN_VALUE) {
+                gaps.add(start - last);
+            }
+            last = start;
+        }
+        return gaps;
     }
 
     private String report() {
@@ -192,7 +237,7 @@ final class LeviathanFightBot {
             return true;
         }
         measure(s);
-        if (s.state() == State.DYING || tick > TIMEOUT) {
+        if (s.state() == State.DYING || tick > TIMEOUT || standing && (moorIn[0] > 0 || tick > 5000)) {
             if (s.state() == State.DYING && killAt < 0) {
                 killAt = s.now();
             }
@@ -221,6 +266,10 @@ final class LeviathanFightBot {
     }
 
     private void measure(Snap s) {
+        if (s.action() == LeviathanTactics.Attack.DIVE && s.now() - s.actionTick() != measuredDive) {
+            measuredDive = s.now() - s.actionTick();
+            diveStarts.add(measuredDive);
+        }
         if (fightStart < 0 && s.state() == State.FIGHT) {
             fightStart = s.now();
         }
@@ -258,6 +307,12 @@ final class LeviathanFightBot {
     // ------------------------------------------------------------------ the orbit
 
     private void fight(Minecraft mc, Snap s) {
+        if (standing) {
+            if (!strike(mc, s)) {
+                position(mc, s);
+            }
+            return;
+        }
         if (dive(mc, s) || song(mc, s) || flick(mc, s) || scales(mc, s)) {
             return;
         }
@@ -284,7 +339,7 @@ final class LeviathanFightBot {
         routeTo = -1;
         Part near = nearestPart(me, s, false);
         Vec3 toward = s.broken() && head != null ? head.centre() : near != null && flat(near.centre(), me) < 14.0 ? near.centre() : null;
-        Vec3 spot = toward != null ? edgePoint(p, toward) : standPoint(p, EDGE);
+        Vec3 spot = standing ? standPoint(p, EDGE) : toward != null ? edgePoint(p, toward) : standPoint(p, EDGE);
         walkTo(mc, spot, 0.35, look);
     }
 
@@ -341,6 +396,8 @@ final class LeviathanFightBot {
         long key = s.now() - s.actionTick();
         if (key != diveKey) {
             diveKey = key;
+            diveHome = mc.player.position();
+            diveAt = paramOf(s.dive(), diveHome.add(0, 0.9, 0));
             dodge = dodgePoint(mc.player.position(), s.dive());
             if (dodge != null) {
                 dodges++;
@@ -351,6 +408,13 @@ final class LeviathanFightBot {
         }
         Part head = s.part(0);
         Vec3 look = head != null ? head.centre() : layout().centre();
+        if (head != null && diveHome != null && paramOf(s.dive(), head.centre()) > diveAt + 10.0) {
+            // the head and the first segment (the only parts that strike) are past: back into the path, where the body is going by
+            if (!strike(mc, s)) {
+                walkTo(mc, diveHome, 0.35, look);
+            }
+            return true;
+        }
         if (flat(mc.player.position(), dodge) > 0.4) {
             // a part already in reach while stepping out is a free hit
             if (!strike(mc, s)) {
@@ -368,6 +432,20 @@ final class LeviathanFightBot {
      * The nearest spot on this platform at least 3.6 blocks from the dive's path (its middle; so its box is out of the
      * head's 2.7 reach with room to spare), or null if the path already misses.
      */
+    /** How far along {@code path} its nearest point to {@code p} is (blocks). */
+    private static double paramOf(Polyline path, Vec3 p) {
+        double best = Double.MAX_VALUE;
+        double at = 0;
+        for (double d = 0; d <= path.length(); d += 0.5) {
+            double dd = path.at(d).distanceToSqr(p);
+            if (dd < best) {
+                best = dd;
+                at = d;
+            }
+        }
+        return at;
+    }
+
     private @Nullable Vec3 dodgePoint(Vec3 feet, Polyline path) {
         double clear = LeviathanMoves.DIVE_REACH + 0.9;
         if (pathDistance(path, feet.add(0, 0.9, 0)) >= clear) {
