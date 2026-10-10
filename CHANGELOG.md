@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.2
+
+Hotfix. Every player and the server need 1.2.2; worlds load as they are.
+
+- Fixed a server crash in 1.2.1 when the world generated the Nave.
+
 ## 1.2.1
 
 Fixes and rebalancing after the fourth round of playtesting. Worlds from 1.2.0 load as they are; every player and the server need 1.2.1.
