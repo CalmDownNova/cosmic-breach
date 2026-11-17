@@ -94,4 +94,15 @@ class ChoirJudgeTest {
         assertEquals(Verdict.HIT, j.enter(126, 1, 0));
         assertEquals(Verdict.DONE, j.enter(138, 0, 0));
     }
+
+    @Test
+    void atAnyPaceOnlyTheOrderCounts() {
+        ChoirJudge j = new ChoirJudge(FOUR, 1000, ChoirRules.ANY_PACE);
+        assertFalse(j.missed(5000, 0), "a beat never goes by unanswered");
+        assertEquals(Verdict.HIT, j.enter(5000, 2, 0), "minutes late is fine");
+        assertEquals(Verdict.HIT, j.enter(5001, 1, 0), "a tick later is fine too");
+        assertEquals(Verdict.WRONG, j.enter(5100, 7, 0), "a wrong pad is still a Discord");
+        assertEquals(Verdict.HIT, j.enter(5200, 3, 0));
+        assertEquals(Verdict.DONE, j.enter(9000, 0, 0));
+    }
 }

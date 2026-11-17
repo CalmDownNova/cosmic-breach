@@ -14,6 +14,7 @@ import com.cosmicbreach.structure.choir.ChoirRules;
 import com.cosmicbreach.structure.choir.ChoirSession;
 import com.cosmicbreach.structure.choir.ConductorBlockEntity;
 import com.cosmicbreach.structure.crypt.CryptCommands;
+import com.cosmicbreach.structure.crypt.CryptConfig;
 import com.cosmicbreach.structure.vault.VaultBlockEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,19 @@ public final class ChoirScenario implements Scenario {
     static final int LATE_RELAXED = ChoirRules.WINDOW + 1;
     /** Answers the bot gets to show a check before a busy machine counts as a failure. */
     static final int TRIES = 4;
+    /** How late the bot steps every note in the "any pace" run: three beats, far past any timed window. */
+    static final int LATE_ANY_PACE = 3 * ChoirRules.BEAT;
+
+    private final boolean anyPace;
+
+    public ChoirScenario() {
+        this(false);
+    }
+
+    /** {@code anyPace}: the short run with the default config, where only the order counts. */
+    public ChoirScenario(boolean anyPace) {
+        this.anyPace = anyPace;
+    }
 
     @Override
     public int timeBudgetSeconds() {
@@ -78,6 +92,10 @@ public final class ChoirScenario implements Scenario {
         Minecraft mc = Minecraft.getInstance();
         State s = new State();
         Bot bot = new Bot(mc);
+        if (anyPace) {
+            anyPace(steps, mc, s, bot);
+            return;
+        }
         steps.command("gamerule sendCommandFeedback false")
                 .command("gamerule doDaylightCycle false")
                 .command("time set 6000")
@@ -86,6 +104,7 @@ public final class ChoirScenario implements Scenario {
                 .command("gamemode creative")
                 .look(0, 0)
                 .waitTicks(5)
+                .run("the timed puzzle: this scenario measures the beat (any pace is the default)", () -> CryptConfig.overrideAnyPace(false))
                 .run("build a Choir Floor ahead", () -> {
                     long t0 = System.nanoTime();
                     s.conductor = server(srv -> CryptCommands.placeChoirAhead(player(srv), SEED, ChoirDifficulty.CRYPT));
@@ -134,6 +153,64 @@ public final class ChoirScenario implements Scenario {
         roundOne(steps, mc, s, bot);
         roundTwo(steps, mc, s, bot);
         roundThree(steps, mc, s, bot);
+        steps.log("results", () -> String.join(System.lineSeparator(), s.results));
+        steps.run("back to the configured pace", () -> CryptConfig.overrideAnyPace(null));
+    }
+
+    /**
+     * "Any pace", the default since 1.2.3: the floor woken with the config as shipped, and the bot answers round 1
+     * three beats late on every note. The round resolves with no Discord.
+     */
+    private void anyPace(Steps steps, Minecraft mc, State s, Bot bot) {
+        int[] before = {0};
+        steps.command("gamerule sendCommandFeedback false")
+                .command("gamerule doDaylightCycle false")
+                .command("time set 6000")
+                .command("weather clear")
+                .command("difficulty normal")
+                .command("gamemode creative")
+                .look(0, 0)
+                .waitTicks(5)
+                .run("the config as shipped", () -> {
+                    CryptConfig.overrideAnyPace(null);
+                    CryptConfig.override(null);
+                })
+                .check("any pace is the default", CryptConfig::anyPace)
+                .run("build a Choir Floor ahead", () -> {
+                    s.conductor = server(srv -> CryptCommands.placeChoirAhead(player(srv), SEED, ChoirDifficulty.CRYPT));
+                    s.centre = Vec3.atBottomCenterOf(s.conductor);
+                    s.door = s.centre.add(0, 0, -8.0);
+                    bot.conductor = s.conductor;
+                })
+                .waitUntil("the Conductor reached this client", 100, () -> bot.be() != null)
+                .run("inside the door, off the floor", () -> CryptKit.tp(mc, s.door, s.centre.add(0, 1, 0)))
+                .command("gamemode survival")
+                .run("full health", CryptKit::heal)
+                .waitUntil("the room is drawn", 600, CryptKit.settled(mc, 400))
+                .hold(mc.options.keyUp)
+                .waitUntil("walking onto the ring wakes the floor", 200, () -> server(srv -> floor(srv, s).phase()) == ChoirSession.Phase.CALL)
+                .release(mc.options.keyUp)
+                .run("the bot answers every note three beats late", () -> {
+                    bot.mode = Bot.Mode.PLAY;
+                    bot.late = LATE_ANY_PACE;
+                    before[0] = server(srv -> floor(srv, s).discords());
+                    s.results.add("woke at any pace: window " + server(srv -> floor(srv, s).window()) + ", " + describe(server(srv -> floor(srv, s))));
+                })
+                .waitUntil("round 1 answered three beats late on every note", 3000, () -> {
+                    bot.tick();
+                    healIfLow(mc);
+                    return server(srv -> floor(srv, s).round()) >= 1;
+                })
+                .run("release", () -> CryptKit.releaseAll(mc))
+                .run("result", () -> {
+                    ConductorBlockEntity f = server(srv -> floor(srv, s));
+                    int discords = f.discords() - before[0];
+                    s.results.add("round 1 answered " + LATE_ANY_PACE + " ticks late on every note, Discords " + discords
+                            + ", steps " + f.stepLog().size());
+                    if (discords != 0) {
+                        throw new Steps.Failure("at any pace, late steps in order should never bring a Discord (" + discords + ")");
+                    }
+                });
         steps.log("results", () -> String.join(System.lineSeparator(), s.results));
     }
 

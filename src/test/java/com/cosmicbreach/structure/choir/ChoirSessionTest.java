@@ -313,6 +313,48 @@ class ChoirSessionTest {
         assertEquals(1, l2.discords, "5 late is a missed beat without Relaxed");
     }
 
+    /** At any pace, a slow player who steps each note several beats late still solves all three rounds. */
+    @Test
+    void aSlowPlayerSolvesAllThreeRoundsAtAnyPace() {
+        for (long seed : new long[] {3L, 7L, 9L, 21L}) {
+            Log log = new Log();
+            ChoirSession s = session(ChoirDifficulty.SANCTUM, seed);
+            s.wake(100, 1, ChoirRules.ANY_PACE);
+            long t = 100;
+            for (int round = 0; round < 3; round++) {
+                t = toAnswer(s, log, t, 1);
+                ChoirPhrase p = s.judge().phrase();
+                for (int i = 0; i < p.size(); i++) {
+                    long due = t + 50; // about four beats per note, whatever the rhythm
+                    for (; t < due; t++) {
+                        log.now = t;
+                        s.tick(t, 1, 0, true, log);
+                    }
+                    for (int pad : p.pads()[i]) {
+                        s.step(t, pad, 0, 1, log);
+                    }
+                }
+                assertEquals(0, log.discords, "seed " + seed + ", round " + (round + 1));
+            }
+            assertEquals(ChoirSession.Phase.SOLVED, s.phase(), "seed " + seed);
+        }
+    }
+
+    @Test
+    void stepsDuringTheCallStillDoNotCountAtAnyPace() {
+        Log log = new Log();
+        ChoirSession s = session(ChoirDifficulty.CRYPT, 9L);
+        s.wake(0, 1, ChoirRules.ANY_PACE);
+        long t = 0;
+        for (; s.phase() != ChoirSession.Phase.CALL || t < s.callStart() + 1; t++) {
+            log.now = t;
+            s.tick(t, 1, 0, true, log);
+        }
+        assertEquals(ChoirJudge.Verdict.IGNORED, s.step(t, s.phrase().pads()[0][0], 0, 1, log), "the Conductor is still singing");
+        t = toAnswer(s, log, t, 1);
+        assertEquals(s.answerStart(), t, "the answer opens on its beat, not before");
+    }
+
     @Test
     void aCoopFloorFallsBackToTheSoloTuneWhenAPlayerLeaves() {
         Log log = new Log();

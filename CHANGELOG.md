@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.3
+
+Fixes. Every player and the server need 1.2.3; worlds load as they are.
+
+- Choir Floors take the answer at any pace: the notes in the right order, no beat to hit, no time limit. A wrong note is
+  still a Discord. Before, a step counted only within 3 ticks of its beat on landing, and a jump lands about a beat after
+  it leaves the ground, so jumping on the beat always missed. New server config `choir_floor.any_pace` (default true);
+  off brings the timed puzzle back, with `relaxed` as before.
+- A Choir Floor tells the room how to answer when it wakes.
+- Dev: `choir-any-pace` scenario; `runClient -Pplay=play-choir` opens a visible client at a Choir Floor's door.
+
 ## 1.2.2
 
 Hotfix. Every player and the server need 1.2.2; worlds load as they are.

@@ -37,6 +37,8 @@
   "death.attack.cosmicbreach.gravity_piston": "%1$s was flattened by a Gravity Piston",
   "cosmicbreach.choir.discord.wrong": "Discord: that was the wrong pad. Listen again.",
   "cosmicbreach.choir.discord.missed": "Discord: a beat went by unanswered. Listen again.",
+  "cosmicbreach.choir.wake": "The Conductor sings. When the ticks stop, answer: step onto each pad on its beat, in the same order.",
+  "cosmicbreach.choir.wake.any_pace": "The Conductor sings. When the ticks stop, step onto the pads in the same order, at your own pace.",
   "cosmicbreach.choir.rest": "The Conductor lowers its baton. The floor rests for ten seconds.",
   "cosmicbreach.choir.round": "Round %1$s resolves. The Conductor begins again.",
   "cosmicbreach.choir.solved": "The Choir resolves. The vault unseals.",

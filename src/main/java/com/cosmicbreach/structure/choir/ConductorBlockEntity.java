@@ -321,7 +321,11 @@ public class ConductorBlockEntity extends BlockEntity {
             hushed = false;
         }
         if (s.phase() == ChoirSession.Phase.IDLE && onFloor && !hushed) {
-            s.wake(now, room.size(), CryptConfig.window());
+            s.wake(now, room.size(), CryptConfig.choirWindow());
+            for (ServerPlayer p : room) {
+                p.displayClientMessage(Component.translatable(CryptConfig.anyPace()
+                        ? "cosmicbreach.choir.wake.any_pace" : "cosmicbreach.choir.wake"), true);
+            }
             coop = s.song().coop();
             sung = true;
             out.dirty = true;

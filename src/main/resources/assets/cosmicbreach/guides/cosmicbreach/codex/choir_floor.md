@@ -77,20 +77,23 @@ glyph.
 </GameScene>
 
 **Step onto the ring and the Conductor sings.** It plays a phrase pad by pad; then a ring of light round its feet
-counts four beats in, and it is your turn. Step onto the same pads in the same order and the same rhythm, each on
-its beat. To sound a pad twice, hop on it.
+counts four beats in, and it is your turn. Step onto the same pads **in the same order**, at your own pace: the
+Choir waits for you. To sound a pad twice, step off it and back on (or hop).
 
 - **Round one** is four notes, one on each beat.
 - **Round two** is six, and two of them come half a beat apart.
 - **Round three** is eight. While the ring counts you in, the pads turn a place round the Conductor: remember
   the notes, not where they lay. One note is a ghost, played faintly and only once.
 
-A wrong pad or a missed beat is a **Discord**: it stings, it throws you back, and the Conductor plays the phrase
+A wrong pad is a **Discord**: it stings, it throws you back, and the Conductor plays the phrase
 again. After three Discords in one round the floor rests for ten seconds before you try again. It never locks you
 out.
 
 Every pad lights up in its colour as the Conductor plays it, and the ring of light pulses with each beat, so the
-song can be followed with your eyes alone. When two or more of you enter a floor together, some beats become
+song can be followed with your eyes alone. Walk back to the clear floor round the Conductor between notes, so you
+don't cross a pad you didn't mean to. When two or more of you enter a floor together, some beats become
 chords: two pads at once, one for each of you.
+
+*(On a server set to the timed puzzle, each step must also land on its beat, as the Conductor sang it.)*
 
 Answer all three rounds and the Choir resolves. The vault of the room opens, once for each of you.

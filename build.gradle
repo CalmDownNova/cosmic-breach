@@ -124,6 +124,10 @@ neoForge {
         client {
             client()
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            // -Pplay=<scenario>: Nate's visible client, straight into a scenario set up for him to play (play-choir)
+            if (project.hasProperty('play')) {
+                systemProperty 'cosmicbreach.autotest', project.property('play').toString()
+            }
         }
 
         // Claude's test client: its own game directory and a hidden window,

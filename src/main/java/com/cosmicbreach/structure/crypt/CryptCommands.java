@@ -225,7 +225,7 @@ public final class CryptCommands {
         CryptConfig.override(on);
         ServerPlayer player = context.getSource().getPlayerOrException();
         for (ConductorBlockEntity floor : ChoirFloors.all(player.level())) {
-            floor.setWindow(CryptConfig.window());
+            floor.setWindow(CryptConfig.choirWindow());
         }
         context.getSource().sendSuccess(() -> Component.translatable("commands.cosmicbreach.debug.choir.relaxed", on ? "on" : "off",
                 CryptConfig.window()), false);

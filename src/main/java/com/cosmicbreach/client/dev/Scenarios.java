@@ -105,6 +105,8 @@ public final class Scenarios {
         register("sets-looks", () -> new com.cosmicbreach.client.dev.scenario.SetsScenario(
                 com.cosmicbreach.client.dev.scenario.SetsScenario.Part.LOOKS));
         register("choir", com.cosmicbreach.client.dev.scenario.ChoirScenario::new);
+        register("choir-any-pace", () -> new com.cosmicbreach.client.dev.scenario.ChoirScenario(true));
+        register("play-choir", com.cosmicbreach.client.dev.scenario.PlayChoirScenario::new);
         register("crypt", com.cosmicbreach.client.dev.scenario.CryptScenario::new);
         register("stalker", com.cosmicbreach.client.dev.scenario.StalkerScenario::new);
         register("jelly", () -> new com.cosmicbreach.client.dev.scenario.JellyScenario(

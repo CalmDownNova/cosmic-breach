@@ -25,6 +25,11 @@ public final class ChoirRules {
     public static final int EIGHTH = BEAT / 2;
     /** A step counts within this many ticks of its beat (GDD 6.3), plus latency grace. */
     public static final int WINDOW = 3;
+    /**
+     * The "any pace" window (the server config's default since 1.2.3): no window at all. An answer only has to
+     * come in the right order, and a beat never goes by unanswered.
+     */
+    public static final int ANY_PACE = -1;
     /** The server config's Relaxed window. */
     public static final int RELAXED_WINDOW = 5;
     /** Most latency grace a step gets, in ticks (a 200 ms round trip). */

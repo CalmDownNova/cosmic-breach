@@ -29,5 +29,6 @@
   "cosmicbreach.configuration.lens_array.hintSeconds": "The Codex offers a hint after (seconds)",
   "cosmicbreach.configuration.lens_array.eyeCooldownSeconds": "The Warden Eye rests for (seconds)",
   "cosmicbreach.configuration.choir_floor": "Timing",
+  "cosmicbreach.configuration.choir_floor.any_pace": "Any pace (order only)",
   "cosmicbreach.configuration.choir_floor.relaxed": "Relaxed timing"
 }

@@ -14,7 +14,7 @@ unlock: deep
 Where we laid our dead, long ago: labyrinths of a dozen rooms or more, over two or three levels, cut into the
 basalt of the Deep. The Hollow found them first. Stalkers walk their halls, and the old wards still work.
 
-Somewhere inside every Crypt waits a **Choir Floor**, the rhythm puzzle ([its page](choir_floor.md)), and beyond
+Somewhere inside every Crypt waits a **Choir Floor**, the music puzzle ([its page](choir_floor.md)), and beyond
 it the **vault**, where the charms of the Choir were kept.
 
 **Finding one.** Sneak and use the Codex, then use it again while its mote flies: it turns to the nearest puzzle

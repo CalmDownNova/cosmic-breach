@@ -36,8 +36,11 @@ public final class ChoirJudge {
         }
     }
 
-    /** True if a step {@code offset} ticks from its beat counts with this window and grace. */
+    /** True if a step {@code offset} ticks from its beat counts with this window and grace (any step at {@link ChoirRules#ANY_PACE}). */
     public static boolean within(long offset, int window, int grace) {
+        if (window == ChoirRules.ANY_PACE) {
+            return true;
+        }
         return offset >= -window && offset <= window + Math.max(0, grace);
     }
 
@@ -103,6 +106,9 @@ public final class ChoirJudge {
 
     /** True if, at {@code tick}, the next note's window has closed without it sounding (grace: the most any player on the floor has). */
     public boolean missed(long tick, int grace) {
+        if (window == ChoirRules.ANY_PACE) {
+            return false;
+        }
         return !done() && tick - target(next) > window + Math.max(0, grace);
     }
 

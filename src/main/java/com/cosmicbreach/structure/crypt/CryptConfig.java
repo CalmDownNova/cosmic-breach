@@ -6,18 +6,24 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * The Hollow Crypt's server config ({@code serverconfig/cosmicbreach-crypt.toml} in each world): the Choir Floor's
- * Relaxed timing (GDD 6.3: a step counts within 5 ticks of its beat instead of 3). {@code /cosmicbreach debug choir
- * relaxed on|off} overrides it until the server stops.
+ * pace: "any pace" (the default since 1.2.3: the answer only has to be in the right order, nothing is timed), or
+ * timed, where Relaxed (GDD 6.3) lets a step count within 5 ticks of its beat instead of 3. {@code /cosmicbreach
+ * debug choir relaxed on|off} overrides Relaxed until the server stops.
  */
 public final class CryptConfig {
     public static final String FILE = "cosmicbreach-crypt.toml";
     public static final ModConfigSpec SPEC;
+    private static final ModConfigSpec.BooleanValue ANY_PACE;
     private static final ModConfigSpec.BooleanValue RELAXED;
     private static volatile @Nullable Boolean override;
+    private static volatile @Nullable Boolean anyPaceOverride;
 
     static {
         ModConfigSpec.Builder b = new ModConfigSpec.Builder();
         b.comment("The Choir Floor, the rhythm puzzle of the Hollow Crypt and the Breach Sanctum.").push("choir_floor");
+        ANY_PACE = b.comment("Any pace: the answer only has to be in the right order; nothing is timed. Off brings back the timed",
+                        "puzzle, judged on the beat (see relaxed).")
+                .translation("cosmicbreach.configuration.choir_floor.any_pace").define("any_pace", true);
         RELAXED = b.comment("Relaxed timing: a step counts within 5 ticks of its beat instead of 3 (plus latency grace).")
                 .translation("cosmicbreach.configuration.choir_floor.relaxed").define("relaxed", false);
         b.pop();
@@ -39,7 +45,30 @@ public final class CryptConfig {
         }
     }
 
-    /** The Choir Floor's window in ticks. */
+    /** True if Choir Floors take their answers at any pace (order only). */
+    public static boolean anyPace() {
+        Boolean o = anyPaceOverride;
+        if (o != null) {
+            return o;
+        }
+        try {
+            return ANY_PACE.get();
+        } catch (IllegalStateException notLoaded) {
+            return true;
+        }
+    }
+
+    /** Overrides "any pace" until the server stops (scenarios); null goes back to the config. */
+    public static void overrideAnyPace(@Nullable Boolean anyPace) {
+        anyPaceOverride = anyPace;
+    }
+
+    /** The window a Choir Floor judges with: {@link ChoirRules#ANY_PACE}, or the timed window. */
+    public static int choirWindow() {
+        return anyPace() ? ChoirRules.ANY_PACE : window();
+    }
+
+    /** The timed window in ticks (also the Drift Manta's call). */
     public static int window() {
         return relaxed() ? ChoirRules.RELAXED_WINDOW : ChoirRules.WINDOW;
     }

@@ -246,7 +246,7 @@ public final class ChoirSession {
                         out.countIn(k);
                     }
                 }
-                if (now >= answerStart - window) {
+                if (now >= answerStart - Math.max(0, window)) {
                     phase = Phase.ANSWER;
                     judge = new ChoirJudge(p, answerStart, window);
                     stepsThisAnswer = 0;
